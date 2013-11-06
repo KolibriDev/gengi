@@ -1,0 +1,9 @@
+{
+  "name": "grunt-seed",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Form5/grunt-seed",
+  "authors": [
+    "Form5 <hello@form5.is>"
+  ],
+  "license": "MIT"
+}
