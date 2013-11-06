@@ -11,42 +11,29 @@ module.exports = function(grunt) {
   // Load all tasks under the tasks folder
   grunt.util._.extend(config, loadConfig('./tasks/'));
   grunt.initConfig(config);
+  require('load-grunt-tasks')(grunt);
 
 
   // Views
-  grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.registerTask('buildViews', ['jade:dev']);
 
   // Image minification
-  grunt.loadNpmTasks('grunt-contrib-imagemin');
-  grunt.loadNpmTasks('grunt-svgmin');
   grunt.registerTask('minifyImages', ['imagemin:dev', 'svgmin:dev']);
 
   // Sass compilation
-  grunt.loadNpmTasks('grunt-sass');
   grunt.registerTask('buildCss', ['sass:dev']);
 
   // Javascript
-  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.registerTask('buildJs', ['jshint:dev']);
 
   // Copy files
-  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.registerTask('copyFiles', ['copy:dev']);
 
   // Run the development web server
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-open');
-  grunt.registerTask('runServer', ['connect:dev', 'open:dev'])
+  grunt.registerTask('runServer', ['connect:dev', 'open:dev']);
 
   // Watch for file changes
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.registerTask('watchFiles', ['watch'])
-
-  // Native notifications when tasks fail
-  grunt.loadNpmTasks('grunt-notify');
-
-  grunt.loadNpmTasks('grunt-bower-task');
+  grunt.registerTask('watchFiles', ['watch']);
 
   // The default task
   grunt.registerTask('default',

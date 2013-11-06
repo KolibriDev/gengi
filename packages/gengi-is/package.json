@@ -26,6 +26,7 @@
     "grunt-contrib-connect": "~0.5.0",
     "grunt-open": "~0.2.2",
     "grunt-notify": "~0.2.15",
-    "grunt-bower-task": "~0.3.2"
+    "grunt-bower-task": "~0.3.2",
+    "load-grunt-tasks": "~0.2.0"
   }
 }
