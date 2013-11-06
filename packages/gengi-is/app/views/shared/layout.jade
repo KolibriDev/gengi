@@ -6,7 +6,8 @@ html(class="no-js")
   include _head
 
   body
-    block content
+    div.main-view(ng-view)
+      block content
 
     block javascript
       script(src='http://localhost:35729/livereload.js')
