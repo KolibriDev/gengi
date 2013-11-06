@@ -11,7 +11,7 @@ module.exports = {
       layout: function(type, component) {
         var renamedType = type;
         if (type == 'js') renamedType = 'js/vendor';
-        else if (type == 'css' || type == 'scss') renamedType = 'scss/vendor';
+        else if (type == 'css' || type == 'scss') renamedType = 'css/vendor';
         return path.join(renamedType);
       }
     }
