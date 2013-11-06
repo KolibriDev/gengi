@@ -4,7 +4,7 @@ module.exports = {
       {
         expand: true,
         cwd: 'app/js/',
-        src: ['**/*.js'],
+        src: ['**/*.js', '!vendor/*'],
         dest: 'dev/js/'
       }
     ],
