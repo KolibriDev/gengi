@@ -1,6 +1,9 @@
 grunt-seed
 ==========
 
+This is our badass and customized front-end development workflow that uses [Grunt](http://gruntjs.com/) for task automation. This is a project seed that you can use to build your own projects on.
+
+
 ## Features
 
 * Development web server
@@ -19,7 +22,9 @@ grunt-seed
 ## Setup
 
 ```shell
-$ git clone https://github.com/Form5/grunt-seed.git
+$ git init your-project-name
+$ cd your-project-name
+$ git pull https://github.com/Form5/grunt-seed.git
 $ grunt bower
 $ grunt server
 ```
