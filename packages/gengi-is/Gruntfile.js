@@ -12,6 +12,7 @@ module.exports = function(grunt) {
   grunt.util._.extend(config, loadConfig('./tasks/'));
   grunt.initConfig(config);
 
+
   // Views
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.registerTask('buildViews', ['jade:dev']);
@@ -44,6 +45,8 @@ module.exports = function(grunt) {
 
   // Native notifications when tasks fail
   grunt.loadNpmTasks('grunt-notify');
+
+  grunt.loadNpmTasks('grunt-bower-task');
 
   // The default task
   grunt.registerTask('default',

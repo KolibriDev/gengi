@@ -5,5 +5,42 @@
   "authors": [
     "Form5 <hello@form5.is>"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "requirejs": "~2.1.9",
+    "modernizr": "~2.6.2",
+    "angular": "~1.0.8",
+    "angular-animate": "~1.2.0-rc.3",
+    "angular-route": "~1.2.0-rc.3",
+    "normalize-scss": "~2.1.2"
+  },
+  "exportsOverride": {
+    "jquery": {
+      "js": "jquery.js"
+    },
+    "normalize-scss": {
+      "scss": "_normalize.scss"
+    },
+    "requirejs": {
+      "js": "require.js"
+    },
+    "modernizr": {
+      "js": "modernizr.js"
+    },
+    "angular": {
+      "js": "angular.js"
+    },
+    "angular-route": {
+      "js": "angular-route.js"
+    },
+    "angular-animate": {
+      "js": "angular-animate.js"
+    },
+    "*": {
+      "js": "**/*.js",
+      "css": "**/*.css",
+      "scss": "**/.scss"
+    }
+  }
 }

@@ -5,3 +5,5 @@ npm-debug.log
 bower_components
 dist
 dev
+app/js/vendor
+app/scss/vendor
