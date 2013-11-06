@@ -13,7 +13,6 @@ module.exports = function(grunt) {
   grunt.initConfig(config);
   require('load-grunt-tasks')(grunt);
 
-
   // Views
   grunt.registerTask('buildViews', ['jade:dev']);
 
@@ -32,9 +31,6 @@ module.exports = function(grunt) {
   // Run the development web server
   grunt.registerTask('runServer', ['connect:dev', 'open:dev']);
 
-  // Watch for file changes
-  grunt.registerTask('watchFiles', ['watch']);
-
   // The default task
   grunt.registerTask('default',
     [
@@ -47,7 +43,7 @@ module.exports = function(grunt) {
   );
 
   // The server task
-  grunt.registerTask('server', ['default', 'runServer', 'watchFiles'])
+  grunt.registerTask('server', ['default', 'runServer', 'watch'])
 };
 
 // Borrowed from Thomas Boyt (@thomasABoyt)
