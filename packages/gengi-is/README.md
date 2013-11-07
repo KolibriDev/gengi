@@ -25,6 +25,7 @@ This is our badass and customized front-end development workflow that uses [Grun
 $ git init your-project-name
 $ cd your-project-name
 $ git pull https://github.com/Form5/grunt-seed.git
+$ npm install
 $ grunt bower
 $ grunt server
 ```
