@@ -1,0 +1,8 @@
+
+.box {
+  @include clearfix;
+  margin: 0 auto $spacing;
+  padding: $box-padding;
+
+  border: 1px solid $color-border;
+}

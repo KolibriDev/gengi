@@ -1,0 +1,64 @@
+
+p {
+  margin: 0 0 $spacing;
+  line-height: 1.2em;
+}
+
+a {
+  @include transition(color $transition-speed-fast);
+  cursor: pointer;
+
+  color: $color-primary;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: darken($color-primary,10%);
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 $spacing;
+  padding: 0;
+
+  line-height: 1em;
+  font-family: $heading-font-family;
+  font-weight: $heading-font-weight;
+  text-transform: $heading-text-transform;
+}
+
+h1 {
+  font-size: 48px;
+}
+
+h2 {
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 28px;
+  font-weight: 400;
+}
+
+h4 {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+h5 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+h6 {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+hgroup {
+  h1, h2, h3, h4, h5, h6 {
+    + h1, + h2, + h3, + h4, + h5, + h6 {
+      margin-top: -$spacing / 2;
+    }
+  }
+}

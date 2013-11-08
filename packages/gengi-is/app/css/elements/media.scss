@@ -1,0 +1,37 @@
+
+.image {
+  max-width: 100%;
+
+  &.full {
+    display: block;
+    margin: 0 auto $spacing;
+    width: 100%;
+  }
+}
+
+figure {
+  display: block;
+  margin: 0 auto $spacing;
+  padding: 0;
+
+  position: relative;
+
+  >img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  >figcaption {
+    margin: 0;
+    padding: $spacing/4 $spacing/2;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: $color-secondary;
+    color: $color-light
+  }
+}

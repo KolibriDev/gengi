@@ -1,0 +1,29 @@
+
+html {
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  background: $body-bg;
+}
+
+body {
+  margin: 0;
+
+  font-family: $font-family;
+  font-size: $font-size;
+  color: $font-color;
+
+  line-height: $line-height;
+
+  direction: $text-direction;
+}
+
+#container {
+  overflow: hidden;
+}
+
+#main {
+  position: relative;
+  background: $body-bg;
+  z-index: 1;
+}

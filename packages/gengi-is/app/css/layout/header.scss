@@ -1,0 +1,13 @@
+
+.header {
+  @include user-select(none);
+  margin: 0 auto $spacing;
+  padding: 0;
+
+  border-bottom: 4px solid $color-primary;
+
+  h1 {
+    margin: 0;
+    line-height: 2em;
+  }
+}

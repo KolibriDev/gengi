@@ -1,0 +1,76 @@
+
+.large-show,
+.medium-show,
+.middle-show,
+.small-show { display: none !important; }
+
+.large-hide,
+.medium-hide,
+.middle-hide,
+.small-hide { display: block !important; }
+
+@include respond-to(large-up) {
+  .large-show { display: block !important; }
+
+  .medium-show,
+  .middle-show,
+  .small-show { display: none !important; }
+
+  .large-hide { display: none !important; }
+
+  .medium-hide,
+  .middle-hide,
+  .small-hide { display: block !important; }
+}
+
+@include respond-to(medium) {
+  .medium-show { display: block !important; }
+
+  .large-show,
+  .middle-show,
+  .small-show { display: none !important; }
+
+  .medium-hide { display: none !important; }
+
+  .large-hide,
+  .middle-hide,
+  .small-hide { display: block !important; }
+}
+
+
+@include respond-to(middle) {
+  .middle-show { display: block !important; }
+
+  .large-show,
+  .medium-show,
+  .small-show { display: none !important; }
+
+  .middle-hide { display: none !important; }
+
+  .large-hide,
+  .medium-hide,
+  .small-hide { display: block !important; }
+}
+
+@include respond-to(small) {
+  .small-show { display: block !important; }
+
+  .large-show,
+  .medium-show,
+  .middle-show { display: none !important; }
+
+  .small-hide { display: none !important; }
+
+  .large-hide,
+  .medium-hide,
+  .middle-hide { display: block !important; }
+}
+
+.middle-up-show { display: none !important; @include respond-to(middle-up){ display: block !important; }}
+.middle-up-hide { display: block !important; @include respond-to(middle-up){ display: none !important; }}
+
+.medium-up-show { display: none !important; @include respond-to(medium-up){ display: block !important; }}
+.medium-up-hide { display: block !important; @include respond-to(medium-up){ display: none !important; }}
+
+.large-up-show { display: none !important; @include respond-to(large-up){ display: block !important; }}
+.large-up-hide { display: block !important; @include respond-to(large-up){ display: none !important; }}

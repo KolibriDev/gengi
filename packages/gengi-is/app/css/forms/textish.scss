@@ -1,0 +1,18 @@
+
+.input {
+
+  #{$input-textish} {
+    @include default-input;
+  }
+
+  textarea {
+    min-height: 80px;
+
+    @include resizable(vertical);
+
+    &.disabled,
+    &[disabled] {
+      @include resizable(none);
+    }
+  }
+}

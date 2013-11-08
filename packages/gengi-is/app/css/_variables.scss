@@ -1,0 +1,97 @@
+
+// Sissa settings
+$mobile-first: false;
+
+// Sizes
+$spacing: 20px;
+$page-max-width: 1200px;
+$page-min-width: 320px;
+$radius: 1px;
+
+$size-small: 20px;
+$size-medium: 30px;
+$size-large: 42px;
+
+// Grayscale
+$color-black: #000;
+$color-gray-darker: #231f20;
+$color-gray-dark: #555;
+$color-gray: #999999;
+$color-gray-light: #ccc;
+$color-gray-lighter: #e7e7e8;
+$color-white: #fff;
+
+// Colors
+$color-red: #ee6969;
+$color-light: #ededeb;
+$color-dark: #41485e;
+
+$color-primary: $color-red;
+$color-secondary: $color-dark;
+
+$color-border: $color-primary;
+
+$body-bg: $color-white;
+$body-bg-alt: $color-gray-lighter;
+
+// Typography
+$font-family: Arial, tahoma, sans-serif;
+$font-size: 14px;
+$font-color: #333;
+$line-height: 1.4em;
+
+$font-size-small: $font-size * .8;
+$font-size-medium: $font-size;
+$font-size-large: $font-size * 1.2;
+
+$heading-font-family: 'Open Sans', $font-family;
+$heading-font-weight: 700;
+$heading-text-transform: none;
+
+// Text direction & floats
+$text-direction: ltr !default;
+$default-float: left !default;
+$opposite-float: right !default;
+@if $text-direction == ltr {
+  $default-float: left;
+  $opposite-float: right;
+} @else {
+  $default-float: right;
+  $opposite-float: left;
+}
+
+// Transitions
+$transition-speed-fast: 150ms;
+$transition-speed: 250ms;
+$transition-speed-slow: 500ms;
+
+// Grid
+$grid-count: 12;
+$grid-gutter: 20px;
+
+// Boxes
+$box-padding: $spacing $spacing 0;
+
+// Breaking points
+$break-small: 496px;
+$break-middle: 840px;
+$break-medium: 1023px;
+
+// Media Queries
+$media-small-screen: "only screen and (max-width: #{$break-small})";
+$media-middle-screen: "only screen and (max-width: #{$break-middle})";
+$media-medium-screen: "only screen and (max-width: #{$break-medium})";
+
+$media-middle-screen-up: "only screen and (min-width: #{$break-small+1})";
+$media-medium-screen-up: "only screen and (min-width: #{$break-middle+1})";
+$media-large-screen-up: "only screen and (min-width: #{$break-medium+1})";
+
+$media-landscape: "only screen and (orientation: landscape)";
+$media-portrait: "only screen and (orientation: portrait)";
+$media-retina:
+  "(min--moz-device-pixel-ratio: 1.5),
+  (-o-min-device-pixel-ratio: 3/2),
+  (-webkit-min-device-pixel-ratio: 1.5),
+  (min-device-pixel-ratio: 1.5),
+  (min-resolution: 144dpi),
+  (min-resolution: 1.5dppx)";

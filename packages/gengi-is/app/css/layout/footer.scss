@@ -1,0 +1,15 @@
+
+footer {
+  @include user-select(none);
+  margin: $spacing auto 0;
+  padding: $spacing 0;
+  line-height: 1.2em;
+
+  letter-spacing: 0;
+  font-family: $font-family;
+  font-size: .8em;
+  text-align: center;
+  color: $color-primary;
+
+  border-top: 4px solid $color-primary;
+}
