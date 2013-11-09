@@ -1,12 +1,8 @@
 (function() {
-  define(['app', 'underscore', 'factories/Currency'], function(app, _) {
+  define(['app', 'factories/Currency'], function(app) {
     return app.controller('calcCtrl', function($rootScope, $scope, $routeParams, Currency) {
-      Currency.get({},
+      Currency.get({currName: $routeParams.currName},
         function sucess(curr) {
-          curr = _.findWhere(
-            curr.results,
-            {shortName: $routeParams.currName}
-          );
           $scope.currency = curr;
 
           // Header

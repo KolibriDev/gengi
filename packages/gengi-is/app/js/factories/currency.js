@@ -2,12 +2,9 @@
   define(['app'], function (app) {
     return app.factory('Currency', function($resource) {
       var Currency = $resource(
-        'http://apis.is/currency/lb',
+        'http://api.gengi.is/currency/:currName',
         {
           currName: '@currName'
-        },
-        {
-          query: {method: 'GET', isArray: false}
         }
       );
 
