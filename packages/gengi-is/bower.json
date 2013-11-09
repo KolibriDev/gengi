@@ -10,9 +10,9 @@
     "jquery": "~2.0.3",
     "requirejs": "~2.1.9",
     "modernizr": "~2.6.2",
-    "angular": "~1.2.0-rc.3",
-    "angular-animate": "~1.2.0-rc.3",
-    "angular-route": "~1.2.0-rc.3",
+    "angular": "~1.2.0",
+    "angular-animate": "~1.2.0",
+    "angular-route": "~1.2.0",
     "normalize-scss": "~2.1.2"
   },
   "exportsOverride": {
