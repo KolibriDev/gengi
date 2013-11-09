@@ -2,6 +2,7 @@
 nav {
 
   &.top {
+    @include user-select(none);
     margin: 0 auto $spacing;
     height: 55px;
 
@@ -13,15 +14,20 @@ nav {
 
       margin: 0;
       padding: 0;
+      position: relative;
 
       line-height: 28px;
 
       border: 1px solid $color-light;
 
       >li {
+        @include transition(color $transition-speed-fast ease-in-out);
         cursor: pointer;
         float: left;
         width: 50%;
+
+        position: relative;
+        z-index: 1;
 
         font-weight: 700;
         font-size: 12px;
@@ -29,12 +35,25 @@ nav {
         text-align: center;
         color: $color-light;
 
-        &.active {
-          color: $color-secondary;
-
-          background: $color-light;
-        }
+        -webkit-font-smoothing: antialiased;
       }
+
+      &.show-list >li.list,
+      &.show-grid >li.grid { color: $color-secondary; -webkit-font-smoothing: auto; }
+
+      >li.active {
+        @include transition(left $transition-speed ease-in-out);
+        width: 50%;
+
+        position: absolute;
+        top: 0;
+        left: 0%;
+        bottom: 0;
+        z-index: 0;
+
+        background: $color-light;
+      }
+      &.show-grid >li.active { left: 50%; }
     }
   }
 }
