@@ -1,0 +1,14 @@
+{
+  "name": "api-gengi-is",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "*",
+    "request": "~2.27.0",
+    "async": "~0.2.9",
+    "underscore": "~1.5.2"
+  }
+}
