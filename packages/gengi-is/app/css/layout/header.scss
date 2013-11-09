@@ -14,5 +14,7 @@ header {
     margin: 0;
     font-size: em-calc(24);
     line-height: em-calc(55,24);
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
   }
 }
