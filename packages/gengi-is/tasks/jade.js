@@ -7,7 +7,7 @@ module.exports = {
       {
         expand: true,
         cwd: 'app/views/',
-        src: ['*.jade'],
+        src: ['*.jade', 'partials/*.jade'],
         dest: 'dev/',
         ext: '.html'
       }
@@ -24,4 +24,4 @@ module.exports = {
       }
     ]
   }
-}
+};
