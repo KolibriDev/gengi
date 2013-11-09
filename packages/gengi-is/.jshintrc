@@ -9,6 +9,7 @@
     "console",
     "require",
     "requirejs",
+    "$q",
     "$routeProvider",
     "$rootScope",
     "$scope",
