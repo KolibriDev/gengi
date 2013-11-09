@@ -1,5 +1,5 @@
-ul.currency-list.js-currency-list(ng-repeat='item in items.results')
-  li
+ul.currency-list.js-currency-list
+  li(ng-repeat='item in items.results')
     a(ng-href='/#/{{item.shortName}}')
       span.list-left(class='{{item.shortName}}')
       hgroup
