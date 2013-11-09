@@ -35,7 +35,7 @@ $body-bg: $color-white;
 $body-bg-alt: $color-gray-lighter;
 
 // Typography
-$font-family: Arial, tahoma, sans-serif;
+$font-family: 'ars-maquette-web', Arial, tahoma, sans-serif;
 $font-size: 14px;
 $font-color: #333;
 $line-height: 1.4em;
@@ -44,7 +44,7 @@ $font-size-small: $font-size * .8;
 $font-size-medium: $font-size;
 $font-size-large: $font-size * 1.2;
 
-$heading-font-family: 'Open Sans', $font-family;
+$heading-font-family: $font-family;
 $heading-font-weight: 700;
 $heading-text-transform: none;
 
