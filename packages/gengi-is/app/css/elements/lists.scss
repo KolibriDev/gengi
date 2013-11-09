@@ -42,18 +42,37 @@ ul {
       }
 
       span.list-left {
+        display: block;
         width: $spacing*2;
+
         position: absolute;
         top: 0;
         left: 0;
         bottom: 0;
 
         line-height: 60px;
+        font-weight: 700;
         font-size: 28px;
         text-align: center;
         color: $color-primary;
 
         background: $color-secondary;
+      }
+
+      span.symbol {
+        display: block;
+        width: $spacing*2;
+
+        line-height: 60px;
+        font-weight: 700;
+        font-size: 28px;
+        text-align: center;
+        color: $color-primary;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
 
         &.USD:before { content: '$';}
         &.EUR:before { content: '€';}
@@ -75,26 +94,27 @@ ul {
         &.GVT:before { content: '';}
       }
 
-      span.symbol {
-        display: inline-block;
-        min-width: 40px;
-        width: 10%;
-        color: $color-secondary;
-        font-size: 28px;
-        font-weight: 700;
-      }
-
       input {
         border: none;
         background: #fff;
         outline: none;
 
+        max-width: 100%;
+        padding: 0 $spacing/2 0 $spacing*4.5;
+
+        line-height: 40px;
         font-weight: 700;
         font-size: 48px;
-        line-height: 40px;
-        color: $color-primary;
-        max-width: 85%;
         text-align: center;
+        color: $color-primary;
+      }
+    }
+
+    &.calc {
+      >li span.symbol {
+        left: $spacing*2.5;
+        text-align: left;
+        color: $color-secondary;
       }
     }
   }

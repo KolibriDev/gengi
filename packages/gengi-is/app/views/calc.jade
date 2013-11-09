@@ -1,7 +1,7 @@
-ul.currency-list
+ul.currency-list.calc
   li
     span.list-left =
-    span.symbol {{currency.symbol}}
+    span.symbol(class='{{currency.shortName}}')
     input(type='tel', ng-model='fromValue')
   li
     span.list-left =
