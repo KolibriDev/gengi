@@ -17,7 +17,7 @@ ul {
 
     >li {
       margin: 0 auto $spacing/2;
-      padding: 0 $spacing/2 0 $spacing*2.5;
+      padding: 0;
       height: 60px;
       line-height: 60px;
 
@@ -25,7 +25,10 @@ ul {
 
       background: $color-white;
 
-      a { display: block; }
+      a {
+        display: block;
+        padding: 0 $spacing/2 0 $spacing*2.5;
+      }
 
       h2 {
         margin: 0;
