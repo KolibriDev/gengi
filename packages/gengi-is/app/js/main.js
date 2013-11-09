@@ -2,6 +2,7 @@
   require.config({
     baseUrl: 'js',
     paths: {
+      text: 'vendor/text',
       modernizr: 'vendor/modernizr',
       jQuery: 'vendor/jquery',
       angular: 'vendor/angular',
