@@ -1,7 +1,7 @@
 
 header {
   @include user-select(none);
-  margin: 0 auto;
+  margin: 0 auto $spacing;
   padding: 0;
 
   color: $color-light;

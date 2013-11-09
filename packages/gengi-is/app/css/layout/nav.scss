@@ -8,6 +8,8 @@ nav {
 
     background: $color-secondary;
 
+    header + & { margin-top: -$spacing; }
+
     ul {
       @include reset-list;
       @include clearfix;
