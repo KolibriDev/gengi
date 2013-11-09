@@ -8,6 +8,9 @@
             {shortName: $routeParams.currName}
           );
           $scope.currency = curr;
+
+          // Header
+          $rootScope.headerTpl = 'partials/_calcHeader.html';
           $rootScope.pageTitle = curr.longName + ' - Gengi.is';
         },
         function error(err) {
