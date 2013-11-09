@@ -176,10 +176,14 @@ ul {
     }
 
     &.calc {
-      >li span.symbol {
-        left: $spacing*2.5;
-        text-align: left;
-        color: $color-secondary;
+      >li {
+        position: relative;
+        span.list-left { left: $grid-gutter/2; }
+        span.symbol {
+          left: $spacing*3;
+          text-align: left;
+          color: $color-secondary;
+        }
       }
     }
   }
