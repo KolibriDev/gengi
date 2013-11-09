@@ -25,6 +25,8 @@ ul {
 
       background: $color-white;
 
+      a { display: block; }
+
       h2 {
         margin: 0;
 
@@ -49,6 +51,25 @@ ul {
         color: $color-primary;
 
         background: $color-secondary;
+
+        &.USD:before { content: '$';}
+        &.EUR:before { content: '€';}
+        &.GBP:before { content: '£';}
+        &.JPY:before { content: '¥';}
+        &.NOK:before { content: 'kr';}
+        &.SEK:before { content: 'kr';}
+        &.DKK:before { content: 'kr';}
+        &.CHF:before { content: 'Fr';}
+        &.CAD:before { content: '$';}
+        &.AUD:before { content: '$';}
+        &.ZAR:before { content: 'R';}
+        &.HKD:before { content: '$';}
+        &.NZD:before { content: '$';}
+        &.PLN:before { content: 'zł';}
+        &.SGD:before { content: '$';}
+        &.CNY:before { content: '¥';}
+        &.XDR:before { content: '';}
+        &.GVT:before { content: '';}
       }
 
       span.symbol {
