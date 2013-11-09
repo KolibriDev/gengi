@@ -1,13 +1,18 @@
 
-.header {
+header {
   @include user-select(none);
-  margin: 0 auto $spacing;
+  margin: 0 auto;
   padding: 0;
 
-  border-bottom: 4px solid $color-primary;
+  color: $color-light;
+
+  background: $color-secondary;
+
+  >.row { margin-bottom: 0; }
 
   h1 {
     margin: 0;
-    line-height: 2em;
+    font-size: em-calc(24);
+    line-height: em-calc(55,24);
   }
 }

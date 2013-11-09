@@ -1,2 +1,40 @@
 
-.nav {}
+nav {
+
+  &.top {
+    margin: 0 auto $spacing;
+    height: 55px;
+
+    background: $color-secondary;
+
+    ul {
+      @include reset-list;
+      @include clearfix;
+
+      margin: 0;
+      padding: 0;
+
+      line-height: 28px;
+
+      border: 1px solid $color-light;
+
+      >li {
+        cursor: pointer;
+        float: left;
+        width: 50%;
+
+        font-weight: 700;
+        font-size: 12px;
+        text-transform: uppercase;
+        text-align: center;
+        color: $color-light;
+
+        &.active {
+          color: $color-secondary;
+
+          background: $color-light;
+        }
+      }
+    }
+  }
+}
