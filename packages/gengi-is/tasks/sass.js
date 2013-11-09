@@ -1,12 +1,12 @@
 module.exports = {
   dev: {
     files: {
-      'dev/css/main.css': 'app/css/main.scss'
+      'dev/css/sissa.css': 'app/css/sissa.scss'
     }
   },
   dist: {
     files: {
-      'dist/css/main.css': 'app/css/main.scss'
+      'dist/css/sissa.css': 'app/css/sissa.scss'
     }
   }
 };
