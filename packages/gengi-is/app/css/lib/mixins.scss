@@ -219,6 +219,51 @@
 	animation: $settings;
 }
 
+@mixin animation-delay($delay) {
+	-webkit-animation-delay: $delay;
+	-khtml-animation-delay: $delay;
+	-moz-animation-delay: $delay;
+	-ms-animation-delay: $delay;
+	-o-animation-delay: $delay;
+	animation-delay: $delay;
+}
+
+@mixin animation-direction($direction) {
+	-webkit-animation-direction: $direction;
+	-khtml-animation-direction: $direction;
+	-moz-animation-direction: $direction;
+	-ms-animation-direction: $direction;
+	-o-animation-direction: $direction;
+	animation-direction: $direction;
+}
+
+@mixin animation-duration($duration) {
+	-webkit-animation-duration: $duration;
+	-khtml-animation-duration: $duration;
+	-moz-animation-duration: $duration;
+	-ms-animation-duration: $duration;
+	-o-animation-duration: $duration;
+	animation-duration: $duration;
+}
+
+@mixin animation-fill-mode($fill-mode) {
+	-webkit-animation-fill-mode: $fill-mode;
+	-khtml-animation-fill-mode: $fill-mode;
+	-moz-animation-fill-mode: $fill-mode;
+	-ms-animation-fill-mode: $fill-mode;
+	-o-animation-fill-mode: $fill-mode;
+	animation-fill-mode: $fill-mode;
+}
+
+@mixin animation-timing-function($timing-function) {
+	-webkit-animation-timing-function: $timing-function;
+	-khtml-animation-timing-function: $timing-function;
+	-moz-animation-timing-function: $timing-function;
+	-ms-animation-timing-function: $timing-function;
+	-o-animation-timing-function: $timing-function;
+	animation-timing-function: $timing-function;
+}
+
 // ==========================================================================
 // Transitions
 // ==========================================================================
