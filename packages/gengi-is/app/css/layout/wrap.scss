@@ -18,11 +18,7 @@ body {
   direction: $text-direction;
 }
 
-#container {
-  overflow: hidden;
-}
-
-#main {
+main {
   position: relative;
   background: $body-bg;
   z-index: 1;
