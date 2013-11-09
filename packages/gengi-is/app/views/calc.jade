@@ -6,4 +6,4 @@ ul.currency-list
   li
     span.list-left =
     span.symbol kr.
-    input(type='tel', value='{{(fromValue||0) * currency.value}}')
+    input(type='tel', value='{{ (fromValue * currency.value) || 0 }}')
