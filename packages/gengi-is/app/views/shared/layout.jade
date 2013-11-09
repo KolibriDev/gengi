@@ -6,8 +6,22 @@ html(class="no-js")
   include _head
 
   body
-    div.main-view(ng-view)
-      block content
+    header
+      block header
+        .row: .col.large-4.center
+          h1 Gengi.is
+
+    nav.top
+      block nav-top
+        .row: .col.large-4.center: ul
+          li.js-show-list Listi
+          li.js-show-grid Grid
+
+    main
+      block main
+
+    footer
+      block footer
 
     block javascript
       script(src='http://localhost:35729/livereload.js')
