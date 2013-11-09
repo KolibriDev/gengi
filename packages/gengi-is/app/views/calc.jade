@@ -1,0 +1,9 @@
+ul.currency-list
+  li
+    span.list-left =
+    span.symbol {{currency.symbol}}
+    input(type='tel', ng-keyup='calculateRate()', ng-model='fromValue')
+  li
+    span.list-left =
+    span.symbol kr.
+    input(type='tel', value='{{(fromValue||0) * currency.value}}')
