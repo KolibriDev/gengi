@@ -4,6 +4,7 @@ header
 
 nav.top
   .row: .col.large-6.center
-    ul(class='{{listView}}')
-      li(ng-click='updateView("list")') Listi
-      li(ng-click='updateView("grid")') Grid
+    ul(class='show-{{listView}}')
+      li.list(ng-click='updateView("list")') Listi
+      li.grid(ng-click='updateView("grid")') Grid
+      li.active
