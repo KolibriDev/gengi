@@ -14,7 +14,8 @@
     "angular-animate": "~1.2.0",
     "angular-route": "~1.2.0",
     "normalize-scss": "~2.1.2",
-    "angular-resource": "~1.2.0"
+    "angular-resource": "~1.2.0",
+    "underscore": "~1.5.2"
   },
   "exportsOverride": {
     "jquery": {
@@ -31,6 +32,9 @@
     },
     "angular": {
       "js": "angular.js"
+    },
+    "underscore": {
+      "js": "underscore.js"
     },
     "angular-route": {
       "js": "angular-route.js"
