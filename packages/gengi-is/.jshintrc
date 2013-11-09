@@ -8,10 +8,15 @@
     "define",
     "console",
     "require",
-    "requirejs"
+    "requirejs",
+    "$routeProvider",
+    "$rootScope",
+    "$scope",
+    "$scope"
   ],
   "node" : false,
-  "browser" : false,
+  "jquery" : true,
+  "browser" : true,
   "boss" : true,
   "curly": false,
   "debug": false,
@@ -34,5 +39,10 @@
   "strict": false,
   "white": false,
   "eqnull": true,
-  "esnext": true
+  "esnext": true,
+  "camelcase": true,
+  "indent": 2,
+  "quotmark": "single",
+  "trailing": true,
+  "unused": true
 }
