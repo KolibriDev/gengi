@@ -6,18 +6,7 @@ html(class="no-js")
   include _head
 
   body
-    header
-      block header
-        .row: .col.large-5.center
-          h1 Gengi.is
-
-    nav.top
-      block nav-top
-        .row: .col.large-5.center: ul
-          li.js-show-list Listi
-          li.js-show-grid Grid
-
-    main
+    main(ng-view)
       block main
 
     footer

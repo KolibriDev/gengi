@@ -1,8 +1,19 @@
-ul.currency-list.js-currency-list
-  li(ng-repeat='item in items.results')
-    a(ng-href='/#/{{item.shortName}}')
-      span.list-left
-      span.symbol(class='{{item.shortName}}')
-      hgroup
-        h2 {{item.shortName}}
-        h3 {{item.longName}}
+header
+  .row: .col.large-5.center
+    h1 Gengi.is
+
+nav.top
+  .row: .col.large-5.center: ul
+    li(ng-click='updateView("list")') Listi
+    li(ng-click='updateView("grid")') Grid
+
+.row
+  .col.large-5.center
+    ul.currency-list(class='{{listView}}')
+      li(ng-repeat='item in items.results')
+        a(ng-href='/#/{{item.shortName}}')
+          span.list-left(class='{{item.shortName}}')
+          hgroup
+            h2 {{item.shortName}}
+            h3 {{item.longName}}
+          span {{listView}}

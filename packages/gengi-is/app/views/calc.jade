@@ -1,9 +1,15 @@
-ul.currency-list.calc
-  li
-    span.list-left =
-    span.symbol(class='{{currency.shortName}}')
-    input(type='tel', ng-model='fromValue')
-  li
-    span.list-left =
-    span.symbol kr.
-    input(type='tel', value='{{ (fromValue * currency.value) || 0 }}')
+header
+  .row: .col.large-5.center
+    h1 Gengi.is
+
+.row
+  .col.large-5.center
+    ul.currency-list.calc
+      li
+        span.list-left =
+        span.symbol(class='{{currency.shortName}}')
+        input(type='tel', ng-model='fromValue')
+      li
+        span.list-left =
+        span.symbol kr.
+        input(type='tel', value='{{ (fromValue * currency.value) || 0 }}')
