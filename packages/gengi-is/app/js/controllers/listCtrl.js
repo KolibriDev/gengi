@@ -5,7 +5,7 @@
       $scope.items = Currency.query();
 
       // Header
-      $rootScope.headerTpl = 'partials/_listHeader.html';
+      $rootScope.headerTpl = 'partials/listHeader.html';
       $rootScope.listView = 'list';
       $rootScope.updateView = function(type) {
         $rootScope.listView = type;
