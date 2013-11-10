@@ -2,7 +2,9 @@
 nav {
 
   &.top {
+    @include transition(height $transition-speed);
     @include user-select(none);
+    overflow: hidden;
     margin: 0 auto $spacing;
     height: 50px;
 
