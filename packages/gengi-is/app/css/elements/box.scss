@@ -1,3 +1,5 @@
+// Boxes
+$box-padding: $spacing $spacing 0;
 
 .box {
   @include clearfix;
