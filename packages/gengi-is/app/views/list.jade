@@ -123,4 +123,8 @@ nav.top
           h2.ng-binding GVT
           h3.ng-binding Gengisvísitalan
 
-    a.button(ng-click='updateView(listView + " expand")') Sýna meira
+    ul.actions-list
+      li: a(ng-click='updateView(listView + " expand")')
+        span.list-left
+        span.symbol.plus
+        span.text Sýna fleiri
