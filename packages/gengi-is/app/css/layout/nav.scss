@@ -4,7 +4,7 @@ nav {
   &.top {
     @include user-select(none);
     margin: 0 auto $spacing;
-    height: 55px;
+    height: 50px;
 
     background: $color-secondary;
 

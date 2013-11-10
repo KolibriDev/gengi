@@ -15,6 +15,8 @@
 
               // Header
               $rootScope.pageTitle = curr.longName + ' - Gengi.is';
+              $rootScope.currencyShortName = curr.shortName;
+              $rootScope.currencyLongName = curr.longName;
             },
             function error(err) {
               console.log(err);

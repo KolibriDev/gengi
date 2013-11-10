@@ -3,6 +3,7 @@ header {
   @include user-select(none);
   margin: 0 auto $spacing;
   padding: 0;
+  height: 60px;
 
   color: $color-light;
 
@@ -13,8 +14,36 @@ header {
   h1 {
     margin: 0;
     font-size: em-calc(24);
-    line-height: em-calc(55,24);
+    line-height: em-calc(60,24);
     text-transform: uppercase;
     -webkit-font-smoothing: antialiased;
+  }
+  &.calc {
+
+    h1 {
+      padding-top: 8px;
+      line-height: em-calc(24,24);
+
+      >small {
+        display: block;
+        padding-left: $spacing*2 + 1;
+        font-size: em-calc(12,24);
+        line-height: em-calc(12,12);
+        text-transform: none;
+      }
+    }
+
+    .go-back {
+      float: left;
+      width: $spacing*2;
+      height: $spacing*3;
+
+      color: $color-light;
+
+      &:before {
+        line-height: $spacing*3;
+        font-size: em-calc(22);
+      }
+    }
   }
 }
