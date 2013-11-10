@@ -1,7 +1,6 @@
 
 p {
   margin: 0 0 $spacing;
-  line-height: 1.2em;
 }
 
 a {
@@ -42,7 +41,8 @@ h3 {
 
 h4 {
   font-size: em-calc(28);
-  font-weight: 400;
+  line-height: em-calc(30,28);
+  text-transform: uppercase;
 }
 
 h5 {
@@ -62,3 +62,28 @@ hgroup {
     }
   }
 }
+
+.logo-title {
+  cursor: default;
+  margin: $spacing*2 auto;
+  font-size: em-calc(24);
+  font-weight: 700;
+  line-height: em-calc(30,24);
+  text-transform: uppercase;
+  color: $color-secondary;
+  -webkit-font-smoothing: antialiased;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    vertical-align: bottom;
+
+    margin-right: $spacing/2;
+    width: 30px;
+    height: 30px;
+
+    background: url('/img/logo-light-@2x.png') left center no-repeat;
+    background-size: 30px 30px;
+  }
+}
+a.logo-title { cursor: pointer; }
