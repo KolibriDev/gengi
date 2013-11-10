@@ -5,23 +5,23 @@
 }
 
 @mixin flipper() {
-
   li {
-    @include perspective(800);
+    @include perspective(1200);
     position: relative;
 
     .flip {
       @include transform-style(preserve-3d);
+      @include transition-delay($transition-speed-slow);
       @include transition($transition-speed-slow);
       a,input {
         @include backface-visibility(hidden);
       }
 
-      .main-view.ng-enter & { @include transition-delay(0.5s); @include rotateX(90deg); }
+      .main-view.ng-enter & { @include transition-delay($transition-speed-slow*2); @include rotateX(90deg); }
       &.visible,
       .main-view.ng-enter.ng-enter-active & { @include rotateX(0deg); }
 
-      .main-view.ng-leave & { @include rotateX(0deg); }
+      .main-view.ng-leave & { @include transition-delay($transition-speed-slow); @include rotateX(0deg); }
       &.hidden,
       .main-view.ng-leave-active & { @include rotateX(-90deg); }
     }
@@ -39,12 +39,14 @@ ul {
     @include flipper();
 
     >li {
-      @include transition(width $transition-speed,opacity 0.5s);
+      @include transition(width $transition-speed,opacity $transition-speed-slow);
       overflow: hidden;
       float: left;
       margin: 0 auto $spacing;
       padding: 0 $grid-gutter/2;
       width: 100%;
+
+      @include translate3d(0,0,0);
 
       a {
         @include transition(height $transition-speed-slow);
@@ -196,6 +198,7 @@ ul {
     }
 
     &.calc {
+      padding-top: $spacing;
       >li {
         position: relative;
         span.list-left { left: 0; }
@@ -213,29 +216,13 @@ ul {
 ol {}
 
 .main-view{
-  @include transition(opacity 0.5s);
-  position: relative;
+  @include transition-delay($transition-speed-slow);
+  @include transition(opacity ($transition-speed-slow*2));
+  position: absolute;
+  left: 0;
+  right: 0;
 
-  &.ng-enter {
-    @include transition-delay(0.5s);
-    // opacity: 0;
-    position: absolute;
-    left: 0;
-    right: 0;
+  &.ng-enter { @include transition-delay($transition-speed-slow*2); }
 
-    &.ng-enter-active {
-      // opacity: 1;
-    }
-  }
-
-  &.ng-leave {
-    // opacity: 1;
-    position: absolute;
-    left: 0;
-    right: 0;
-
-    &.ng-leave-active {
-      // opacity: 0;
-    }
-  }
+  &.ng-leave { @include transition-delay($transition-speed-slow); }
 }

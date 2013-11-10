@@ -1,4 +1,21 @@
 
+.header-wrap {
+  @include transition(opacity $transition-speed-slow);
+  // @include animation(nav-show $transition-speed-slow 1);
+  overflow: hidden;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  .b & { height: 60px; }
+
+  &.ng-enter { @include transition-delay($transition-speed-slow); height: 60px; opacity: 0; }
+  &.ng-enter-active { height: 60px; opacity: 1; }
+  &.ng-leave { height: 60px; opacity: 1; }
+  &.ng-leave-active { height: 60px; opacity: 0; }
+}
+
 header {
   @include user-select(none);
   margin: 0 auto;
@@ -23,7 +40,7 @@ header {
     padding-left: 40px;
 
   }
-  &.calc {
+  .calc {
 
     h1 {
       padding-top: 8px;

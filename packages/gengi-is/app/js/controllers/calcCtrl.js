@@ -6,7 +6,6 @@
 
           // Update header template
           $rootScope.headerTpl = 'calcHeader';
-          $rootScope.headerClass = 'no-nav';
 
           // Parse query string
           var calcQuery = parseQuery($routeParams.currName);

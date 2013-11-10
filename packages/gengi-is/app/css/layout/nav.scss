@@ -1,21 +1,14 @@
-.headerTpl {
-  @include transition(height $transition-speed-slow);
-  margin-bottom: $spacing;
-  overflow: hidden;
-  height: 110px;
-  &.no-nav { height: 60px; }
-  + .headerTpl {
-    margin-top: -$spacing;
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   right: 0;
-  }
 
-  &.ng-enter { @include transition-delay($transition-speed-slow); height: 0px; }
-  &.ng-enter-active { height: 110px; &.no-nav { height: 60px; } }
-  &.ng-leave { height: 110px; &.no-nav { height: 60px; } }
-  &.ng-leave-active { height: 0px; }
+nav.top {
+  @include transition($transition-speed-slow);
+  overflow: hidden;
+  height: 50px;
+  position: relative;
+
+  .ng-enter & { @include transition-delay($transition-speed-slow); @include translate3d(0,-60px,0); }
+  .ng-enter-active & { @include translate3d(0,0px,0); }
+  .ng-leave & { @include translate3d(0,0px,0); }
+  .ng-leave-active & { @include translate3d(0,-60px,0); }
 }
 
 nav {
@@ -23,7 +16,7 @@ nav {
   &.top {
     @include user-select(none);
     overflow: hidden;
-    margin: 0 auto;
+    margin: 0 auto $spacing;
     height: 50px;
 
     background: $color-secondary;

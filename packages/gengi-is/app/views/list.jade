@@ -1,3 +1,10 @@
+nav.top
+  .row: .col.large-6.center
+    ul(class='show-{{listView}}')
+      li.list(ng-click='updateView("list")') Listi
+      li.grid(ng-click='updateView("grid")') Grid
+      li.active
+
 .row
   .col.large-6.center
     ul.currency-list(class='{{listView}}')
