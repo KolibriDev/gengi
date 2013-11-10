@@ -15,9 +15,15 @@ exports.show = function(req, res) {
   async.parallel([fetchBtcIsk, fetchIskBase],
     // Callback
     function(err, results) {
-      flattenResults = _.flatten(results);
+      var flattenResults = _.map(_.flatten(results), function(curr) {
+        return {
+          shortName: curr.shortName.toUpperCase(),
+          longName: curr.longName,
+          value: curr.value
+        };
+      });
 
-      res.send(_.findWhere(flattenResults, {shortName: req.params.name}));
+      res.send(_.findWhere(flattenResults, {shortName: req.params.name.toUpperCase()}));
     }
   );
 };
