@@ -4,24 +4,33 @@
       return app.controller('calcCtrl',
         function($rootScope, $scope, $routeParams, Currency) {
 
-          // Update header template
-          $rootScope.headerTpl = 'calcHeader';
-
           // Parse query string
           var calcQuery = parseQuery($routeParams.currName);
 
           // Get currency
           Currency.get({currName: calcQuery.currName},
             function sucess(curr) {
-              $scope.currency = curr;
+              if(curr && curr.value && curr.shortName) {
 
-              $scope.fromValue = calcQuery.amount || '';
-              $scope.calcRate = calcRate;
+                // Update header template
+                $rootScope.headerTpl = 'calcHeader';
 
-              // Header
-              $rootScope.pageTitle = curr.longName + ' - Gengi.is';
-              $rootScope.currencyShortName = curr.shortName;
-              $rootScope.currencyLongName = curr.longName;
+                $scope.currency = curr;
+                $scope.fromValue = calcQuery.amount || '';
+                $scope.calcRate = calcRate;
+
+                // Header
+                $rootScope.pageTitle = curr.longName + ' - Gengi.is';
+                $rootScope.currencyShortName = curr.shortName;
+                $rootScope.currencyLongName = curr.longName;
+              } else {
+                $scope.isOn404 = 1;
+
+                $rootScope.headerTpl = 'partials/listHeader.html';
+                $rootScope.pageTitle = 'Síða fannst ekki - Gengi.is';
+              }
+
+
             },
             function error(err) {
               console.log(err);

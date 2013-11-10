@@ -5,14 +5,12 @@
       $routeProvider.when('/', {
         controller: 'listCtrl',
         templateUrl: 'list.html'
-      });
-
-      $routeProvider.when('/about', {
+      }).
+      when('/about', {
         controller: 'aboutCtrl',
         templateUrl: 'about.html'
-      });
-
-      $routeProvider.when('/:currName', {
+      }).
+      when('/:currName', {
         controller: 'calcCtrl',
         templateUrl: 'calc.html'
       });
