@@ -4,3 +4,29 @@
   #{$input-other} {
   }
 }
+
+.fromValue {
+  &::-webkit-input-placeholder {
+    color: rgba($color-dark, 0.15);
+    line-height: 40px;
+    padding-top: 9px;
+  }
+
+  &:-moz-placeholder {
+    color: rgba($color-dark, 0.15);
+    line-height: 40px;
+    padding-top: 9px;
+  }
+
+  &::-moz-placeholder {
+    color: rgba($color-dark, 0.15);
+    line-height: 40px;
+    padding-top: 9px;
+  }
+
+  &:-ms-input-placeholder {
+    color: rgba($color-dark, 0.15);
+    line-height: 40px;
+    padding-top: 9px;
+  }
+}

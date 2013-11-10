@@ -15,7 +15,7 @@
             function sucess(curr) {
               $scope.currency = curr;
 
-              $scope.fromValue = calcQuery.amount || 1;
+              $scope.fromValue = calcQuery.amount || '';
               $scope.calcRate = calcRate;
 
               // Header
@@ -37,8 +37,11 @@
     rate = parseFloat(String(rate).replace(',', '.'), 0);
     amount = parseFloat(String(amount).replace(',', '.'), 0);
 
-    var value = (rate*amount);
+    if(amount === '' || amount === 1) {
+      return rate.toFixed(1);
+    }
 
+    var value = (rate*amount);
     if(isNaN(value)) return 0;
     return value.toFixed(1);
   }
@@ -64,7 +67,7 @@
 
     } else {
       return {
-        amount: 1,
+        amount: '',
         currName: query
       };
     }
