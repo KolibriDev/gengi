@@ -29,6 +29,15 @@
 }
 
 ul {
+  li:nth-child(n+7) {
+    display: none;
+  }
+
+  &.expand {
+    li {
+      display: list-item;
+    }
+  }
 
   &.currency-list {
     @include reset-list;
