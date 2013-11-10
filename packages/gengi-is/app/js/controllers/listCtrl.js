@@ -6,6 +6,7 @@
 
       // Header
       $rootScope.headerTpl = 'partials/listHeader.html';
+      $rootScope.headerClass = 'w-nav';
       $rootScope.listView = 'list';
       $rootScope.updateView = function(type) {
         $rootScope.listView = type;
