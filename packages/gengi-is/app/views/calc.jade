@@ -1,11 +1,11 @@
 .row
   .col.large-6.center
     ul.currency-list.calc
-      li
+      li: .flip
         span.list-left
         span.symbol(class='{{currency.shortName}}')
         input(type='text', ng-model='fromValue', pattern='[0-9]*', autofocus)
-      li
+      li: .flip
         span.list-left
         span.symbol.ISK
         input(type='text', value='{{calcRate(currency.value, fromValue)}}')

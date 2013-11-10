@@ -4,12 +4,28 @@
   100% { opacity: 1; }
 }
 
-@mixin flip-show() {
-  opacity: 1;
-}
+@mixin flipper() {
 
-@mixin flip-hide() {
-  opacity: 0;
+  li {
+    @include perspective(800);
+    position: relative;
+
+    .flip {
+      @include transform-style(preserve-3d);
+      @include transition($transition-speed-slow);
+      a,input {
+        @include backface-visibility(hidden);
+      }
+
+      .main-view.ng-enter & { @include transition-delay(0.5s); @include rotateX(90deg); }
+      &.visible,
+      .main-view.ng-enter.ng-enter-active & { @include rotateX(0deg); }
+
+      .main-view.ng-leave & { @include rotateX(0deg); }
+      &.hidden,
+      .main-view.ng-leave-active & { @include rotateX(-90deg); }
+    }
+  }
 }
 
 ul {
@@ -20,6 +36,8 @@ ul {
     margin: 0 (-$grid-gutter/2);
     padding: 0;
 
+    @include flipper();
+
     >li {
       @include transition(width $transition-speed,opacity 0.5s);
       overflow: hidden;
@@ -27,14 +45,6 @@ ul {
       margin: 0 auto $spacing;
       padding: 0 $grid-gutter/2;
       width: 100%;
-
-      .main-view.ng-enter & { @include transition-delay(0.5s); opacity: 0; }
-      &.visible,
-      .main-view.ng-enter.ng-enter-active & { @include flip-show(); }
-
-      .main-view.ng-leave & { opacity: 1; }
-      &.hidden,
-      .main-view.ng-leave-active & { @include flip-hide(); }
 
       a {
         @include transition(height $transition-speed-slow);
@@ -188,9 +198,9 @@ ul {
     &.calc {
       >li {
         position: relative;
-        span.list-left { left: $grid-gutter/2; }
+        span.list-left { left: 0; }
         span.symbol {
-          left: $grid-gutter/2;
+          left: 0;
           // left: $spacing*3;
           // text-align: left;
           // color: $color-secondary;
