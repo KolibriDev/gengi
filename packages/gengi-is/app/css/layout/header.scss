@@ -26,7 +26,13 @@ header {
 
   background: $color-secondary;
 
-  >.row { margin-bottom: 0; position: relative; }
+  .row {
+    margin-bottom: 0;
+
+    >.col {
+      position: relative;
+    }
+  }
 
   h1 {
     margin: 0;
