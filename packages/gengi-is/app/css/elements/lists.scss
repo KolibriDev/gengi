@@ -110,6 +110,7 @@ ul {
         &.EUR:before { content: '€';}
         &.GBP:before { content: '£';}
         &.JPY:before { content: '¥';}
+        &.ISK:before { content: 'kr'; font-size: em-calc(18,28);}
         &.NOK:before { content: 'kr'; font-size: em-calc(18,28);}
         &.SEK:before { content: 'kr'; font-size: em-calc(18,28);}
         &.DKK:before { content: 'kr'; font-size: em-calc(18,28);}
