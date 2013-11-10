@@ -2,7 +2,19 @@ var request = require('request'),
     async = require('async'),
     _ = require('underscore');
 
+// Connect to redis cache
+var redis;
+if(process.env.REDISTOGO_URL) {
+  var rtg = require("url").parse(process.env.REDISTOGO_URL);
+  redis = require("redis").createClient(rtg.port, rtg.hostname);
+  redis.auth(rtg.auth.split(":")[1]);
+} else {
+  redis = require("redis").createClient();
+}
+
+// List all currencies
 exports.list = function(req, res) {
+  // Fetch curency information in parallel and pass it to a callback
   async.parallel([fetchBtcIsk, fetchIskBase],
     // Callback
     function(err, results) {
@@ -11,6 +23,7 @@ exports.list = function(req, res) {
   );
 };
 
+// Filter one currency from fetched data
 exports.show = function(req, res) {
   async.parallel([fetchBtcIsk, fetchIskBase],
     // Callback
@@ -28,34 +41,68 @@ exports.show = function(req, res) {
   );
 };
 
+// Fetches the base ISK dataset from the apis.is service
 function fetchIskBase(cb) {
-  request.get({ url: 'http://apis.is/currency/lb' },
-    function (err, response, data) {
-      if(err) {
-        cb(true);
-      } else {
-        data = JSON.parse(data);
-        cb(null, data.results);
-      }
+  var cacheKey = 'apis-is-isk-base';
+
+  // Fetch cache key from redis cache
+  redis.get(cacheKey, function(err, storedResult) {
+
+    // Fetch new data in case of an error or no results showing up
+    if(err || !storedResult) {
+      request.get({ url: 'http://apis.is/currency/lb' },
+        function (err, response, data) {
+          if(err) {
+            cb(true);
+          } else {
+            data = JSON.parse(data);
+
+            // Store the fetched data in Redis
+            redis.setex(cacheKey, 900, JSON.stringify(data.results));
+            cb(null, data.results);
+          }
+        }
+      );
+    } else {
+      // Serve cached data
+      cb(null, JSON.parse(storedResult));
     }
-  );
+  });
 }
 
+// Fetches the ISK-BTC rate from Coindesks's API
 function fetchBtcIsk(cb) {
-  request.get({ url: 'https://api.coindesk.com/v1/bpi/currentprice/ISK.json' },
-    function (err, response, data) {
-      data = JSON.parse(data);
-      if(err) {
-        cb(true);
-      } else if(data.bpi) {
-        cb(null, [{
-          shortName: 'BTC',
-          longName: "Bitcoin",
-          value: data.bpi.ISK.rate_float
-        }]);
-      } else {
-        cb(true);
-      }
+  var cacheKey = 'coindesk-btc-isk';
+
+  // Fetch cache key from redis cache
+  redis.get(cacheKey, function(err, storedResult) {
+
+    // Fetch new data in case of an error or no results showing up
+    if(err || !storedResult) {
+      request.get({ url: 'https://api.coindesk.com/v1/bpi/currentprice/ISK.json' },
+        function (err, response, data) {
+          data = JSON.parse(data);
+          if(err) {
+            cb(true);
+          } else if(data.bpi) {
+
+            result = [{
+              shortName: 'BTC',
+              longName: "Bitcoin",
+              value: data.bpi.ISK.rate_float
+            }];
+
+            // Store the fetched data in Redis
+            redis.setex(cacheKey, 900, JSON.stringify(result));
+            cb(null, result);
+          } else {
+            cb(true);
+          }
+        }
+      );
+    } else {
+      // Serve cached data
+      cb(null, JSON.parse(storedResult));
     }
-  );
+  });
 }
