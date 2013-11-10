@@ -1,0 +1,13 @@
+
+
+section {
+
+  &.primary {
+    background-color: $color-primary;
+    color: $color-light;
+  }
+  &.light {
+    background-color: $color-light;
+    color: $color-secondary;
+  }
+}
