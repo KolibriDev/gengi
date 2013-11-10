@@ -1,3 +1,10 @@
+// Styles for standalone iOS mode
+body.standalone {
+  border-top: 20px solid $color-dark;
+  .header-wrap {
+    top: 20px;
+  }
+}
 
 .header-wrap {
   @include transition(opacity $transition-speed-slow);
