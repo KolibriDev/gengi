@@ -8,4 +8,4 @@
       li
         span.list-left =
         span.symbol kr.
-        input(type='tel', value='{{ (fromValue * currency.value) || 0 }}')
+        input(type='tel', value='{{calcRate(currency.value, fromValue)}}')
