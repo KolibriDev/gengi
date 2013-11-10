@@ -17,12 +17,20 @@ header {
     line-height: em-calc(60,24);
     text-transform: uppercase;
     -webkit-font-smoothing: antialiased;
+
+    background: url('/img/logo-@2x.png') left center no-repeat;
+    background-size: 30px 30px;
+    padding-left: 40px;
+
   }
   &.calc {
 
     h1 {
       padding-top: 8px;
       line-height: em-calc(24,24);
+
+      background: none;
+      padding-left: 0;
 
       >small {
         display: block;
