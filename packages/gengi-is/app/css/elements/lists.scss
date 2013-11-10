@@ -51,7 +51,7 @@ ul {
       @include transition(width $transition-speed,opacity $transition-speed-slow);
       overflow: hidden;
       float: left;
-      margin: 0 auto $spacing;
+      margin: 0 auto $spacing/2;
       padding: 0 $grid-gutter/2;
       width: 100%;
 
@@ -90,7 +90,7 @@ ul {
 
         position: absolute;
         top: 40px;
-        left: $spacing*2.5;
+        left: (($spacing*2.5) + 1);
         z-index: 4;
       }
 
@@ -176,6 +176,7 @@ ul {
     &.grid {
       >li {
         width: (100%/3);
+        margin-bottom: $spacing;
 
         a { height: 80px; }
 
@@ -217,6 +218,31 @@ ul {
           // text-align: left;
           // color: $color-secondary;
         }
+      }
+    }
+
+    &.actions {
+      >li {
+        width: 50%;
+        padding: 0 $spacing/4;
+
+        &:nth-child(odd) { padding-left: $spacing/2; }
+        &:nth-child(even) { padding-right: $spacing/2; }
+      }
+
+      span.list-left { background-color: rgba($color-light,0.7); }
+      span.symbol {
+        color: $color-secondary;
+        &:before { font-size: em-calc(18,28); }
+      }
+      span.text {
+        position: absolute;
+        top: 0;
+        left: $spacing*2.3;
+        z-index: 4;
+
+        font-size: em-calc(14);
+        color: $color-secondary;
       }
     }
   }
