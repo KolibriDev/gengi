@@ -26,7 +26,7 @@ header {
 
   background: $color-secondary;
 
-  >.row { margin-bottom: 0; }
+  >.row { margin-bottom: 0; position: relative; }
 
   h1 {
     margin: 0;
@@ -38,10 +38,17 @@ header {
     background: url('/img/logo-@2x.png') left center no-repeat;
     background-size: 30px 30px;
     padding-left: 40px;
+  }
 
+  .header-right {
+    position: absolute;
+    right: 20px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 20px;
   }
   .calc {
-
     h1 {
       padding-top: 8px;
       line-height: em-calc(24,24);
