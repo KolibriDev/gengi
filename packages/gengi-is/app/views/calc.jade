@@ -4,7 +4,7 @@
       li: .flip
         span.list-left
         span.symbol(class='{{currency.shortName}}')
-        input.fromValue(type='text', ng-model='fromValue', placeholder='1', autofocus)
+        input.fromValue(type='text', ng-model='fromValue', pattern='[0-9]*', placeholder='1', autofocus)
       li: .flip
         span.list-left
         span.symbol.ISK
