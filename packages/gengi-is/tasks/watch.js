@@ -8,7 +8,7 @@ module.exports = {
     tasks: ['buildCss']
   },
   img: {
-    files: ['app/img/**/*.{jpg,png,jpeg}'],
+    files: ['app/img/**/*.{jpg,png,gif,jpeg,ico}'],
     tasks: ['minifyImages']
   },
   webfonts: {
@@ -18,6 +18,10 @@ module.exports = {
   javascript: {
     files: ['app/js/**/*.js'],
     tasks: ['buildJs', 'copyFiles']
+  },
+  ico: {
+    files: ['app/img/**/*.ico'],
+    tasks: ['copyFiles']
   },
   dev: {
     files: ['dev/css/**/*.css', 'dev/**/*.html', 'dev/img/**/*', 'dev/js/**/*.js'],

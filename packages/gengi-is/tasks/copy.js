@@ -14,6 +14,13 @@ module.exports = {
         cwd: 'app/fonts',
         src: '**',
         dest: 'dev/fonts'
+      },
+      // Ico files
+      {
+        expand: true,
+        cwd: 'app/img',
+        src: '**/*.ico',
+        dest: 'dev/img'
       }
     ]
   }
