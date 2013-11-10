@@ -35,6 +35,7 @@ header {
   }
 
   h1 {
+    cursor: default;
     margin: 0;
     font-size: em-calc(24);
     line-height: em-calc(60,24);
@@ -72,6 +73,7 @@ header {
     }
 
     .go-back {
+      cursor: pointer;
       float: left;
       width: $spacing*2;
       height: $spacing*3;
