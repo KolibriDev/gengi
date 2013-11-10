@@ -85,5 +85,13 @@ hgroup {
     background: url('/img/logo-light-@2x.png') left center no-repeat;
     background-size: 30px 30px;
   }
+
+  &.red {
+    color: $color-light;
+
+    &:before {
+      background-image: url('/img/logo-@2x.png');
+    }
+  }
 }
 a.logo-title { cursor: pointer; }

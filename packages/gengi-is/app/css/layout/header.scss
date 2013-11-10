@@ -46,6 +46,14 @@ header {
     padding-left: 40px;
   }
 
+  .logo-title {
+    margin: 0 auto;
+    font-size: em-calc(24);
+    line-height: em-calc(60,24);
+    text-align: center;
+    &:before { vertical-align: -12%; }
+  }
+
   .header-right {
     position: absolute;
     right: 20px;
