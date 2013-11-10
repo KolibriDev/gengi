@@ -181,9 +181,10 @@ ul {
         position: relative;
         span.list-left { left: $grid-gutter/2; }
         span.symbol {
-          left: $spacing*3;
-          text-align: left;
-          color: $color-secondary;
+          left: $grid-gutter/2;
+          // left: $spacing*3;
+          // text-align: left;
+          // color: $color-secondary;
         }
       }
     }
