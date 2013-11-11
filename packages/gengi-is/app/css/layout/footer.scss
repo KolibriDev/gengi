@@ -1,5 +1,6 @@
 
 footer {
+  @include transition(opacity $transition-speed-slow);
   @include user-select(none);
   margin: 0 auto;
   min-height: 80px;
@@ -18,8 +19,19 @@ footer {
     }
   }
   p {
+    margin: 0;
+    padding-top: 20px;
     font-size: em-calc(12);
-    line-height: em-calc(80,12);
+    line-height: em-calc(18,12);
+    height: 80px;
     color: #A9ACB6;
   }
+
+  .main-view.ng-enter & { @include transition-delay($transition-speed-slow*2); opacity: 0; }
+  &.visible,
+  .main-view.ng-enter.ng-enter-active & { opacity: 1; }
+
+  .main-view.ng-leave & { @include transition-delay($transition-speed-slow); opacity: 1; }
+  &.hidden,
+  .main-view.ng-leave-active & { opacity: 0; }
 }
