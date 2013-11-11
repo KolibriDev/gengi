@@ -23,5 +23,23 @@ module.exports = {
         dest: 'dev/img'
       }
     ]
+  },
+  dist: {
+    files: [
+      // Webfonts
+      {
+        expand: true,
+        cwd: 'app/fonts',
+        src: '**',
+        dest: 'dist/fonts'
+      },
+      // Ico files
+      {
+        expand: true,
+        cwd: 'app/img',
+        src: '**/*.ico',
+        dest: 'dist/img'
+      }
+    ]
   }
 };

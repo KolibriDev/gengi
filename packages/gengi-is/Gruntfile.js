@@ -42,8 +42,20 @@ module.exports = function(grunt) {
     ]
   );
 
+  grunt.registerTask('dist',
+    [
+      'jade:dist',
+      'imagemin:dist',
+      'svgmin:dist',
+      'cssmin:dist',
+      'uglify:dist',
+      'sass:dist',
+      'copy:dist'
+    ]
+  );
+
   // The server task
-  grunt.registerTask('server', ['default', 'runServer', 'watch'])
+  grunt.registerTask('server', ['default', 'runServer', 'watch']);
 };
 
 // Borrowed from Thomas Boyt (@thomasABoyt)

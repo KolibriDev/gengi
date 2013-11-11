@@ -1,7 +1,12 @@
 module.exports = {
   dev: {
     options: {
-      pretty: true
+      pretty: true,
+      data: function() {
+        return {
+          env: 'development'
+        };
+      }
     },
     files: [
       {
@@ -18,7 +23,7 @@ module.exports = {
       {
         expand: true,
         cwd: 'app/views/',
-        src: ['*.jade'],
+        src: ['*.jade', 'partials/*.jade'],
         dest: 'dist/',
         ext: '.html'
       }
