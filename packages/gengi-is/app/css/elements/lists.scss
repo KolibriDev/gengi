@@ -230,7 +230,7 @@ ul {
         &:nth-child(even) { padding-right: $spacing/2; }
       }
 
-      span.list-left { background-color: rgba($color-light,0.7); }
+      span.list-left { background-color: #f6f6f5; }
       span.symbol {
         color: $color-secondary;
         &:before { font-size: em-calc(18,28); }
