@@ -1,8 +1,7 @@
 (function() {
-  define(['app', 'factories/currency'], function(app) {
-    return app.controller('listCtrl', function($rootScope, $scope, Currency) {
+  define(['app'], function(app) {
+    return app.controller('listCtrl', function($rootScope) {
       $rootScope.pageTitle = 'Gengi.is - Nýjasta gengi gjaldmiðla á svipstundu';
-      $scope.items = Currency.query();
 
       // Header
       $rootScope.headerTpl = 'partials/listHeader.html';
