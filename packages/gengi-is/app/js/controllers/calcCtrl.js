@@ -20,7 +20,7 @@
                 $scope.calcRate = calcRate;
 
                 // Header
-                $rootScope.pageTitle = curr.longName + ' - Gengi.is';
+                $rootScope.pageTitle = curr.longName + ' - ' + curr.shortName + ' - Gengi.is';
                 $rootScope.currencyShortName = curr.shortName;
                 $rootScope.currencyLongName = curr.longName;
               } else {
