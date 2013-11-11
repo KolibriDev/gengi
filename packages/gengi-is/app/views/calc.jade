@@ -10,7 +10,7 @@
         span.symbol.ISK
         input(type='text', value='{{calcRate(currency.value, fromValue) || currency.value.toFixed(1)}}', readonly)
 
-    .not-found(ng-show='isOn404')
+    section.not-found(ng-show='isOn404')
       .ss-standard.ss-icon warning
       p Fari það grábölvað! Við fundum því miður ekki umbeðna síðu eða gjaldmiðil. 
       p Þú getur reiknað gengi gjaldmiðils með því að stimpla beint í vefslóðina, t.d. <b>gengi.is/eur</b> eða <b>gengi.is/10eur</b> en hægt er að sjá yfirlit gjaldmiðla með því að smella á hnappinn hér að neðan.
