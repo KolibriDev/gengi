@@ -1,10 +1,25 @@
 
 footer {
   @include user-select(none);
-  margin: $spacing auto 0;
+  margin: 0 auto;
+  min-height: 80px;
   line-height: 1.2em;
 
-  font-size: em-calc(12);
-  text-align: center;
-  color: $color-primary;
+  background: #F6F6F5;
+
+  .logo {
+    float: left;
+    display: block;
+
+    padding: 20px $spacing;
+    height: 40px;
+    img {
+      display: block;
+    }
+  }
+  p {
+    font-size: em-calc(12);
+    line-height: em-calc(80,12);
+    color: #A9ACB6;
+  }
 }
