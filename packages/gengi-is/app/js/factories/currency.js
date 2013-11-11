@@ -5,6 +5,12 @@
         'http://api.gengi.is/currency/:currName',
         {
           currName: '@currName'
+        },
+        {
+          get: {
+            cache: true,
+            method: 'GET'
+          }
         }
       );
 
