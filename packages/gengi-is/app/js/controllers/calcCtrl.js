@@ -52,7 +52,8 @@
 
     var value = (rate*amount);
     if(isNaN(value)) return 0;
-    return value.toFixed(1);
+    // return value.toFixed(1);
+    return formatOutput(value);
   }
 
   // Parses the query string and returns the number and currency name
@@ -80,6 +81,19 @@
         currName: query
       };
     }
+  }
+
+  function formatOutput(num) {
+    var parts, L, i, s, o;
+    parts = (''+num.toFixed(1)).split('.');
+    s=parts[0];
+    i=L= s.length;
+    o='';
+
+    while(i--){
+      o = (i===0?'':((L-i)%3?'':'.')) +s.charAt(i) +o;
+    }
+    return String(o+','+parts[1]).replace(/\,0$/, '');
   }
 
 }).call(this);
