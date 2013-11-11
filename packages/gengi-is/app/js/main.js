@@ -24,9 +24,6 @@
 
   require(['jQuery', 'angular', 'config/routes'], function($, angular) {
     $(function() {
-      if(window.navigator.standalone === true) {
-        $('body').addClass('standalone');
-      }
       angular.bootstrap(document, ['app']);
     });
   });
