@@ -94,4 +94,7 @@ hgroup {
     }
   }
 }
-a.logo-title { cursor: pointer; }
+a.logo-title {
+  cursor: pointer;
+  display: block;
+}
