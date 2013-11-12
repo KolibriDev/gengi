@@ -3,7 +3,6 @@
     baseUrl: 'js',
     paths: {
       text: 'vendor/text',
-      modernizr: 'vendor/modernizr',
       angular: 'vendor/angular.min',
       ngResource: 'vendor/angular-resource.min',
       ngRoute: 'vendor/angular-route.min',
@@ -15,8 +14,6 @@
       ngResource: { deps: ['angular'] },
       ngRoute: { deps: ['angular'] },
       ngAnimate: { deps: ['angular'] },
-      jQuery: { exports: 'jQuery' },
-      Modernizr: { exports: 'Modernizr' },
       underscore: { exports: '_' }
     }
   });
