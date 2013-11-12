@@ -8,7 +8,7 @@
       li: .flip
         span.list-left
         span.symbol.ISK
-        input(type='text', value='{{calcRate(currency.value, fromValue) || currency.value.toFixed(1)}}', readonly)
+        input(type='text', value='{{calcRate(currency.value, fromValue) || currency.value}}', readonly)
 
     section.not-found(ng-show='isOn404')
       .ss-standard.ss-icon warning

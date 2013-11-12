@@ -1,5 +1,5 @@
 (function() {
-  define(['app', 'factories/currency'],
+  define(['app', 'factories/currency', 'directives/input-autosize'],
     function(app) {
       return app.controller('calcCtrl',
         function($rootScope, $scope, $routeParams, Currency) {
@@ -15,6 +15,7 @@
                 // Update header template
                 $rootScope.headerTpl = 'calcHeader';
 
+                curr.value = formatOutput(curr.value);
                 $scope.currency = curr;
                 $scope.fromValue = calcQuery.amount || '';
                 $scope.calcRate = calcRate;
@@ -47,7 +48,7 @@
     amount = parseFloat(String(amount).replace(',', '.'), 0);
 
     if(amount === '' || amount === 1) {
-      return rate.toFixed(1);
+      return formatOutput(rate);
     }
 
     var value = (rate*amount);
