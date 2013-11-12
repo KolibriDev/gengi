@@ -1,6 +1,8 @@
 (function() {
   define(['app','controllers/listCtrl', 'controllers/aboutCtrl', 'controllers/calcCtrl'], function(app) {
-    app.config(function($routeProvider) {
+    app.config(function($routeProvider, $locationProvider) {
+
+      $locationProvider.html5Mode(true);
 
       $routeProvider.when('/', {
         controller: 'listCtrl',
