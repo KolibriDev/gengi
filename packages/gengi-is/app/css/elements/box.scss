@@ -52,7 +52,8 @@ $box-padding: $spacing $spacing 0;
     @include transition(background $transition-speed-fast);
     display: inline-block;
     width: $spacing*2;
-    height: $spacing*3;
+    min-height: $spacing*3;
+    position: relative;
 
     background-color: black;
     background-color: rgba(black,0.25);
@@ -61,20 +62,43 @@ $box-padding: $spacing $spacing 0;
 
     &:before {
       display: block;
-      line-height: $spacing*3.5;
-      font-size: 18px;
+      margin: auto;
+      width: 18px;
+      height: 18px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      font-size: em-calc(18);
+      line-height: em-calc(22,18);
       color: $color-light;
     }
   }
 
   &.contact-us {
-    padding: 0;
-    height: $spacing*3;
-    .icon-block { float: right; }
+    padding: 0 ($spacing*4 + 1) 0 0;
+    min-height: $spacing*3;
+    position: relative;
+
+    .icon-block {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: $spacing*2 + 1;
+      &:first-child { right: 0; }
+    }
+
     p {
-      padding: $spacing/2 $spacing/2 0;
+      margin: 0;
+      padding: $spacing/2;
       text-align: left;
       line-height: em-calc(20);
+
+      @media only screen and (max-width: 350px) {
+        >br { display: none;}
+      }
     }
   }
 
