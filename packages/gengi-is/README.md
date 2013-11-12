@@ -63,6 +63,9 @@ Form5 is a small interactive studio based in Reykjavík, Iceland. We design and 
 
 ## License
 
+The code is licensed under the MIT license but the design is licensed under a [Creative Commons Attribution-NonCommercial](http://creativecommons.org/licenses/by-nc/3.0/deed.en_US) license.
+
+
 The MIT License (MIT)
 
 Copyright (c) 2013 Form5
