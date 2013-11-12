@@ -42,15 +42,16 @@ module.exports = function(grunt) {
     ]
   );
 
-  grunt.registerTask('dist',
+  grunt.registerTask('build',
     [
+      'default',
       'jade:dist',
+      'sass:dist',
+      'copy:dist',
       'imagemin:dist',
       'svgmin:dist',
       'cssmin:dist',
-      'uglify:dist',
-      'sass:dist',
-      'copy:dist'
+      'uglify:dist'
     ]
   );
 
