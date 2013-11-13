@@ -35,10 +35,14 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['concurrent:buildAllDev']);
 
   // The dist build task
-  grunt.registerTask('build', ['concurrent:buildAllDist', 'concurrent:distOptimize']);
+  grunt.registerTask('build', [
+    'concurrent:buildAllDist',
+    'concurrent:distOptimize'
+  ]);
 
   // The server task
   grunt.registerTask('server', ['default', 'runServer', 'watch']);
+  grunt.registerTask('dev', ['runServer', 'watch']);
 };
 
 // Borrowed from Thomas Boyt (@thomasABoyt)

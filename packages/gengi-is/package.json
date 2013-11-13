@@ -32,6 +32,7 @@
     "grunt-contrib-cssmin": "~0.7.0",
     "grunt-contrib-uglify": "~0.2.7",
     "grunt-rev": "~0.1.0",
-    "grunt-concurrent": "~0.4.1"
+    "grunt-concurrent": "~0.4.1",
+    "connect-modrewrite": "~0.5.11"
   }
 }
