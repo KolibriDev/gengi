@@ -15,10 +15,10 @@
                 // Update header template
                 $rootScope.headerTpl = 'calcHeader';
 
-                curr.value = formatOutput(curr.value);
                 $scope.currency = curr;
                 $scope.fromValue = calcQuery.amount || '';
                 $scope.calcRate = calcRate;
+                $scope.formatOutput = formatOutput;
 
                 // Header
                 $rootScope.pageTitle = curr.longName + ' - ' + curr.shortName + ' - Gengi.is';
@@ -47,13 +47,12 @@
     rate = parseFloat(String(rate).replace(',', '.'), 0);
     amount = parseFloat(String(amount).replace(',', '.'), 0);
 
-    if(amount === '' || amount === 1) {
+    if(!amount || amount === '' || amount === 1) {
       return formatOutput(rate);
     }
 
     var value = (rate*amount);
     if(isNaN(value)) return 0;
-    // return value.toFixed(1);
     return formatOutput(value);
   }
 
