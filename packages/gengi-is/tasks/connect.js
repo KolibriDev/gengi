@@ -3,7 +3,13 @@ module.exports = {
     options: {
       hostname: '0.0.0.0',
       port: 8000,
-      base: 'dev'
+      base: 'dev',
+      livereload: {
+        options: {
+          open: true,
+          base: 'dev'
+        }
+      }
     }
   }
 };

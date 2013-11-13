@@ -32,28 +32,10 @@ module.exports = function(grunt) {
   grunt.registerTask('runServer', ['connect:dev', 'open:dev']);
 
   // The default task
-  grunt.registerTask('default',
-    [
-      'buildViews',
-      'minifyImages',
-      'buildCss',
-      'buildJs',
-      'copyFiles'
-    ]
-  );
+  grunt.registerTask('default', ['concurrent:buildAllDev']);
 
-  grunt.registerTask('build',
-    [
-      'default',
-      'jade:dist',
-      'sass:dist',
-      'copy:dist',
-      'imagemin:dist',
-      'svgmin:dist',
-      'cssmin:dist',
-      'uglify:dist'
-    ]
-  );
+  // The dist build task
+  grunt.registerTask('build', ['concurrent:buildAllDist', 'concurrent:distOptimize']);
 
   // The server task
   grunt.registerTask('server', ['default', 'runServer', 'watch']);

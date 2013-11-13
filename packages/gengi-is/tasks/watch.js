@@ -24,7 +24,12 @@ module.exports = {
     tasks: ['copyFiles']
   },
   dev: {
-    files: ['dev/css/**/*.css', 'dev/**/*.html', 'dev/img/**/*', 'dev/js/**/*.js'],
+    files: [
+      'dev/css/**/*.css',
+      'dev/**/*.html',
+      'dev/img/**/*.{png,jpg,jpeg,gif,svg}',
+      'dev/js/**/*.js'
+    ],
     options: {
       livereload: true
     }
