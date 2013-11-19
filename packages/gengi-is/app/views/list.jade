@@ -7,7 +7,7 @@ nav.top
 
 .row
   .col.large-6.center
-    ul.currency-list(class='{{listView}}')
+    ul.currency-list(class='{{listView}} {{listExpand}}')
       li: .flip
         a(ng-href='/#/EUR', href='/#/EUR')
           span.list-left
@@ -125,10 +125,14 @@ nav.top
 
     ul.currency-list.actions
       li: .flip
-        a(ng-click='updateView(listView + " expand")')
+        a(ng-hide='listExpand',ng-click='expandList("expand")')
           span.list-left
           span.symbol.ss-icon.ss-standard.ss-plus
           span.text Sýna fleiri
+        a(ng-show='listExpand',ng-click='expandList("")')
+          span.list-left
+          span.symbol.ss-icon.ss-standard.ss-hyphen
+          span.text Sýna færri
       li: .flip
         a(ng-href='/#/about', href='/#/about')
           span.list-left
