@@ -1,5 +1,5 @@
 (function() {
-  define(['app', 'factories/currency', 'directives/input-autosize'],
+  define(['app', 'factories/currency'],
     function(app) {
       return app.controller('calcCtrl',
         function($rootScope, $scope, $routeParams, Currency) {
