@@ -1,5 +1,5 @@
 (function() {
-  define(['app'], function(app) {
+  define(['app', 'directives/scroll-to-top'], function(app) {
     return app.controller('listCtrl', function($rootScope) {
       $rootScope.pageTitle = 'Gengi.is - Nýjasta gengi gjaldmiðla á svipstundu';
 
