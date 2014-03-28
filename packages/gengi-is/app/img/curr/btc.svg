@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>btc</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Bitcoin-icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="btc" sketch:type="MSArtboardGroup" fill="#EE6969">
+            <path d="M16.032,10.352 L13.048,10.352 L13.048,29 L22.456,29 C26.572,29 28.952,26.844 28.952,23.568 C28.952,23.568 28.952,26.844 28.952,23.568 C28.952,21.58 27.888,19.956 25.872,19.144 C27.412,18.332 28.308,16.848 28.308,15.168 C28.308,12.2053845 26.0355041,10.3927066 22.032,10.3526771 L22.032,10.3526771 L22.032,8 L20.032,8 L20.032,10.352 L18.032,10.352 L18.032,8 L16.032,8 L16.032,10.352 Z M23.8,15.84 C23.8,16.988 22.96,17.632 21.616,17.632 L17.528,17.632 L17.528,14.188 L21.56,14.188 C22.96,14.188 23.8,14.692 23.8,15.84 C23.8,15.84 23.8,14.692 23.8,15.84 Z M24.36,23.176 C24.36,24.436 23.492,25.164 22.12,25.164 L17.528,25.164 L17.528,21.16 L22.148,21.16 C23.548,21.16 24.36,21.972 24.36,23.176 C24.36,23.176 24.36,21.972 24.36,23.176 Z M20.032,29 L20.032,32 L22.032,32 L22.032,29 L20.032,29 Z M16.032,29 L16.032,32 L18.032,32 L18.032,29 L16.032,29 Z" id="B" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

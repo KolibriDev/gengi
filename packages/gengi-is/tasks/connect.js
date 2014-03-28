@@ -15,7 +15,7 @@ module.exports = {
       middleware: function (connect, options) {
         return [
           modRewrite([
-            '!\\.html|\\.js|\\.css|\\.png$ /index.html [L]'
+            '!\\.html|\\.js|\\.css|\\.png|\\.svg$ /index.html [L]'
           ]),
           connect.static(require('path').resolve(options.base))
         ];
