@@ -5,17 +5,17 @@ var request = require('request'),
 // Connect to redis cache
 var redis;
 if(process.env.REDISCLOUD_URL || process.env.REDISTOGO_URL) {
-  var rtg = require("url").parse(process.env.REDISCLOUD_URL || process.env.REDISTOGO_URL);
-  redis = require("redis").createClient(rtg.port, rtg.hostname);
-  redis.auth(rtg.auth.split(":")[1]);
+  var rtg = require('url').parse(process.env.REDISCLOUD_URL || process.env.REDISTOGO_URL);
+  redis = require('redis').createClient(rtg.port, rtg.hostname);
+  redis.auth(rtg.auth.split(':')[1]);
 } else {
-  redis = require("redis").createClient();
+  redis = require('redis').createClient();
 }
 
 // List all currencies
 exports.list = function(req, res) {
   // Fetch curency information in parallel and pass it to a callback
-  async.parallel([fetchBtcIsk, fetchIskBase],
+  async.parallel([fetchBtcIsk, fetchAurIsk, fetchIskBase],
     // Callback
     function(err, results) {
       res.send(_.flatten(results));
@@ -25,7 +25,7 @@ exports.list = function(req, res) {
 
 // Filter one currency from fetched data
 exports.show = function(req, res) {
-  async.parallel([fetchBtcIsk, fetchIskBase],
+  async.parallel([fetchBtcIsk, fetchAurIsk, fetchIskBase],
     // Callback
     function(err, results) {
       var flattenResults = _.map(_.flatten(results), function(curr) {
@@ -86,9 +86,9 @@ function fetchBtcIsk(cb) {
             cb(true);
           } else if(data.bpi) {
 
-            result = [{
+            var result = [{
               shortName: 'BTC',
-              longName: "Bitcoin",
+              longName: 'Bitcoin',
               value: data.bpi.ISK.rate_float
             }];
 
@@ -100,6 +100,49 @@ function fetchBtcIsk(cb) {
           }
         }
       );
+    } else {
+      // Serve cached data
+      cb(null, JSON.parse(storedResult));
+    }
+  });
+}
+// Fetches the USD-AUR rate from Coinmarketcap.com and converts to ISK
+function fetchAurIsk(cb) {
+  var cacheKey = 'coinmarketcap-aur-usd';
+
+  // Fetch cache key from redis cache
+  redis.get(cacheKey, function(err, storedResult) {
+
+    // Fetch new data in case of an error or no results showing up
+    if(err || !storedResult) {
+      request.get({ url: 'http://api02.gengi.is/currency/usd' },
+        function (err, response, data) {
+          data = JSON.parse(data);
+          hasUsd(data.value);
+        }
+      );
+      function hasUsd (usdValue) {
+        request.get({ url: 'http://coinmarketcap.northpole.ro/api/aur.json' }, function (err, response, data) {
+            data = JSON.parse(data);
+            if(err) {
+              cb(true);
+            } else if(data.price) {
+
+              var result = [{
+                shortName: data.id,
+                longName: data.name,
+                value: data.price * usdValue
+              }];
+
+              // Store the fetched data in Redis
+              redis.setex(cacheKey, 900, JSON.stringify(result));
+              cb(null, result);
+            } else {
+              cb(true);
+            }
+          }
+        );
+      }
     } else {
       // Serve cached data
       cb(null, JSON.parse(storedResult));
