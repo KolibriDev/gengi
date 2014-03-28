@@ -24,3 +24,27 @@
 @function strip-unit($num) {
   @return $num / ($num * 0 + 1);
 }
+
+
+@function rem-calc($values) {
+  $max: length($values);
+  $base-value: $font-size;
+
+  @if $max == 1 { @return convert-to-rem(nth($values, 1), $base-value); }
+
+  $remValues: ();
+  @for $i from 1 through $max {
+    $remValues: append($remValues, convert-to-rem(nth($values, $i), $base-value));
+  }
+  @return $remValues;
+}
+
+@function convert-to-rem($value, $base-value: $font-size)  {
+  $value: strip-unit($value) / strip-unit($base-value) * 1rem;
+  @if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
+  @return $value;
+}
+
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
