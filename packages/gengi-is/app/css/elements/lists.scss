@@ -31,6 +31,7 @@
 ul {
   li:nth-child(n+7) {
     display: none;
+    &.actions { display: block; }
   }
 
   &.expand {
@@ -122,7 +123,7 @@ ul {
 
         line-height: 60px;
         font-weight: 700;
-        font-size: em-calc(28);
+        font-size: rem-calc(28);
         text-align: center;
         color: $color-primary;
 
@@ -134,16 +135,29 @@ ul {
 
         -webkit-font-smoothing: antialiased;
 
-        &.BTC:before { content: 'B';}
+        &.BTC:before,
+        &.AUR:before {
+          content: '';
+          display: block;
+          width: 100%;
+          height: 100%;
+
+          background: no-repeat 50% 50%;
+          background-image: url('/img/curr/aur.svg');
+          background-size: 100%;
+        }
+        &.BTC:before {
+          background-image: url('/img/curr/btc.svg');
+        }
         &.USD:before { content: '$';}
         &.EUR:before { content: '€';}
         &.GBP:before { content: '£';}
         &.JPY:before { content: '¥';}
-        &.ISK:before { content: 'kr'; font-size: em-calc(18,28);}
-        &.NOK:before { content: 'kr'; font-size: em-calc(18,28);}
-        &.SEK:before { content: 'kr'; font-size: em-calc(18,28);}
-        &.DKK:before { content: 'kr'; font-size: em-calc(18,28);}
-        &.CHF:before { content: 'Fr'; font-size: em-calc(18,28);}
+        &.ISK:before { content: 'kr'; font-size: rem-calc(18);}
+        &.NOK:before { content: 'kr'; font-size: rem-calc(18);}
+        &.SEK:before { content: 'kr'; font-size: rem-calc(18);}
+        &.DKK:before { content: 'kr'; font-size: rem-calc(18);}
+        &.CHF:before { content: 'Fr'; font-size: rem-calc(18);}
         &.CAD:before { content: '$';}
         &.AUD:before { content: '$';}
         &.ZAR:before { content: 'R';}
@@ -185,6 +199,9 @@ ul {
         span.symbol {
           margin-left: -$spacing;
           left: 50%;
+
+          &.BTC:before,
+          &.AUR:before { height: 80%; }
         }
 
         h2 {
@@ -195,7 +212,7 @@ ul {
           right: 0;
 
           font-weight: 400;
-          font-size: em-calc(12);
+          font-size: rem-calc(12);
           text-align: center;
           color: $color-secondary;
         }
@@ -206,6 +223,34 @@ ul {
         }
       }
     }
+
+    >li.actions {
+      width: 50%;
+
+      span.list-left { background-color: #f6f6f5; }
+      span.symbol {
+        color: $color-secondary;
+        &:before { font-size: rem-calc(18); }
+      }
+      span.text {
+        position: absolute;
+        top: 0;
+        left: $spacing*2.3;
+        z-index: 4;
+
+        font-size: rem-calc(14);
+        color: $color-secondary;
+      }
+    }
+    &.grid >li.actions {
+      span.list-left { width: $spacing*2; }
+      span.symbol {
+        left: 0; margin-left: 0;
+        line-height: rem-calc(80);
+      }
+      span.text { line-height: rem-calc(80); }
+    }
+    &.grid.expand >li.actions { width: (100%/3); }
 
     &.sub {
       padding-top: $spacing;
@@ -218,31 +263,6 @@ ul {
           // text-align: left;
           // color: $color-secondary;
         }
-      }
-    }
-
-    &.actions {
-      >li {
-        width: 50%;
-        padding: 0 $spacing/4;
-
-        &:nth-child(odd) { padding-left: $spacing/2; }
-        &:nth-child(even) { padding-right: $spacing/2; }
-      }
-
-      span.list-left { background-color: #f6f6f5; }
-      span.symbol {
-        color: $color-secondary;
-        &:before { font-size: em-calc(18,28); }
-      }
-      span.text {
-        position: absolute;
-        top: 0;
-        left: $spacing*2.3;
-        z-index: 4;
-
-        font-size: em-calc(14);
-        color: $color-secondary;
       }
     }
   }

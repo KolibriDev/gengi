@@ -33,6 +33,12 @@ nav.top
           h2.ng-binding BTC
           h3.ng-binding Bitcoin
       li: .flip
+        a(ng-href='/#/AUR', href='/#/AUR')
+          span.list-left
+          span.symbol.AUR
+          h2.ng-binding AUR
+          h3.ng-binding Auroracoin
+      li: .flip
         a(ng-href='/#/DKK', href='/#/DKK')
           span.list-left
           span.symbol.DKK
@@ -123,8 +129,7 @@ nav.top
           h2.ng-binding GVT
           h3.ng-binding Gengisvísitalan
 
-    ul.currency-list.actions
-      li: .flip
+      li.actions.expander: .flip
         a(ng-hide='listExpand',ng-click='expandList("expand")')
           span.list-left
           span.symbol.ss-icon.ss-standard.ss-plus
@@ -133,7 +138,7 @@ nav.top
           span.list-left
           span.symbol.ss-icon.ss-standard.ss-hyphen
           span.text Sýna færri
-      li: .flip
+      li.actions.about: .flip
         a(ng-href='/#/about', href='/#/about', scroll-to-top)
           span.list-left
           span.symbol.ss-icon.ss-standard.ss-info
