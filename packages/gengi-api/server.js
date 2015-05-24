@@ -5,15 +5,6 @@ var http = require('http'),
     app = express();
 
 app.set('port', process.env.PORT || 8001);
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(app.router);
-
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
 
 // Allow all origins
 app.all('/*', function(req, res, next) {
@@ -24,8 +15,8 @@ app.all('/*', function(req, res, next) {
 
 // Endpoints
 var currency = require('./endpoints/currency');
-app.get('/currency', currency.list);
-app.get('/currency/:name', currency.show);
+app.get('/currency', currency.getCurrencies);
+app.get('/currency/:name', currency.getCurrency);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
