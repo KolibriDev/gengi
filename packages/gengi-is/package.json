@@ -6,11 +6,23 @@
   "scripts": {
     "test": ""
   },
+  "homepage": "https://github.com/KolibriDev/gengi-is",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Form5/grunt-seed.git"
+    "url": "git@github.com:KolibriDev/gengi-is.git"
   },
-  "author": "Form5 <hello@form5.is>",
+  "bugs": {
+    "url": "https://github.com/KolibriDev/gengi-is/issues"
+  },
+  "contributors": [
+    "Benedikt D Valdez <benedikt@kolibri.is>",
+    "Ólafur Örn Nielsen <olafur@kolibri.is>"
+  ],
+  "author": {
+    "name": "Kolibri",
+    "email": "hello@kolibri.is",
+    "url": "http://www.kolibri.is"
+  },
   "license": "MIT",
   "devDependencies": {
     "grunt": "~0.4.1",

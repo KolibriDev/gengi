@@ -1,9 +1,11 @@
 {
-  "name": "grunt-seed",
-  "version": "0.0.1",
-  "homepage": "https://github.com/Form5/grunt-seed",
+  "name": "gengi-is",
+  "version": "0.0.2",
+  "homepage": "https://github.com/KolibriDev/gengi-is",
   "authors": [
-    "Form5 <hello@form5.is>"
+    "Kolibri <hello@kolibri.is>",
+    "Benedikt D Valdez <benedikt@kolibri.is>",
+    "Ólafur Örn Nielsen <olafur@kolibri.is>"
   ],
   "license": "MIT",
   "dependencies": {
