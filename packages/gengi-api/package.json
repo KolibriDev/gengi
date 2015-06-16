@@ -5,6 +5,23 @@
   "scripts": {
     "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:KolibriDev/api-gengi-is.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KolibriDev/api-gengi-is/issues"
+  },
+  "contributors": [
+    "Ólafur Örn Nielsen <olafur@kolibri.is>",
+    "Benedikt D Valdez <benedikt@kolibri.is>"
+  ],
+  "author": {
+    "name": "Kolibri",
+    "email": "hello@kolibri.is",
+    "url": "http://www.kolibri.is"
+  },
+  "license": "MIT",
   "dependencies": {
     "async": "^1.0.0",
     "express": "^4.12.4",
