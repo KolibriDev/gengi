@@ -1,37 +1,11 @@
-module.exports = {
-  jade: {
-    files: ['app/views/**/*.jade'],
-    tasks: ['buildViews']
-  },
-  sass: {
-    files: ['app/css/**/*.scss'],
-    tasks: ['buildCss']
-  },
-  img: {
-    files: ['app/img/**/*.{jpg,png,gif,jpeg,ico}'],
-    tasks: ['minifyImages']
-  },
-  webfonts: {
-    files: ['app/fonts/**.{eof,woff,ttf}'],
-    tasks: ['copyFiles']
-  },
-  javascript: {
-    files: ['app/js/**/*.js'],
-    tasks: ['buildJs', 'copyFiles']
-  },
-  ico: {
-    files: ['app/img/**/*.ico'],
-    tasks: ['copyFiles']
-  },
-  dev: {
-    files: [
-      'dev/css/**/*.css',
-      'dev/**/*.html',
-      'dev/img/**/*.{png,jpg,jpeg,gif,svg}',
-      'dev/js/**/*.js'
-    ],
-    options: {
-      livereload: true
-    }
-  }
+'use strict';
+
+module.exports = function(gulp) {
+  gulp.task('watch', ['connect'], function() {
+    gulp.watch(gulp.cfg.styles.watchSrc,['styles']);
+    gulp.watch(gulp.cfg.scripts.src,['scripts']);
+    gulp.watch([gulp.cfg.templates.watchSrc,gulp.cfg.svg.src],['templates']);
+    gulp.watch([gulp.cfg.ico.src,gulp.cfg.svg.src,gulp.cfg.fonts.src,gulp.cfg.videos.src],['copy']);
+    gulp.watch(gulp.cfg.images.src,['images']);
+  });
 };

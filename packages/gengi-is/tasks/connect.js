@@ -1,25 +1,11 @@
-var modRewrite = require('connect-modrewrite');
+'use strict';
 
-module.exports = {
-  dev: {
-    options: {
-      hostname: '0.0.0.0',
-      port: 8000,
-      base: 'dev',
-      livereload: {
-        options: {
-          open: true,
-          base: 'dev'
-        }
-      },
-      middleware: function (connect, options) {
-        return [
-          modRewrite([
-            '!\\.html|\\.js|\\.css|\\.png|\\.svg$ /index.html [L]'
-          ]),
-          connect.static(require('path').resolve(options.base))
-        ];
-      }
-    },
-  }
+module.exports = function(gulp) {
+  gulp.task('connect', function() {
+    return gulp.plugin.connect.server({
+      root: [gulp.cfg.env.dir],
+      port: gulp.cfg.connect.port,
+      livereload: gulp.cfg.connect.livereload
+    });
+  });
 };

@@ -1,45 +1,19 @@
-module.exports = {
-  dev: {
-    files: [
-      // Javascript files
-      {
-        expand: true,
-        cwd: 'app/js',
-        src: '**/*.js',
-        dest: 'dev/js'
-      },
-      // Webfonts
-      {
-        expand: true,
-        cwd: 'app/fonts',
-        src: '**',
-        dest: 'dev/fonts'
-      },
-      // Ico files
-      {
-        expand: true,
-        cwd: 'app/img',
-        src: '**/*.ico',
-        dest: 'dev/img'
-      }
-    ]
-  },
-  dist: {
-    files: [
-      // Webfonts
-      {
-        expand: true,
-        cwd: 'app/fonts',
-        src: '**',
-        dest: 'dist/fonts'
-      },
-      // Ico files
-      {
-        expand: true,
-        cwd: 'app/img',
-        src: '**/*.ico',
-        dest: 'dist/img'
-      }
-    ]
-  }
+'use strict';
+
+module.exports = function(gulp) {
+  gulp.task('copy', function() {
+    var path = gulp.cfg.env.dir;
+
+    gulp.src(gulp.cfg.ico.src)
+      .pipe( gulp.dest(path + gulp.cfg.ico.subDir) );
+
+    gulp.src(gulp.cfg.svg.src)
+      .pipe( gulp.dest(path + gulp.cfg.svg.subDir) );
+
+    gulp.src(gulp.cfg.fonts.src)
+      .pipe( gulp.dest(path + gulp.cfg.fonts.subDir) );
+
+    gulp.src(gulp.cfg.videos.src)
+      .pipe( gulp.dest(path + gulp.cfg.videos.subDir) );
+  });
 };
