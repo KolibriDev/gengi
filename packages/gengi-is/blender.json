@@ -32,9 +32,9 @@
     ],
     "lint": {
       "config": "./.jshintrc",
-      "exclude": [
-        "!**/vendor/**/*",
-        "!**/local-vendor/**/*"
+      "filter": [
+        "**/*.js",
+        "!**/vendor/**/*"
       ]
     },
     "subDir": "js/"
