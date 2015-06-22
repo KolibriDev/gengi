@@ -6,10 +6,12 @@ module.exports = function(gulp) {
     var gutil = gulp.plugin.util,
         prod  = gutil.env.prod;
 
-    return gulp.src(gulp.cfg.styles.src)
+    gulp.src(gulp.cfg.styles.src)
       .pipe( gulp.plugin.plumber() )
       .pipe(
-        gulp.plugin.sass().on('error', function(error){
+        gulp.plugin.sass({
+          outputStyle: (prod ? 'compressed' : 'nested'),
+        }).on('error', function(error){
           var arr = error.message.split('\n');
           var filename = arr[0];
           arr.shift();
@@ -31,9 +33,7 @@ module.exports = function(gulp) {
           cascade: false
          })
        )
-      .pipe( !prod ? gutil.noop() : gulp.plugin.csso() )
-      .pipe( gulp.dest(gulp.cfg.env.dir + gulp.cfg.styles.subDir)
-      )
+      .pipe( gulp.dest(gulp.cfg.env.dir + gulp.cfg.styles.subDir) )
       .pipe( prod ? gutil.noop() : gulp.plugin.connect.reload() );
   });
 };
