@@ -9,41 +9,16 @@
   "license": "MIT",
   "dependencies": {
     "requirejs": "~2.1.9",
-    "angular": "~1.2.0",
-    "angular-animate": "~1.2.0",
-    "angular-route": "~1.2.0",
     "normalize-scss": "~2.1.2",
-    "angular-resource": "~1.2.0",
-    "underscore": "~1.5.2",
-    "requirejs-text": "~2.0.10"
+    "promise-ajax-js": "*",
+    "almond": "~0.3.1"
   },
   "exportsOverride": {
-    "jquery": {
-      "js": "jquery.js"
-    },
     "normalize-scss": {
       "scss": "_normalize.scss"
     },
     "requirejs": {
       "js": "require.js"
-    },
-    "requirejs-text": {
-      "js": "text.js"
-    },
-    "angular": {
-      "js": "angular.min.js"
-    },
-    "underscore": {
-      "js": "underscore.min.js"
-    },
-    "angular-route": {
-      "js": "angular-route.min.js"
-    },
-    "angular-animate": {
-      "js": "angular-animate.min.js"
-    },
-    "angular-resource": {
-      "js": "angular-resource.min.js"
     },
     "*": {
       "js": "**/*.js",

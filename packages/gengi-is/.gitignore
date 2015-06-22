@@ -8,4 +8,3 @@ dist/*
 !dist/.gitkeep
 *.sublime-workspace
 bower_components
-src/*/vendor
