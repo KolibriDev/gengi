@@ -39,6 +39,20 @@
     },
     "subDir": "js/"
   },
+  "manifest": {
+    "filename": "manifest.appcache",
+    "src": [
+      "**/*",
+      "!**/img/icon/**/*",
+      "!**/img/load/**/*"
+    ],
+    "exclude": [
+      "manifest.appcache"
+    ],
+    "network": [
+      "*"
+    ]
+  },
   "images": {
     "src": "./src/img/**/*.{png,gif,jpg,jpeg}",
     "imgFilter": "**/*.{png,gif,jpg,jpeg}",

@@ -38,6 +38,7 @@
     "gulp-jshint": "^1.11.0",
     "gulp-load": "^0.1.1",
     "gulp-load-plugins": "^1.0.0-rc",
+    "gulp-manifest": "0.0.6",
     "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.3",
