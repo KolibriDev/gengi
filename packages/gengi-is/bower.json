@@ -11,19 +11,34 @@
     "requirejs": "~2.1.9",
     "normalize-scss": "~2.1.2",
     "promise-ajax-js": "*",
-    "almond": "~0.3.1"
+    "almond": "~0.3.1",
+    "html5-polyfills": "*",
+    "requirejs-domready": "~2.0.1",
+    "moment": "~2.10.3",
+    "moment-timezone": "~0.4.0",
+    "vue": "~0.12.1"
   },
-  "exportsOverride": {
+  "overrides": {
     "normalize-scss": {
       "scss": "_normalize.scss"
     },
-    "requirejs": {
-      "js": "require.js"
+    "html5-polyfills": {
+      "main": [
+        "./classList.js",
+        "./Storage.js"
+      ]
     },
-    "*": {
-      "js": "**/*.js",
-      "css": "**/*.css",
-      "scss": "**/.scss"
+    "moment-timezone": {
+      "ignore": true
+    },
+    "promise-ajax-js": {
+      "main": "./promise.js"
+    },
+    "requirejs-domready": {
+      "main": "./domReady.js"
+    },
+    "requirejs": {
+      "main": "require.js"
     }
   }
 }
