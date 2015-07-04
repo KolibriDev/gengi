@@ -77,4 +77,7 @@ head
   script(type='text/javascript' src='js/vendor/modernizr.js')
 
   link(rel='stylesheet', href='css/styles.css')
-  script(data-main='js/main', src='js/vendor/require.js')
+  if env == 'production'
+    script(src='js/main.js')
+  else
+    script(data-main='js/main', src='js/vendor/require.js')
