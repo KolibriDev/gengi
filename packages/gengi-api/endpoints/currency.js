@@ -50,7 +50,7 @@ var getCurrencyBase = function(cb) {
 
 var fetchCurrencyBase = function(cb) {
   request.get({
-    url: 'http://www.landsbankinn.is/modules/markets/services/XMLGengi.asmx/NyjastaGengiByType?strTegund=A'
+    url: 'http://www.landsbankinn.is/modules/markets/services/XMLGengi.asmx/NyjastaGengiByType?strTegund=V'
   }, function(err, response, data) {
     if(err || response.statusCode !== 200) {
       cb(err);
