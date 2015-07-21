@@ -69,6 +69,7 @@ var fetchCurrencyBase = function(cb) {
           shortName: currency.Mynt[0],
           longName: currency.Heiti[0],
           longNameEn: currency.HeitiEN[0],
+          timestamp: new Date(currency.Dagsetning[0]).getTime(),
           value: parseFloat(currency.Midgengi),
           askValue: parseFloat(currency.Sala),
           bidValue: parseFloat(currency.Kaup),
