@@ -1,5 +1,6 @@
 #!/bin/bash
 
+gulp clean --prod
 gulp build --prod
 gulp manifest --prod
 rsync -azv -O --chmod g+w dist/* vps01.kolibri.is:/www/gengi-is/stage
