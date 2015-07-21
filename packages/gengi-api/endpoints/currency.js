@@ -68,6 +68,7 @@ var fetchCurrencyBase = function(cb) {
         currencies.push({
           shortName: currency.Mynt[0],
           longName: currency.Heiti[0],
+          longNameEn: currency.HeitiEN[0],
           value: parseFloat(currency.Midgengi),
           askValue: parseFloat(currency.Sala),
           bidValue: parseFloat(currency.Kaup),
