@@ -14,6 +14,7 @@ module.exports = function(gulp) {
         // timestamp: true,
         preferOnline: true,
         network: gulp.cfg.manifest.network,
+        fallback: gulp.cfg.manifest.fallback,
         filename: gulp.cfg.manifest.filename,
         exclude: gulp.cfg.manifest.exclude,
       }))

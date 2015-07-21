@@ -49,6 +49,7 @@
     "exclude": [
       "manifest.appcache"
     ],
+    "fallback": ["/ /offline.html"],
     "network": [
       "*"
     ]
