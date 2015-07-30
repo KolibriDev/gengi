@@ -4,7 +4,7 @@ var http = require('http'),
     path = require('path'),
     app = express();
 
-app.set('port', process.env.PORT || 8001);
+app.set('port', process.env.PORT || 8002);
 
 // Allow all origins
 app.all('/*', function(req, res, next) {
@@ -15,8 +15,8 @@ app.all('/*', function(req, res, next) {
 
 // Endpoints
 var currency = require('./endpoints/currency');
-app.get('/currency', currency.getCurrencies);
-app.get('/currency/:name', currency.getCurrency);
+app.get('/currency/:code?', currency.getCurrencies);
+app.get('/currency/search/:term', currency.findCurrencies);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
