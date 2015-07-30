@@ -1,6 +1,7 @@
 var request = require('request'),
     parseString = require('xml2js').parseString,
     redis = require('redis').createClient(),
+    values = require('./values'),
     time = require('./time');
 
 exports.get = function(callback){
@@ -49,11 +50,11 @@ exports.fetch = function(callback){
       for (var i = 0, currency; currency = arr[i]; i++) {
         retval.currencies.push({
           code: currency.CurrencyCode[0],
-          name: currency.CurrencyDescription[0],
+          name: values.name(currency.CurrencyDescription[0]),
           country: currency.Country[0],
           countryCode: currency.CountryCode[0],
           countryEnglish: currency.CountryEnglish[0],
-          rate: parseFloat(currency.CurrencyRate[0]).toFixed(3),
+          rate: values.rate(currency.CurrencyRate[0]),
         });
       }
       callback(null, retval);
