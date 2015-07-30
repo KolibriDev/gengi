@@ -56,7 +56,6 @@ var fetchCurrencyBase = function(cb) {
       cb(err);
     }
 
-    var currencies = [];
     parseString(data, { explicitRoot: false }, function(err, result) {
 
       if(err || !result.hasOwnProperty('GjaldmidillRow')) {
@@ -64,20 +63,23 @@ var fetchCurrencyBase = function(cb) {
       }
 
       var arr = result.GjaldmidillRow;
+      var retval = {
+        c: [],
+        t: new Date(arr[0].Dagsetning[0]).getTime(),
+      };
       for (var i = 0, currency; currency = arr[i]; i++) {
-        currencies.push({
-          shortName: currency.Mynt[0],
-          longName: currency.Heiti[0],
-          longNameEn: currency.HeitiEN[0],
-          timestamp: new Date(currency.Dagsetning[0]).getTime(),
-          value: parseFloat(currency.Midgengi),
-          askValue: parseFloat(currency.Sala),
-          bidValue: parseFloat(currency.Kaup),
-          changeCur: parseFloat(currency.Breyting[0]),
-          changePer: parseFloat((parseFloat(currency.Breyting) / parseFloat(currency.Midgengi)).toFixed(2))
+        retval.c.push({
+          s: currency.Mynt[0],
+          l: currency.Heiti[0],
+          // longNameEn: currency.HeitiEN[0],
+          v: parseFloat(currency.Midgengi).toFixed(3),
+          // askValue: parseFloat(currency.Sala),
+          // bidValue: parseFloat(currency.Kaup),
+          // changeCur: parseFloat(currency.Breyting[0]),
+          // changePer: parseFloat((parseFloat(currency.Breyting) / parseFloat(currency.Midgengi)).toFixed(2))
         });
       }
-      cb(null, currencies);
+      cb(null, retval);
     });
   }
   );
