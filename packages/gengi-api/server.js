@@ -17,6 +17,6 @@ var currency = require('./endpoints/currency');
 app.get('/currency/:code?', currency.getCurrencies);
 app.get('/currency/search/:term', currency.findCurrencies);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
+http.createServer(app).listen(app.get('port'));
+
+exports.app = app;
