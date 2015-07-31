@@ -1,4 +1,4 @@
-api-gengi-is
+api-gengi-is [![Build Status](https://travis-ci.org/KolibriDev/api-gengi-is.svg)](https://travis-ci.org/KolibriDev/api-gengi-is)
 ============
 
 ## Author
