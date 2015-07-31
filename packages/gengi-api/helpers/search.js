@@ -1,4 +1,8 @@
 
+/**
+@search.filter
+  Compare search term with available fields and return true for any partial match.
+**/
 exports.filter = function(value, term){
   if (value.code.toUpperCase().indexOf(term) > -1) { return true; }
   if (value.name.toUpperCase().indexOf(term) > -1) { return true; }

@@ -4,6 +4,10 @@ var request = require('request'),
     values = require('./values'),
     time = require('./time');
 
+/**
+@currency.get
+  Try to get storedResult from redis and fetch new if it fails/is expired/not available.
+**/
 exports.get = function(callback){
   var cacheKey = 'mastercard-gengi';
   redis.get(cacheKey, function(err, storedResult) {
@@ -13,6 +17,7 @@ exports.get = function(callback){
           if(err) {
             callback(err);
           } else {
+            // Expire cache on midnight same day
             redis.setex(cacheKey, time.secsToMidnight(), JSON.stringify(results));
             callback(null, results);
           }
@@ -26,6 +31,10 @@ exports.get = function(callback){
   });
 };
 
+/**
+@currency.fetch
+  Fetch latest data from borgun XML API and parse/format data. Make sure to store all searchable data.
+**/
 exports.fetch = function(callback){
   request.get({
     url: 'https://www.borgun.is/Currency/Default.aspx?function=all'
@@ -45,6 +54,7 @@ exports.fetch = function(callback){
       var retval = {
         currencies: [],
         currencyDate: arr[0].RateDate[0],
+        // Store expiring timestamp for front-end
         expires: time.getMidnight(),
       };
       for (var i = 0, currency; currency = arr[i]; i++) {

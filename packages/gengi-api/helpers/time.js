@@ -1,10 +1,18 @@
 
+/**
+@time.secsToMidnight
+  Returns seconds to next midnight.
+**/
 exports.secsToMidnight = function() {
     var msd = 8.64e7;
     var now = new Date();
     return Math.floor((msd - (now - now.getTimezoneOffset()*1000) % msd)/1000);
 };
 
+/**
+@time.getMidnight
+  Returns timestamp for next midnight.
+**/
 exports.getMidnight = function() {
     var midnight = new Date();
     midnight.setHours(24);
