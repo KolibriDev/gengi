@@ -1,11 +1,11 @@
 
 /**
 @time.secsToMidnight
-  Returns seconds to next midnight.
+  Returns seconds to next midnight, or midnight of given date
 **/
-exports.secsToMidnight = function() {
+exports.secsToMidnight = function(now) {
     var msd = 8.64e7;
-    var now = new Date();
+    now = now instanceof Date ? now : new Date();
     return Math.floor((msd - (now - now.getTimezoneOffset()*1000) % msd)/1000);
 };
 
