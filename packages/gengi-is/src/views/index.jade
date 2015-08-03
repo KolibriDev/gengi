@@ -2,4 +2,14 @@ extends shared/_layout
 
 block content
   gengi
-    h1 {{title}}
+    topbar
+      h1(v-text="app.title")
+
+    currency-list
+      template(v-repeat="currency: currencies")
+        hr
+        currency
+          long-name {{currency.name}}
+          short-name  ({{currency.code}})
+          br
+          value {{currency.rate}}

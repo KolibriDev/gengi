@@ -8,7 +8,6 @@ head
   meta(name="keywords", content='gengi gjaldmiðla,gjaldmiðlar,gengi eur,gengi usd,gengi gbp,gengi btc,bitcion,gengisreiknir,gengisreiknivél, gengis reiknivél')
 
   link(href="/img/icon/gengi-is.ico", rel="icon", type="image/x-icon")
-  link(href='/img/icon/gengi-is.ico', rel='shortcut icon', type='image/vnd.microsoft.icon')
 
   meta(name="apple-mobile-web-app-capable", content="yes")
   meta(name="apple-mobile-web-app-title", content="Gengi.is")
@@ -74,10 +73,10 @@ head
   meta(name="msapplication-TileImage", content="https://placehold.it/144x144.png")
   meta(name="msapplication-TileColor", content="#ededeb")
 
-  script(type='text/javascript' src='js/vendor/modernizr.js')
+  script(type='text/javascript' src='/js/vendor/modernizr.js')
 
-  link(rel='stylesheet', href='css/styles.css')
+  link(rel='stylesheet', href='/css/styles.css')
   if env == 'production'
-    script(src='js/main.js')
+    script(src='/js/main.js')
   else
-    script(data-main='js/main', src='js/vendor/require.js')
+    script(data-main='/js/main', src='/js/vendor/require.js')
