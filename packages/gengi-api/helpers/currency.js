@@ -83,12 +83,16 @@ exports.uniqueByCode = function(currencies){
     var alreadythere = _.contains(tmpcodes, item.code);
     if (!alreadythere) {
       tmpcodes.push(item.code);
-      newCurrencies.push({
-        code: item.code,
-        name: item.name,
-        rate: item.rate,
-      });
+      newCurrencies.push(exports.toDisplayCurrency(item));
     }
   });
   return newCurrencies;
+};
+
+exports.toDisplayCurrency = function(currency){
+  return {
+    code: currency.code,
+    name: currency.name,
+    rate: currency.rate,
+  };
 };

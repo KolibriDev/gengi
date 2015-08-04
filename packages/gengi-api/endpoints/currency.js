@@ -33,11 +33,7 @@ exports.getCurrencies = function(req, res) {
           // Select only first instance of current currency code
           var curr = _.findWhere(results.currencies, {code: code});
           if (curr) {
-            currencies.push({
-              code: curr.code,
-              name: curr.name,
-              rate: curr.rate,
-            });
+            currencies.push(currency.toDisplayCurrency(curr));
           }
         }
       });
