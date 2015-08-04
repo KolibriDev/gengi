@@ -1,4 +1,5 @@
 var request = require('request'),
+    _ = require('underscore'),
     parseString = require('xml2js').parseString,
     redis = require('redis').createClient(),
     values = require('./values'),
@@ -72,4 +73,22 @@ exports.fetch = function(callback){
     });
   }
   );
+};
+
+exports.uniqueByCode = function(currencies){
+  var tmpcodes = [];
+  var newCurrencies = [];
+  _.each(currencies, function(item){
+    // Return if current currency code is already in the array
+    var alreadythere = _.contains(tmpcodes, item.code);
+    if (!alreadythere) {
+      tmpcodes.push(item.code);
+      newCurrencies.push({
+        code: item.code,
+        name: item.name,
+        rate: item.rate,
+      });
+    }
+  });
+  return newCurrencies;
 };

@@ -65,6 +65,7 @@ exports.findCurrencies = function(req, res) {
         var term = decodeURIComponent(req.params.term.toUpperCase());
         return search.filter(value, term);
       });
+      currencies = currency.uniqueByCode(currencies);
       res.send({
         currencyDate: results.currencyDate,
         expires: results.expires,

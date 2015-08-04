@@ -1,6 +1,6 @@
 {
   "name": "api-gengi-is",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "private": true,
   "scripts": {
     "start": "node server.js",
