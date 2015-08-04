@@ -23,18 +23,11 @@ exports.getCurrencies = function(req, res) {
         codes = _.uniq(codes);
       }
 
-      var currencies = [];
+      var currencies = {};
       _.each(codes, function(code){
-        // Return if current currency code is already in the array
-        var alreadythere = _.some(currencies, function(item){
-          return item.code === code || item.code === 'ISK';
-        });
-        if (!alreadythere) {
-          // Select only first instance of current currency code
-          var curr = _.findWhere(results.currencies, {code: code});
-          if (curr) {
-            currencies.push(currency.toDisplayCurrency(curr));
-          }
+        var curr = _.findWhere(results.currencies, {code: code});
+        if (curr && curr.code !== 'ISK') {
+          currencies[curr.code] = currency.toDisplayCurrency(curr);
         }
       });
 
@@ -56,12 +49,15 @@ exports.findCurrencies = function(req, res) {
     if(err) {
       res.send({error: 1});
     } else {
-      var currencies = _.filter(results.currencies, function(value){
+      var searchResults = _.filter(results.currencies, function(value){
         // Decode parameter to make sure special characters work
         var term = decodeURIComponent(req.params.term.toUpperCase());
         return search.filter(value, term);
       });
-      currencies = currency.uniqueByCode(currencies);
+      var currencies = {};
+      _.each(searchResults, function(item){
+        currencies[item.code] = currency.toDisplayCurrency(item);
+      });
       res.send({
         currencyDate: results.currencyDate,
         expires: results.expires,
