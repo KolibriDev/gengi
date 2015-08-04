@@ -34,12 +34,12 @@ describe('Values', function(){
     var rate = values.rate(123.456789);
 
     it('should return a float', function(done){
-      assert(!isNaN(rate) && rate.toString().indexOf('.') !== -1, 'should be a float');
+      assert(!isNaN(rate) && rate.toString().indexOf('.') !== -1, 'expected a float');
       done();
     });
 
     it('should return correctly formatted rate', function(done){
-      assert(rate === '123.456789', 'expected \'123.456789\', not \''+rate+'\'');
+      assert(rate === 123.456789, 'expected \'123.456789\', not \''+rate+'\'');
       done();
     });
 

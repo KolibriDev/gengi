@@ -45,19 +45,20 @@ describe('/currency/:code?', function(){
         .end(done);
     });
 
-    it('should have a currencies array with exactly two items', function(done){
+    it('should have a currencies object with exactly two items', function(done){
       agent
         .get('/currency/usd,eur')
         .expect(200)
         .expect('Content-Type', /json/)
         .expect(function(res) {
-          assert(res.body.hasOwnProperty('currencies'), 'respond should have a currencies');
+          assert(res.body.hasOwnProperty('currencies'), 'respond should have a currencies property');
         })
         .expect(function(res) {
-          assert(Array.isArray(res.body.currencies), 'currencies should be an array');
+          var responseType = Object.prototype.toString.call(res.body.currencies);
+          assert(responseType === '[object Object]', 'expected currencies to be an object, got \''+responseType+'\'');
         })
         .expect(function(res) {
-          assert(res.body.currencies.length === 2, 'currencies should have exactly two items');
+          assert(Object.keys(res.body.currencies).length === 2, 'currencies should have exactly two items');
         })
         .end(done);
     });
@@ -71,10 +72,12 @@ describe('/currency/:code?', function(){
           assert(res.body.hasOwnProperty('currencies'), 'respond should have a currencies');
         })
         .expect(function(res) {
-          assert(Array.isArray(res.body.currencies), 'currencies should be an array');
+          var responseType = Object.prototype.toString.call(res.body.currencies);
+          assert(responseType === '[object Object]', 'expected currencies to be an object, got \''+responseType+'\'');
         })
         .expect(function(res) {
-          assert(res.body.currencies[0].hasOwnProperty('code') && res.body.currencies[0].hasOwnProperty('name') && res.body.currencies[0].hasOwnProperty('rate'), 'currency item should have code, name and rate');
+          var firstObj = res.body.currencies[Object.keys(res.body.currencies)[0]];
+          assert(firstObj.hasOwnProperty('code') && firstObj.hasOwnProperty('name') && firstObj.hasOwnProperty('rate'), 'currency item should have code, name and rate');
         })
         .end(done);
     });

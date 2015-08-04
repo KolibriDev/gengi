@@ -1,7 +1,6 @@
 var app = require('../server').app;
 var request = require('supertest');
 var assert = require('assert');
-var _ = require('underscore');
 
 describe('/currency/search/:term', function(){
   var agent = request.agent(app);
@@ -46,7 +45,7 @@ describe('/currency/search/:term', function(){
         .end(done);
     });
 
-    it('should have a currencies array containing DKK', function(done){
+    it('should have a currencies object containing DKK', function(done){
       agent
         .get('/currency/search/króna')
         .expect(200)
@@ -55,13 +54,11 @@ describe('/currency/search/:term', function(){
           assert(res.body.hasOwnProperty('currencies'), 'respond should have a currencies');
         })
         .expect(function(res) {
-          assert(Array.isArray(res.body.currencies), 'currencies should be an array');
+          var responseType = Object.prototype.toString.call(res.body.currencies);
+          assert(responseType === '[object Object]', 'expected currencies to be an object, got \''+responseType+'\'');
         })
         .expect(function(res) {
-          var inList = _.some(res.body.currencies, function(item){
-            return item.code === 'DKK';
-          });
-          assert(inList, 'currencies should contain DKK');
+          assert(res.body.currencies.hasOwnProperty('DKK'), 'currencies should contain DKK');
         })
         .end(done);
     });
