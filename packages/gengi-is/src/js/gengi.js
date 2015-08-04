@@ -14,7 +14,7 @@ define(['vue', 'promise', 'zepto'], function(Vue, promise, $) {
             view: 'list', // list, calc, about
             amountISK: 0,
             amountCurr: 1,
-            currentCurrency: 'EUR',
+            currentCurrency: '',
           },
           currencies: {
             expires: 0,
@@ -33,18 +33,35 @@ define(['vue', 'promise', 'zepto'], function(Vue, promise, $) {
         },
         methods: {
           showList: function(){
-            this.app.view = 'list';
+            _gengi.showList();
           },
           showCalc: function(currency){
-            this.app.currentCurrency = currency;
-            this.app.view = 'calc';
-            this.app.amountISK = _gengi.calculate(currency, 'ISK', 1);
+            _gengi.showCalc(currency, 1);
           },
         },
       });
 
       _gengi.initializeData();
       _gengi.initializeWatches();
+
+      var values = _gengi.parseQuery();
+      if (values.currName) {
+        _gengi.showCalc(values.currName,values.amount);
+      }
+      _gengi.initState();
+    },
+
+    showList: function(){
+      _gengi.vm.app.currentCurrency = '';
+      _gengi.vm.app.view = 'list';
+    },
+
+    showCalc: function(currency, amount){
+      amount = amount || 1;
+      _gengi.vm.app.currentCurrency = currency;
+      _gengi.vm.app.view = 'calc';
+      _gengi.vm.app.amountCurr = amount;
+      _gengi.vm.app.amountISK = _gengi.calculate(currency, 'ISK', amount);
     },
 
     initializeData: function(){
@@ -68,14 +85,71 @@ define(['vue', 'promise', 'zepto'], function(Vue, promise, $) {
 
       // For calculation purposes
       _gengi.vm.$watch('app.amountISK', function(){
+        _gengi.updateState();
         this.app.amountCurr = _gengi.calculate('ISK', this.app.currentCurrency, this.app.amountISK);
       });
       _gengi.vm.$watch('app.amountCurr', function(){
+        _gengi.updateState();
         this.app.amountISK = _gengi.calculate(this.app.currentCurrency, 'ISK', this.app.amountCurr);
       });
+
+      // "Router"
+      _gengi.vm.$watch('app.view', function(newVal){
+        _gengi.updateView(newVal);
+      });
+
+      // TODO: fix issue #3
+      // $(window).on('popstate', function(){
+      //   var state = window.history.state;
+      //   console.log('popstate', state);
+      //   if (!state) { return; }
+      //   _gengi.vm.$set('app', {
+      //     version: _gengi.vm.app.version,
+      //     title: _gengi.vm.app.title,
+      //     view: state.view,
+      //     amountISK: state.amountISK,
+      //     amountCurr: state.amountCurr,
+      //     currentCurrency: state.currentCurrency,
+      //   });
+      // });
+    },
+
+    updateView: function(view){
+      var newPath = '/';
+      if (view === 'calc') {
+        var value = parseFloat(_gengi.vm.app.amountCurr || 1).toFixed(0);
+        newPath = '/' + (_gengi.vm.app.currentCurrency ? _gengi.vm.app.currentCurrency + value : '');
+      }
+      var newState = {
+        view: view,
+        amountISK: _gengi.vm.app.amountISK,
+        amountCurr: _gengi.vm.app.amountCurr,
+        currentCurrency: _gengi.vm.app.currentCurrency,
+      };
+      window.history.pushState(newState, null, newPath);
+    },
+
+    initState: function(){
+      var state = {
+        view: _gengi.vm.app.view,
+        amountISK: _gengi.vm.app.amountISK,
+        amountCurr: _gengi.vm.app.amountCurr,
+        currentCurrency: _gengi.vm.app.currentCurrency,
+      };
+      window.history.replaceState(state, null, window.location.pathname);
+    },
+
+    updateState: function(){
+      var state = window.history.state;
+      state.amountISK = _gengi.vm.app.amountISK;
+      state.amountCurr = _gengi.vm.app.amountCurr;
+      var value = parseFloat(_gengi.vm.app.amountCurr || 1).toFixed(0);
+      var newPath = '/' + (_gengi.vm.app.currentCurrency ? _gengi.vm.app.currentCurrency + value : '');
+      window.history.replaceState(state, null, newPath);
     },
 
     calculate: function(currencyFrom, currencyTo, amount){
+      if (!currencyFrom || !currencyTo) { return;}
       var rate = 1;
       if (currencyFrom === 'ISK') {
         rate = 1 / _gengi.vm.currencies.list[currencyTo].rate;
@@ -83,6 +157,26 @@ define(['vue', 'promise', 'zepto'], function(Vue, promise, $) {
         rate = _gengi.vm.currencies.list[currencyFrom].rate;
       }
       return parseFloat(amount * rate).toFixed(2);
+    },
+
+    parseQuery: function(query) {
+      query = query || window.location.pathname.substr(1).toUpperCase();
+      var amount = 1,
+          currName = query;
+
+      if (/\d/.test(query)) {
+        query.replace(/([0-9]+)/g, function(undefined, p1) {
+          amount = p1;
+        });
+        query.replace(/(\D+)/g, function(undefined, p1) {
+          currName = p1;
+        });
+      }
+
+      return {
+        amount: amount,
+        currName: currName
+      };
     },
 
     transformCurrencies: function(currencies){
