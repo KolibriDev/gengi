@@ -7,11 +7,11 @@ block content
 
     currency-list(v-if="app.view === 'list'")
       template(v-repeat="currency: currencyList")
-        currency(v-if="currencies.hasOwnProperty(currency)" v-on="click:showCalc(currency)")
-          long-name {{currencies[currency].name}}
-          short-name  ({{currencies[currency].code}})
+        currency(v-if="currencies.list.hasOwnProperty(currency)" v-on="click:showCalc(currency)")
+          long-name {{currencies.list[currency].name}}
+          short-name  ({{currencies.list[currency].code}})
           br
-          value {{currencies[currency].rate}}
+          value {{currencies.list[currency].rate}}
           hr
 
     calculator(v-if="app.view === 'calc'")

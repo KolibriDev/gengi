@@ -1,6 +1,7 @@
 define(['vue', 'promise'], function(Vue, promise) {
   'use strict';
   var _gengi = {
+    version: '0.0.3',
     vm: false,
     init: function(){
       _gengi.vm = new Vue({
@@ -8,16 +9,18 @@ define(['vue', 'promise'], function(Vue, promise) {
         data: {
           state: 'loading', // loading, expired, ready
           app: {
-            version: '0.0.0',
+            version: _gengi.version,
             title: 'Gengi.is...',
-            view: 'list', // list, calc
+            view: 'list', // list, calc, about
             amountISK: 0,
             amountCurr: 1,
             currentCurrency: 'EUR',
           },
-          expires: 0,
-          currencies: {},
-          currencyDate: 0,
+          currencies: {
+            expires: 0,
+            currencyDate: 0,
+            list: {},
+          },
           currencyList: [
             'EUR',
             'USD',
@@ -39,77 +42,47 @@ define(['vue', 'promise'], function(Vue, promise) {
           },
         },
       });
-      _gengi.ensureLocalstoreVersion();
-      _gengi.vm.$set('expires', _gengi.initData('expires'));
-      _gengi.vm.$set('app', _gengi.initData('app'));
-      _gengi.vm.$set('currencyList',  _gengi.initData('currencyList'));
-      _gengi.vm.$set('currencyDate',  _gengi.initData('currencyDate'));
-      _gengi.vm.$set('currencies', _gengi.initData('currencies'));
 
+      _gengi.initializeData();
+      _gengi.initializeWatches();
+    },
+
+    initializeData: function(){
+      // Must execute in this order
+      _gengi.ensureLocalstoreVersion(_gengi.version);
+      _gengi.initData('app');
+      _gengi.initData('currencyList');
+      _gengi.initCurrencies();
+    },
+
+    initializeWatches: function(){
       _gengi.vm.$watch('app', function(){
         _gengi.storeDataLocally('app', this.app);
       }, {deep: true});
+      _gengi.vm.$watch('currencies', function(){
+        _gengi.storeDataLocally('currencies', this.currencies);
+      }, {deep: true});
+      _gengi.vm.$watch('currencyList', function(){
+        _gengi.storeDataLocally('currencyList', this.currencyList);
+      });
+
+      // For calculation purposes
       _gengi.vm.$watch('app.amountISK', function(){
         this.app.amountCurr = _gengi.calculate('ISK', this.app.currentCurrency, this.app.amountISK);
       });
       _gengi.vm.$watch('app.amountCurr', function(){
         this.app.amountISK = _gengi.calculate(this.app.currentCurrency, 'ISK', this.app.amountCurr);
       });
-      _gengi.vm.$watch('expires', function(){
-        _gengi.storeDataLocally('expires', this.expires);
-      });
-      _gengi.vm.$watch('currencies', function(){
-        _gengi.storeDataLocally('currencies', this.currencies);
-      });
-      _gengi.vm.$watch('currencyDate', function(){
-        _gengi.storeDataLocally('currencyDate', this.currencyDate);
-      });
-      _gengi.vm.$watch('currencyList', function(){
-        _gengi.storeDataLocally('currencyList', this.currencyList);
-      });
-      if (Object.keys(_gengi.vm.currencies).length < 1) {
-        _gengi.getCurrencies();
-      }
-    },
-
-    ensureLocalstoreVersion: function(){
-      var unParsedApp = window.localStorage.getItem('app');
-      if (unParsedApp) {
-        try {
-          var app = JSON.parse(unParsedApp);
-          if(app.version !== _gengi.vm.app.version) {
-            window.localStorage.clear();
-          }
-        } catch(exc) {
-          window.localStorage.clear();
-        }
-      }
     },
 
     calculate: function(currencyFrom, currencyTo, amount){
       var rate = 1;
       if (currencyFrom === 'ISK') {
-        rate = 1 / _gengi.vm.currencies[currencyTo].rate;
+        rate = 1 / _gengi.vm.currencies.list[currencyTo].rate;
       } else {
-        rate = _gengi.vm.currencies[currencyFrom].rate;
+        rate = _gengi.vm.currencies.list[currencyFrom].rate;
       }
       return parseFloat(amount * rate).toFixed(2);
-    },
-
-    getCurrencies: function(){
-      promise.get(
-        'http://api-v2.gengi.is/currency/' + _gengi.vm.currencyList.join(',')
-      ).then(function(error, response, xhr){
-        if (error) {
-          console.error('Error ' + xhr.status);
-          return;
-        }
-        var res = JSON.parse(response);
-        _gengi.vm.$set('expires', res.expires);
-        _gengi.vm.$set('currencies', _gengi.transformCurrencies(res.currencies));
-        _gengi.vm.$set('currencyDate', res.currencyDate);
-      });
-      return {};
     },
 
     transformCurrencies: function(currencies){
@@ -120,11 +93,50 @@ define(['vue', 'promise'], function(Vue, promise) {
       return retval;
     },
 
+    initCurrencies: function(){
+      var data = _gengi.getLocalData('currencies');
+      if (!data) {
+        promise.get(
+          'http://api-v2.gengi.is/currency/' + _gengi.vm.currencyList.join(',')
+        ).then(function(error, response, xhr){
+          if (error) {
+            console.error('Error ' + xhr.status);
+            return;
+          }
+          var res = JSON.parse(response);
+          _gengi.vm.$set('currencies', {
+            list: _gengi.transformCurrencies(res.currencies),
+            expires: res.expires,
+            currencyDate: res.currencyDate,
+          });
+        });
+      } else {
+        _gengi.vm.$set('currencies', data);
+      }
+    },
+
+    ensureLocalstoreVersion: function(version){
+      var unParsedApp = window.localStorage.getItem('app');
+      if (unParsedApp) {
+        try {
+          var app = JSON.parse(unParsedApp);
+          if(app.version !== version) {
+            window.localStorage.clear();
+          }
+        } catch(exc) {
+          window.localStorage.clear();
+        }
+      } else {
+        window.localStorage.clear();
+      }
+    },
+
     initData: function(dataName){
       var data = _gengi.getLocalData(dataName) || _gengi.vm[dataName];
       _gengi.storeDataLocally(dataName,data);
-      return data;
+      _gengi.vm.$set(dataName, data);
     },
+
     getLocalData: function(dataName){
       var unParsedData = window.localStorage.getItem(dataName);
       if (!unParsedData || unParsedData === '{}' || unParsedData === '[]') {
@@ -132,7 +144,7 @@ define(['vue', 'promise'], function(Vue, promise) {
       }
       try {
         var data = JSON.parse(unParsedData);
-        if (dataName === 'currencies' && _gengi.vm.expires < new Date().getTime()) {
+        if (dataName === 'currencies' && data.expires < new Date().getTime()) {
           throw 'Currencies expired!';
         }
         return data;
@@ -140,9 +152,11 @@ define(['vue', 'promise'], function(Vue, promise) {
         console.warn(exc);
       }
     },
+
     clearLocalData: function(dataName) {
       window.localStorage.removeItem(dataName);
     },
+
     storeDataLocally: function(dataName, data) {
       if (data === undefined) {
         return console.warn('No data provided for "%s"\n', dataName, data);
