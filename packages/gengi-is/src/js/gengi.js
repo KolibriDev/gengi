@@ -1,4 +1,4 @@
-define(['vue', 'promise', 'zepto'], function(Vue, promise, $) {
+define(['vue', 'promise'], function(Vue, promise) {
   'use strict';
   var _gengi = {
     version: '0.0.3',
@@ -199,14 +199,6 @@ define(['vue', 'promise', 'zepto'], function(Vue, promise, $) {
       };
     },
 
-    transformCurrencies: function(currencies){
-      var retval = {};
-      $.each(currencies, function(index, currency){
-        retval[currency.code] = currency;
-      });
-      return retval;
-    },
-
     initCurrencies: function(){
       var data = _gengi.getLocalData('currencies');
       if (!data) {
@@ -219,7 +211,7 @@ define(['vue', 'promise', 'zepto'], function(Vue, promise, $) {
           }
           var res = JSON.parse(response);
           _gengi.vm.$set('currencies', {
-            list: _gengi.transformCurrencies(res.currencies),
+            list: res.currencies,
             expires: res.expires,
             currencyDate: res.currencyDate,
           });
