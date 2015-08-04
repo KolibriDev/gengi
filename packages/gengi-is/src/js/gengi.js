@@ -25,10 +25,7 @@ define(['vue', 'promise', 'zepto'], function(Vue, promise, $) {
             'EUR',
             'USD',
             'GBP',
-            'DKK',
-            'SEK',
-            'NOK',
-            'PLN',
+            'VND',
           ],
         },
         methods: {
