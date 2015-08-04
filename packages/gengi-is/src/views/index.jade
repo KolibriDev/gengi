@@ -6,10 +6,10 @@ block content
       h1(v-text="app.title")
 
     currency-list
-      template(v-repeat="currency: currencies")
-        hr
-        currency
-          long-name {{currency.name}}
-          short-name  ({{currency.code}})
+      template(v-repeat="currency: currencyList")
+        currency(v-if="currencies.hasOwnProperty(currency)")
+          long-name {{currencies[currency].name}}
+          short-name  ({{currencies[currency].code}})
           br
-          value {{currency.rate}}
+          value {{currencies[currency].rate}}
+          hr
