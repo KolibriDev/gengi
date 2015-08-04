@@ -27,7 +27,7 @@ exports.getCurrencies = function(req, res) {
       _.each(codes, function(code){
         // Return if current currency code is already in the array
         var alreadythere = _.some(currencies, function(item){
-          return item.code === code;
+          return item.code === code || item.code === 'ISK';
         });
         if (!alreadythere) {
           // Select only first instance of current currency code
