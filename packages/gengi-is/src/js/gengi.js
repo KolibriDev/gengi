@@ -6,9 +6,13 @@ define(['vue', 'promise'], function(Vue, promise) {
       _gengi.vm = new Vue({
         el: 'gengi',
         data: {
-          state: '', // loading, expired, ready
+          state: 'loading', // loading, expired, ready
           app: {
-            title: 'Gengi.is...'
+            title: 'Gengi.is...',
+            view: 'list', // list, calc
+            amountISK: 0,
+            amountCurr: 1,
+            currentCurrency: 'EUR',
           },
           expires: 0,
           currencies: {},
@@ -23,6 +27,16 @@ define(['vue', 'promise'], function(Vue, promise) {
             'PLN',
           ],
         },
+        methods: {
+          showList: function(){
+            this.app.view = 'list';
+          },
+          showCalc: function(currency){
+            this.app.currentCurrency = currency;
+            this.app.view = 'calc';
+            this.app.amountISK = _gengi.calculate(currency, 'ISK', 1);
+          },
+        },
       });
       _gengi.vm.$set('expires', _gengi.initData('expires'));
       _gengi.vm.$set('app', _gengi.initData('app'));
@@ -31,6 +45,12 @@ define(['vue', 'promise'], function(Vue, promise) {
       _gengi.vm.$set('currencies', _gengi.initData('currencies'));
       _gengi.vm.$watch('app', function(){
         _gengi.storeDataLocally('app', this.app);
+      }, {deep: true});
+      _gengi.vm.$watch('app.amountISK', function(){
+        this.app.amountCurr = _gengi.calculate('ISK', this.app.currentCurrency, this.app.amountISK);
+      });
+      _gengi.vm.$watch('app.amountCurr', function(){
+        this.app.amountISK = _gengi.calculate(this.app.currentCurrency, 'ISK', this.app.amountCurr);
       });
       _gengi.vm.$watch('expires', function(){
         _gengi.storeDataLocally('expires', this.expires);
@@ -47,6 +67,16 @@ define(['vue', 'promise'], function(Vue, promise) {
       if (Object.keys(_gengi.vm.currencies).length < 1) {
         _gengi.getCurrencies();
       }
+    },
+
+    calculate: function(currencyFrom, currencyTo, amount){
+      var rate = 1;
+      if (currencyFrom === 'ISK') {
+        rate = 1 / _gengi.vm.currencies[currencyTo].rate;
+      } else {
+        rate = _gengi.vm.currencies[currencyFrom].rate;
+      }
+      return parseFloat(amount * rate).toFixed(2);
     },
 
     getCurrencies: function(){

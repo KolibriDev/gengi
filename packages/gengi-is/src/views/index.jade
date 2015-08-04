@@ -1,15 +1,24 @@
 extends shared/_layout
 
 block content
-  gengi
+  gengi(state="{{state}}" view="{{app.view}}")
     topbar
-      h1(v-text="app.title")
+      h1(v-text="app.title" v-on="click:showList()")
 
-    currency-list
+    currency-list(v-if="app.view === 'list'")
       template(v-repeat="currency: currencyList")
-        currency(v-if="currencies.hasOwnProperty(currency)")
+        currency(v-if="currencies.hasOwnProperty(currency)" v-on="click:showCalc(currency)")
           long-name {{currencies[currency].name}}
           short-name  ({{currencies[currency].code}})
           br
           value {{currencies[currency].rate}}
           hr
+
+    calculator(v-if="app.view === 'calc'")
+      h1 Calculator
+
+      | {{app.currentCurrency}}:
+      input(v-model="app.amountCurr" )
+      br
+      | ISK:
+      input(v-model="app.amountISK" )
