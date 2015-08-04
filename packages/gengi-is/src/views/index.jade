@@ -13,6 +13,17 @@ block content
           br
           value {{currencies.list[currency].rate}}
           hr
+      hr
+      search
+        input(v-model="search.term" v-on="keyup:performSearch | key 13")
+        br
+        results(v-repeat="result: search.results")
+          currency(v-on="click:addToList(result)" v-if="currencyList.indexOf(result.code) === -1")
+            long-name {{result.name}}
+            short-name  ({{result.code}})
+            br
+            value {{result.rate}}
+            hr
 
     calculator(v-if="app.view === 'calc'")
       h1 Calculator

@@ -27,6 +27,10 @@ define(['vue', 'promise', 'zepto'], function(Vue, promise, $) {
             'GBP',
             'VND',
           ],
+          search: {
+            term: '',
+            results: []
+          },
         },
         methods: {
           showList: function(){
@@ -34,6 +38,23 @@ define(['vue', 'promise', 'zepto'], function(Vue, promise, $) {
           },
           showCalc: function(currency){
             _gengi.showCalc(currency, 1);
+          },
+          performSearch: function(){
+            promise.get(
+              'http://api-v2.gengi.is/currency/search/' + this.search.term
+            ).then(function(error, response, xhr){
+              if (error) {
+                console.error('Error ' + xhr.status);
+                return;
+              }
+              var res = JSON.parse(response);
+              _gengi.vm.search.results = res.currencies;
+            });
+          },
+          addToList: function(currency){
+            _gengi.vm.currencyList.unshift(currency.code);
+            _gengi.vm.currencies.list[currency.code] = currency;
+            _gengi.storeDataLocally('currencies', _gengi.vm.currencies);
           },
         },
       });
