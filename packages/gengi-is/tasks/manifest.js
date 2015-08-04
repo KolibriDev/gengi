@@ -12,7 +12,6 @@ module.exports = function(gulp) {
       .pipe(gulp.plugin.manifest({
         hash: true,
         // timestamp: true,
-        preferOnline: true,
         network: gulp.cfg.manifest.network,
         fallback: gulp.cfg.manifest.fallback,
         filename: gulp.cfg.manifest.filename,
