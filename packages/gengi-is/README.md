@@ -1,5 +1,4 @@
-[![Stories in Ready](https://badge.waffle.io/KolibriDev/gengi-is.png?label=ready&title=Ready)](https://waffle.io/KolibriDev/gengi-is)
-gengi-is
+gengi-is [![Stories in Ready](https://badge.waffle.io/KolibriDev/gengi-is.png?label=ready&title=Ready)](https://waffle.io/KolibriDev/gengi-is)
 ========
 
 ## Author
