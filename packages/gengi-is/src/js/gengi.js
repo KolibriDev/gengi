@@ -153,7 +153,9 @@ define(['vue', 'promise', 'zepto'], function(Vue, promise, $) {
       } else {
         rate = _gengi.vm.currencies.list[currencyFrom].rate;
       }
-      return parseFloat(amount * rate).toFixed(2);
+      var value = amount * rate;
+      var fix = value < 1 ? 5 : 2;
+      return parseFloat(value).toFixed(fix);
     },
 
     parseQuery: function(query) {
