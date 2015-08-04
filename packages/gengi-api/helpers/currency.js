@@ -1,5 +1,4 @@
 var request = require('request'),
-    _ = require('underscore'),
     parseString = require('xml2js').parseString,
     redis = require('redis').createClient(),
     values = require('./values'),
