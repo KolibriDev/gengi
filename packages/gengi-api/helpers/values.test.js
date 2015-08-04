@@ -7,12 +7,24 @@ describe('Values', function(){
     var name = values.name('pund, sterlingspund');
 
     it('should return a string', function(done){
-      assert(typeof name === 'string', 'should return a string');
+      assert(typeof name === 'string', 'expected a string');
       done();
     });
 
     it('should return correctly formatted name', function(done){
-      assert(name === 'sterlingspund', 'should return \'sterlingspund\', not \''+name+'\'');
+      assert(name === 'sterlingspund', 'expected \'sterlingspund\', got \''+name+'\'');
+      done();
+    });
+
+    var noname = values.name('');
+    it('should return empty string', function(done){
+      assert(noname === '', 'expected \'\', got \''+noname+'\'');
+      done();
+    });
+
+    var nocomma = values.name('sterlingspund');
+    it('should return sterlingspund', function(done){
+      assert(nocomma === 'sterlingspund', 'expected \'sterlingspund\', got \''+nocomma+'\'');
       done();
     });
 
@@ -27,7 +39,7 @@ describe('Values', function(){
     });
 
     it('should return correctly formatted rate', function(done){
-      assert(rate === '123.457', 'should return \'123.457\', not \''+rate+'\'');
+      assert(rate === '123.457', 'expected \'123.457\', not \''+rate+'\'');
       done();
     });
 

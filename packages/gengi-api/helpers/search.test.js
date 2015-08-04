@@ -22,12 +22,12 @@ describe('Search', function(){
     ];
 
     it('should return an array', function(done){
-      assert(Array.isArray(retval), 'retval should be an array');
+      assert(Array.isArray(retval), 'expected an array');
       done();
     });
 
     it('should return filtered list by term', function(done){
-      assert(_.isEqual(retval, expectedval), 'should equal expectedval');
+      assert(_.isEqual(retval, expectedval), 'expected true');
       done();
     });
 

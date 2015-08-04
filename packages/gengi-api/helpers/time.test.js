@@ -12,12 +12,12 @@ describe('Time', function(){
     var value = time.secsToMidnight(fakeDate);
 
     it('should return a number', function(done){
-      assert(typeof value === 'number', 'should return a number');
+      assert(typeof value === 'number', 'expected a number');
       done();
     });
 
     it('should return 1 hour; 3600 seconds', function(done){
-      assert(value === 3600, 'should return 1 hour; or 3600 seconds');
+      assert(value === 3600, 'expected 3600 seconds');
       done();
     });
 
@@ -33,12 +33,12 @@ describe('Time', function(){
     var value = time.getMidnight();
 
     it('should return a number', function(done){
-      assert(typeof value === 'number', 'should return a number');
+      assert(typeof value === 'number', 'expected a number');
       done();
     });
 
     it('should return ' + midnight, function(done){
-      assert(value === midnight, 'should return ' + midnight);
+      assert(value === midnight, 'expected ' + midnight);
       done();
     });
 
