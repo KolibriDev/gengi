@@ -39,7 +39,7 @@ describe('Values', function(){
     });
 
     it('should return correctly formatted rate', function(done){
-      assert(rate === '123.457', 'expected \'123.457\', not \''+rate+'\'');
+      assert(rate === '123.456789', 'expected \'123.456789\', not \''+rate+'\'');
       done();
     });
 

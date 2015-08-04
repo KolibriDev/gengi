@@ -23,5 +23,5 @@ exports.name = function(name){
   Normalize float values for currency rate.
 **/
 exports.rate = function(value){
-  return parseFloat(value).toFixed(3);
+  return parseFloat(value);
 };
