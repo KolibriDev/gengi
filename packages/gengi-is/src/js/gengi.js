@@ -1,4 +1,4 @@
-define(['vue', 'promise'], function(Vue, promise) {
+define(['vue', 'promise', 'zepto'], function(Vue, promise, $) {
   'use strict';
   var _gengi = {
     version: '0.0.3',
