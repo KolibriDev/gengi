@@ -4,7 +4,7 @@
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
-    "test": ""
+    "test": "jshint src/js"
   },
   "homepage": "https://github.com/KolibriDev/gengi-is",
   "repository": {
@@ -51,6 +51,9 @@
     "pre-git": "^0.6.2",
     "q": "^1.4.1"
   },
+  "pre-commit": [
+    "npm test"
+  ],
   "pre-push": [
     "gulp run -deploy-stage"
   ]
