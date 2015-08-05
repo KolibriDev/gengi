@@ -48,6 +48,10 @@
     "main-bower-files": "^2.8.0",
     "map-stream": "0.0.6",
     "node-notifier": "^4.2.3",
+    "pre-git": "^0.6.2",
     "q": "^1.4.1"
-  }
+  },
+  "pre-push": [
+    "gulp run -deploy-stage"
+  ]
 }
