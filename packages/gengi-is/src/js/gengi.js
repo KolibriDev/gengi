@@ -8,6 +8,13 @@ define(['vue', 'promise'], function(Vue, promise) {
         el: 'gengi',
         data: {
           state: 'loading', // loading, expired, ready
+          message: '',
+          messages: {
+            'expired-error': 'Þú ert að nota úrelt gengi og ekki tókst að uppfæra',
+            'expired': 'Þú ert að nota úrelt gengi',
+            'error': 'Ekki tókst að hlaða inn gjaldmiðlum',
+            'loading': 'Hleð inn gjaldmiðlum',
+          },
           app: {
             version: _gengi.version,
             title: 'Gengi.is...',
@@ -200,25 +207,33 @@ define(['vue', 'promise'], function(Vue, promise) {
     },
 
     initCurrencies: function(){
-      var data = _gengi.getLocalData('currencies');
-      if (!data) {
-        promise.get(
-          'http://api-v2.gengi.is/currency/' + _gengi.vm.currencyList.join(',')
-        ).then(function(error, response, xhr){
-          if (error) {
-            console.error('Error ' + xhr.status);
-            return;
-          }
-          var res = JSON.parse(response);
-          _gengi.vm.$set('currencies', {
-            list: res.currencies,
-            expires: res.expires,
-            currencyDate: res.currencyDate,
-          });
-        });
-      } else {
-        _gengi.vm.$set('currencies', data);
+      var currencies = _gengi.getLocalData('currencies');
+      if (currencies && currencies.expires >= new Date().getTime()) {
+        _gengi.vm.$set('currencies', currencies);
+        return;
       }
+
+      _gengi.vm.$set('message', 'loading');
+      promise.get(
+        'http://api-v2.gengi.is/currency/' + _gengi.vm.currencyList.join(',')
+      ).then(function(error, response){
+        if (error) {
+          if (currencies) {
+            _gengi.vm.$set('message', 'expired-error');
+            _gengi.vm.$set('currencies', currencies);
+          } else {
+            _gengi.vm.$set('message', 'error');
+          }
+          return;
+        }
+        var res = JSON.parse(response);
+        _gengi.vm.$set('message', '');
+        _gengi.vm.$set('currencies', {
+          list: res.currencies,
+          expires: res.expires,
+          currencyDate: res.currencyDate,
+        });
+      });
     },
 
     ensureLocalstoreVersion: function(version){
@@ -249,11 +264,7 @@ define(['vue', 'promise'], function(Vue, promise) {
         return false;
       }
       try {
-        var data = JSON.parse(unParsedData);
-        if (dataName === 'currencies' && data.expires < new Date().getTime()) {
-          throw 'Currencies expired!';
-        }
-        return data;
+        return JSON.parse(unParsedData);
       } catch(exc) {
         console.warn(exc);
       }
