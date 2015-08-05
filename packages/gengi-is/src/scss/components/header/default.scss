@@ -1,0 +1,60 @@
+
+header {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: $block;
+
+  line-height: $block;
+
+  background-color: $color-dark;
+  color: $color-light;
+
+  cursor: pointer;
+
+  inner {
+    position: relative;
+    display: block;
+
+    margin: auto;
+    width: 100%;
+    min-width: $page-min-width;
+    max-width: $page-max-width;
+    height: 100%;
+  }
+
+  h1.title, hgroup {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    margin: auto;
+    padding: 0 $spacing;
+    opacity: 0;
+    transform: translate3d(0,-100%,0);
+    transition: opacity $trans-dur, transform $trans-dur;
+  }
+
+  hgroup {
+    display: block;
+    height: 38px;
+
+    h1, h2, h3, h4 {
+      line-height: 1em;
+      margin: 0;
+    }
+  }
+
+  gengi[view="list"] & {
+    h1.title {
+      opacity: 1;
+      transform: translate3d(0,0%,0);
+    }
+  }
+
+  gengi[view="calc"] & {
+    hgroup {
+      opacity: 1;
+      transform: translate3d(0,0%,0);
+    }
+  }
+}

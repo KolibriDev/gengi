@@ -1,7 +1,14 @@
 
-@import "vendor/normalize";
+@import
+  "vendor/normalize",
 
-h1 {
-  color: pink;
-  background: blue;
-}
+  "base/mixins/base",
+  "base/variables",
+
+  "components/body",
+  "components/gengi",
+  "components/header/base",
+  "components/type/base",
+  "components/currency/base",
+  "components/calculator/base"
+  ;

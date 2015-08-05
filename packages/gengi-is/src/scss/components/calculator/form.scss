@@ -1,0 +1,32 @@
+
+calculator {
+  @extend currency-list;
+
+  currency {
+    padding: 0 0 0 $block;
+  }
+
+  curr-input {
+    display: block;
+    width: 100%;
+    height: 100%;
+    input {
+      display: block;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+
+      font-size: 48px;
+      color: $color-dark;
+
+      border: none;
+
+      text-align: center;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

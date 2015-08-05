@@ -1,0 +1,72 @@
+// Typography
+$font-family: 'ars-maquette-web', Helvetica, Arial, sans-serif;
+$font-family-alt: 'Merriweather', 'Georgia', 'Times New Roman', Times, serif;
+$font-sans: $font-family;
+$font-serif: $font-family-alt;
+$font-size: 16px;
+$font-weight: 400;
+$font-color: #333;
+$line-height: 1.25;
+
+$font-size-tiny: 14px;
+$font-size-small: 16px;
+$font-size-large: 21px;
+$font-size-larger: 26px;
+
+// Sizes
+$spacing: 10px;
+$block: 64px;
+$page-max-width: 500px;
+$page-min-width: 280px;
+
+// Radius
+$radius: 2px;
+
+// Grayscale
+$color-gray-dark: #555;
+$color-gray: #999999;
+$color-gray-light: #ccc;
+
+// Colors
+$color-gray-dark: #555;
+$color-gray: #999999;
+$color-gray-light: #ccc;
+
+// Colors
+$color-yellow: #FFD100;
+$color-dark: #26434C;
+$color-light: #EAEAEA;
+
+$font-color: $color-dark;
+
+// Color array used for hr, links, boxes, buttons, forms, messages and sections
+// "primary" item is default style for buttons and messages
+// color-name   color-value         font-color
+$colorArray:
+  ("light", $color-light, $font-color)
+  ("white", white, $font-color)
+  ("black", black, white)
+;
+$color-count: length($colorArray);
+
+// Applied to html and main
+$main-background: $color-light;
+$body-background: $color-yellow;
+
+// Text direction & floats
+$text-direction: ltr;
+$default-float: left;
+$opposite-float: right;
+@if $text-direction == ltr {
+  $default-float: left;
+  $opposite-float: right;
+} @else {
+  $default-float: right;
+  $opposite-float: left;
+}
+
+// Transitions duration
+$trans-dur-fast: 125ms;
+$trans-dur: 250ms;
+$trans-dur-slow: 350ms;
+$trans-dur-slower: 500ms;

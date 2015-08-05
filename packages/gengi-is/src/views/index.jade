@@ -1,38 +1,41 @@
 extends shared/_layout
 
-block content
+block main
   gengi(state="{{state}}" view="{{app.view}}")
-    topbar
-      h1(v-text="app.title" v-on="click:showList()")
+    header(v-on="click:showList()"): inner
+      h1.title(v-text="app.title")
+      hgroup
+        h1(v-text="app.currentCurrency")
+        h4(v-text="currencies.list.hasOwnProperty(app.currentCurrency) ? currencies.list[app.currentCurrency].name : ''")
+
 
     message(v-if="message")
       h4(v-text="messages[message]")
 
-    currency-list(v-if="app.view === 'list'")
+    currency-list(v-show="app.view === 'list'")
       template(v-repeat="currency: currencyList")
         currency(v-if="currencies.list.hasOwnProperty(currency)" v-on="click:showCalc(currency)")
-          long-name(v-text="currencies.list[currency].name")
-          short-name(v-text="currencies.list[currency].code")
-          br
-          value(v-text="currencies.list[currency].rate")
-          hr
-      hr
+          curr-symbol(v-attr="code:currencies.list[currency].code")
+          curr-code(v-text="currencies.list[currency].code")
+          curr-name(v-text="currencies.list[currency].name")
+          curr-rate(v-text="currencies.list[currency].rate")
+
       search
         input(v-model="search.term" v-on="keyup:performSearch | key 13")
         br
         results(v-repeat="result: search.results")
           currency(v-on="click:addToList(result)" v-if="currencyList.indexOf(result.code) === -1")
-            long-name(v-text="result.name")
-            short-name(v-text="result.code")
-            br
-            value(v-text="result.rate")
-            hr
+            curr-symbol(v-attr="code:result.code")
+            curr-code(v-text="result.code")
+            curr-name(v-text="result.name")
+            curr-rate(v-text="result.rate")
 
-    calculator(v-if="app.view === 'calc'")
-      h1 Calculator
-
-      span(v-text="app.currentCurrency")
-      input(v-model="app.amountCurr" )
-      br
-      | ISK:
-      input(v-model="app.amountISK" )
+    calculator(v-show="app.view === 'calc'")
+      currency
+        curr-symbol(v-attr="code:app.currentCurrency")
+        curr-input
+          input(id="amountCurr" v-model="app.amountCurr" placeholder="1")
+      currency
+        curr-symbol(code="ISK")
+        curr-input
+          input(id="amountISK" v-model="app.amountISK")

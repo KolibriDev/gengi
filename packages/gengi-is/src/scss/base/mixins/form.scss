@@ -1,0 +1,34 @@
+
+// $direction - Which direction to be resizable, horizontal/vertical/both
+@mixin resizable($direction: both) {
+  resize: $direction;
+  overflow: auto;
+}
+
+@mixin placeholder($color,$font-style:normal) {
+  &:-ms-input-placeholder {
+    transition: color $trans-dur;
+    color: $color;
+    font-style: $font-style;
+  }
+  &:-moz-placeholder {
+    transition: color $trans-dur;
+    color: $color;
+    font-style: $font-style;
+  }
+  &::-moz-placeholder {
+    transition: color $trans-dur;
+    color: $color;
+    font-style: $font-style;
+  }
+  &::-webkit-input-placeholder {
+    transition: color $trans-dur;
+    color: $color;
+    font-style: $font-style;
+  }
+  &::input-placeholder {
+    transition: color $trans-dur;
+    color: $color;
+    font-style: $font-style;
+  }
+}

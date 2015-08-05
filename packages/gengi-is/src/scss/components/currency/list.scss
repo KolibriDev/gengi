@@ -1,0 +1,9 @@
+
+currency-list {
+  @extend .y-scroll.force;
+  display: block;
+
+  margin: auto;
+  padding: $spacing;
+  height: calc(100% - 64px);
+}

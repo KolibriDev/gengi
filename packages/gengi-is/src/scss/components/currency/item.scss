@@ -1,0 +1,92 @@
+
+currency {
+  position: relative;
+  display: block;
+
+  margin: 0 auto $spacing;
+  padding: $spacing $spacing $spacing $block+$spacing;
+  width: 100%;
+  min-width: $page-min-width;
+  max-width: $page-max-width;
+  height: $block;
+
+  line-height: 1em;
+
+  background: white;
+
+  cursor: pointer;
+
+  curr-symbol {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+
+    overflow: hidden;
+    display: block;
+    width: $block;
+    height: $block;
+
+    line-height: 60px;
+    font-weight: 300;
+    font-size: 18px;
+    text-align: center;
+    color: $color-light;
+
+    background: $color-dark;
+
+    -webkit-font-smoothing: antialiased;
+
+    &:before {
+      display: block;
+      content: attr(code);
+    }
+
+    &[code="AFN"]:before { content: '؋'; font-size: 28px; }
+    &[code="USD"]:before { content: '$'; font-size: 28px; }
+    &[code="EUR"]:before { content: '€'; font-size: 28px; }
+    &[code="GBP"]:before { content: '£'; font-size: 28px; }
+    &[code="JPY"]:before { content: '¥'; font-size: 28px; }
+    &[code="MGA"]:before { content: 'Ar'; }
+    &[code="NOK"]:before { content: 'kr'; }
+    &[code="SEK"]:before { content: 'kr'; }
+    &[code="DKK"]:before { content: 'kr'; }
+    &[code="CZK"]:before { content: 'kr'; }
+    &[code="CHF"]:before { content: 'Fr'; }
+    &[code="CAD"]:before { content: '$'; font-size: 28px}
+    &[code="AUD"]:before { content: '$'; font-size: 28px}
+    &[code="ZAR"]:before { content: 'R'; font-size: 28px}
+    &[code="HKD"]:before { content: '$'; font-size: 28px}
+    &[code="NZD"]:before { content: '$'; font-size: 28px}
+    &[code="PLN"]:before { content: 'zł'; font-size: 28px}
+    &[code="SGD"]:before { content: '$'; font-size: 28px}
+    &[code="CNY"]:before { content: '¥'; font-size: 28px}
+    &[code="VND"]:before { content: '₫'; font-size: 28px}
+  }
+
+  curr-code {
+    display: block;
+
+    line-height: 28px;
+    font-size: 26px;
+    font-weight: 500;
+  }
+  curr-name {
+    display: block;
+
+    line-height: 16px;
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  curr-rate {
+    position: absolute;
+    top: $spacing; right: $spacing;
+
+    display: block;
+    margin: 0;
+    padding: 12px 0 0 0;
+    height: 14px;
+    line-height: 14px;
+
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,28 @@
+
+@mixin text-overflow() {
+  // Requires inline-block or block for proper styling
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+%clearfix {
+  @include clearfix();
+}
+
+@mixin reset-list() {
+  list-style-type: none;
+  list-style-image: none;
+  list-style-position: outside;
+}
