@@ -12,5 +12,8 @@ branches:
 services:
   - redis-server
 
+before_install:
+  - openssl aes-256-cbc -K $encrypted_c1964ed34d1d_key -iv $encrypted_c1964ed34d1d_iv -in deploy_key.enc -out deploy_key -d
+
 before_script:
   - npm install jshint -g
