@@ -17,58 +17,6 @@ currency {
 
   cursor: pointer;
 
-  &[symbol] {
-    padding-left: $block;
-  }
-
-  &[symbol]:before {
-    position: absolute;
-    top: 0; left: 0; bottom: 0;
-
-    overflow: hidden;
-    display: block;
-    width: $block;
-    height: $block;
-
-    line-height: 60px;
-    font-weight: 300;
-    font-size: 18px;
-    text-align: center;
-    color: $color-light;
-
-    background: $color-dark;
-
-    -webkit-font-smoothing: antialiased;
-
-    transition: background $trans-dur-fast, opacity $trans-dur-fast;
-
-    content: attr(symbol);
-  }
-
-  &[symbol="AFN"]:before { content: '؋'; font-size: 24px; }
-  &[symbol="USD"]:before { content: '$'; font-size: 24px; }
-  &[symbol="EUR"]:before { content: '€'; font-size: 24px; }
-  &[symbol="GBP"]:before { content: '£'; font-size: 24px; }
-  &[symbol="JPY"]:before { content: '¥'; font-size: 24px; }
-  &[symbol="MGA"]:before { content: 'Ar'; }
-  &[symbol="NOK"]:before { content: 'kr'; }
-  &[symbol="SEK"]:before { content: 'kr'; }
-  &[symbol="DKK"]:before { content: 'kr'; }
-  &[symbol="CZK"]:before { content: 'kr'; }
-  &[symbol="CHF"]:before { content: 'Fr'; }
-  &[symbol="CAD"]:before { content: '$'; font-size: 24px}
-  &[symbol="AUD"]:before { content: '$'; font-size: 24px}
-  &[symbol="ZAR"]:before { content: 'R'; font-size: 24px}
-  &[symbol="HKD"]:before { content: '$'; font-size: 24px}
-  &[symbol="NZD"]:before { content: '$'; font-size: 24px}
-  &[symbol="PLN"]:before { content: 'zł'; font-size: 24px}
-  &[symbol="SGD"]:before { content: '$'; font-size: 24px}
-  &[symbol="CNY"]:before { content: '¥'; font-size: 24px}
-  &[symbol="VND"]:before { content: '₫'; font-size: 24px}
-  &[symbol="?"]:before { content: '?'; font-size: 24px}
-  &[symbol="+"]:before { content: '+'; font-size: 24px}
-  &[symbol="+/-"]:before { content: '+/-'; font-size: 24px}
-
   curr-code {
     display: block;
     padding: $spacing $spacing 0;
