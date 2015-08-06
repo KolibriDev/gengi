@@ -41,14 +41,11 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
           },
         },
         methods: {
-          showList: function(){
-            _gengi.showList();
+          showView: function(view){
+            _gengi.showView[view]();
           },
           showCalc: function(currency){
-            _gengi.showCalc(currency, 1);
-          },
-          showSearch: function(){
-            _gengi.showSearch();
+            _gengi.showView.calc(currency, 1);
           },
           focusSearchInput: function(){
             document.getElementById('search').focus();
@@ -79,13 +76,11 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
       _gengi.initializeData();
       _gengi.initializeWatches();
 
-      var values = utils.router.parseQuery();
-      if (values.currName) {
-        if (values.currName === 'SEARCH') {
-          _gengi.showSearch();
-        } else {
-          _gengi.showCalc(values.currName,values.amount);
-        }
+      var query = utils.router.parseQuery();
+      if (!query.currency) {
+        _gengi.showView[query.view]();
+      } else {
+        _gengi.showView.calc(query.currency,query.amount);
       }
 
       utils.router.initState(_gengi.vm);
@@ -111,29 +106,31 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
       utils.local.setJSON('currencies', _gengi.vm.currencies);
     },
 
-    showSearch: function(){
-      _gengi.vm.app.view = 'search';
-      // TODO: Find better way to ensure input exists before focus
-      setTimeout(function(){
-        document.getElementById('search').focus();
-      },1);
-    },
+    showView: {
+      search: function(){
+        _gengi.vm.app.view = 'search';
+        // TODO: Find better way to ensure input exists before focus
+        setTimeout(function(){
+          document.getElementById('search').focus();
+        },1);
+      },
 
-    showList: function(){
-      _gengi.vm.app.view = 'list';
-    },
+      list: function(){
+        _gengi.vm.app.view = 'list';
+      },
 
-    showCalc: function(currency, amount){
-      amount = amount || 1;
-      _gengi.vm.app.currentCurrency = currency;
-      _gengi.vm.app.view = 'calc';
-      _gengi.vm.app.amountCurr = amount > 1 ? amount : '';
-      _gengi.vm.app.amountISK = utils.calculate(_gengi.vm.currencies.list[currency].rate, amount);
+      calc: function(currency, amount){
+        amount = amount || 1;
+        _gengi.vm.app.currentCurrency = currency;
+        _gengi.vm.app.view = 'calc';
+        _gengi.vm.app.amountCurr = amount > 1 ? amount : '';
+        _gengi.vm.app.amountISK = utils.calculate(_gengi.vm.currencies.list[currency].rate, amount);
 
-      // TODO: Find better way to ensure input exists before focus
-      setTimeout(function(){
-        document.getElementById('amountCurr').focus();
-      },1);
+        // TODO: Find better way to ensure input exists before focus
+        setTimeout(function(){
+          document.getElementById('amountCurr').focus();
+        },1);
+      },
     },
 
     initializeData: function(){

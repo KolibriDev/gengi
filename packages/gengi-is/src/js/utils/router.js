@@ -44,22 +44,26 @@ define(['utils/format'], function(format) {
 
     parseQuery: function(query) {
       query = query || window.location.pathname.substr(1).toUpperCase();
-      var amount = 1,
-          currName = query;
+      var retobj = {
+        amount: 1,
+        view: 'list',
+        currency: '',
+      };
 
+      if (query.substring(0,6) === 'SEARCH') {
+        retobj.view = 'search';
+        return retobj;
+      }
       if (/\d/.test(query)) {
         query.replace(/([0-9]+)/g, function(undefined, p1) {
-          amount = p1;
+          retobj.amount = p1;
         });
         query.replace(/(\D+)/g, function(undefined, p1) {
-          currName = p1;
+          retobj.currency = p1;
         });
       }
 
-      return {
-        amount: amount,
-        currName: format.code(currName)
-      };
+      return retobj;
     },
   };
 

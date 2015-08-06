@@ -2,7 +2,7 @@ extends shared/_layout
 
 block main
   gengi(state="{{state}}" view="{{app.view}}")
-    header(v-on="click:showList()"): inner
+    header(v-on="click:showView('list')"): inner
       h1.title(v-text="app.title")
       hgroup.calc
         h1(v-text="app.currentCurrency")
@@ -22,7 +22,7 @@ block main
           curr-name(v-text="currencies.list[currency].name")
           curr-rate(v-text="currencies.list[currency].rate")
 
-      open-search.no-symbol(v-on="click: showSearch()")
+      open-search.no-symbol(v-on="click: showView('search')")
         curr-text +/- Velja myntir
 
     search(v-show="app.view === 'search'")
