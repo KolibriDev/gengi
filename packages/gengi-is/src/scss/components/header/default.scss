@@ -34,7 +34,7 @@ header {
     margin: auto;
     padding: 0 $spacing;
     opacity: 0;
-    transform: translate3d(0,-100%,0);
+    transform: translate3d(-4%,0,0);
     transition: opacity $trans-dur, transform $trans-dur;
   }
 
