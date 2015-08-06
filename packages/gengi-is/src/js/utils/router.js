@@ -15,6 +15,8 @@ define(['utils/format'], function(format) {
       } else if (view === 'search') {
         state.term = vm.search.term;
         newPath += 'search/' + state.term;
+      } else if (view !== 'list') {
+        newPath += view;
       }
       window.history.pushState(state, null, newPath);
     },
@@ -39,6 +41,8 @@ define(['utils/format'], function(format) {
       } else if (state.view === 'search') {
         state.term = vm.search.term;
         newPath += 'search/' + state.term;
+      } else if (state.view !== 'list') {
+        newPath += state.view;
       }
       window.history.replaceState(state, null, newPath);
     },
@@ -52,6 +56,9 @@ define(['utils/format'], function(format) {
         term: '',
       };
 
+      if (query.substring(0,5) === 'about') {
+        retobj.view = 'about';
+      }
       if (query.substring(0,6) === 'search') {
         retobj.view = 'search';
         retobj.term = decodeURIComponent(query.split('/').pop());

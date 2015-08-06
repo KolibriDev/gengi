@@ -9,6 +9,9 @@ block main
         h4(v-text="currencies.list.hasOwnProperty(app.currentCurrency) ? currencies.list[app.currentCurrency].name : ''")
       hgroup.search
         h1 Velja myntir
+      hgroup.about
+        h1 Upplýsingar
+        h4 um Gengi.is
 
 
     message(v-if="message")
@@ -22,8 +25,10 @@ block main
           curr-name(v-text="currencies.list[currency].name")
           curr-rate(v-text="currencies.list[currency].rate")
 
-      open-search.no-symbol(v-on="click: showView('search')")
+      currency.no-symbol(v-on="click: showView('search')")
         curr-text +/- Velja myntir
+      currency.no-symbol(v-on="click: showView('about')")
+        curr-text Um Gengi.is
 
     search(v-show="app.view === 'search'")
       search-form(v-on="click:focusSearchInput")
@@ -51,3 +56,14 @@ block main
         curr-symbol(code="ISK")
         curr-input
           input(id="amountISK" v-model="app.amountISK")
+
+    about(v-show="app.view === 'about'")
+      inner
+        h1 WIP
+        p Gengisupplýsingar á svipstundu
+
+        p Gengi.is er gengisreiknivél fyrir íslenska krónu þar sem þú getur nálgast nýjustu upplýsingar um gengi gjaldmiðla á fljótlegan og aðgengilegan hátt.
+
+        p Vefurinn er sérstaklega hugsaður með hraða og snjallsíma í huga og er hannaður og framleiddur af vefstúdíóinu Form5.
+
+

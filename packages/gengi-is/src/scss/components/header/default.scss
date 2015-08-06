@@ -61,6 +61,10 @@ header {
       margin: 0;
     }
 
+    h1 {
+      text-transform: uppercase;
+    }
+
     &.search {
       height: 24px;
     }
@@ -81,6 +85,12 @@ header {
   }
   gengi[view="search"] & {
     hgroup.search {
+      opacity: 1;
+      transform: translate3d(0,0%,0);
+    }
+  }
+  gengi[view="about"] & {
+    hgroup.about {
       opacity: 1;
       transform: translate3d(0,0%,0);
     }

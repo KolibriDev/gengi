@@ -44,7 +44,11 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
         },
         methods: {
           showView: function(view){
-            _gengi.showView[view]();
+            if (_gengi.showView.hasOwnProperty(view)) {
+              _gengi.showView[view]();
+            } else {
+              _gengi.showView.catch(view);
+            }
           },
           showCalc: function(currency){
             _gengi.showView.calc(currency, 1);
@@ -70,7 +74,11 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
 
       var query = utils.router.parseQuery();
       if (!query.currency) {
-        _gengi.showView[query.view](query.term);
+        if (_gengi.showView.hasOwnProperty(query.view)) {
+          _gengi.showView[query.view](query.term);
+        } else {
+          _gengi.showView.catch(query.view);
+        }
       } else {
         _gengi.showView.calc(query.currency,query.amount);
       }
@@ -99,6 +107,10 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
     },
 
     showView: {
+      catch: function(view){
+        _gengi.vm.app.view = view;
+      },
+
       search: function(term){
         if (term) {
           _gengi.vm.search.term = term;
@@ -109,10 +121,6 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
         setTimeout(function(){
           document.getElementById('search').focus();
         },1);
-      },
-
-      list: function(){
-        _gengi.vm.app.view = 'list';
       },
 
       calc: function(currency, amount){
