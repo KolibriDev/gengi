@@ -54,6 +54,7 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
             document.getElementById('search').focus();
           },
           performSearch: function(){
+            utils.router.updateState(_gengi.vm);
             utils.search(_gengi.vm);
           },
           toggleInList: function(currency){
@@ -62,6 +63,14 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
             } else {
               _gengi.addToList(currency);
             }
+          },
+          calculate: function(event){
+            if (event.srcElement.id === 'amountCurr') {
+              this.app.amountISK = utils.calculate(this.currencies.list[this.app.currentCurrency].rate, this.app.amountCurr);
+            } else if (event.srcElement.id === 'amountISK') {
+              this.app.amountCurr = utils.calculate(1 / this.currencies.list[this.app.currentCurrency].rate, this.app.amountISK);
+            }
+            utils.router.updateState(_gengi.vm);
           },
         },
       });
@@ -157,21 +166,6 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
       }, {deep: true});
       _gengi.vm.$watch('currencyList', function(){
         utils.local.setJSON('currencyList', this.currencyList);
-      });
-
-      // For calculation purposes
-      // TODO: Run this on keyup instead of watching
-      // _gengi.vm.$watch('app.amountISK', function(){
-      //   utils.router.updateState(_gengi.vm);
-      //   this.app.amountCurr = utils.calculate(1 / this.currencies.list[this.app.currentCurrency].rate, this.app.amountISK);
-      // });
-      _gengi.vm.$watch('app.amountCurr', function(){
-        utils.router.updateState(_gengi.vm);
-        this.app.amountISK = utils.calculate(this.currencies.list[this.app.currentCurrency].rate, this.app.amountCurr);
-      });
-
-      _gengi.vm.$watch('search.term', function(){
-        utils.router.updateState(_gengi.vm);
       });
 
       // "Router"

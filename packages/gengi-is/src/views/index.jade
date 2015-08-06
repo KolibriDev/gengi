@@ -47,10 +47,10 @@ block main
     calculator(v-show="app.view === 'calc'")
       currency(v-attr="symbol:app.currentCurrency")
         curr-input
-          input(id="amountCurr" v-model="app.amountCurr" placeholder="1")
+          input(id="amountCurr" v-model="app.amountCurr" placeholder="1" v-on="keyup:calculate")
       currency(symbol="ISK")
         curr-input
-          input(id="amountISK" v-model="app.amountISK")
+          input(id="amountISK" v-model="app.amountISK" v-on="keyup:calculate")
 
     about(v-show="app.view === 'about'")
       inner
