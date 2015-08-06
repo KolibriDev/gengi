@@ -7,7 +7,7 @@ define(['utils/sanitize'], function(sanitize) {
     },
     number: function(value, fix){
       value = sanitize.number(value);
-      return fix === false ? value : parseFloat(value).toFixed(fix || 0);
+      return !fix ? value : parseFloat(value).toFixed(fix);
     },
     format: function(){},
   };

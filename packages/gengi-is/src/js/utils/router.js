@@ -10,7 +10,7 @@ define(['utils/format'], function(format) {
         currentCurrency: vm.app.currentCurrency,
       };
       if (view === 'calc') {
-        var value = format.number(vm.app.amountCurr, 0);
+        var value = format.number(vm.app.amountCurr);
         newPath += (vm.app.currentCurrency ? vm.app.currentCurrency + value : '');
       } else if (view === 'search') {
         state.term = vm.search.term;
@@ -36,7 +36,7 @@ define(['utils/format'], function(format) {
       var newPath = '/';
       if (state.view === 'calc') {
         state.amountISK = vm.app.amountISK;
-        state.amountCurr = format.number(vm.app.amountCurr, 0);
+        state.amountCurr = format.number(vm.app.amountCurr);
         newPath += vm.app.currentCurrency ? vm.app.currentCurrency + state.amountCurr : '';
       } else if (state.view === 'search') {
         state.term = vm.search.term;
@@ -50,10 +50,8 @@ define(['utils/format'], function(format) {
     parseQuery: function(query) {
       query = query || window.location.pathname.substr(1).toLowerCase();
       var retobj = {
-        amount: 1,
         view: 'list',
-        currency: '',
-        term: '',
+        options: {},
       };
 
       if (query.substring(0,5) === 'about') {
@@ -61,16 +59,18 @@ define(['utils/format'], function(format) {
       }
       if (query.substring(0,6) === 'search') {
         retobj.view = 'search';
-        retobj.term = decodeURIComponent(query.split('/').pop());
+        retobj.options.term = decodeURIComponent(query.split('/').pop());
         return retobj;
       }
-      if (/\d/.test(query)) {
-        query.replace(/([0-9]+)/g, function(undefined, p1) {
-          retobj.amount = p1;
-        });
-        query.replace(/(\D+)/g, function(undefined, p1) {
-          retobj.currency = p1.toUpperCase();
-        });
+
+      if (query.length >= 3) {
+        retobj.view = 'calc';
+        retobj.options.currency = format.code(query.substring(0,3));
+        retobj.options.amount = '';
+
+        if (query.length > 3) {
+          retobj.options.amount = format.number(query.substring(3));
+        }
       }
 
       return retobj;

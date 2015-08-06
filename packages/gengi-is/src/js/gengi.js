@@ -43,15 +43,12 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
           },
         },
         methods: {
-          showView: function(view){
+          showView: function(view, options){
             if (_gengi.showView.hasOwnProperty(view)) {
-              _gengi.showView[view]();
+              _gengi.showView[view](options);
             } else {
               _gengi.showView.catch(view);
             }
-          },
-          showCalc: function(currency){
-            _gengi.showView.calc(currency, 1);
           },
           focusSearchInput: function(){
             document.getElementById('search').focus();
@@ -73,14 +70,14 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
       _gengi.initializeWatches();
 
       var query = utils.router.parseQuery();
-      if (!query.currency) {
+      if (query.view) {
         if (_gengi.showView.hasOwnProperty(query.view)) {
-          _gengi.showView[query.view](query.term);
+          _gengi.showView[query.view](query.options);
         } else {
-          _gengi.showView.catch(query.view);
+          _gengi.showView.catch(query.view, query.options);
         }
       } else {
-        _gengi.showView.calc(query.currency,query.amount);
+        console.warn('No view provided!');
       }
 
       utils.router.initState(_gengi.vm);
@@ -111,9 +108,9 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
         _gengi.vm.app.view = view;
       },
 
-      search: function(term){
-        if (term) {
-          _gengi.vm.search.term = term;
+      search: function(options){
+        if (options && options.hasOwnProperty('term')) {
+          _gengi.vm.search.term = options.term;
           utils.search(_gengi.vm);
         }
         _gengi.vm.app.view = 'search';
@@ -123,12 +120,18 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
         },1);
       },
 
-      calc: function(currency, amount){
-        amount = amount || 1;
-        _gengi.vm.app.currentCurrency = currency;
+      calc: function(options){
+        if (!options) {
+          console.warn('No options provided for calc view');
+          return;
+        }
+
+        options.amount = !options.amount || options.amount <= 0 ? '' : options.amount;
+        _gengi.vm.app.currentCurrency = options.currency;
         _gengi.vm.app.view = 'calc';
-        _gengi.vm.app.amountCurr = amount > 1 ? amount : '';
-        _gengi.vm.app.amountISK = utils.calculate(_gengi.vm.currencies.list[currency].rate, amount);
+        // Start with empty
+        _gengi.vm.app.amountCurr = options.amount;
+        _gengi.vm.app.amountISK = utils.calculate(_gengi.vm.currencies.list[options.currency].rate, options.amount);
 
         // TODO: Find better way to ensure input exists before focus
         setTimeout(function(){
