@@ -2,10 +2,7 @@ define([], function() {
   'use strict';
   var _san = {
     code: function(code){
-      code = code.indexOf('NAN') > -1 && code.length > 3 ? code.replace('NAN','') : code;
-      code = code.length !== 3 ? false : code;
-
-      return code;
+      return code.indexOf('NAN') > -1 && code.length > 3 ? code.replace('NAN','') : code;
     },
     number: function(value){
       value = parseFloat(value);
