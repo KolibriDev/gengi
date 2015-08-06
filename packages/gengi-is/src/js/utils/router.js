@@ -5,7 +5,9 @@ define(['utils/format'], function(format) {
       var newPath = '/';
       if (view === 'calc') {
         var value = format.number(vm.app.amountCurr, 0);
-        newPath = '/' + (vm.app.currentCurrency ? vm.app.currentCurrency + value : '');
+        newPath += (vm.app.currentCurrency ? vm.app.currentCurrency + value : '');
+      } else if (view === 'search') {
+        newPath += 'search';
       }
       var newState = {
         view: view,
@@ -28,9 +30,15 @@ define(['utils/format'], function(format) {
 
     updateState: function(vm){
       var state = window.history.state;
-      state.amountISK = vm.app.amountISK;
-      state.amountCurr = format.number(vm.app.amountCurr, 0);
-      var newPath = '/' + (vm.app.currentCurrency ? vm.app.currentCurrency + state.amountCurr : '');
+      var newPath = '/';
+      if (state.view === 'calc') {
+        state.amountISK = vm.app.amountISK;
+        state.amountCurr = format.number(vm.app.amountCurr, 0);
+        newPath += vm.app.currentCurrency ? vm.app.currentCurrency + state.amountCurr : '';
+      // } else if (state.view === 'search') {
+      //   state.term = vm.search.term;
+      //   newPath += 'search/' + state.term;
+      }
       window.history.replaceState(state, null, newPath);
     },
 

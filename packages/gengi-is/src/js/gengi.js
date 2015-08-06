@@ -18,7 +18,7 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
           app: {
             version: _gengi.version,
             title: 'Gengi.is...',
-            view: 'list', // list, calc, about
+            view: 'list',
             amountISK: 0,
             amountCurr: 1,
             currentCurrency: '',
@@ -36,7 +36,8 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
           ],
           search: {
             term: '',
-            results: []
+            count: 0,
+            results: {}
           },
         },
         methods: {
@@ -45,6 +46,12 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
           },
           showCalc: function(currency){
             _gengi.showCalc(currency, 1);
+          },
+          showSearch: function(){
+            _gengi.showSearch();
+          },
+          focusSearchInput: function(){
+            document.getElementById('search').focus();
           },
           performSearch: function(){
             promise.get(
@@ -55,13 +62,16 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
                 return;
               }
               var res = JSON.parse(response);
+              _gengi.vm.search.count = Object.keys(res.currencies).length;
               _gengi.vm.search.results = res.currencies;
             });
           },
-          addToList: function(currency){
-            _gengi.vm.currencyList.unshift(currency.code);
-            _gengi.vm.currencies.list[currency.code] = currency;
-            utils.local.setJSON('currencies', _gengi.vm.currencies);
+          toggleInList: function(currency){
+            if(_gengi.vm.currencyList.indexOf(currency.code) > -1) {
+              _gengi.removeFromList(currency);
+            } else {
+              _gengi.addToList(currency);
+            }
           },
         },
       });
@@ -71,9 +81,42 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
 
       var values = utils.router.parseQuery();
       if (values.currName) {
-        _gengi.showCalc(values.currName,values.amount);
+        if (values.currName === 'SEARCH') {
+          _gengi.showSearch();
+        } else {
+          _gengi.showCalc(values.currName,values.amount);
+        }
       }
+
       utils.router.initState(_gengi.vm);
+    },
+
+    removeFromList: function(currency){
+      var currList = _gengi.vm.currencyList;
+      var index = currList.indexOf(currency.code);
+      if (index !== -1) {
+        currList.splice(index, 1);
+      }
+      _gengi.vm.$set('currencyList', currList);
+      utils.local.setJSON('currencies', _gengi.vm.currencies);
+    },
+    addToList: function(currency){
+      var currList = _gengi.vm.currencyList;
+      currList.unshift(currency.code);
+      _gengi.vm.$set('currencyList', currList);
+
+      var currencies = _gengi.vm.currencies;
+      currencies.list[currency.code] = currency;
+      _gengi.vm.$set('currencies', currencies);
+      utils.local.setJSON('currencies', _gengi.vm.currencies);
+    },
+
+    showSearch: function(){
+      _gengi.vm.app.view = 'search';
+      // TODO: Find better way to ensure input exists before focus
+      setTimeout(function(){
+        document.getElementById('search').focus();
+      },1);
     },
 
     showList: function(){
@@ -121,6 +164,10 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
       _gengi.vm.$watch('app.amountCurr', function(){
         utils.router.updateState(_gengi.vm);
         this.app.amountISK = utils.calculate(this.currencies.list[this.app.currentCurrency].rate, this.app.amountCurr);
+      });
+
+      _gengi.vm.$watch('search.term', function(){
+        utils.router.updateState(_gengi.vm);
       });
 
       // "Router"

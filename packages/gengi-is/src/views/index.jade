@@ -4,9 +4,11 @@ block main
   gengi(state="{{state}}" view="{{app.view}}")
     header(v-on="click:showList()"): inner
       h1.title(v-text="app.title")
-      hgroup
+      hgroup.calc
         h1(v-text="app.currentCurrency")
         h4(v-text="currencies.list.hasOwnProperty(app.currentCurrency) ? currencies.list[app.currentCurrency].name : ''")
+      hgroup.search
+        h1 Velja myntir
 
 
     message(v-if="message")
@@ -20,11 +22,21 @@ block main
           curr-name(v-text="currencies.list[currency].name")
           curr-rate(v-text="currencies.list[currency].rate")
 
-      search
-        input(v-model="search.term" v-on="keyup:performSearch | key 13")
-        br
-        results(v-repeat="result: search.results")
-          currency(v-on="click:addToList(result)" v-if="currencyList.indexOf(result.code) === -1")
+      open-search.no-symbol(v-on="click: showSearch()")
+        curr-text +/- Velja myntir
+
+    search(v-show="app.view === 'search'")
+      search-form(v-on="click:focusSearchInput")
+        curr-symbol(code="?")
+        curr-input
+          input(id="search" v-model="search.term" v-on="keyup:performSearch | key 13" placeholder="…")
+      results
+        search-item.no-symbol(v-if="!search.term && search.count <= 0")
+          curr-text Leitaðu að mynt eða landi
+        search-item.no-symbol(v-if="search.term && search.count <= 0")
+          curr-text Ekkert fannst fyrir '{{search.term}}'
+        template(v-repeat="result: search.results")
+          search-item(v-on="click:toggleInList(result)" v-class="selected: currencyList.indexOf(result.code) !== -1")
             curr-symbol(v-attr="code:result.code")
             curr-code(v-text="result.code")
             curr-name(v-text="result.name")

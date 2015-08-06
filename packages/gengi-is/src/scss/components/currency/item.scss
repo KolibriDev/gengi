@@ -1,5 +1,6 @@
 
 currency {
+  user-select: none;
   position: relative;
   display: block;
 
@@ -35,6 +36,8 @@ currency {
 
     -webkit-font-smoothing: antialiased;
 
+    transition: background $trans-dur-fast;
+
     &:before {
       display: block;
       content: attr(code);
@@ -60,6 +63,9 @@ currency {
     &[code="SGD"]:before { content: '$'; font-size: 28px}
     &[code="CNY"]:before { content: '¥'; font-size: 28px}
     &[code="VND"]:before { content: '₫'; font-size: 28px}
+    &[code="?"]:before { content: '?'; font-size: 28px}
+    &[code="+"]:before { content: '+'; font-size: 28px}
+    &[code="+/-"]:before { content: '+/-'; font-size: 28px}
   }
 
   curr-code {
@@ -88,5 +94,46 @@ currency {
     line-height: 14px;
 
     font-size: 14px;
+  }
+
+  curr-text {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
+    display: block;
+    font-size: 14px;
+  }
+
+  curr-input {
+    display: block;
+    width: 100%;
+    height: 100%;
+    input {
+      display: block;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+
+      font-size: 48px;
+      color: $color-dark;
+
+      border: none;
+
+      text-align: center;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  &.no-symbol {
+    padding: $spacing;
+
+    curr-text {
+      text-align: center;
+    }
   }
 }

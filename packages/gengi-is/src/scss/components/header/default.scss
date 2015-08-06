@@ -1,5 +1,6 @@
 
 header {
+  user-select: none;
   position: relative;
   margin: 0;
   padding: 0;
@@ -12,6 +13,9 @@ header {
   color: $color-light;
 
   cursor: pointer;
+  gengi[view="list"] & {
+    cursor: default;
+  }
 
   inner {
     position: relative;
@@ -37,10 +41,28 @@ header {
   hgroup {
     display: block;
     height: 38px;
+    padding-left: $block/2;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      display: block;
+      margin: auto;
+      padding: 0;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-right-color: $color-light;
+    }
 
     h1, h2, h3, h4 {
       line-height: 1em;
       margin: 0;
+    }
+
+    &.search {
+      height: 24px;
     }
   }
 
@@ -52,7 +74,13 @@ header {
   }
 
   gengi[view="calc"] & {
-    hgroup {
+    hgroup.calc {
+      opacity: 1;
+      transform: translate3d(0,0%,0);
+    }
+  }
+  gengi[view="search"] & {
+    hgroup.search {
       opacity: 1;
       transform: translate3d(0,0%,0);
     }

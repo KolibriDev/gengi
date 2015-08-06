@@ -1,0 +1,11 @@
+
+search-form {
+  @extend currency;
+
+  cursor: default;
+
+  curr-input input {
+    font-size: 28px;
+    text-align: left;
+  }
+}
