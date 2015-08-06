@@ -3,7 +3,7 @@ search-item {
   @extend currency;
 
   &:hover curr-symbol {
-    background: green;
+    background: $color-alert-green;
     &:before {
       content: '+';
       font-size: 28px;
@@ -14,7 +14,8 @@ search-item {
     * { opacity: 0.5; }
 
     &:hover curr-symbol {
-      background: red;
+      background: $color-alert-red;
+      opacity: 1;
       &:before {
         content: '-';
         font-size: 28px;

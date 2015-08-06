@@ -36,6 +36,8 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
           ],
           search: {
             term: '',
+            lastTerm: '',
+            done: false,
             count: 0,
             results: {}
           },
@@ -51,17 +53,7 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
             document.getElementById('search').focus();
           },
           performSearch: function(){
-            promise.get(
-              'http://api-v2.gengi.is/currency/search/' + this.search.term
-            ).then(function(error, response, xhr){
-              if (error) {
-                console.error('Error ' + xhr.status);
-                return;
-              }
-              var res = JSON.parse(response);
-              _gengi.vm.search.count = Object.keys(res.currencies).length;
-              _gengi.vm.search.results = res.currencies;
-            });
+            utils.search(_gengi.vm);
           },
           toggleInList: function(currency){
             if(_gengi.vm.currencyList.indexOf(currency.code) > -1) {

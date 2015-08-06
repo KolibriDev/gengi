@@ -36,7 +36,7 @@ currency {
 
     -webkit-font-smoothing: antialiased;
 
-    transition: background $trans-dur-fast;
+    transition: background $trans-dur-fast, opacity $trans-dur-fast;
 
     &:before {
       display: block;
