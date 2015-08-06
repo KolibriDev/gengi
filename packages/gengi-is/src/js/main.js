@@ -1,6 +1,6 @@
 (function() {
   require.config({
-    baseUrl: 'js',
+    baseUrl: '/js',
     config: {
       moment: { noGlobal: true },
     },

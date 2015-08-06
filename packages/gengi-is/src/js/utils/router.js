@@ -3,19 +3,20 @@ define(['utils/format'], function(format) {
   var _router = {
     updateView: function(vm, view){
       var newPath = '/';
-      if (view === 'calc') {
-        var value = format.number(vm.app.amountCurr, 0);
-        newPath += (vm.app.currentCurrency ? vm.app.currentCurrency + value : '');
-      } else if (view === 'search') {
-        newPath += 'search';
-      }
-      var newState = {
+      var state = {
         view: view,
         amountISK: vm.app.amountISK,
         amountCurr: vm.app.amountCurr,
         currentCurrency: vm.app.currentCurrency,
       };
-      window.history.pushState(newState, null, newPath);
+      if (view === 'calc') {
+        var value = format.number(vm.app.amountCurr, 0);
+        newPath += (vm.app.currentCurrency ? vm.app.currentCurrency + value : '');
+      } else if (view === 'search') {
+        state.term = vm.search.term;
+        newPath += 'search/' + state.term;
+      }
+      window.history.pushState(state, null, newPath);
     },
 
     initState: function(vm){
@@ -35,23 +36,25 @@ define(['utils/format'], function(format) {
         state.amountISK = vm.app.amountISK;
         state.amountCurr = format.number(vm.app.amountCurr, 0);
         newPath += vm.app.currentCurrency ? vm.app.currentCurrency + state.amountCurr : '';
-      // } else if (state.view === 'search') {
-      //   state.term = vm.search.term;
-      //   newPath += 'search/' + state.term;
+      } else if (state.view === 'search') {
+        state.term = vm.search.term;
+        newPath += 'search/' + state.term;
       }
       window.history.replaceState(state, null, newPath);
     },
 
     parseQuery: function(query) {
-      query = query || window.location.pathname.substr(1).toUpperCase();
+      query = query || window.location.pathname.substr(1).toLowerCase();
       var retobj = {
         amount: 1,
         view: 'list',
         currency: '',
+        term: '',
       };
 
-      if (query.substring(0,6) === 'SEARCH') {
+      if (query.substring(0,6) === 'search') {
         retobj.view = 'search';
+        retobj.term = decodeURIComponent(query.split('/').pop());
         return retobj;
       }
       if (/\d/.test(query)) {
@@ -59,7 +62,7 @@ define(['utils/format'], function(format) {
           retobj.amount = p1;
         });
         query.replace(/(\D+)/g, function(undefined, p1) {
-          retobj.currency = p1;
+          retobj.currency = p1.toUpperCase();
         });
       }
 

@@ -70,7 +70,7 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
 
       var query = utils.router.parseQuery();
       if (!query.currency) {
-        _gengi.showView[query.view]();
+        _gengi.showView[query.view](query.term);
       } else {
         _gengi.showView.calc(query.currency,query.amount);
       }
@@ -99,7 +99,11 @@ define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
     },
 
     showView: {
-      search: function(){
+      search: function(term){
+        if (term) {
+          _gengi.vm.search.term = term;
+          utils.search(_gengi.vm);
+        }
         _gengi.vm.app.view = 'search';
         // TODO: Find better way to ensure input exists before focus
         setTimeout(function(){
