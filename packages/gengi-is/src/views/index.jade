@@ -19,24 +19,24 @@ block main
 
     currency-list(v-show="app.view === 'list'")
       template(v-repeat="currency: currencyList")
-        currency(v-if="currencies.list.hasOwnProperty(currency)" v-on="click:showCalc(currency)" v-attr="symbol:currencies.list[currency].code")
+        currency(v-if="currencies.list.hasOwnProperty(currency)" v-on="click:showView('calc', {currency: currency})" v-attr="symbol:currencies.list[currency].code")
           curr-code(v-text="currencies.list[currency].code")
           curr-name(v-text="currencies.list[currency].name")
           curr-rate(v-text="currencies.list[currency].rate")
 
-      links(v-on="click: showView('search')")
+      links(v-on="click: showView('search', {term: ''})")
         curr-text +/- Velja myntir
       links(v-on="click: showView('about')")
         curr-text Um Gengi.is
 
     search(v-show="app.view === 'search'")
-      search-form(v-on="click:focusSearchInput" symbol="?")
+      search-form(v-on="click:focusSearchInput")
         curr-input
           input(id="search" v-model="search.term" v-on="keyup:performSearch" placeholder="…")
       results
-        search-item(v-if="!search.term && search.count <= 0")
+        text(v-if="!search.term && search.count <= 0")
           curr-text Leitaðu að mynt eða landi
-        search-item(v-if="search.term && search.done && search.count <= 0")
+        text(v-if="search.term && search.done && search.count <= 0")
           curr-text Ekkert fannst fyrir '{{search.term}}'
         template(v-repeat="result: search.results")
           search-item(v-on="click:toggleInList(result)" v-class="selected: currencyList.indexOf(result.code) !== -1" v-attr="symbol:result.code")

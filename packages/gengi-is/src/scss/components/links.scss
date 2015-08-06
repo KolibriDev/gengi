@@ -2,9 +2,10 @@
 links {
   @extend currency;
 
-  width: calc(50% - 5px);
-  float: left;
+  width: 245px;
+  display: inline-block;
   min-width: 0;
+  vertical-align: top;
 
   + links {
     margin-left: $spacing;

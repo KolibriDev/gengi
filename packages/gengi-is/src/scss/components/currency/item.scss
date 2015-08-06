@@ -12,6 +12,7 @@ currency {
   height: $block;
 
   line-height: 1em;
+  text-align: left;
 
   background: white;
 
@@ -84,7 +85,6 @@ currency {
       &#search {
         padding: 0 $spacing;
         font-size: 28px;
-        text-align: left;
       }
     }
   }

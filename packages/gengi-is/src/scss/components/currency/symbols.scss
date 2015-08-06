@@ -34,11 +34,12 @@ currency {
   &[symbol="+/-"]:before { content: '+/-'; }
 
   // Currencies
+  &[symbol="ISK"]:before { content: 'ISK'; }
 
   &[symbol=AED]:before { content: 'د.إ'; } // latin: DH or Dhs
   &[symbol=AFN]:before { content: '؋'; }
   &[symbol=ALL]:before { content: 'L'; }
-  &[symbol=AMD]:before { content: '֏'; } // SVG needed
+  // &[symbol=AMD]:before { content: '֏'; } // SVG needed
   &[symbol=ANG]:before { content: 'ƒ'; }
   &[symbol=ARS]:before { content: '$'; }
   &[symbol=AUD]:before { content: '$'; }
@@ -77,7 +78,7 @@ currency {
   &[symbol=FJD]:before { content: '$'; }
   &[symbol=FKP]:before { content: '£'; }
   &[symbol=GBP]:before { content: '£'; }
-  &[symbol=GEL]:before { content: '₾'; } // needs svg
+  // &[symbol=GEL]:before { content: '₾'; } // SVG needed
   &[symbol=GIP]:before { content: '£'; }
   &[symbol=GMD]:before { content: 'D'; }
   &[symbol=GNF]:before { content: 'Fr'; }

@@ -2,24 +2,20 @@
 search-item {
   @extend currency;
 
-  &:hover curr-symbol {
+  &:hover:before {
     background: $color-alert-green;
-    &:before {
-      content: '+';
-      font-size: 28px;
-    }
+    content: '+';
+    font-size: 28px;
   }
 
   &.selected {
-    * { opacity: 0.5; }
+    *, &:before { opacity: 0.5; }
 
-    &:hover curr-symbol {
+    &:hover:before {
       background: $color-alert-red;
       opacity: 1;
-      &:before {
-        content: '-';
-        font-size: 28px;
-      }
+      content: '-';
+      font-size: 28px;
     }
   }
 }
