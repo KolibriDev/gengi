@@ -1,8 +1,4 @@
 
 calculator {
   @extend currency-list;
-
-  currency {
-    padding: 0 0 0 $block;
-  }
 }

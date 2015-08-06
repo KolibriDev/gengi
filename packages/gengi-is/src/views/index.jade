@@ -19,41 +19,36 @@ block main
 
     currency-list(v-show="app.view === 'list'")
       template(v-repeat="currency: currencyList")
-        currency(v-if="currencies.list.hasOwnProperty(currency)" v-on="click:showCalc(currency)")
-          curr-symbol(v-attr="code:currencies.list[currency].code")
+        currency(v-if="currencies.list.hasOwnProperty(currency)" v-on="click:showCalc(currency)" v-attr="symbol:currencies.list[currency].code")
           curr-code(v-text="currencies.list[currency].code")
           curr-name(v-text="currencies.list[currency].name")
           curr-rate(v-text="currencies.list[currency].rate")
 
-      currency.no-symbol(v-on="click: showView('search')")
+      currency(v-on="click: showView('search')")
         curr-text +/- Velja myntir
-      currency.no-symbol(v-on="click: showView('about')")
+      currency(v-on="click: showView('about')")
         curr-text Um Gengi.is
 
     search(v-show="app.view === 'search'")
-      search-form(v-on="click:focusSearchInput")
-        curr-symbol(code="?")
+      search-form(v-on="click:focusSearchInput" symbol="?")
         curr-input
           input(id="search" v-model="search.term" v-on="keyup:performSearch" placeholder="…")
       results
-        search-item.no-symbol(v-if="!search.term && search.count <= 0")
+        search-item(v-if="!search.term && search.count <= 0")
           curr-text Leitaðu að mynt eða landi
-        search-item.no-symbol(v-if="search.term && search.done && search.count <= 0")
+        search-item(v-if="search.term && search.done && search.count <= 0")
           curr-text Ekkert fannst fyrir '{{search.term}}'
         template(v-repeat="result: search.results")
-          search-item(v-on="click:toggleInList(result)" v-class="selected: currencyList.indexOf(result.code) !== -1")
-            curr-symbol(v-attr="code:result.code")
+          search-item(v-on="click:toggleInList(result)" v-class="selected: currencyList.indexOf(result.code) !== -1" v-attr="symbol:result.code")
             curr-code(v-text="result.code")
             curr-name(v-text="result.name")
             curr-rate(v-text="result.rate")
 
     calculator(v-show="app.view === 'calc'")
-      currency
-        curr-symbol(v-attr="code:app.currentCurrency")
+      currency(v-attr="symbol:app.currentCurrency")
         curr-input
           input(id="amountCurr" v-model="app.amountCurr" placeholder="1")
-      currency
-        curr-symbol(code="ISK")
+      currency(symbol="ISK")
         curr-input
           input(id="amountISK" v-model="app.amountISK")
 

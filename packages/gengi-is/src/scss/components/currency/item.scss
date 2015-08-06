@@ -5,7 +5,7 @@ currency {
   display: block;
 
   margin: 0 auto $spacing;
-  padding: $spacing $spacing $spacing $block+$spacing;
+  padding: 0;
   width: 100%;
   min-width: $page-min-width;
   max-width: $page-max-width;
@@ -17,7 +17,11 @@ currency {
 
   cursor: pointer;
 
-  curr-symbol {
+  &[symbol] {
+    padding-left: $block;
+  }
+
+  &[symbol]:before {
     position: absolute;
     top: 0; left: 0; bottom: 0;
 
@@ -38,38 +42,36 @@ currency {
 
     transition: background $trans-dur-fast, opacity $trans-dur-fast;
 
-    &:before {
-      display: block;
-      content: attr(code);
-    }
-
-    &[code="AFN"]:before { content: '؋'; font-size: 28px; }
-    &[code="USD"]:before { content: '$'; font-size: 28px; }
-    &[code="EUR"]:before { content: '€'; font-size: 28px; }
-    &[code="GBP"]:before { content: '£'; font-size: 28px; }
-    &[code="JPY"]:before { content: '¥'; font-size: 28px; }
-    &[code="MGA"]:before { content: 'Ar'; }
-    &[code="NOK"]:before { content: 'kr'; }
-    &[code="SEK"]:before { content: 'kr'; }
-    &[code="DKK"]:before { content: 'kr'; }
-    &[code="CZK"]:before { content: 'kr'; }
-    &[code="CHF"]:before { content: 'Fr'; }
-    &[code="CAD"]:before { content: '$'; font-size: 28px}
-    &[code="AUD"]:before { content: '$'; font-size: 28px}
-    &[code="ZAR"]:before { content: 'R'; font-size: 28px}
-    &[code="HKD"]:before { content: '$'; font-size: 28px}
-    &[code="NZD"]:before { content: '$'; font-size: 28px}
-    &[code="PLN"]:before { content: 'zł'; font-size: 28px}
-    &[code="SGD"]:before { content: '$'; font-size: 28px}
-    &[code="CNY"]:before { content: '¥'; font-size: 28px}
-    &[code="VND"]:before { content: '₫'; font-size: 28px}
-    &[code="?"]:before { content: '?'; font-size: 28px}
-    &[code="+"]:before { content: '+'; font-size: 28px}
-    &[code="+/-"]:before { content: '+/-'; font-size: 28px}
+    content: attr(symbol);
   }
+
+  &[symbol="AFN"]:before { content: '؋'; font-size: 24px; }
+  &[symbol="USD"]:before { content: '$'; font-size: 24px; }
+  &[symbol="EUR"]:before { content: '€'; font-size: 24px; }
+  &[symbol="GBP"]:before { content: '£'; font-size: 24px; }
+  &[symbol="JPY"]:before { content: '¥'; font-size: 24px; }
+  &[symbol="MGA"]:before { content: 'Ar'; }
+  &[symbol="NOK"]:before { content: 'kr'; }
+  &[symbol="SEK"]:before { content: 'kr'; }
+  &[symbol="DKK"]:before { content: 'kr'; }
+  &[symbol="CZK"]:before { content: 'kr'; }
+  &[symbol="CHF"]:before { content: 'Fr'; }
+  &[symbol="CAD"]:before { content: '$'; font-size: 24px}
+  &[symbol="AUD"]:before { content: '$'; font-size: 24px}
+  &[symbol="ZAR"]:before { content: 'R'; font-size: 24px}
+  &[symbol="HKD"]:before { content: '$'; font-size: 24px}
+  &[symbol="NZD"]:before { content: '$'; font-size: 24px}
+  &[symbol="PLN"]:before { content: 'zł'; font-size: 24px}
+  &[symbol="SGD"]:before { content: '$'; font-size: 24px}
+  &[symbol="CNY"]:before { content: '¥'; font-size: 24px}
+  &[symbol="VND"]:before { content: '₫'; font-size: 24px}
+  &[symbol="?"]:before { content: '?'; font-size: 24px}
+  &[symbol="+"]:before { content: '+'; font-size: 24px}
+  &[symbol="+/-"]:before { content: '+/-'; font-size: 24px}
 
   curr-code {
     display: block;
+    padding: $spacing $spacing 0;
 
     line-height: 28px;
     font-size: 26px;
@@ -77,6 +79,7 @@ currency {
   }
   curr-name {
     display: block;
+    padding: 0 $spacing;
 
     line-height: 16px;
     font-size: 14px;
@@ -88,8 +91,8 @@ currency {
     top: $spacing; right: $spacing;
 
     display: block;
-    margin: 0;
-    padding: 12px 0 0 0;
+    margin: 12px 0 0;
+    padding: 0;
     height: 14px;
     line-height: 14px;
 
@@ -103,12 +106,15 @@ currency {
 
     display: block;
     font-size: 14px;
+    text-align: center;
   }
 
   curr-input {
+    cursor: default;
     display: block;
     width: 100%;
     height: 100%;
+
     input {
       display: block;
       margin: 0;
@@ -126,14 +132,12 @@ currency {
       &:focus {
         outline: none;
       }
-    }
-  }
 
-  &.no-symbol {
-    padding: $spacing;
-
-    curr-text {
-      text-align: center;
+      &#search {
+        padding: 0 $spacing;
+        font-size: 28px;
+        text-align: left;
+      }
     }
   }
 }
