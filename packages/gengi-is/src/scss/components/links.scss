@@ -1,0 +1,12 @@
+
+links {
+  @extend currency;
+
+  width: calc(50% - 5px);
+  float: left;
+  min-width: 0;
+
+  + links {
+    margin-left: $spacing;
+  }
+}
