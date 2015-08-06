@@ -1,4 +1,4 @@
-define(['calculator/sanitize'], function(sanitize) {
+define(['utils/sanitize'], function(sanitize) {
   'use strict';
   var _calc = function(rate, amount) {
     if (!rate) { return;}
