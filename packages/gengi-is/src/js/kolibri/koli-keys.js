@@ -1,7 +1,7 @@
 'use strict';
-define(function(){
+define(() => {
   // Returns keycodes for each key
-  var keys = {
+  const keys = {
     'mouse': {
       'left': 1,
       'middle': 2,
@@ -122,7 +122,7 @@ define(function(){
     'singlequote': 222,
   };
 
-  keys.isFunctionalKey = function(which){
+  keys.isFunctionalKey = which => {
     which = which || 0;
     return which === keys.ctrl ||
       which === keys.alt ||
@@ -137,24 +137,24 @@ define(function(){
       which === keys.arrow.down;
   };
 
-  keys.isClickModifier = function(event){
+  keys.isClickModifier = event => {
     return event && (event.ctrlKey ||
       event.metaKey ||
       event.which === keys.mouse.middle);
   };
 
-  keys.isTextModifier = function(which){
+  keys.isTextModifier = which => {
     which = which || 0;
     return which === keys.space ||
       which === keys.delete ||
       which === keys.backspace;
   };
 
-  keys.which = function(keyCode){
-    for (var property in this){
+  keys.which = keyCode => {
+    for (const property in this){
       if (this.hasOwnProperty(property)){
         if (typeof this[property] === 'object'){
-          for (var subProp in this[property]){
+          for (const subProp in this[property]){
             if (this[property].hasOwnProperty(subProp)) {
               if (this[property][subProp] === keyCode) {
                 return property + '-' + subProp;

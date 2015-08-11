@@ -1,10 +1,11 @@
 'use strict';
-define(['promise'], function(promise) {
+define(['promise'], (promise) => {
   var timeout = 0;
-  var _search = function(vm){
+  var _search = (vm) => {
     vm.search.done = false;
+
     clearTimeout(timeout);
-    timeout = setTimeout(function(){
+    timeout = setTimeout(() => {
       if (!vm.search.term) {
         vm.$set('search',{
           term: vm.search.term,
@@ -21,7 +22,7 @@ define(['promise'], function(promise) {
       }
       promise.get(
         'http://api-v2.gengi.is/currency/search/' + vm.search.term
-      ).then(function(error, response, xhr){
+      ).then((error, response, xhr) => {
         if (error) {
           console.error('Error ' + xhr.status);
           return;

@@ -1,7 +1,7 @@
 'use strict';
-define([], function() {
+define([], () => {
   var _local = {
-    set: function(dataName, data) {
+    set: (dataName, data) => {
       if (data === undefined) {
         console.warn('No data provided for "%s"\n', dataName, data);
         return false;
@@ -10,12 +10,12 @@ define([], function() {
       return true;
     },
 
-    get: function(dataName){
+    get: dataName => {
       var data = window.localStorage.getItem(dataName);
       return (!data || data === '{}' || data === '[]') ? false : data;
     },
 
-    clear: function(dataName) {
+    clear: dataName =>  {
       window.localStorage.removeItem(dataName);
     },
 
@@ -23,7 +23,7 @@ define([], function() {
       window.localStorage.clear();
     },
 
-    setJSON: function(dataName, data) {
+    setJSON: (dataName, data) => {
       if (data === undefined) {
         console.warn('No data provided for "%s"\n', dataName, data);
         return false;
@@ -37,7 +37,7 @@ define([], function() {
       }
     },
 
-    getJSON: function(dataName){
+    getJSON: dataName => {
       var unParsedData = _local.get(dataName);
       if (!unParsedData) { return false; }
 

@@ -1,6 +1,6 @@
 'use strict';
-define(['utils/sanitize'], function(sanitize) {
-  var _calc = function(rate, amount) {
+define(['utils/sanitize'], (sanitize) => {
+  return (rate, amount) => {
     if (!rate) { return;}
 
     amount = sanitize.number(amount);
@@ -11,6 +11,4 @@ define(['utils/sanitize'], function(sanitize) {
 
     return parseFloat(value).toFixed(fix);
   };
-
-  return _calc;
 });

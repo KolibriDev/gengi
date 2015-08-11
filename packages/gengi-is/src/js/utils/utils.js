@@ -6,7 +6,7 @@ define([
   'utils/search',
   'kolibri/koli-local',
   'utils/sanitize'
-  ], function(calculate, format, router, search, local, sanitize) {
+  ], (calculate, format, router, search, local, sanitize) => {
 
   return {
     calculate: calculate,

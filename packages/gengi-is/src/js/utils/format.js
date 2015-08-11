@@ -1,16 +1,14 @@
 'use strict';
-define(['utils/sanitize'], function(sanitize) {
-  var _format = {
-    code: function(code){
+define(['utils/sanitize'], (sanitize) => {
+  return {
+    code: (code) => {
       code = sanitize.code(code);
       return code.toUpperCase();
     },
-    number: function(value, fix){
+    number: (value, fix) => {
       value = sanitize.number(value);
       return !fix ? value : parseFloat(value).toFixed(fix);
     },
-    format: function(){},
+    format: () => {},
   };
-
-  return _format;
 });

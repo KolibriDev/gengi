@@ -1,7 +1,7 @@
 'use strict';
-define(['utils/format'], function(format) {
+define(['utils/format'], (format) => {
   var _router = {
-    updateView: function(vm, view){
+    updateView: (vm, view) => {
       var newPath = '/';
       var state = {
         view: view,
@@ -21,7 +21,7 @@ define(['utils/format'], function(format) {
       window.history.pushState(state, null, newPath);
     },
 
-    initState: function(vm){
+    initState: (vm) => {
       var state = {
         view: vm.app.view,
         amountISK: vm.app.amountISK,
@@ -31,7 +31,7 @@ define(['utils/format'], function(format) {
       window.history.replaceState(state, null, window.location.pathname);
     },
 
-    updateState: function(vm){
+    updateState: (vm) => {
       var state = window.history.state;
       var newPath = '/';
       if (state.view === 'calc') {
@@ -47,7 +47,7 @@ define(['utils/format'], function(format) {
       window.history.replaceState(state, null, newPath);
     },
 
-    parseQuery: function(query) {
+    parseQuery: (query) => {
       query = query || window.location.pathname.substr(1).toLowerCase();
       var retobj = {
         view: 'list',
