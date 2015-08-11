@@ -34,6 +34,9 @@ module.exports = function(gulp) {
       .pipe( gulp.plugin.plumber() )
 
       .pipe( lintFilter )
+      .pipe ( gulp.plugin.sourcemaps.init() )
+      .pipe ( gulp.plugin.babel() )
+
       .pipe( gulp.plugin.jshint(gulp.cfg.scripts.lint.config) )
       .pipe( jsHintReporter )
       .pipe( lintFilter.restore() )

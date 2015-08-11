@@ -1,5 +1,5 @@
+'use strict';
 define(['vue', 'promise', 'utils/utils'], function(Vue, promise, utils) {
-  'use strict';
   var _gengi = {
     version: '0.0.3',
     vm: false,

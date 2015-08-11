@@ -1,5 +1,5 @@
+'use strict';
 define(['utils/sanitize'], function(sanitize) {
-  'use strict';
   var _format = {
     code: function(code){
       code = sanitize.code(code);

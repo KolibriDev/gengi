@@ -1,5 +1,5 @@
+'use strict';
 define([], function() {
-  'use strict';
   var _local = {
     set: function(dataName, data) {
       if (data === undefined) {

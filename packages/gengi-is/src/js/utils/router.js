@@ -1,5 +1,5 @@
+'use strict';
 define(['utils/format'], function(format) {
-  'use strict';
   var _router = {
     updateView: function(vm, view){
       var newPath = '/';

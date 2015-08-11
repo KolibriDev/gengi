@@ -1,3 +1,4 @@
+'use strict';
 define([
   'utils/calculate',
   'utils/format',
@@ -6,7 +7,6 @@ define([
   'kolibri/koli-local',
   'utils/sanitize'
   ], function(calculate, format, router, search, local, sanitize) {
-  'use strict';
 
   return {
     calculate: calculate,

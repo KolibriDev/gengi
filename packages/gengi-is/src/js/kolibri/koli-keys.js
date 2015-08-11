@@ -1,4 +1,4 @@
-
+'use strict';
 define(function(){
   // Returns keycodes for each key
   var keys = {

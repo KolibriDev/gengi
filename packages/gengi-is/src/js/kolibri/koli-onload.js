@@ -1,5 +1,5 @@
+'use strict';
 define(['domReady', 'zepto'], function(domReady, $){
-  'use strict';
   var onLoad = function(callback, reLoadCallback) {
     domReady(callback);
     reLoadCallback = $.isFunction(reLoadCallback) ? reLoadCallback : callback;

@@ -1,5 +1,5 @@
+'use strict';
 define(['promise'], function(promise) {
-  'use strict';
   var timeout = 0;
   var _search = function(vm){
     vm.search.done = false;
