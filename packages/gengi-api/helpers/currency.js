@@ -1,4 +1,5 @@
 var request = require('request'),
+    _ = require('underscore'),
     parseString = require('xml2js').parseString,
     redis = require('redis').createClient(),
     values = require('./values'),
@@ -52,21 +53,32 @@ exports.fetch = function(callback){
 
       var arr = result.Rate;
       var retval = {
-        currencies: [],
+        currencies: {},
         currencyDate: arr[0].RateDate[0],
         // Store expiring timestamp for front-end
         expires: time.getMidnight(),
       };
       for (var i = 0, currency; currency = arr[i]; i++) {
-        retval.currencies.push({
-          code: currency.CurrencyCode[0],
-          name: values.name(currency.CurrencyDescription[0]),
+        var country = {
           country: currency.Country[0],
           countryCode: currency.CountryCode[0],
           countryEnglish: currency.CountryEnglish[0],
+        };
+        var newCurr = {
+          code: currency.CurrencyCode[0],
           rate: values.rate(currency.CurrencyRate[0]),
-        });
+          name: values.name(currency.CurrencyDescription[0]),
+          countries: []
+        };
+        if (!retval.currencies.hasOwnProperty(newCurr.code)) {
+          retval.currencies[newCurr.code] = newCurr;
+        }
+        retval.currencies[newCurr.code].countries.push(country);
       }
+      retval.currencies = _.sortBy(retval.currencies, 'code');
+      _.each(retval.currencies, function(currency){
+        currency.countries = _.sortBy(currency.countries,'country');
+      });
       callback(null, retval);
       return;
     });
@@ -75,9 +87,14 @@ exports.fetch = function(callback){
 };
 
 exports.toDisplayCurrency = function(currency){
+  var countryArr = [];
+  _.each(currency.countries, function(country){
+    countryArr.push(country.country);
+  });
   return {
     code: currency.code,
     name: currency.name,
     rate: currency.rate,
+    countries: countryArr,
   };
 };

@@ -1,4 +1,4 @@
-
+var _ = require('underscore');
 /**
 @search.filter
   Compare search term with available fields and return true for any partial match.
@@ -11,8 +11,15 @@ exports.filter = function(value, term){
 
   if (value.hasOwnProperty('code') && value.code.toUpperCase().indexOf(term) > -1) { return true; }
   if (value.hasOwnProperty('name') && value.name.toUpperCase().indexOf(term) > -1) { return true; }
-  if (value.hasOwnProperty('country') && value.country.toUpperCase().indexOf(term) > -1) { return true; }
-  if (value.hasOwnProperty('countryCode') && value.countryCode.toUpperCase().indexOf(term) > -1) { return true; }
-  if (value.hasOwnProperty('countryEnglish') && value.countryEnglish.toUpperCase().indexOf(term) > -1) { return true; }
+  if (value.hasOwnProperty('countries')){
+    var found = false;
+    _.each(value.countries, function(country){
+      if (country.hasOwnProperty('country') && country.country.toUpperCase().indexOf(term) > -1) { found = true; }
+      if (country.hasOwnProperty('countryCode') && country.countryCode.toUpperCase().indexOf(term) > -1) { found = true; }
+      if (country.hasOwnProperty('countryEnglish') && country.countryEnglish.toUpperCase().indexOf(term) > -1) { found = true; }
+    });
+
+    return found;
+  }
   return false;
 };

@@ -20,7 +20,6 @@ exports.getCurrencies = function(req, res) {
         _.each(results.currencies, function(currency){
           codes.push(currency.code);
         });
-        codes = _.uniq(codes);
       }
 
       var currencies = {};
