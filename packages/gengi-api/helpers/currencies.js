@@ -40,7 +40,7 @@ currencies.toDisplayCurrency = function(currency){
 
 currencies.ensureCodes = function(codes, currs) {
   codes = codes || '';
-  codes = codes.toUpperCase().split(',');
+  codes = codes.toString().toUpperCase().split(',');
 
   if (codes.length === 1 && codes[0] === '') {
     _.each(currs, function(curr) {
