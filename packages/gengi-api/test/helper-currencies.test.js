@@ -3,7 +3,7 @@ var assert = require('assert');
 
 describe('Helpers > currencies', function(){
 
-  describe('get()', function(){
+  describe('get(callback)', function(){
 
     it('should exist', function(done){
       assert(currencies.hasOwnProperty('get'), 'expected to have property');
@@ -17,7 +17,7 @@ describe('Helpers > currencies', function(){
 
   });
 
-  describe('toDisplayCurrency()', function(){
+  describe('toDisplayCurrency(currency)', function(){
 
     it('should exist', function(done){
       assert(currencies.hasOwnProperty('toDisplayCurrency'), 'expected to have property');

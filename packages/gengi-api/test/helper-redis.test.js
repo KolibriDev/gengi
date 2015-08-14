@@ -3,7 +3,7 @@ var assert = require('assert');
 
 describe('Helpers > redis', function(){
 
-  describe('set()', function(){
+  describe('set(data)', function(){
 
     it('should exist', function(done){
       assert(redis.hasOwnProperty('set'), 'expected to have property');
@@ -17,7 +17,7 @@ describe('Helpers > redis', function(){
 
   });
 
-  describe('get()', function(){
+  describe('get(callback)', function(){
 
     it('should exist', function(done){
       assert(redis.hasOwnProperty('get'), 'expected to have property');

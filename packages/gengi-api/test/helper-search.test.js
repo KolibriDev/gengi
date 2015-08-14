@@ -4,7 +4,7 @@ var _ = require('underscore');
 
 describe('Helpers > search', function(){
 
-  describe('filter()', function(){
+  describe('filter(value, term)', function(){
 
     it('should exist', function(done){
       assert(search.hasOwnProperty('filter'), 'expected \'search\' to have property \'filter\'');

@@ -3,7 +3,7 @@ var assert = require('assert');
 
 describe('Helpers > time', function(){
 
-  describe('secsToMidnight()', function(){
+  describe('secsToMidnight(now)', function(){
 
     it('should exist', function(done){
       assert(time.hasOwnProperty('secsToMidnight'), 'expected \'time\' to have property \'secsToMidnight\'');

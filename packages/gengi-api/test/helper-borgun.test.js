@@ -3,7 +3,7 @@ var assert = require('assert');
 
 describe('Helpers > borgun', function(){
 
-  describe('get()', function(){
+  describe('get(callback)', function(){
 
     it('should exist', function(done){
       assert(borgun.hasOwnProperty('get'), 'expected \'borgun\' to have property \'get\'');
@@ -17,7 +17,7 @@ describe('Helpers > borgun', function(){
 
   });
 
-  describe('parse()', function(){
+  describe('parse(data)', function(){
 
     it('should exist', function(done){
       assert(borgun.hasOwnProperty('parse'), 'expected \'borgun\' to have property \'parse\'');
@@ -31,7 +31,7 @@ describe('Helpers > borgun', function(){
 
   });
 
-  describe('parseCurrencies()', function(){
+  describe('parseCurrencies(result)', function(){
 
     it('should exist', function(done){
       assert(borgun.hasOwnProperty('parseCurrencies'), 'expected \'borgun\' to have property \'parseCurrencies\'');
@@ -45,7 +45,7 @@ describe('Helpers > borgun', function(){
 
   });
 
-  describe('parseCurrency()', function(){
+  describe('parseCurrency(currency, callback)', function(){
 
     it('should exist', function(done){
       assert(borgun.hasOwnProperty('parseCurrency'), 'expected \'borgun\' to have property \'parseCurrency\'');
@@ -59,7 +59,7 @@ describe('Helpers > borgun', function(){
 
   });
 
-  describe('sortCurrencies()', function(){
+  describe('sortCurrencies(currencies, sortBy)', function(){
 
     it('should exist', function(done){
       assert(borgun.hasOwnProperty('sortCurrencies'), 'expected \'borgun\' to have property \'sortCurrencies\'');

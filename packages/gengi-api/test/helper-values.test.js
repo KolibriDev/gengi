@@ -3,7 +3,7 @@ var assert = require('assert');
 
 describe('Helpers > values', function(){
 
-  describe('name()', function(){
+  describe('name(name)', function(){
 
     it('should exist', function(done){
       assert(values.hasOwnProperty('name'), 'expected \'values\' to have property \'name\'');
@@ -41,7 +41,7 @@ describe('Helpers > values', function(){
 
   });
 
-  describe('rate()', function(){
+  describe('rate(value)', function(){
 
     it('should exist', function(done){
       assert(values.hasOwnProperty('rate'), 'expected \'values\' to have property \'rate\'');
