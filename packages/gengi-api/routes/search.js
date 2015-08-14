@@ -10,4 +10,18 @@ router.get('/:term?', function(req, res) {
   });
 });
 
-module.exports = router;
+module.exports = {
+  router: router,
+  name: 'search',
+  docs: {
+    path: '/search/:term',
+    responseWithoutParams: 'Empty list',
+    params: {
+      term: {
+        required: true,
+        description: 'String value, search term to match with available currency objects',
+        response: 'List of matching currencies, if any',
+      }
+    },
+  },
+};

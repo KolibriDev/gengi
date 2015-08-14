@@ -8,4 +8,18 @@ router.get('/:codes?', function(req, res) {
   });
 });
 
-module.exports = router;
+module.exports = {
+  router: router,
+  name: 'currencies',
+  docs: {
+    path: '/currencies/:codes',
+    responseWithoutParams: 'All available currencies',
+    params: {
+      codes: {
+        required: false,
+        description: 'String value, one or more currency codes separated by comma',
+        response: 'List of requested currencies, if they exist',
+      }
+    },
+  },
+};

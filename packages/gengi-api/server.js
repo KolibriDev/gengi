@@ -13,10 +13,24 @@ app.all('/*', function(req, res, next) {
 });
 
 // Endpoints
+var endpoints = {};
 var normalizedPath = require('path').join(__dirname, 'routes');
 require('fs').readdirSync(normalizedPath).forEach(function(fileName) {
   var endpoint = require('./routes/' + fileName);
-  app.use('/' + fileName.split('.js')[0], endpoint);
+  app.use('/' + endpoint.name, endpoint.router);
+  endpoints[endpoint.name] = endpoint.docs;
+});
+
+app.get('/', function(req, res){
+  var pkg = require('./package.json');
+  res.send({
+    version: pkg.version,
+    description: pkg.description,
+    endpoints: endpoints,
+    bugs: pkg.bugs,
+    author: pkg.author,
+    contributors: pkg.contributors,
+  });
 });
 
 http.createServer(app).listen(app.get('port'));
