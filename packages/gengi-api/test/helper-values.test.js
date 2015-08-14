@@ -15,6 +15,11 @@ describe('Helpers > values', function(){
       done();
     });
 
+    it('should return given value if falsy', function(done){
+      assert(values.name(undefined) === undefined, 'expected undefined');
+      done();
+    });
+
     var name = values.name('pund, sterlingspund');
 
     it('should return a string', function(done){

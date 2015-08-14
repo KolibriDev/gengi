@@ -16,6 +16,11 @@ describe('Helpers > search', function(){
       done();
     });
 
+    it('should return false if no term is provided', function(done){
+      assert(search.filter() === false);
+      done();
+    });
+
     var arr = [
       { code: 'USD', name: 'bandarískur dalur' },
       { code: 'DKK', name: 'dönsk króna' },
