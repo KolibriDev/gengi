@@ -1,7 +1,7 @@
 'use strict';
 define(['vue', 'promise', 'utils/utils'], (Vue, promise, utils) => {
   var _gengi = {
-    version: '0.0.3',
+    version: '0.0.4',
     vm: false,
     init: () => {
       _gengi.vm = new Vue({
@@ -198,7 +198,7 @@ define(['vue', 'promise', 'utils/utils'], (Vue, promise, utils) => {
 
       _gengi.vm.$set('message', 'loading');
       promise.get(
-        'http://api-v2.gengi.is/currency/' + _gengi.vm.currencyList.join(',')
+        'http://api-v2.gengi.is/currencies/' + _gengi.vm.currencyList.join(',')
       ).then((error, response) => {
         if (error) {
           if (currencies) {

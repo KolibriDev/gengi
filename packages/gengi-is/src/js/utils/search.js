@@ -21,7 +21,7 @@ define(['promise'], (promise) => {
         return;
       }
       promise.get(
-        'http://api-v2.gengi.is/currency/search/' + vm.search.term
+        'http://api-v2.gengi.is/search/' + vm.search.term
       ).then((error, response, xhr) => {
         if (error) {
           console.error('Error ' + xhr.status);
