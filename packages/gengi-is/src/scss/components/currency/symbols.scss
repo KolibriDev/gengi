@@ -1,25 +1,27 @@
 
 currency {
   &[symbol] {
-    padding-left: $block;
+    padding-left: $block + $spacing;
+    font-size: 36px;
   }
 
   &[symbol]:before {
     position: absolute;
-    top: 0; left: 0; bottom: 0;
+    top: 10px; left: 10px; bottom: 10px;
 
     overflow: hidden;
     display: block;
     width: $block;
     height: $block;
 
-    line-height: 60px;
-    font-weight: 300;
-    font-size: 24px;
+    line-height: 55px;
+    font-weight: 700;
+    font-size: 1em;
     text-align: center;
-    color: $color-light;
+    color: $color-green-dark;
 
-    background: $color-dark;
+    background: $color-green-light;
+    border-radius: 100%;
 
     -webkit-font-smoothing: antialiased;
 
@@ -34,7 +36,7 @@ currency {
   &[symbol="+/-"]:before { content: '+/-'; }
 
   // Currencies
-  &[symbol="ISK"]:before { content: 'ISK'; }
+  &[symbol="ISK"]:before { content: 'ISK'; font-size: 0.7em; }
 
   &[symbol=AED]:before { content: 'د.إ'; } // latin: DH or Dhs
   &[symbol=AFN]:before { content: '؋'; }
@@ -45,35 +47,35 @@ currency {
   &[symbol=AUD]:before { content: '$'; }
   &[symbol=AWG]:before { content: 'ƒ'; }
   &[symbol=AZN]:before { content: '₼'; }
-  &[symbol=BAM]:before { content: 'KM'; }
+  &[symbol=BAM]:before { content: 'KM'; font-size: 0.8em; }
   &[symbol=BBD]:before { content: '$'; }
   &[symbol=BDT]:before { content: '৳'; }
-  &[symbol=BGN]:before { content: 'лв'; }
-  &[symbol=BHD]:before { content: '.د.ب'; } // latin: BD
-  &[symbol=BIF]:before { content: 'FBu'; }
+  &[symbol=BGN]:before { content: 'лв'; font-size: 0.8em; }
+  &[symbol=BHD]:before { content: '.د.ب'; font-size: 0.8em; } // latin: BD
+  &[symbol=BIF]:before { content: 'FBu'; font-size: 0.7em; }
   &[symbol=BMD]:before { content: '$'; }
   &[symbol=BND]:before { content: '$'; }
-  &[symbol=BOB]:before { content: 'Bs.'; }
-  &[symbol=BRL]:before { content: 'R$'; }
+  &[symbol=BOB]:before { content: 'Bs.'; font-size: 0.8em; }
+  &[symbol=BRL]:before { content: 'R$'; font-size: 0.8em; }
   &[symbol=BSD]:before { content: '$'; }
   &[symbol=BWP]:before { content: 'P'; }
-  &[symbol=BYR]:before { content: 'Br'; }
+  &[symbol=BYR]:before { content: 'Br'; font-size: 0.8em; }
   &[symbol=BZD]:before { content: '$'; }
   &[symbol=CAD]:before { content: '$'; }
-  &[symbol=CHF]:before { content: 'Fr'; }
+  &[symbol=CHF]:before { content: 'Fr'; font-size: 0.8em; }
   &[symbol=CLP]:before { content: '$'; }
   &[symbol=CNY]:before { content: '¥'; }
   &[symbol=COP]:before { content: '$'; }
   &[symbol=CRC]:before { content: '₡'; }
   &[symbol=CUP]:before { content: '$'; }
-  &[symbol=CVE]:before { content: 'Esc'; }
-  &[symbol=CZK]:before { content: 'kr'; }
-  &[symbol=DJF]:before { content: 'Fr'; }
-  &[symbol=DKK]:before { content: 'kr'; }
+  &[symbol=CVE]:before { content: 'Esc'; font-size: 0.8em; }
+  &[symbol=CZK]:before { content: 'kr'; font-size: 0.8em; }
+  &[symbol=DJF]:before { content: 'Fr'; font-size: 0.8em; }
+  &[symbol=DKK]:before { content: 'kr'; font-size: 0.8em; }
   &[symbol=DOP]:before { content: '$'; }
   &[symbol=DZD]:before { content: 'دج'; } // latin: DA
-  &[symbol=EGP]:before { content: 'ج.م.'; } // Latin: L.E. Rarely £E or E£
-  &[symbol=ETB]:before { content: 'Br'; }
+  &[symbol=EGP]:before { content: 'ج.م.'; font-size: 0.8em; } // Latin: L.E. Rarely £E or E£
+  &[symbol=ETB]:before { content: 'Br'; font-size: 0.8em; }
   &[symbol=EUR]:before { content: '€'; }
   &[symbol=FJD]:before { content: '$'; }
   &[symbol=FKP]:before { content: '£'; }
@@ -81,25 +83,25 @@ currency {
   // &[symbol=GEL]:before { content: '₾'; } // SVG needed
   &[symbol=GIP]:before { content: '£'; }
   &[symbol=GMD]:before { content: 'D'; }
-  &[symbol=GNF]:before { content: 'Fr'; }
+  &[symbol=GNF]:before { content: 'Fr'; font-size: 0.8em; }
   &[symbol=GTQ]:before { content: 'Q'; }
   &[symbol=GYD]:before { content: '$'; }
   &[symbol=HKD]:before { content: '$'; }
   &[symbol=HNL]:before { content: 'L'; }
-  &[symbol=HRK]:before { content: 'kn'; }
+  &[symbol=HRK]:before { content: 'kn'; font-size: 0.8em; }
   &[symbol=HTG]:before { content: 'G'; }
-  &[symbol=HUF]:before { content: 'Ft'; }
-  &[symbol=IDR]:before { content: 'Rp'; }
+  &[symbol=HUF]:before { content: 'Ft'; font-size: 0.8em; }
+  &[symbol=IDR]:before { content: 'Rp'; font-size: 0.8em; }
   &[symbol=ILS]:before { content: '₪'; }
   &[symbol=INR]:before { content: '₹'; }
-  &[symbol=IQD]:before { content: 'د.ع'; }
+  &[symbol=IQD]:before { content: 'د.ع'; font-size: 0.8em; }
   &[symbol=JMD]:before { content: '$'; }
-  &[symbol=JOD]:before { content: 'JD'; }
+  &[symbol=JOD]:before { content: 'JD'; font-size: 0.8em; }
   &[symbol=JPY]:before { content: '¥'; }
-  &[symbol=KES]:before { content: 'Ksh'; }
-  &[symbol=KGS]:before { content: 'сом'; }
+  &[symbol=KES]:before { content: 'Ksh'; font-size: 0.7em; }
+  &[symbol=KGS]:before { content: 'сом'; font-size: 0.7em; }
   &[symbol=KHR]:before { content: '៛'; }
-  &[symbol=KMF]:before { content: 'Fr'; }
+  &[symbol=KMF]:before { content: 'Fr'; font-size: 0.8em; }
   &[symbol=KRW]:before { content: '₩'; }
   &[symbol=KWD]:before { content: 'د.ك'; } // latin: K.D.
   &[symbol=KYD]:before { content: '$'; }
@@ -108,72 +110,72 @@ currency {
   &[symbol=LBP]:before { content: 'LL'; }
   &[symbol=LKR]:before { content: '₨'; }
   &[symbol=LRD]:before { content: '$'; }
-  &[symbol=LTL]:before { content: 'Lt'; }
+  &[symbol=LTL]:before { content: 'Lt'; font-size: 0.8em; }
   &[symbol=LYD]:before { content: 'ل.د'; } // latin: LD
   &[symbol=MAD]:before { content: 'د.م.'; } // latin: DH or Dhs
   &[symbol=MDL]:before { content: 'L'; }
-  &[symbol=MGA]:before { content: 'Ar'; }
-  &[symbol=MKD]:before { content: 'ден'; } // latin: DEN
+  &[symbol=MGA]:before { content: 'Ar'; font-size: 0.8em; }
+  &[symbol=MKD]:before { content: 'ден'; font-size: 0.7em; } // latin: DEN
   &[symbol=MMK]:before { content: 'K'; }
   &[symbol=MNT]:before { content: '₮'; }
   &[symbol=MOP]:before { content: '元'; } // also: 圓 latin: MOP$
-  &[symbol=MRO]:before { content: 'UM'; }
+  &[symbol=MRO]:before { content: 'UM'; font-size: 0.8em; }
   &[symbol=MUR]:before { content: '₨'; }
-  &[symbol=MVR]:before { content: 'Rf.'; }
-  &[symbol=MWK]:before { content: 'MK'; }
+  &[symbol=MVR]:before { content: 'Rf.'; font-size: 0.8em; }
+  &[symbol=MWK]:before { content: 'MK'; font-size: 0.8em; }
   &[symbol=MXN]:before { content: '$'; }
-  &[symbol=MYR]:before { content: 'RM'; }
-  &[symbol=MZN]:before { content: 'MT'; } // also MTn
+  &[symbol=MYR]:before { content: 'RM'; font-size: 0.8em; }
+  &[symbol=MZN]:before { content: 'MT'; font-size: 0.8em; } // also MTn
   &[symbol=NAD]:before { content: '$'; }
   &[symbol=NGN]:before { content: '₦'; }
-  &[symbol=NIO]:before { content: 'C$'; }
-  &[symbol=NOK]:before { content: 'kr'; }
+  &[symbol=NIO]:before { content: 'C$'; font-size: 0.8em; }
+  &[symbol=NOK]:before { content: 'kr'; font-size: 0.8em; }
   &[symbol=NPR]:before { content: '₨'; }
   &[symbol=NZD]:before { content: '$'; }
-  &[symbol=OMR]:before { content: 'ر.ع.'; }
-  &[symbol=PAB]:before { content: 'B/.'; }
-  &[symbol=PEN]:before { content: 'S/.'; }
+  &[symbol=OMR]:before { content: 'ر.ع.'; font-size: 0.8em; }
+  &[symbol=PAB]:before { content: 'B/.'; font-size: 0.8em; }
+  &[symbol=PEN]:before { content: 'S/.'; font-size: 0.8em; }
   &[symbol=PGK]:before { content: 'K'; }
   &[symbol=PHP]:before { content: '₱'; }
   &[symbol=PKR]:before { content: '₨'; }
   &[symbol=PLN]:before { content: 'zł'; }
   &[symbol=PYG]:before { content: '₲'; }
-  &[symbol=QAR]:before { content: 'ر.ق'; } // latin: QR
-  &[symbol=RON]:before { content: 'lei'; }
-  &[symbol=RSD]:before { content: 'дин'; } // latin: din.
+  &[symbol=QAR]:before { content: 'ر.ق'; font-size: 0.8em; } // latin: QR
+  &[symbol=RON]:before { content: 'lei'; font-size: 0.8em; }
+  &[symbol=RSD]:before { content: 'дин'; font-size: 0.7em; } // latin: din.
   &[symbol=RUB]:before { content: '₽'; }
-  &[symbol=RWF]:before { content: 'FRw'; }
-  &[symbol=SAR]:before { content: 'ر.س'; } // Latin: SR. Also: ریال
+  &[symbol=RWF]:before { content: 'FRw'; font-size: 0.7em; }
+  &[symbol=SAR]:before { content: 'ر.س'; font-size: 0.8em; } // Latin: SR. Also: ریال
   &[symbol=SBD]:before { content: '$'; }
-  &[symbol=SCR]:before { content: 'SRe'; }
-  &[symbol=SEK]:before { content: 'kr'; }
+  &[symbol=SCR]:before { content: 'SRe'; font-size: 0.7em; }
+  &[symbol=SEK]:before { content: 'kr'; font-size: 0.8em; }
   &[symbol=SGD]:before { content: '$'; }
   &[symbol=SHP]:before { content: '£'; }
-  &[symbol=SLL]:before { content: 'Le'; }
-  &[symbol=SOS]:before { content: 'Sh.So.'; }
+  &[symbol=SLL]:before { content: 'Le'; font-size: 0.8em; }
+  &[symbol=SOS]:before { content: 'Sh.So.'; font-size: 0.4em; }
   &[symbol=SRD]:before { content: '$'; }
-  &[symbol=STD]:before { content: 'Db'; }
+  &[symbol=STD]:before { content: 'Db'; font-size: 0.8em; }
   &[symbol=SVC]:before { content: '₡'; }
   &[symbol=SZL]:before { content: 'E'; }
   &[symbol=THB]:before { content: '฿'; }
-  &[symbol=TND]:before { content: 'د.ت'; } // latin: DT
-  &[symbol=TOP]:before { content: 'T$'; }
+  &[symbol=TND]:before { content: 'د.ت'; font-size: 0.8em; } // latin: DT
+  &[symbol=TOP]:before { content: 'T$'; font-size: 0.8em; }
   &[symbol=TRY]:before { content: '₺'; }
   &[symbol=TTD]:before { content: '$'; }
   &[symbol=TWD]:before { content: '角'; } // latin: NT$
-  &[symbol=TZS]:before { content: 'TSh'; }
+  &[symbol=TZS]:before { content: 'TSh'; font-size: 0.7em; }
   &[symbol=UAH]:before { content: '₴'; }
-  &[symbol=UGX]:before { content: 'USh'; }
+  &[symbol=UGX]:before { content: 'USh'; font-size: 0.7em; }
   &[symbol=USD]:before { content: '$'; }
   &[symbol=UYU]:before { content: '$'; }
   &[symbol=UZS]:before { content: 'лв'; }
-  &[symbol=VEF]:before { content: 'Bs.'; }
+  &[symbol=VEF]:before { content: 'Bs.'; font-size: 0.8em; }
   &[symbol=VND]:before { content: '₫'; }
-  &[symbol=VUV]:before { content: 'VT'; }
-  &[symbol=WST]:before { content: 'WS$'; }
-  &[symbol=XAF]:before { content: 'FCFA'; }
+  &[symbol=VUV]:before { content: 'VT'; font-size: 0.8em; }
+  &[symbol=WST]:before { content: 'WS$'; font-size: 0.6em; }
+  &[symbol=XAF]:before { content: 'FCFA'; font-size: 0.5em; }
   &[symbol=XCD]:before { content: '$'; }
-  &[symbol=XOF]:before { content: 'CFA'; }
+  &[symbol=XOF]:before { content: 'CFA'; font-size: 0.7em; }
   &[symbol=XPF]:before { content: 'F'; }
   &[symbol=YER]:before { content: '﷼'; }
   &[symbol=ZAR]:before { content: 'R'; }

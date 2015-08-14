@@ -15,7 +15,7 @@ $font-size-larger: 26px;
 
 // Sizes
 $spacing: 10px;
-$block: 64px;
+$block: 60px;
 $page-max-width: 500px;
 $page-min-width: 280px;
 
@@ -33,9 +33,13 @@ $color-gray: #999999;
 $color-gray-light: #ccc;
 
 // Colors
-$color-yellow: #FFD100;
-$color-dark: #26434C;
-$color-light: #EAEAEA;
+$color-green-light: #C4F6EB;
+$color-green: #39D6B3;
+$color-green-dark: #50E3C2;
+$color-green-darker: #178C72;
+$color-yellow: #F8E71C;
+$color-dark: #56656B;
+$color-light: #EDEDEB;
 
 $color-alert-red: #C25243;
 $color-alert-green: #85C243;
@@ -54,7 +58,7 @@ $color-count: length($colorArray);
 
 // Applied to html and main
 $main-background: $color-light;
-$body-background: $color-yellow;
+$body-background: $color-green;
 
 // Text direction & floats
 $text-direction: ltr;

@@ -9,7 +9,7 @@ header {
 
   line-height: $block;
 
-  background-color: $color-dark;
+  background-color: $color-green;
   color: $color-light;
 
   cursor: pointer;
@@ -41,12 +41,12 @@ header {
   hgroup {
     display: block;
     height: 38px;
-    padding-left: $block/2;
+    padding-left: $block;
 
     &:before {
       content: '';
       position: absolute;
-      top: 0; left: 0; bottom: 0;
+      top: 0; left: $block/4; bottom: 0;
       display: block;
       margin: auto;
       padding: 0;

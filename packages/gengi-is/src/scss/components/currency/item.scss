@@ -9,7 +9,7 @@ currency {
   width: 100%;
   min-width: $page-min-width;
   max-width: $page-max-width;
-  height: $block;
+  height: 80px;
 
   line-height: 1em;
   text-align: left;
@@ -20,7 +20,7 @@ currency {
 
   curr-code {
     display: block;
-    padding: $spacing $spacing 0;
+    padding: $spacing*2 $spacing 0;
 
     line-height: 28px;
     font-size: 26px;
@@ -37,7 +37,7 @@ currency {
 
   curr-rate {
     position: absolute;
-    top: $spacing; right: $spacing;
+    top: $spacing*2; right: $spacing;
 
     display: block;
     margin: 12px 0 0;
