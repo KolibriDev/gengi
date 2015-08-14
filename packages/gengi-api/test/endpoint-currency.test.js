@@ -2,13 +2,13 @@ var app = require('../server').app;
 var request = require('supertest');
 var assert = require('assert');
 
-describe('/currency/:code?', function(){
+describe('Endpoints > /currencies/:codes?', function(){
   var agent = request.agent(app);
 
-  describe('GET /currency/usd,eur', function(){
+  describe('GET /currencies/usd,eur', function(){
     it('should respond with json', function(done){
       agent
-        .get('/currency/usd,eur')
+        .get('/currencies/usd,eur')
         .expect(200)
         .expect('Content-Type', /json/)
         .expect(function(res) {
@@ -19,7 +19,7 @@ describe('/currency/:code?', function(){
 
     it('should have a currencyDate string', function(done){
       agent
-        .get('/currency/usd,eur')
+        .get('/currencies/usd,eur')
         .expect(200)
         .expect('Content-Type', /json/)
         .expect(function(res) {
@@ -33,7 +33,7 @@ describe('/currency/:code?', function(){
 
     it('should have an expires number', function(done){
       agent
-        .get('/currency/usd,eur')
+        .get('/currencies/usd,eur')
         .expect(200)
         .expect('Content-Type', /json/)
         .expect(function(res) {
@@ -47,7 +47,7 @@ describe('/currency/:code?', function(){
 
     it('should have a currencies object with exactly two items', function(done){
       agent
-        .get('/currency/usd,eur')
+        .get('/currencies/usd,eur')
         .expect(200)
         .expect('Content-Type', /json/)
         .expect(function(res) {
@@ -65,7 +65,7 @@ describe('/currency/:code?', function(){
 
     it('should have valid currency item in the currencies array', function(done){
       agent
-        .get('/currency/usd,eur')
+        .get('/currencies/usd,eur')
         .expect(200)
         .expect('Content-Type', /json/)
         .expect(function(res) {

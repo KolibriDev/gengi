@@ -2,13 +2,13 @@ var app = require('../server').app;
 var request = require('supertest');
 var assert = require('assert');
 
-describe('/currency/search/:term', function(){
+describe('Endpoints > /search/:term?', function(){
   var agent = request.agent(app);
 
-  describe('GET /currency/search/króna', function(){
+  describe('GET /search/króna', function(){
     it('should respond with json', function(done){
       agent
-        .get('/currency/search/króna')
+        .get('/search/króna')
         .expect(200)
         .expect('Content-Type', /json/)
         .expect(function(res) {
@@ -19,7 +19,7 @@ describe('/currency/search/:term', function(){
 
     it('should have a currencyDate string', function(done){
       agent
-        .get('/currency/search/króna')
+        .get('/search/króna')
         .expect(200)
         .expect('Content-Type', /json/)
         .expect(function(res) {
@@ -33,7 +33,7 @@ describe('/currency/search/:term', function(){
 
     it('should have an expires number', function(done){
       agent
-        .get('/currency/search/króna')
+        .get('/search/króna')
         .expect(200)
         .expect('Content-Type', /json/)
         .expect(function(res) {
@@ -47,7 +47,7 @@ describe('/currency/search/:term', function(){
 
     it('should have a currencies object containing DKK', function(done){
       agent
-        .get('/currency/search/króna')
+        .get('/search/króna')
         .expect(200)
         .expect('Content-Type', /json/)
         .expect(function(res) {

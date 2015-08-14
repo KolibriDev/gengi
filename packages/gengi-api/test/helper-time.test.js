@@ -1,9 +1,20 @@
-var time = require('./time');
+var time = require('../helpers/time');
 var assert = require('assert');
 
-describe('Time', function(){
+describe('Helpers > time', function(){
 
   describe('secsToMidnight()', function(){
+
+    it('should exist', function(done){
+      assert(time.hasOwnProperty('secsToMidnight'), 'expected \'time\' to have property \'secsToMidnight\'');
+      done();
+    });
+
+    it('should be a function', function(done){
+      assert(typeof time.secsToMidnight === 'function', 'expected time.secsToMidnight to be a function');
+      done();
+    });
+
     var fakeDate = new Date();
     fakeDate.setHours(23);
     fakeDate.setMinutes(0);
@@ -24,6 +35,17 @@ describe('Time', function(){
   });
 
   describe('getMidnight()', function(){
+
+    it('should exist', function(done){
+      assert(time.hasOwnProperty('getMidnight'), 'expected \'time\' to have property \'getMidnight\'');
+      done();
+    });
+
+    it('should be a function', function(done){
+      assert(typeof time.getMidnight === 'function', 'expected time.getMidnight to be a function');
+      done();
+    });
+
     var midnight = new Date();
     midnight.setHours(24);
     midnight.setMinutes(0);

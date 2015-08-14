@@ -1,10 +1,21 @@
-var search = require('./search');
+var search = require('../helpers/search');
 var assert = require('assert');
 var _ = require('underscore');
 
-describe('Search', function(){
+describe('Helpers > search', function(){
 
   describe('filter()', function(){
+
+    it('should exist', function(done){
+      assert(search.hasOwnProperty('filter'), 'expected \'search\' to have property \'filter\'');
+      done();
+    });
+
+    it('should be a function', function(done){
+      assert(typeof search.filter === 'function', 'expected search.filter to be a function');
+      done();
+    });
+
     var arr = [
       { code: 'USD', name: 'bandarískur dalur' },
       { code: 'DKK', name: 'dönsk króna' },

@@ -1,9 +1,20 @@
-var values = require('./values');
+var values = require('../helpers/values');
 var assert = require('assert');
 
-describe('Values', function(){
+describe('Helpers > values', function(){
 
   describe('name()', function(){
+
+    it('should exist', function(done){
+      assert(values.hasOwnProperty('name'), 'expected \'values\' to have property \'name\'');
+      done();
+    });
+
+    it('should be a function', function(done){
+      assert(typeof values.name === 'function', 'expected values.name to be a function');
+      done();
+    });
+
     var name = values.name('pund, sterlingspund');
 
     it('should return a string', function(done){
@@ -31,6 +42,17 @@ describe('Values', function(){
   });
 
   describe('rate()', function(){
+
+    it('should exist', function(done){
+      assert(values.hasOwnProperty('rate'), 'expected \'values\' to have property \'rate\'');
+      done();
+    });
+
+    it('should be a function', function(done){
+      assert(typeof values.rate === 'function', 'expected values.rate to be a function');
+      done();
+    });
+
     var rate = values.rate(123.456789);
 
     it('should return a float', function(done){
