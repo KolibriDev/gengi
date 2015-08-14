@@ -13,9 +13,11 @@ app.all('/*', function(req, res, next) {
 });
 
 // Endpoints
-var currency = require('./endpoints/currency');
-app.get('/currency/:code?', currency.getCurrencies);
-app.get('/currency/search/:term', currency.findCurrencies);
+var normalizedPath = require('path').join(__dirname, 'routes');
+require('fs').readdirSync(normalizedPath).forEach(function(fileName) {
+  var endpoint = require('./routes/' + fileName);
+  app.use('/' + fileName.split('.js')[0], endpoint);
+});
 
 http.createServer(app).listen(app.get('port'));
 
