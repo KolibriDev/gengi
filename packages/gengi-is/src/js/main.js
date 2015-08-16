@@ -23,6 +23,7 @@ require.config({
     zepto: 'vendor/zepto-build',
     promise: 'vendor/promise',
     vue: 'vendor/vue',
+    swiftclick: 'vendor/swiftclick',
   },
   shim: {
     modernizr: { exports: 'Modernizr' },

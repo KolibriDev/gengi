@@ -1,0 +1,65 @@
+
+calculator(v-show='app.view === "calc"')
+  currency(v-attr='symbol:app.currentCurrency')
+    curr-input
+      input(id='amountCurr' v-model='app.amountCurr | float' placeholder='1' v-on='\
+        keydown:plusOne | key "107"\
+        ,keydown:plusOne | key "187"\
+        ,keydown:minusOne | key "109"\
+        ,keydown:minusOne | key "189"\
+        \
+        ,keydown:plusOne | key "up"\
+        ,keydown:minusOne | key "down"\
+        ,keydown:calculate | key "up"\
+        ,keydown:calculate | key "down"\
+        \
+        ,keydown:calculate | key "8"\
+        ,keydown:calculate | key "9"\
+        ,keydown:calculate | key "13"\
+        ,keydown:calculate | key "45"\
+        ,keydown:calculate | key "46"\
+        ,keydown:calculate | key "48"\
+        ,keydown:calculate | key "49"\
+        ,keydown:calculate | key "50"\
+        ,keydown:calculate | key "51"\
+        ,keydown:calculate | key "52"\
+        ,keydown:calculate | key "53"\
+        ,keydown:calculate | key "54"\
+        ,keydown:calculate | key "55"\
+        ,keydown:calculate | key "56"\
+        ,keydown:calculate | key "57"\
+        ,keydown:calculate | key "96"\
+        ,keydown:calculate | key "97"\
+        ,keydown:calculate | key "98"\
+        ,keydown:calculate | key "99"\
+        ,keydown:calculate | key "100"\
+        ,keydown:calculate | key "101"\
+        ,keydown:calculate | key "102"\
+        ,keydown:calculate | key "103"\
+        ,keydown:calculate | key "104"\
+        ,keydown:calculate | key "105"\
+        \
+        ,keydown:calculate | key "107"\
+        ,keydown:calculate | key "109"\
+        ,keydown:calculate | key "187"\
+        ,keydown:calculate | key "188"\
+        ,keydown:calculate | key "189"\
+        ,keydown:calculate | key "190"\
+        ')
+  currency(symbol='ISK')
+    curr-input
+      input(id='amountISK' v-model='app.amountISK' readonly)
+
+  numpad
+    num(key='1' v-on='click: numPad')
+    num(key='2' v-on='click: numPad')
+    num(key='3' v-on='click: numPad')
+    num(key='4' v-on='click: numPad')
+    num(key='5' v-on='click: numPad')
+    num(key='6' v-on='click: numPad')
+    num(key='7' v-on='click: numPad')
+    num(key='8' v-on='click: numPad')
+    num(key='9' v-on='click: numPad')
+    num(key=',' v-on='click: numPad')
+    num(key='0' v-on='click: numPad')
+    num(key='del' v-class='available: app.amountCurr.toString().length > 0' v-on='click: numPad')

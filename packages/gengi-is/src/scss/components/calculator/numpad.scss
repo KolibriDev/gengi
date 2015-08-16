@@ -1,0 +1,84 @@
+
+numpad {
+  display: block;
+  margin: 0 auto $spacing;
+  padding: 0;
+  width: 100%;
+  min-width: $page-min-width;
+  max-width: $page-max-width;
+
+  text-align: center;
+  font-size: 0;
+
+  num {
+    cursor: pointer;
+    position: relative;
+
+    display: inline-block;
+    margin: 0 $spacing $spacing;
+    width: calc(#{100%/3} - #{$spacing*2});
+    height: $block;
+
+    &:before {
+      content: attr(key);
+      display: block;
+
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 1;
+
+      margin: auto;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+
+      font-size: 36px;
+      font-weight: 700;
+      color: rgba(#56656B,0.35);
+    }
+
+    &[key=',']:before {
+      font-weight: 500;
+    }
+
+    &[key='del']:before {
+      font-size: 24px;
+      font-weight: 500;
+    }
+    &[key='del'] {
+      cursor: default;
+      opacity: 0.2;
+
+      &.available {
+        cursor: pointer;
+        opacity: 1;
+      }
+    }
+
+
+    &:after {
+      content: '';
+      display: block;
+
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 0;
+
+      margin: auto;
+      width: 60px;
+      height: 60px;
+
+      background: white;
+      border-radius: 100%;
+
+      opacity: 0.5;
+      transform: scale(0);
+      transition: transform $trans-dur, opacity $trans-dur ease $trans-dur/2;
+    }
+
+    &.click:after {
+      opacity: 0;
+      transform: scale(1);
+    }
+  }
+}

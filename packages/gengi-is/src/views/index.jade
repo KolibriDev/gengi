@@ -44,13 +44,7 @@ block main
             curr-name(v-text="result.name")
             curr-rate(v-text="result.rate")
 
-    calculator(v-show="app.view === 'calc'")
-      currency(v-attr="symbol:app.currentCurrency")
-        curr-input
-          input(id="amountCurr" v-model="app.amountCurr" placeholder="1" v-on="keyup:calculate")
-      currency(symbol="ISK")
-        curr-input
-          input(id="amountISK" v-model="app.amountISK" v-on="keyup:calculate")
+    include partials/_calculator
 
     about(v-show="app.view === 'about'")
       inner

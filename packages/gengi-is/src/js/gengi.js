@@ -1,9 +1,20 @@
 'use strict';
-define(['vue', 'promise', 'utils/utils'], (Vue, promise, utils) => {
+define(['vue', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (Vue, promise, keys, utils, swiftclick) => {
   var _gengi = {
-    version: '0.0.4',
+    version: '0.0.6',
     vm: false,
     init: () => {
+
+      Vue.filter('float', {
+        write: function (value, oldVal) {
+          var parsed = parseFloat(value);
+          parsed = isNaN(parsed) ? oldVal : parsed;
+          parsed = value.substr(value.length - 1) === '.' ? parsed.toString() + '.' : parsed;
+          parsed = value === '' ? '' : parsed;
+          console.log('parsed =>', parsed);
+          return parsed;
+        }
+      });
       _gengi.vm = new Vue({
         el: 'gengi',
         data: {
@@ -65,12 +76,51 @@ define(['vue', 'promise', 'utils/utils'], (Vue, promise, utils) => {
             }
           },
           calculate: (event) => {
-            if (event.srcElement.id === 'amountCurr') {
-              _gengi.vm.app.amountISK = utils.calculate(_gengi.vm.currencies.list[_gengi.vm.app.currentCurrency].rate, _gengi.vm.app.amountCurr);
-            } else if (event.srcElement.id === 'amountISK') {
-              _gengi.vm.app.amountCurr = utils.calculate(1 / _gengi.vm.currencies.list[_gengi.vm.app.currentCurrency].rate, _gengi.vm.app.amountISK);
+            var srcElement = event.srcElement.id;
+            _gengi.calculate(srcElement);
+          },
+          which: (event) => {
+            console.info(event.which, '=>', keys.which(event.which));
+          },
+          plusOne: (event) => {
+            var target = event.target.id;
+            var newVal = _gengi.vm.app[target];
+            newVal = parseFloat(newVal);
+            newVal = isNaN(newVal) ? 0 : newVal;
+            newVal = newVal + 1;
+            _gengi.vm.app[target] = newVal;
+          },
+          minusOne: (event) => {
+            var target = event.target.id;
+            var newVal = _gengi.vm.app[target];
+            newVal = parseFloat(newVal);
+            newVal = isNaN(newVal) ? 0 : newVal;
+            newVal = newVal - 1;
+            newVal = newVal < 0 ? 0 : newVal;
+            _gengi.vm.app[target] = newVal;
+          },
+          numPad: (event) => {
+            var target = event.target;
+            target.classList.add('click');
+            setTimeout(() => {
+              target.classList.remove('click');
+            }, 250);
+            if (!target.attributes.hasOwnProperty('key')) { return; }
+            var newVal = _gengi.vm.app.amountCurr.toString();
+            var key = target.attributes['key'].value;
+            if (!key) { return; }
+            if (newVal === '0') {
+              newVal = '';
             }
-            utils.router.updateState(_gengi.vm);
+            if (key === ',') {
+              newVal = newVal.length >= 1 ? newVal + key : '0' + key;
+            } else if (key === 'del') {
+              newVal = newVal.slice(0, -1);
+            } else {
+              newVal += key;
+            }
+            _gengi.vm.app.amountCurr = newVal;
+            _gengi.calculate('amountCurr');
           },
         },
       });
@@ -90,6 +140,21 @@ define(['vue', 'promise', 'utils/utils'], (Vue, promise, utils) => {
       }
 
       utils.router.initState(_gengi.vm);
+    },
+
+    calculate: (srcElement) => {
+      if (srcElement === 'amountCurr') {
+        _gengi.vm.app.amountISK = utils.calculate(
+          _gengi.vm.currencies.list[_gengi.vm.app.currentCurrency].rate,
+          _gengi.vm.app.amountCurr
+          );
+      } else if (srcElement === 'amountISK') {
+        _gengi.vm.app.amountCurr = utils.calculate(
+          1 / _gengi.vm.currencies.list[_gengi.vm.app.currentCurrency].rate,
+          _gengi.vm.app.amountISK
+          );
+      }
+      utils.router.updateState(_gengi.vm);
     },
 
     removeFromList: (currency) => {
@@ -145,6 +210,7 @@ define(['vue', 'promise', 'utils/utils'], (Vue, promise, utils) => {
         // TODO: Find better way to ensure input exists before focus
         setTimeout(() => {
           document.getElementById('amountCurr').focus();
+          swiftclick.replaceNodeNamesToTrack(['num']);
         },1);
       },
     },
