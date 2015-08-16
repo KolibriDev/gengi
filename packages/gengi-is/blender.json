@@ -43,11 +43,17 @@
     "filename": "manifest.appcache",
     "src": [
       "**/*",
+      "**/main.js",
       "!**/img/icon/**/*",
       "!**/img/load/**/*"
     ],
     "exclude": [
-      "manifest.appcache"
+      "manifest.appcache",
+      "**/js/init/*.js",
+      "**/js/kolibri/*.js",
+      "**/js/utils/*.js",
+      "**/js/vendor/*.js",
+      "**/js/gengi.js"
     ],
     "fallback": ["/ /offline.html"],
     "network": [
