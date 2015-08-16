@@ -36,7 +36,7 @@ currency {
   &[symbol="+/-"]:before { content: '+/-'; }
 
   // Currencies
-  &[symbol="ISK"]:before { content: 'ISK'; font-size: 0.7em; }
+  &[symbol="ISK"]:before { content: 'ISK'; font-size: 0.7em; line-height: 60px; }
 
   &[symbol=AED]:before { content: 'د.إ'; } // latin: DH or Dhs
   &[symbol=AFN]:before { content: '؋'; }
