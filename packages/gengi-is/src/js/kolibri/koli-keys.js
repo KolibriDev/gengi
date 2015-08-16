@@ -66,6 +66,7 @@ define(() => {
     'y': 89,
     'z': 90,
     'cmd': 91,
+    'cmdRight': 93,
     'numpad': {
       '0': 96,
       '1': 97,
@@ -131,6 +132,7 @@ define(() => {
       which === keys.shift ||
       which === keys.tab ||
       which === keys.cmd ||
+      which === keys.cmdRight ||
       which === keys.arrow.left ||
       which === keys.arrow.up ||
       which === keys.arrow.right ||
