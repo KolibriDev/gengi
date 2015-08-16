@@ -151,18 +151,18 @@ define(() => {
   };
 
   keys.which = keyCode => {
-    for (const property in this){
-      if (this.hasOwnProperty(property)){
-        if (typeof this[property] === 'object'){
-          for (const subProp in this[property]){
-            if (this[property].hasOwnProperty(subProp)) {
-              if (this[property][subProp] === keyCode) {
+    for (let property in keys){
+      if (keys.hasOwnProperty(property)){
+        if (typeof keys[property] === 'object'){
+          for (let subProp in keys[property]){
+            if (keys[property].hasOwnProperty(subProp)) {
+              if (keys[property][subProp] === keyCode) {
                 return property + '-' + subProp;
               }
             }
           }
         } else {
-          if (this[ property ] === keyCode){
+          if (keys[ property ] === keyCode){
             return property;
           }
         }
