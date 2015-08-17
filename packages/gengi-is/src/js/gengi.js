@@ -278,9 +278,9 @@ define(['vue', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (Vue, promi
         var res = JSON.parse(response);
         if (_gengi.vm.currencyList.length === 0) {
           var newList = [];
-          $.each(res.currencies, (currency) => {
+          for (var currency in res.currencies) {
             newList.push(currency);
-          });
+          }
           _gengi.vm.$set('currencyList', newList);
         }
         _gengi.vm.$set('message', '');
