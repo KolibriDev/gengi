@@ -6,12 +6,14 @@ define(['vue', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (Vue, promi
     init: () => {
 
       Vue.filter('float', {
+        read: function(value) {
+          return value;
+        },
         write: function (value, oldVal) {
           var parsed = parseFloat(value);
           parsed = isNaN(parsed) ? oldVal : parsed;
           parsed = value.substr(value.length - 1) === '.' ? parsed.toString() + '.' : parsed;
           parsed = value === '' ? '' : parsed;
-          console.log('parsed =>', parsed);
           return parsed;
         }
       });
@@ -101,10 +103,19 @@ define(['vue', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (Vue, promi
           },
           numPad: (event) => {
             var target = event.target;
-            target.classList.add('click');
+            target.classList.remove('click');
+            var durations = window.getComputedStyle(target, ':after').transitionDuration;
+            durations = durations.split(',');
+            durations.forEach(function(duration, index){
+              durations[index] = parseFloat(duration);
+            });
+            var time = Math.max.apply(durations, durations) * 1000;
             setTimeout(() => {
-              target.classList.remove('click');
-            }, 250);
+              target.classList.add('click');
+              setTimeout(() => {
+                target.classList.remove('click');
+              }, time);
+            }, 1);
             if (!target.attributes.hasOwnProperty('key')) { return; }
             var newVal = _gengi.vm.app.amountCurr.toString();
             var key = target.attributes['key'].value;
@@ -207,9 +218,8 @@ define(['vue', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (Vue, promi
         _gengi.vm.app.amountCurr = options.amount;
         _gengi.vm.app.amountISK = utils.calculate(_gengi.vm.currencies.list[options.currency].rate, options.amount);
 
-        // TODO: Find better way to ensure input exists before focus
+        // TODO: Find better way to ensure num exists before triggering swiftclick
         setTimeout(() => {
-          document.getElementById('amountCurr').focus();
           swiftclick.replaceNodeNamesToTrack(['num']);
         },1);
       },

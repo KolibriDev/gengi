@@ -1,5 +1,5 @@
 // Typography
-$font-family: 'ars-maquette-web', Helvetica, Arial, sans-serif;
+$font-family: 'ARS Maquette Pro', 'ars-maquette-web', Helvetica, Arial, sans-serif;
 $font-family-alt: 'Merriweather', 'Georgia', 'Times New Roman', Times, serif;
 $font-sans: $font-family;
 $font-serif: $font-family-alt;
@@ -14,8 +14,9 @@ $font-size-large: 21px;
 $font-size-larger: 26px;
 
 // Sizes
-$spacing: 10px;
-$block: 60px;
+$spacing: 3vh;
+$block: 9vh;
+$big-block: 12vh;
 $page-max-width: 500px;
 $page-min-width: 280px;
 

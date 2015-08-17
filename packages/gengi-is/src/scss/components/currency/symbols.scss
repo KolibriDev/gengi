@@ -2,19 +2,19 @@
 currency {
   &[symbol] {
     padding-left: $block + $spacing;
-    font-size: 36px;
+    font-size: 5vh;
   }
 
   &[symbol]:before {
     position: absolute;
-    top: 10px; left: 10px; bottom: 10px;
+    top: $spacing/2; left: $spacing/2; bottom: $spacing/2;
 
     overflow: hidden;
     display: block;
-    width: $block;
-    height: $block;
+    width: $big-block - $spacing;
+    height: $big-block - $spacing;
 
-    line-height: 55px;
+    line-height: $block*.9;
     font-weight: 700;
     font-size: 1em;
     text-align: center;
@@ -36,7 +36,7 @@ currency {
   &[symbol="+/-"]:before { content: '+/-'; }
 
   // Currencies
-  &[symbol="ISK"]:before { content: 'ISK'; font-size: 0.7em; line-height: 60px; }
+  &[symbol="ISK"]:before { content: 'ISK'; font-size: 0.7em; line-height: $block; }
 
   &[symbol=AED]:before { content: 'د.إ'; } // latin: DH or Dhs
   &[symbol=AFN]:before { content: '؋'; }

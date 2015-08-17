@@ -1,8 +1,9 @@
 
 numpad {
+  user-select: none;
   display: block;
   margin: 0 auto $spacing;
-  padding: 0;
+  padding: $spacing 0 0;
   width: 100%;
   min-width: $page-min-width;
   max-width: $page-max-width;
@@ -28,11 +29,11 @@ numpad {
       z-index: 1;
 
       margin: auto;
-      width: 40px;
-      height: 40px;
-      line-height: 40px;
+      width: 6vh;
+      height: 6vh;
+      line-height: 6vh;
 
-      font-size: 36px;
+      font-size: 6vh;
       font-weight: 700;
       color: rgba(#56656B,0.35);
     }
@@ -42,7 +43,7 @@ numpad {
     }
 
     &[key='del']:before {
-      font-size: 24px;
+      font-size: 4vh;
       font-weight: 500;
     }
     &[key='del'] {
@@ -71,9 +72,9 @@ numpad {
       background: white;
       border-radius: 100%;
 
-      opacity: 0.5;
+      opacity: 1;
       transform: scale(0);
-      transition: transform $trans-dur, opacity $trans-dur ease $trans-dur/2;
+      transition: transform $trans-dur*3, opacity $trans-dur*4 ease $trans-dur/2;
     }
 
     &.click:after {
