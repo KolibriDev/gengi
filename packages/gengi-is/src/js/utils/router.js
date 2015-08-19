@@ -3,58 +3,51 @@ define(['utils/format'], (format) => {
   var Router = class {
     constructor() {
       this.title = null;
-      this.state = {};
+      this.state = window.history.state;
       this.path = window.location.pathname;
     }
 
-    pushState() {
-      window.history.pushState(this.state, this.title, this.path);
+    pushState(state, title, path) {
+      state = state || this.state;
+      title = title || this.title;
+      path = path || this.path;
+      window.history.pushState(state, title, path);
     }
 
-    replaceState() {
-      window.history.replaceState(this.state, this.title, this.path);
+    replaceState(state, title, path) {
+      state = state || this.state;
+      title = title || this.title;
+      path = path || this.path;
+      window.history.replaceState(state, title, path);
     }
 
-    updateView(vm, view) {
-      if (!vm || !view) { return; }
+    updateView(state) {
+      this.state = state || this.state;
       this.path = '/';
 
-      this.state['view'] = view;
-      this.state['amountISK'] = format.number(vm.app.amountISK);
-      this.state['amountCurr'] = format.number(vm.app.amountCurr);
-      this.state['currentCurrency'] = vm.app.currentCurrency;
+      this.state['amountISK'] = format.number(this.state['amountISK']);
+      this.state['amountCurr'] = format.number(this.state['amountCurr']);
 
-      if (view === 'calc') {
-        this.path += (vm.app.currentCurrency ? vm.app.currentCurrency + this.state['amountCurr'] : '');
-      } else if (view === 'search') {
-        this.state['term'] = vm.search.term;
+      if (this.state['view'] === 'calc') {
+        this.path += (this.state['currentCurrency'] ? this.state['currentCurrency'] + this.state['amountCurr'] : '');
+      } else if (this.state['view'] === 'search') {
         this.path += 'search/' + this.state['term'];
-      } else if (view !== 'list') {
-        this.path += view;
+      } else if (this.state['view'] !== 'list') {
+        this.path += this.state['view'];
       }
 
       this.pushState();
     }
 
-    initState(vm) {
-      this.path = window.location.pathname;
-      this.state['view'] = vm.app.view;
-      this.state['amountISK'] = vm.app.amountISK;
-      this.state['amountCurr'] = vm.app.amountCurr;
-      this.state['currentCurrency'] = vm.app.currentCurrency;
-
-      this.replaceState();
-    }
-
-    updateState(vm) {
+    updateState(state) {
+      this.state = state || this.state;
       this.path = '/';
       if (this.state['view'] === 'calc') {
-        this.state['amountISK'] = format.number(vm.app.amountISK);
-        this.state['amountCurr'] = format.number(vm.app.amountCurr);
-        this.state['formattedAmountCurr'] = format.numberURL(vm.app.amountCurr);
-        this.path += vm.app.currentCurrency ? vm.app.currentCurrency + this.state['formattedAmountCurr'] : '';
+        this.state['amountISK'] = format.number(this.state['amountISK']);
+        this.state['amountCurr'] = format.number(this.state['amountCurr']);
+        this.state['formattedAmountCurr'] = format.numberURL(this.state['amountCurr']);
+        this.path += this.state['currentCurrency'] ? this.state['currentCurrency'] + this.state['formattedAmountCurr'] : '';
       } else if (this.state['view'] === 'search') {
-        this.state['term'] = vm.search.term;
         this.path += 'search/' + this.state['term'];
       } else if (this.state['view'] !== 'list') {
         this.path += this.state['view'];
@@ -72,6 +65,7 @@ define(['utils/format'], (format) => {
 
       if (query.substring(0,5) === 'about') {
         retobj.view = 'about';
+        return retobj;
       }
       if (query.substring(0,6) === 'search') {
         retobj.view = 'search';

@@ -118,7 +118,13 @@ define(['vue', 'zepto', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (V
             document.getElementById('search').focus();
           },
           performSearch: () => {
-            utils.router.updateState(_gengi.vm);
+            utils.router.updateState({
+              view: _gengi.vm.app.view,
+              amountCurr: _gengi.vm.app.amountCurr,
+              amountISK: _gengi.vm.app.amountISK,
+              currentCurrency: _gengi.vm.app.currentCurrency,
+              term: _gengi.vm.search.term,
+            });
             utils.search(_gengi.vm);
           },
           toggleInList: (currency) => {
@@ -192,7 +198,13 @@ define(['vue', 'zepto', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (V
       }
 
       _gengi.vm.app.highlightedCurrency = -1;
-      utils.router.initState(_gengi.vm);
+      utils.router.replaceState({
+        view: _gengi.vm.app.view,
+        amountCurr: _gengi.vm.app.amountCurr,
+        amountISK: _gengi.vm.app.amountISK,
+        currentCurrency: _gengi.vm.app.currentCurrency,
+        term: _gengi.vm.search.term,
+      }, null, window.location.pathname);
     },
 
     navigateList: (key) => {
@@ -255,7 +267,13 @@ define(['vue', 'zepto', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (V
           _gengi.vm.app.amountISK
           );
       }
-      utils.router.updateState(_gengi.vm);
+      utils.router.updateState({
+        view: _gengi.vm.app.view,
+        amountCurr: _gengi.vm.app.amountCurr,
+        amountISK: _gengi.vm.app.amountISK,
+        currentCurrency: _gengi.vm.app.currentCurrency,
+        term: _gengi.vm.search.term,
+      });
     },
 
     removeFromList: (currency) => {
@@ -351,8 +369,14 @@ define(['vue', 'zepto', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (V
       });
 
       // "Router"
-      _gengi.vm.$watch('app.view', (newVal) => {
-        utils.router.updateView(_gengi.vm, newVal);
+      _gengi.vm.$watch('app.view', () => {
+        utils.router.updateView({
+          view: _gengi.vm.app.view,
+          amountCurr: _gengi.vm.app.amountCurr,
+          amountISK: _gengi.vm.app.amountISK,
+          currentCurrency: _gengi.vm.app.currentCurrency,
+          term: _gengi.vm.search.term,
+        });
       });
 
       // TODO: fix issue #3
