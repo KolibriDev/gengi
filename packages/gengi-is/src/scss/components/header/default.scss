@@ -28,6 +28,59 @@ header {
     height: 100%;
   }
 
+  .current {
+    position: absolute;
+    top: 0; right: $spacing; bottom: 0;
+
+    margin: auto;
+
+    opacity: 0;
+    transform: translate3d(40%,0,0);
+    transition: opacity $trans-dur, transform $trans-dur;
+
+
+    span {
+      display: block;
+      color: $color-green-darker;
+    }
+  }
+
+  .back,
+  .edit {
+    pointer-events: none;
+    position: absolute;
+    top: 0; bottom: 0;
+    z-index: 1;
+    margin: auto;
+
+    svg {
+      display: block;
+    }
+  }
+  .back {
+    // @extend svg.svg-arrow-left;
+    left: $spacing;
+    width: 90%;
+
+    opacity: 0;
+    transform: translate3d(40%,0,0);
+    transition: opacity $trans-dur, transform $trans-dur;
+
+    svg {
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      margin: auto;
+    }
+  }
+  .edit {
+    @extend svg.svg-dots;
+    right: $spacing;
+    z-index: 2;
+
+    opacity: 1;
+    transition: opacity $trans-dur;
+  }
+
   h1.title, hgroup {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -41,20 +94,7 @@ header {
   hgroup {
     display: block;
     height: 6vh;
-    padding-left: $block;
-
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0; left: $block/4; bottom: 0;
-      display: block;
-      margin: auto;
-      padding: 0;
-      width: 0;
-      height: 0;
-      border: $spacing/2 solid transparent;
-      border-right-color: $color-light;
-    }
+    padding-left: 7vh;
 
     h1, h2, h3, h4 {
       line-height: 1em;
@@ -78,18 +118,33 @@ header {
   }
 
   gengi[view="calc"] & {
+    .edit {
+      opacity: 0;
+    }
+    .back,
+    .current,
     hgroup.calc {
       opacity: 1;
       transform: translate3d(0,0%,0);
     }
   }
   gengi[view="search"] & {
+    .edit {
+      opacity: 0;
+    }
+    .back,
+    .current,
     hgroup.search {
       opacity: 1;
       transform: translate3d(0,0%,0);
     }
   }
   gengi[view="about"] & {
+    .edit {
+      opacity: 0;
+    }
+    .back,
+    .current,
     hgroup.about {
       opacity: 1;
       transform: translate3d(0,0%,0);
