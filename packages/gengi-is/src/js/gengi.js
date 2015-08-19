@@ -226,33 +226,18 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
 
     numpad: (key) => {
       var newVal = _gengi.vm.app[_gengi.vm.app.activeField].toString();
-      if (!key) { return; }
-      if (newVal === '0') {
-        newVal = '';
-      }
-      if (newVal.substring(newVal.length - 1) === '.') {
-        newVal = newVal.replace('.','');
-      }
-      if (key === 'escape') {
+      var numpadValue = utils.numpad(newVal, key);
+
+      if (numpadValue === 'show-list') {
         _gengi.showView.catch('list');
-        return;
-      } else if (key === 'arrow-up') {
+      } else if (numpadValue === 'activate-curr') {
         _gengi.activateCalcField('curr');
-        return;
-      } else if (key === 'arrow-down') {
+      } else if (numpadValue === 'activate-isk') {
         _gengi.activateCalcField('isk');
-        return;
-      } else if (key === ',' || key === 'comma') {
-        if (newVal.indexOf('.') === -1 && newVal.substring(newVal.length - 1) !== ',') {
-          newVal = newVal.length >= 1 ? newVal + ',' : '0' + ',';
-        }
-      } else if (key === 'del' || key === 'delete' || key === 'backspace') {
-        newVal = newVal.slice(0, -1);
-      } else {
-        newVal += key;
+      } else if (numpadValue) {
+        _gengi.vm.app[_gengi.vm.app.activeField] = numpadValue;
+        _gengi.calculate(_gengi.vm.app.activeField);
       }
-      _gengi.vm.app[_gengi.vm.app.activeField] = newVal;
-      _gengi.calculate(_gengi.vm.app.activeField);
     },
 
     calculate: (srcElement) => {
