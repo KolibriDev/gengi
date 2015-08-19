@@ -1,8 +1,8 @@
 'use strict';
-define(['domReady', 'events'], (domReady, events) => {
+define(['domReady', 'zepto'], (domReady, $) => {
   return (callback, reLoadCallback) => {
     domReady(callback);
     reLoadCallback = typeof reLoadCallback === 'function' ? reLoadCallback : callback;
-    events.on('re-loading', reLoadCallback);
+    $(document).on('re-loading', reLoadCallback);
   };
 });

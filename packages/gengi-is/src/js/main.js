@@ -21,6 +21,7 @@ require.config({
     onLoad: 'kolibri/koli-onload',
     events: 'kolibri/koli-events',
 
+    zepto: 'vendor/zepto-build',
     promise: 'vendor/promise',
     vue: 'vendor/vue',
     swiftclick: 'vendor/swiftclick',
