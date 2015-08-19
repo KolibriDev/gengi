@@ -123,6 +123,40 @@ define(() => {
     'singlequote': 222,
   };
 
+
+  keys.isNumPad = (which) => {
+    which = which || 0;
+    return which === keys.comma ||
+      which === keys['0'] ||
+      which === keys['1'] ||
+      which === keys['2'] ||
+      which === keys['3'] ||
+      which === keys['4'] ||
+      which === keys['5'] ||
+      which === keys['6'] ||
+      which === keys['7'] ||
+      which === keys['8'] ||
+      which === keys['9'] ||
+      which === keys.numpad['0'] ||
+      which === keys.numpad['1'] ||
+      which === keys.numpad['2'] ||
+      which === keys.numpad['3'] ||
+      which === keys.numpad['4'] ||
+      which === keys.numpad['5'] ||
+      which === keys.numpad['6'] ||
+      which === keys.numpad['7'] ||
+      which === keys.numpad['8'] ||
+      which === keys.numpad['9'] ||
+      which === keys.backspace ||
+      which === keys.escape;
+  };
+
+  keys.isUpDown = which => {
+    which = which || 0;
+    return which === keys.arrow.up ||
+      which === keys.arrow.down;
+  };
+
   keys.isFunctionalKey = which => {
     which = which || 0;
     return which === keys.ctrl ||
@@ -132,11 +166,7 @@ define(() => {
       which === keys.shift ||
       which === keys.tab ||
       which === keys.cmd ||
-      which === keys.cmdRight ||
-      which === keys.arrow.left ||
-      which === keys.arrow.up ||
-      which === keys.arrow.right ||
-      which === keys.arrow.down;
+      which === keys.cmdRight;
   };
 
   keys.isClickModifier = event => {
