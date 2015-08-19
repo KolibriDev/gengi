@@ -17,6 +17,23 @@ define(['vue', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (Vue, promi
           return parsed;
         }
       });
+
+      Vue.filter('icelandicNumber', {
+        read: function(value) {
+          return utils.format.numberIcelandic(value);
+        },
+        write: function (value) {
+          return value;
+        },
+      });
+      Vue.filter('number', {
+        read: function(value) {
+          return utils.format.numberURL(value);
+        },
+        write: function (value) {
+          return value;
+        },
+      });
       _gengi.vm = new Vue({
         el: 'gengi',
         data: {
