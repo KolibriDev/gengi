@@ -7,7 +7,7 @@ define(['utils/sanitize'], (sanitize) => {
     rate = sanitize.number(rate);
 
     var value = amount * rate;
-    var fix = value < 1 ? 5 : 2;
+    var fix = value < 1 && value > 0.001 ? (value === 0 ? 0 : 5) : 2;
 
     return parseFloat(value).toFixed(fix);
   };
