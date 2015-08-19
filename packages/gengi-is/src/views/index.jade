@@ -19,7 +19,7 @@ block main
 
     currency-list(v-show="app.view === 'list'")
       template(v-repeat="currency: currencyList")
-        currency(v-if="currencies.list.hasOwnProperty(currency)" v-on="click:showView('calc', {currency: currency})" v-attr="symbol:currencies.list[currency].code")
+        currency(v-if="currencies.list.hasOwnProperty(currency)" v-on="click:showView('calc', {currency: currency})" v-attr="symbol:currencies.list[currency].code, index:$index" v-class="highlighted:app.highlightedCurrency == $index")
           curr-code(v-text="currencies.list[currency].code")
           curr-name(v-text="currencies.list[currency].name")
           curr-rate(v-text="currencies.list[currency].rate")

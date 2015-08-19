@@ -1,9 +1,39 @@
 'use strict';
-define(['vue', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (Vue, promise, keys, utils, swiftclick) => {
+define(['vue', 'zepto', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (Vue, $, promise, keys, utils, swiftclick) => {
   var _gengi = {
-    version: '0.0.6',
+    version: '0.0.7',
     vm: false,
     init: () => {
+      var keylock = false;
+
+      $(document).on('keyup', (event) => {
+        if (utils.router.state.view === 'list') {
+        } else if (utils.router.state.view === 'calc' && keylock && keys.isFunctionalKey(event.which)) {
+          keylock = false;
+        }
+      });
+      $(document).on('keydown', (event) => {
+        if (utils.router.state.view === 'list') {
+          if (keys.isUpDown(event.which)) {
+            _gengi.navigateList(event.which);
+          } else if (keys.which(event.which) === 'enter') {
+            _gengi.showView.calc({
+              currency: _gengi.vm.currencyList[_gengi.vm.app.highlightedCurrency],
+            });
+          }
+          event.preventDefault();
+          return false;
+        } else if (utils.router.state.view === 'calc') {
+          if (!keylock && keys.isFunctionalKey(event.which)) {
+            keylock = true;
+          }
+          if (!keylock && (keys.isNumPad(event.which) || keys.isUpDown(event.which))) {
+            _gengi.numpad(keys.which(event.which));
+            event.preventDefault();
+            return false;
+          }
+        }
+      });
 
       Vue.filter('float', {
         read: function(value) {
@@ -52,6 +82,8 @@ define(['vue', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (Vue, promi
             amountISK: 0,
             amountCurr: 1,
             currentCurrency: '',
+            activeField: 'amountCurr',
+            highlightedCurrency: -1,
           },
           currencies: {
             expires: 0,
@@ -63,6 +95,8 @@ define(['vue', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (Vue, promi
             'USD',
             'GBP',
             'VND',
+            'AMD',
+            'GEL',
           ],
           search: {
             term: '',
@@ -118,37 +152,27 @@ define(['vue', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (Vue, promi
             newVal = newVal < 0 ? 0 : newVal;
             _gengi.vm.app[target] = newVal;
           },
+          activate: (fieldName) => {
+            _gengi.activateCalcField(fieldName);
+          },
           numPad: (event) => {
             var target = event.target;
-            target.classList.remove('click');
-            var durations = window.getComputedStyle(target, ':after').transitionDuration;
-            durations = durations.split(',');
-            durations.forEach(function(duration, index){
-              durations[index] = parseFloat(duration);
-            });
-            var time = Math.max.apply(durations, durations) * 1000;
-            setTimeout(() => {
-              target.classList.add('click');
-              setTimeout(() => {
-                target.classList.remove('click');
-              }, time);
-            }, 1);
+            // target.classList.remove('click');
+            // var durations = window.getComputedStyle(target, ':after').transitionDuration;
+            // durations = durations.split(',');
+            // durations.forEach(function(duration, index){
+            //   durations[index] = parseFloat(duration);
+            // });
+            // var time = Math.max.apply(durations, durations) * 1000;
+            // setTimeout(() => {
+            //   target.classList.add('click');
+            //   setTimeout(() => {
+            //     target.classList.remove('click');
+            //   }, time);
+            // }, 1);
             if (!target.attributes.hasOwnProperty('key')) { return; }
-            var newVal = _gengi.vm.app.amountCurr.toString();
             var key = target.attributes['key'].value;
-            if (!key) { return; }
-            if (newVal === '0') {
-              newVal = '';
-            }
-            if (key === ',') {
-              newVal = newVal.length >= 1 ? newVal + key : '0' + key;
-            } else if (key === 'del') {
-              newVal = newVal.slice(0, -1);
-            } else {
-              newVal += key;
-            }
-            _gengi.vm.app.amountCurr = newVal;
-            _gengi.calculate('amountCurr');
+            _gengi.numpad(key);
           },
         },
       });
@@ -167,7 +191,56 @@ define(['vue', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (Vue, promi
         console.warn('No view provided!');
       }
 
+      _gengi.vm.app.highlightedCurrency = -1;
       utils.router.initState(_gengi.vm);
+    },
+
+    navigateList: (key) => {
+      key = keys.which(key);
+      if (key === 'arrow-up') {
+        if (!_gengi.vm.app.highlightedCurrency || _gengi.vm.app.highlightedCurrency < 1) {
+          _gengi.vm.app.highlightedCurrency = 0;
+        } else {
+          _gengi.vm.app.highlightedCurrency = _gengi.vm.app.highlightedCurrency - 1;
+        }
+      } else if (key === 'arrow-down') {
+        if (_gengi.vm.app.highlightedCurrency >= _gengi.vm.currencyList.length - 1) {
+          _gengi.vm.app.highlightedCurrency = _gengi.vm.currencyList.length - 1;
+        } else {
+          _gengi.vm.app.highlightedCurrency = _gengi.vm.app.highlightedCurrency + 1;
+        }
+      }
+    },
+
+    numpad: (key) => {
+      var newVal = _gengi.vm.app[_gengi.vm.app.activeField].toString();
+      if (!key) { return; }
+      if (newVal === '0') {
+        newVal = '';
+      }
+      if (newVal.substring(newVal.length - 1) === '.') {
+        newVal = newVal.replace('.','');
+      }
+      if (key === 'escape') {
+        _gengi.showView.catch('list');
+        return;
+      } else if (key === 'arrow-up') {
+        _gengi.activateCalcField('curr');
+        return;
+      } else if (key === 'arrow-down') {
+        _gengi.activateCalcField('isk');
+        return;
+      } else if (key === ',' || key === 'comma') {
+        if (newVal.indexOf('.') === -1 && newVal.substring(newVal.length - 1) !== ',') {
+          newVal = newVal.length >= 1 ? newVal + ',' : '0' + ',';
+        }
+      } else if (key === 'del' || key === 'delete' || key === 'backspace') {
+        newVal = newVal.slice(0, -1);
+      } else {
+        newVal += key;
+      }
+      _gengi.vm.app[_gengi.vm.app.activeField] = newVal;
+      _gengi.calculate(_gengi.vm.app.activeField);
     },
 
     calculate: (srcElement) => {
@@ -228,18 +301,34 @@ define(['vue', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (Vue, promi
           return;
         }
 
-        options.amount = !options.amount || options.amount <= 0 ? '' : options.amount;
+        options.amount = !options.amount || options.amount <= 0 ? 1 : options.amount;
         _gengi.vm.app.currentCurrency = options.currency;
         _gengi.vm.app.view = 'calc';
         // Start with empty
         _gengi.vm.app.amountCurr = options.amount;
         _gengi.vm.app.amountISK = utils.calculate(_gengi.vm.currencies.list[options.currency].rate, options.amount);
 
+        _gengi.activateCalcField('curr');
+
         // TODO: Find better way to ensure num exists before triggering swiftclick
         setTimeout(() => {
           swiftclick.replaceNodeNamesToTrack(['num']);
         },1);
       },
+    },
+
+    activateCalcField: (fieldName) => {
+      _gengi.vm.app.activeField = fieldName !== 'curr' ? 'amountISK' : 'amountCurr';
+      var field = document.querySelector('[field="amountCurr"]');
+      var otherField = document.querySelector('[field="amountISK"]');
+      if (fieldName !== 'curr') {
+        field = document.querySelector('[field="amountISK"]');
+        otherField = document.querySelector('[field="amountCurr"]');
+      }
+      if (field) {
+        field.classList.add('active');
+        otherField.classList.remove('active');
+      }
     },
 
     initializeData: () => {

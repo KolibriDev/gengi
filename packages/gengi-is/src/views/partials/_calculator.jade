@@ -1,13 +1,13 @@
 
 calculator(v-show='app.view === "calc"')
-  currency(v-attr='symbol:app.currentCurrency')
+  currency(field='amountCurr' v-attr='symbol:app.currentCurrency' v-on='click:activate("curr")')
     curr-input
       //- input(id='amountCurr' v-model='app.amountCurr | float' placeholder='1')
-      value(v-text='app.amountCurr | float')
-  currency(symbol='ISK')
+      value(v-text='app.amountCurr | icelandicNumber' v-class='empty:app.amountCurr === ""')
+  currency(field='amountISK' symbol='ISK' v-on='click:activate("isk")')
     curr-input
-      //- input(id='amountISK' v-model='app.amountISK' v-on='keydown:calculate')
-      value(v-text='app.amountISK | float')
+      //- input(id='amountISK' v-model='app.amountISK' readonly)
+      value(v-text='app.amountISK | icelandicNumber')
 
   numpad
     num(key='1' v-on='click: numPad')
@@ -21,4 +21,5 @@ calculator(v-show='app.view === "calc"')
     num(key='9' v-on='click: numPad')
     num(key=',' v-on='click: numPad')
     num(key='0' v-on='click: numPad')
-    num(key='del' v-class='available: app.amountCurr.toString().length > 0' v-on='click: numPad')
+    num(key='del' v-class='available: app[app.activeField].toString().length > 0' v-on='click: numPad')
+      include ../../img/svg-delete.svg

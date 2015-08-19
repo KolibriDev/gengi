@@ -35,7 +35,7 @@ numpad {
 
       font-size: 6vh;
       font-weight: 700;
-      color: rgba(#56656B,0.35);
+      color: $color-gray;
     }
 
     &[key=',']:before {
@@ -49,6 +49,19 @@ numpad {
     &[key='del'] {
       cursor: default;
       opacity: 0.2;
+
+      &:before {
+        display: none;
+      }
+
+      svg {
+        pointer-events: none;
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        z-index: 2;
+
+        margin: auto;
+      }
 
       &.available {
         cursor: pointer;
