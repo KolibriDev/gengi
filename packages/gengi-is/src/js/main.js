@@ -19,7 +19,7 @@ require.config({
 
     keys: 'kolibri/koli-keys',
     onLoad: 'kolibri/koli-onload',
-    events: 'kolibri/koli-events',
+    router: 'kolibri/koli-router',
 
     zepto: 'vendor/zepto-build',
     promise: 'vendor/promise',

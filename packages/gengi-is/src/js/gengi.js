@@ -1,5 +1,5 @@
 'use strict';
-define(['vue', 'zepto', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (Vue, $, promise, keys, utils, swiftclick) => {
+define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftclick'], (Vue, $, promise, keys, router, utils, swiftclick) => {
   var _gengi = {
     version: '0.0.7',
     vm: false,
@@ -7,13 +7,13 @@ define(['vue', 'zepto', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (V
       var keylock = false;
 
       $(document).on('keyup', (event) => {
-        if (utils.router.state.view === 'list') {
-        } else if (utils.router.state.view === 'calc' && keylock && keys.isFunctionalKey(event.which)) {
+        if (router.state.view === 'list') {
+        } else if (router.state.view === 'calc' && keylock && keys.isFunctionalKey(event.which)) {
           keylock = false;
         }
       });
       $(document).on('keydown', (event) => {
-        if (utils.router.state.view === 'list') {
+        if (router.state.view === 'list') {
           if (keys.isUpDown(event.which)) {
             _gengi.navigateList(event.which);
           } else if (keys.which(event.which) === 'enter') {
@@ -23,7 +23,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (V
           }
           event.preventDefault();
           return false;
-        } else if (utils.router.state.view === 'calc') {
+        } else if (router.state.view === 'calc') {
           if (!keylock && keys.isFunctionalKey(event.which)) {
             keylock = true;
           }
@@ -118,7 +118,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (V
             document.getElementById('search').focus();
           },
           performSearch: () => {
-            utils.router.updateState({
+            router.updateState({
               view: _gengi.vm.app.view,
               amountCurr: _gengi.vm.app.amountCurr,
               amountISK: _gengi.vm.app.amountISK,
@@ -186,7 +186,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (V
       _gengi.initializeData();
       _gengi.initializeWatches();
 
-      var query = utils.router.parseQuery();
+      var query = router.parseQuery();
       if (query.view) {
         if (_gengi.showView.hasOwnProperty(query.view)) {
           _gengi.showView[query.view](query.options);
@@ -198,7 +198,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (V
       }
 
       _gengi.vm.app.highlightedCurrency = -1;
-      utils.router.replaceState({
+      router.replaceState({
         view: _gengi.vm.app.view,
         amountCurr: _gengi.vm.app.amountCurr,
         amountISK: _gengi.vm.app.amountISK,
@@ -267,7 +267,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (V
           _gengi.vm.app.amountISK
           );
       }
-      utils.router.updateState({
+      router.updateState({
         view: _gengi.vm.app.view,
         amountCurr: _gengi.vm.app.amountCurr,
         amountISK: _gengi.vm.app.amountISK,
@@ -370,7 +370,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'utils/utils', 'init/swiftclick'], (V
 
       // "Router"
       _gengi.vm.$watch('app.view', () => {
-        utils.router.updateView({
+        router.updateView({
           view: _gengi.vm.app.view,
           amountCurr: _gengi.vm.app.amountCurr,
           amountISK: _gengi.vm.app.amountISK,
