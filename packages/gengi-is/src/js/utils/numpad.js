@@ -22,7 +22,7 @@ define([''], () => {
     } else if (key === 'del' || key === 'delete' || key === 'backspace') {
       value = value.slice(0, -1);
     } else {
-      value += key;
+      value += key.replace('numpad-','');
     }
     return value;
   };
