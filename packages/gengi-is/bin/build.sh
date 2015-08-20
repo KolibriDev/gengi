@@ -2,5 +2,5 @@
 
 gulp clean --prod
 gulp build --prod
-# gulp run -almond
+gulp run -almond
 gulp manifest --prod

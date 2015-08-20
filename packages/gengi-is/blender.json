@@ -27,17 +27,20 @@
     ]
   },
   "scripts": {
-    "src": "./src/js/**/*.{js,map}",
-    "jsFilter": [
-      "**/*.js",
-      "**/*.map"
-    ],
-    "lint": {
-      "config": "./.jshintrc",
+    "src": "./src/js/**/*.js",
+    "jsFilter": "**/*.js",
+    "vendorFilter": "**/vendor/**/*",
+    "babel": {
+      "config": {
+        "modules": "amd"
+      },
       "filter": [
         "**/*.js",
         "!**/vendor/**/*"
       ]
+    },
+    "lint": {
+      "config": "./.jshintrc"
     },
     "subDir": "js/"
   },
