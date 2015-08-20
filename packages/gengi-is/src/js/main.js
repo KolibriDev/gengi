@@ -20,6 +20,7 @@ require.config({
     keys: 'kolibri/koli-keys',
     onLoad: 'kolibri/koli-onload',
     router: 'kolibri/koli-router',
+    vueHelper: 'init/vue-helper',
 
     zepto: 'vendor/zepto-build',
     promise: 'vendor/promise',
