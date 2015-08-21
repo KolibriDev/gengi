@@ -1,7 +1,14 @@
+ifndef WEB_USER
+	WEB_USER := www-data
+endif
+
+ifndef TARGET_HOST
+	TARGET_HOST := localhost
+endif
+
 ifndef TARGET_DIR
 	TARGET_DIR := /var/www/gengi.is
 endif
-
 
 npm:
 	npm install
@@ -16,4 +23,4 @@ build:
 
 deploy:
  	mkdir -p ${TARGET_DIR}
-	cp -rf ./dist/* ${TARGET_DIR}
+	rsync --delete -uP ./dist/* ${WEB_USER}@${TARGET_HOST}:${TARGET_DIR}
