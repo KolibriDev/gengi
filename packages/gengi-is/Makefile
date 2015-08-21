@@ -22,5 +22,5 @@ build:
 	gulp manifest --prod
 
 deploy:
- 	mkdir -p ${TARGET_DIR}
+	mkdir -p ${TARGET_DIR}
 	rsync --delete -ruP ./dist/* ${WEB_USER}@${TARGET_HOST}:${TARGET_DIR}
