@@ -13,10 +13,10 @@ module.exports = function(gulp) {
 
         // Run through babel.js
         .pipe ( gulp.plugin.debug({title:'script:'}) )
+        .pipe ( gulp.plugin.sourcemaps.init() )
         .pipe ( gulp.plugin.babel(gulp.cfg.scripts.babel.config) )
 
         // Optimize for amd and concatenate
-        .pipe ( gulp.plugin.sourcemaps.init() )
         .pipe ( amdOptimize('main') )
         .pipe ( gulp.plugin.concat('main.js') )
         .pipe ( gulp.plugin.sourcemaps.write());
