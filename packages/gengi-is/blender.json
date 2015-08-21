@@ -30,7 +30,7 @@
     }
   },
   "scripts": {
-    "src": ["./src/js/**/*.js", "!**/vendor/**"],
+    "src": ["./src/js/**/*.js"],
     "almondSrc": "./src/js/vendor/almond.js",
     "jsFilter": "**/*.js",
     "babel": {

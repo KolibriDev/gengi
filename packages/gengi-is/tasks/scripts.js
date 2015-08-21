@@ -5,6 +5,7 @@ module.exports = function(gulp) {
 
   var amdOptimize = require('amd-optimize');
   var eventStream = require('event-stream');
+  var filtered = gulp.plugin.filter(['**/*.js','!**/vendor/**/*'], {restore:true});
 
   gulp.task('scripts', ['jshint'], function() {
     var almondStream = gulp.src(gulp.cfg.scripts.almondSrc);
@@ -14,7 +15,11 @@ module.exports = function(gulp) {
         // Run through babel.js
         .pipe ( gulp.plugin.debug({title:'script:'}) )
         .pipe ( gulp.plugin.sourcemaps.init() )
-        .pipe ( gulp.plugin.babel(gulp.cfg.scripts.babel.config) )
+
+        .pipe ( filtered )
+          .pipe ( gulp.plugin.debug({title:'--babel:'}) )
+          .pipe ( gulp.plugin.babel(gulp.cfg.scripts.babel.config) )
+        .pipe ( filtered.restore )
 
         // Optimize for amd and concatenate
         .pipe ( amdOptimize('main') )
