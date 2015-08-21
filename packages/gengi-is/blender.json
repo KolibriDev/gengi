@@ -24,20 +24,19 @@
     "src": [
       "./src/views/**/*.jade",
       "!./src/views/**/_*.jade"
-    ]
+    ],
+    "jade": {
+      "pretty": false
+    }
   },
   "scripts": {
-    "src": "./src/js/**/*.js",
+    "src": ["./src/js/**/*.js", "!**/vendor/**"],
+    "almondSrc": "./src/js/vendor/almond.js",
     "jsFilter": "**/*.js",
-    "vendorFilter": "**/vendor/**/*",
     "babel": {
       "config": {
         "modules": "amd"
-      },
-      "filter": [
-        "**/*.js",
-        "!**/vendor/**/*"
-      ]
+      }
     },
     "lint": {
       "config": "./.jshintrc"
@@ -54,11 +53,9 @@
     ],
     "exclude": [
       "manifest.appcache",
-      "**/js/init/*.js",
-      "**/js/kolibri/*.js",
-      "**/js/utils/*.js",
-      "**/js/vendor/*.js",
-      "**/js/gengi.js"
+      "**/img/**/*",
+      "**/fonts/**/*.woff",
+      "**/fonts/**/*.woff2"
     ],
     "fallback": ["/ /offline.html"],
     "network": [
@@ -76,7 +73,17 @@
     "cssFilter": "**/*.css",
     "scssFilter": "**/*.scss",
     "srcDir": "./src/scss/",
-    "subDir": "css/"
+    "subDir": "css/",
+    "autoprefixer": {
+      "browsers": [
+        "ie >= 10",
+        "> 1%",
+        "last 2 versions",
+        "Firefox ESR",
+        "Opera 12.1"
+      ],
+      "cascade": false
+    }
   },
   "svg": {
     "src": "./src/img/**/*.svg",

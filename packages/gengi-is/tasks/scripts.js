@@ -1,30 +1,34 @@
 'use strict';
 
 module.exports = function(gulp) {
-  var jsDir = gulp.cfg.env.dir + gulp.cfg.scripts.subDir;
+  var gutil = gulp.plugin.util;
+
   var amdOptimize = require('amd-optimize');
-  var vendorFilter = gulp.plugin.filter(gulp.cfg.scripts.vendorFilter);
+  var eventStream = require('event-stream');
 
   gulp.task('scripts', ['jshint'], function() {
-    return gulp.src(gulp.cfg.scripts.src)
-      .pipe ( gulp.plugin.plumber() )
+    var almondStream = gulp.src(gulp.cfg.scripts.almondSrc);
+    var scriptStream = gulp.src(gulp.cfg.scripts.src)
+        .pipe ( gulp.plugin.plumber({errorHandler: gulp.plugin.notify.onError('<%= error.message %>')}) )
 
-      .pipe ( vendorFilter )
-        .pipe ( gulp.plugin.debug({title:'vendor:'}) )
-        .pipe ( gulp.dest( jsDir ) )
-      .pipe ( vendorFilter.restore() )
-
-      .pipe ( gulp.plugin.filter(gulp.cfg.scripts.babel.filter) )
         // Run through babel.js
-        .pipe ( gulp.plugin.debug({title:'!babel:'}) )
-        .pipe ( gulp.plugin.sourcemaps.init() )
+        .pipe ( gulp.plugin.debug({title:'script:'}) )
         .pipe ( gulp.plugin.babel(gulp.cfg.scripts.babel.config) )
+
         // Optimize for amd and concatenate
+        .pipe ( gulp.plugin.sourcemaps.init() )
         .pipe ( amdOptimize('main') )
         .pipe ( gulp.plugin.concat('main.js') )
+        .pipe ( gulp.plugin.sourcemaps.write());
+
+    eventStream.merge(
+      almondStream,
+      scriptStream
+    ) .pipe ( gulp.plugin.order(['**/almond.js', '**/main.js']) )
+      .pipe ( gulp.plugin.concat('main.js') )
 
       .pipe ( gulp.plugin.debug({title:'output:'}) )
-      .pipe ( gulp.dest( jsDir ) )
-      .pipe ( gulp.plugin.util.env.prod ? gulp.plugin.util.noop() : gulp.plugin.connect.reload() );
+      .pipe ( gulp.dest( gulp.cfg.env.dir + gulp.cfg.scripts.subDir ) )
+      .pipe ( gutil.env.prod ? gutil.noop() : gulp.plugin.connect.reload() );
   });
 };

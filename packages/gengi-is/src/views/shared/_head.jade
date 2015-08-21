@@ -77,7 +77,5 @@ head
 
   link(rel='stylesheet', href='/css/styles.css')
 
-  if env == 'production'
-    script(src='/js/main.js')
-  else
-    script(data-main='/js/main', src='/js/vendor/require.js')
+  script(data-main='main' src='/js/main.js')
+  script require('main');

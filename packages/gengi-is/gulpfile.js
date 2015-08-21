@@ -8,3 +8,18 @@ gulp.cfg.env.dir = gulp.plugin.util.env.prod ? gulp.cfg.env.production.dir : gul
 
 var loadTasks = require('gulp-load')(gulp);
 loadTasks(__dirname);
+
+process.on('uncaughtException', function (err) {
+  if (err) {
+    var gutil = gulp.plugin.util;
+    gutil.beep();
+    gutil.log(gutil.colors.red('--- Uncaught Exception ---'));
+    gutil.log(gutil.colors.yellow(err));
+    gutil.log(gutil.colors.red('--- -------- --------- ---'));
+
+    require('node-notifier').notify({
+      title: err.name + ' in plugin ' + err.plugin,
+      message: err.message,
+    });
+  }
+});
