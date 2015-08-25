@@ -34,6 +34,7 @@
     "almondSrc": "./src/js/vendor/almond.js",
     "jsFilter": "**/*.js",
     "babel": {
+      "src": ["./src/js/**/*.js", "!**/vendor/**"],
       "config": {
         "modules": "amd"
       }

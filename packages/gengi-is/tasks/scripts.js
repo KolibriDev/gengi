@@ -5,9 +5,9 @@ module.exports = function(gulp) {
 
   var amdOptimize = require('amd-optimize');
   var eventStream = require('event-stream');
-  var filtered = gulp.plugin.filter(['**/*.js','!**/vendor/**/*'], {restore:true});
+  // var filtered = gulp.plugin.filter(['**/*.js','!**/vendor/**/*'], {restore:true});
 
-  gulp.task('scripts', ['jshint'], function() {
+  gulp.task('scripts', function() {
     var almondStream = gulp.src(gulp.cfg.scripts.almondSrc);
     var scriptStream = gulp.src(gulp.cfg.scripts.src)
         .pipe ( gulp.plugin.plumber({errorHandler: gulp.plugin.notify.onError('<%= error.message %>')}) )
@@ -16,10 +16,10 @@ module.exports = function(gulp) {
         .pipe ( gulp.plugin.debug({title:'script:'}) )
         .pipe ( gulp.plugin.sourcemaps.init() )
 
-        .pipe ( filtered )
+        // .pipe ( filtered )
           .pipe ( gulp.plugin.debug({title:'--babel:'}) )
           .pipe ( gulp.plugin.babel(gulp.cfg.scripts.babel.config) )
-        .pipe ( filtered.restore )
+        // .pipe ( filtered.restore )
 
         // Optimize for amd and concatenate
         .pipe ( amdOptimize('main') )
