@@ -10,6 +10,8 @@ ifndef TARGET_DIR
 	TARGET_DIR := /var/www/gengi/api
 endif
 
+all: build deploy
+
 npm:
 	npm install
 
