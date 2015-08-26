@@ -22,7 +22,7 @@ require('fs').readdirSync(normalizedPath).forEach(function(fileName) {
 });
 
 app.get('/', function(req, res){
-  var pkg = require('../package.json');
+  var pkg = require('./package.json');
   res.send({
     version: pkg.version,
     description: pkg.description,
