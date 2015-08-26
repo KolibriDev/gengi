@@ -2,6 +2,6 @@
 
 module.exports = function(gulp) {
   gulp.task('build', function() {
-    return gulp.start('scripts');
+    return gulp.start('scripts','config');
   });
 };

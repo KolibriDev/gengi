@@ -1,0 +1,14 @@
+{
+ "apps" : [
+    {
+      "name"      : "gengi-api",
+      "script"    : "server.js",
+      "log_date_format"  : "YYYY-MM-DD HH:mm Z",
+      "env": {},
+      "max_memory_restart" : "500M",
+      "env_production" : {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}

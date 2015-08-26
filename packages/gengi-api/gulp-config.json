@@ -5,5 +5,11 @@
   },
   "scripts": {
     "src": "./src/**/*.js"
+  },
+  "config": {
+    "src": [
+      "./package.json",
+      "./src/config/**/*.json"
+    ]
   }
 }
