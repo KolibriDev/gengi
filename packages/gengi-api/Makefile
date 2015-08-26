@@ -25,3 +25,4 @@ build:
 
 deploy:
 	rsync --delete -ruP ./dist/* ${WEB_USER}@${TARGET_HOST}:${TARGET_DIR}
+	ssh ${WEB_USER}@${TARGET_HOST} 'pm2 gracefulReload all'
