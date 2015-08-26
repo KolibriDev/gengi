@@ -8,7 +8,6 @@ redis.cacheKey = 'mastercard-gengi';
 
 
 redisClient.on('error', function (err) {
-  console.log('Error ' + err);
   redis.error = err;
   redis.ready = false;
 });
