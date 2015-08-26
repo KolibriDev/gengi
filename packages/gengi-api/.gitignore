@@ -16,3 +16,4 @@ node_modules
 .idea
 deploy_key
 deploy_key.pub
+dist/*
