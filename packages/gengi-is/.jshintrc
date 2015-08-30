@@ -1,9 +1,6 @@
 {
   "predef": [
-    "define",
-    "require",
-    "requirejs",
-    "Modernizr"
+    "Vue"
   ],
   "node" : true,
   "jquery" : true,
