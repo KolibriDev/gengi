@@ -1,8 +1,12 @@
+- var appTitle = "Gengi.is"
+if env !== 'production'
+  - appTitle = env + ">"
+
 head
   meta(charset="utf-8")
   meta(name="viewport", content="width=device-width,initial-scale=1")
 
-  title Gengi.is
+  title=appTitle
 
   meta(name="description", content='Náðu í nýjasta gengi gjaldmiðla og reiknaðu á einfaldan hátt í snjallsímavænu viðmóti. Gengi dollars, evru, punds, bitcoin og svo margt fleira.')
   meta(name="keywords", content='gengi gjaldmiðla,gjaldmiðlar,gengi eur,gengi usd,gengi gbp,gengi btc,bitcion,gengisreiknir,gengisreiknivél, gengis reiknivél')
@@ -10,31 +14,31 @@ head
   link(href="/img/icon/gengi-is.ico", rel="icon", type="image/x-icon")
 
   meta(name="apple-mobile-web-app-capable", content="yes")
-  meta(name="apple-mobile-web-app-title", content="Gengi.is")
+  meta(name="apple-mobile-web-app-title", content=appTitle)
   meta(name="apple-mobile-web-app-status-bar-style", content="black")
 
   link(rel="apple-touch-startup-image", href="/img/apple-load-screen.png" media="")
 
   //- iPad retina portrait startup image
-  link(href="https://placehold.it/1536x2008" rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)")
+  link(href="https://placehold.it/1536x2008/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)")
   //- iPad retina landscape startup image
-  link(href="https://placehold.it/1496x2048" rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)")
+  link(href="https://placehold.it/1496x2048/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)")
   //- iPad non-retina portrait startup image
-  link(href="https://placehold.it/768x1004" rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 1) and (orientation: portrait)")
+  link(href="https://placehold.it/768x1004/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 1) and (orientation: portrait)")
   //- iPad non-retina landscape startup image
-  link(href="https://placehold.it/748x1024" rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 1) and (orientation: landscape)")
+  link(href="https://placehold.it/748x1024/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 1) and (orientation: landscape)")
   //- iPhone 6 Plus portrait startup image
-  link(href="https://placehold.it/1242x2148" rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)")
+  link(href="https://placehold.it/1242x2148/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)")
   //- iPhone 6 Plus landscape startup image
-  link(href="https://placehold.it/1182x2208" rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)")
+  link(href="https://placehold.it/1182x2208/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)")
   //- iPhone 6 startup image
-  link(href="https://placehold.it/750x1294" rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)")
+  link(href="https://placehold.it/750x1294/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)")
   //- iPhone 5 startup image
-  link(href="https://placehold.it/640x1096" rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)")
+  link(href="https://placehold.it/640x1096/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)")
   //- iPhone < 5 retina startup image
-  link(href="https://placehold.it/640x920" rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)")
+  link(href="https://placehold.it/640x920/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)")
   //- iPhone < 5 non-retina startup image
-  link(href="https://placehold.it/320x460" rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)")
+  link(href="https://placehold.it/320x460/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)")
 
   meta(name="format-detection", content="telephone=no")
 
@@ -46,17 +50,17 @@ head
   meta(property="og:image:height", content="627")
 
   //- //- Retina >= iOS 7
-  link(rel="apple-touch-icon-precomposed", sizes="180x180", href="https://placehold.it/180x180.png")
-  link(rel="apple-touch-icon-precomposed", sizes="152x152", href="https://placehold.it/152x152.png")
-  link(rel="apple-touch-icon-precomposed", sizes="120x120", href="https://placehold.it/120x120.png")
+  link(rel="apple-touch-icon-precomposed", sizes="180x180", href="https://placehold.it/180x180/39D6B3/EDEDEB.png?text=#{appTitle}")
+  link(rel="apple-touch-icon-precomposed", sizes="152x152", href="https://placehold.it/152x152/39D6B3/EDEDEB.png?text=#{appTitle}")
+  link(rel="apple-touch-icon-precomposed", sizes="120x120", href="https://placehold.it/120x120/39D6B3/EDEDEB.png?text=#{appTitle}")
   //- //- Retina <= iOS 6
-  link(rel="apple-touch-icon-precomposed", sizes="144x144", href="https://placehold.it/144x144.png")
-  link(rel="apple-touch-icon-precomposed", sizes="114x114", href="https://placehold.it/114x114.png")
+  link(rel="apple-touch-icon-precomposed", sizes="144x144", href="https://placehold.it/144x144/39D6B3/EDEDEB.png?text=#{appTitle}")
+  link(rel="apple-touch-icon-precomposed", sizes="114x114", href="https://placehold.it/114x114/39D6B3/EDEDEB.png?text=#{appTitle}")
   //- //- Non-retina
-  link(rel="apple-touch-icon-precomposed", sizes="76x76",   href="https://placehold.it/76x76.png")
-  link(rel="apple-touch-icon-precomposed", sizes="72x72",   href="https://placehold.it/72x72.png")
-  link(rel="apple-touch-icon-precomposed", sizes="60x60",   href="https://placehold.it/60x60.png")
-  link(rel="apple-touch-icon-precomposed",                  href="https://placehold.it/57x57.png")
+  link(rel="apple-touch-icon-precomposed", sizes="76x76",   href="https://placehold.it/76x76/39D6B3/EDEDEB.png?text=#{appTitle}")
+  link(rel="apple-touch-icon-precomposed", sizes="72x72",   href="https://placehold.it/72x72/39D6B3/EDEDEB.png?text=#{appTitle}")
+  link(rel="apple-touch-icon-precomposed", sizes="60x60",   href="https://placehold.it/60x60/39D6B3/EDEDEB.png?text=#{appTitle}")
+  link(rel="apple-touch-icon-precomposed",                  href="https://placehold.it/57x57/39D6B3/EDEDEB.png?text=#{appTitle}")
 
   //- //- Windows Pinned site
   meta(name="application-name", content=title)
@@ -70,7 +74,7 @@ head
   meta(name="msapplication-navbutton-color", content="#41485e")
 
   //- Windows 8 tiles
-  meta(name="msapplication-TileImage", content="https://placehold.it/144x144.png")
+  meta(name="msapplication-TileImage", content="https://placehold.it/144x144/39D6B3/EDEDEB.png?text=#{appTitle}")
   meta(name="msapplication-TileColor", content="#ededeb")
 
   //- script(type='text/javascript' src='/js/vendor/modernizr.js')

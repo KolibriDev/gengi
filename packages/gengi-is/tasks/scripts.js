@@ -1,7 +1,10 @@
 'use strict';
 
 module.exports = function(gulp) {
-  var gutil = gulp.plugin.util;
+  var gutil = gulp.plugin.util,
+      env  = gutil.env.env,
+      stage  = env === 'stage',
+      prod  = env === 'production';
 
   var amdOptimize = require('amd-optimize');
   var eventStream = require('event-stream');
@@ -37,6 +40,6 @@ module.exports = function(gulp) {
 
       .pipe ( gulp.plugin.debug({title:'output:'}) )
       .pipe ( gulp.dest( gulp.cfg.env.dir + gulp.cfg.scripts.subDir ) )
-      .pipe ( gutil.env.prod ? gutil.noop() : gulp.plugin.connect.reload() );
+      .pipe ( stage || prod ? gutil.noop() : gulp.plugin.connect.reload() );
   });
 };
