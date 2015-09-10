@@ -1,8 +1,4 @@
 {
-  "predef": [
-    "describe",
-    "it"
-  ],
   "node" : true,
   "jquery" : false,
   "browser" : false,

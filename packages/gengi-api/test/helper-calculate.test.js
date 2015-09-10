@@ -1,4 +1,4 @@
-var calculate = require('../helpers/calculate');
+var calculate = require('../dist/helpers/calculate');
 var assert = require('assert');
 
 describe('Helpers > calculate', function(){

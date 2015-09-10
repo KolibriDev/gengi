@@ -1,4 +1,4 @@
-var search = require('../helpers/search');
+var search = require('../dist/helpers/search');
 var assert = require('assert');
 var _ = require('underscore');
 

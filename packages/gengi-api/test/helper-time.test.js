@@ -1,4 +1,4 @@
-var time = require('../helpers/time');
+var time = require('../dist/helpers/time');
 var assert = require('assert');
 
 describe('Helpers > time', function(){

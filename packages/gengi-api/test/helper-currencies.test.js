@@ -1,4 +1,4 @@
-var currencies = require('../helpers/currencies');
+var currencies = require('../dist/helpers/currencies');
 var assert = require('assert');
 
 describe('Helpers > currencies', function(){

@@ -15,11 +15,19 @@ all: build deploy
 npm:
 	npm install
 
-test:
-	jshint .
-	@./node_modules/.bin/mocha
+.PHONY: test, test-build
+test: test-build test-project
 
-.PHONY: test
+test-build: build
+	jshint ./gulpfile.js --verbose --reporter node_modules/jshint-stylish
+	jshint ./tasks --verbose --reporter node_modules/jshint-stylish
+	jshint ./test-build --verbose --config ./.jshintrc-test --reporter node_modules/jshint-stylish
+	jasmine-node --test-dir test-build --verbose --color
+
+test-project:
+	jshint ./src --verbose --reporter node_modules/jshint-stylish
+	jshint ./test --verbose --config ./.jshintrc-test --reporter node_modules/jshint-stylish
+	@./node_modules/.bin/mocha
 
 build:
 	gulp build
