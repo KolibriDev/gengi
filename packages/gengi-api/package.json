@@ -38,12 +38,15 @@
     "del": "^1.2.1",
     "gulp": "^3.9.0",
     "gulp-debug": "^2.1.0",
+    "gulp-jshint": "^1.11.2",
     "gulp-load": "^0.1.1",
     "gulp-load-plugins": "^0.10.0",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
     "gulp-util": "^3.0.6",
+    "jshint-stylish": "^2.0.1",
     "mocha": "^2.2.5",
+    "node-notifier": "^4.2.3",
     "pre-git": "^0.6.2",
     "supertest": "^1.0.1"
   }

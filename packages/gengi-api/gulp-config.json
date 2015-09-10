@@ -1,10 +1,14 @@
 {
   "version": "0.1.0",
-  "env": {
-    "dir": "./dist/"
+  "defaultEnv": "production",
+  "envdir": {
+    "production": "./dist/"
   },
   "scripts": {
-    "src": "./src/**/*.js"
+    "src": "./src/**/*.js",
+    "lint": {
+      "config": "./.jshintrc"
+    }
   },
   "config": {
     "src": [

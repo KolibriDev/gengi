@@ -5,6 +5,6 @@ module.exports = function(gulp) {
     return gulp.src(gulp.cfg.config.src)
       .pipe ( gulp.plugin.plumber({errorHandler: gulp.plugin.notify.onError('<%= error.message %>')}) )
 
-      .pipe ( gulp.dest( gulp.cfg.env.dir ) );
+      .pipe ( gulp.dest( gulp.cfg.envdir ) );
   });
 };

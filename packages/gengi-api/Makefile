@@ -22,7 +22,6 @@ test:
 .PHONY: test
 
 build:
-	gulp clean
 	gulp build
 
 deploy:
