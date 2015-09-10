@@ -25,5 +25,5 @@ build:
 	gulp build
 
 deploy:
-	rsync --delete -ruP ./dist/* ${WEB_USER}@${TARGET_HOST}:${TARGET_DIR}
+	rsync --delete-after --quiet -rlptuPO --chmod=g+w ./dist/* ${WEB_USER}@${TARGET_HOST}:${TARGET_DIR}
 	ssh ${WEB_USER}@${TARGET_HOST} 'cd /var/www/gengi/api && npm install --production && pm2 startOrRestart gengi-api.json'
