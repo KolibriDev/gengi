@@ -13,21 +13,20 @@ endif
 all: npm test build deploy
 
 npm:
-	npm install -g gulp jshint jasmine-node
 	npm install --loglevel=error
 
 .PHONY: test, test-build
 test: test-build test-project
 
 test-build: build
-	jshint ./gulpfile.js --verbose --reporter node_modules/jshint-stylish
-	jshint ./tasks --verbose --reporter node_modules/jshint-stylish
-	jshint ./test-build --verbose --config ./.jshintrc-test --reporter node_modules/jshint-stylish
-	jasmine-node --test-dir test-build --verbose --color
+	@./node_modules/.bin/jshint ./gulpfile.js --verbose --reporter node_modules/jshint-stylish
+	@./node_modules/.bin/jshint ./tasks --verbose --reporter node_modules/jshint-stylish
+	@./node_modules/.bin/jshint ./test-build --verbose --config ./.jshintrc-test --reporter node_modules/jshint-stylish
+	@./node_modules/.bin/jasmine-node --test-dir test-build --verbose --color
 
 test-project:
-	jshint ./src --verbose --reporter node_modules/jshint-stylish
-	jshint ./test --verbose --config ./.jshintrc-test --reporter node_modules/jshint-stylish
+	@./node_modules/.bin/jshint ./src --verbose --reporter node_modules/jshint-stylish
+	@./node_modules/.bin/jshint ./test --verbose --config ./.jshintrc-test --reporter node_modules/jshint-stylish
 	@./node_modules/.bin/mocha
 
 build:

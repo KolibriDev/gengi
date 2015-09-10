@@ -44,6 +44,8 @@
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
     "gulp-util": "^3.0.6",
+    "jasmine-node": "^1.14.5",
+    "jshint": "^2.8.0",
     "jshint-stylish": "^2.0.1",
     "mocha": "^2.2.5",
     "node-notifier": "^4.2.3",
