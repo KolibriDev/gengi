@@ -44,7 +44,6 @@ describe('Helpers > currencies', function(){
     });
 
     var value = currencies.ensureCodes('usd,eur');
-    console.log(value);
 
     it('should return an array', function(done){
       assert(Array.isArray(value), 'expected to be array');
