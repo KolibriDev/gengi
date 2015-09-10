@@ -10,7 +10,7 @@ ifndef TARGET_DIR
 	TARGET_DIR := /var/www/gengi/api
 endif
 
-all: build deploy
+all: npm test build deploy
 
 npm:
 	npm install -g gulp jshint jasmine-node
