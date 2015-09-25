@@ -161,7 +161,7 @@ define(['keys', 'router', 'modules/utils', 'init/swiftclick'], function(keys, ro
         currList.splice(index, 1);
       }
       vm.$set('currencyList', currList);
-      utils.local.setJSON('currencies', vm.currencies);
+      utils.local.set('currencies', vm.currencies);
     },
     addToList: function(vm, currency) {
       var currList = vm.currencyList;
@@ -171,7 +171,7 @@ define(['keys', 'router', 'modules/utils', 'init/swiftclick'], function(keys, ro
       var currencies = vm.currencies;
       currencies.list[currency.code] = currency;
       vm.$set('currencies', currencies);
-      utils.local.setJSON('currencies', vm.currencies);
+      utils.local.set('currencies', vm.currencies);
     },
     numpad: function(vm, key) {
       var newVal, numpadValue;

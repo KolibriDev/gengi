@@ -268,7 +268,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'modules/utils', 'init/swif
         currList.splice(index, 1);
       }
       _gengi.vm.$set('currencyList', currList);
-      utils.local.setJSON('currencies', _gengi.vm.currencies);
+      utils.local.set('currencies', _gengi.vm.currencies);
     },
     addToList: function(currency) {
       var currList = _gengi.vm.currencyList;
@@ -278,7 +278,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'modules/utils', 'init/swif
       var currencies = _gengi.vm.currencies;
       currencies.list[currency.code] = currency;
       _gengi.vm.$set('currencies', currencies);
-      utils.local.setJSON('currencies', _gengi.vm.currencies);
+      utils.local.set('currencies', _gengi.vm.currencies);
     },
 
     showView: {
@@ -344,13 +344,13 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'modules/utils', 'init/swif
 
     initializeWatches: function() {
       _gengi.vm.$watch('app', function() {
-        utils.local.setJSON('app', _gengi.vm.app);
+        utils.local.set('app', _gengi.vm.app);
       }, {deep: true});
       _gengi.vm.$watch('currencies', function() {
-        utils.local.setJSON('currencies', _gengi.vm.currencies);
+        utils.local.set('currencies', _gengi.vm.currencies);
       }, {deep: true});
       _gengi.vm.$watch('currencyList', function() {
-        utils.local.setJSON('currencyList', _gengi.vm.currencyList);
+        utils.local.set('currencyList', _gengi.vm.currencyList);
       });
 
       // "Router"
@@ -381,7 +381,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'modules/utils', 'init/swif
     },
 
     initCurrencies: function() {
-      var currencies = utils.local.getJSON('currencies');
+      var currencies = utils.local.get('currencies');
       if (currencies && currencies.expires >= new Date().getTime()) {
         _gengi.vm.$set('currencies', currencies);
         return;
@@ -418,15 +418,15 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'modules/utils', 'init/swif
     },
 
     ensureLocalstoreVersion: function(version){
-      var app = utils.local.getJSON('app');
+      var app = utils.local.get('app');
       if (app === false || !app || app.version !== version) {
         utils.local.clearAll();
       }
     },
 
     initData: function(dataName){
-      var data = utils.local.getJSON(dataName) || _gengi.vm[dataName];
-      utils.local.setJSON(dataName,data);
+      var data = utils.local.get(dataName) || _gengi.vm[dataName];
+      utils.local.set(dataName,data);
       _gengi.vm.$set(dataName, data);
     },
 

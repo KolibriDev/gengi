@@ -122,6 +122,40 @@ let keys = {
   'singlequote': 222,
 };
 
+
+keys.isNumPad = (which) => {
+  which = which || 0;
+  return which === keys.comma ||
+    which === keys['0'] ||
+    which === keys['1'] ||
+    which === keys['2'] ||
+    which === keys['3'] ||
+    which === keys['4'] ||
+    which === keys['5'] ||
+    which === keys['6'] ||
+    which === keys['7'] ||
+    which === keys['8'] ||
+    which === keys['9'] ||
+    which === keys['numpad-0'] ||
+    which === keys['numpad-1'] ||
+    which === keys['numpad-2'] ||
+    which === keys['numpad-3'] ||
+    which === keys['numpad-4'] ||
+    which === keys['numpad-5'] ||
+    which === keys['numpad-6'] ||
+    which === keys['numpad-7'] ||
+    which === keys['numpad-8'] ||
+    which === keys['numpad-9'] ||
+    which === keys.backspace ||
+    which === keys.escape;
+};
+
+keys.isUpDown = which => {
+  which = which || 0;
+  return which === keys['arrow-up'] ||
+    which === keys['arrow-down'];
+};
+
 keys.isFunctionalKey = (which) => {
   which = which || 0;
   return which === keys.ctrl ||
@@ -157,6 +191,8 @@ keys.which = (keyCode) => {
 };
 
 export let isFunctionalKey = keys.isFunctionalKey;
+export let isNumPad = keys.isNumPad;
+export let isUpDown = keys.isUpDown;
 export let isClickModifier = keys.isClickModifier;
 export let isTextModifier = keys.isTextModifier;
 export let which = keys.which;
