@@ -234,7 +234,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'modules/utils', 'init/swif
         _gengi.activateCalcField('curr');
       } else if (numpadValue === 'activate-isk') {
         _gengi.activateCalcField('isk');
-      } else if (numpadValue) {
+      } else if (numpadValue || numpadValue === '' || numpadValue === '0') {
         _gengi.vm.app[_gengi.vm.app.activeField] = numpadValue;
         _gengi.calculate(_gengi.vm.app.activeField);
       }
