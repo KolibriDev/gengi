@@ -1,7 +1,7 @@
 'use strict';
-define(['keys', 'router', 'utils/utils', 'init/swiftclick'], (keys, router, utils, swiftclick) => {
+define(['keys', 'router', 'modules/utils', 'init/swiftclick'], function(keys, router, utils, swiftclick) {
   var help = {
-    filters: () => {
+    filters: function() {
     },
     methods: {
       showView: function(view, options) {
@@ -109,18 +109,18 @@ define(['keys', 'router', 'utils/utils', 'init/swiftclick'], (keys, router, util
       },
     },
     views: {
-      search: (vm, options) => {
+      search: function(vm, options) {
         if (options && options.hasOwnProperty('term')) {
           vm.search.term = options.term;
           utils.search(vm);
         }
         vm.app.view = 'search';
         // TODO: Find better way to ensure input exists before focus
-        setTimeout(() => {
+        setTimeout(function() {
           document.getElementById('search').focus();
         },1);
       },
-      calc: (vm, options) => {
+      calc: function(vm, options) {
         if (!options) {
           console.warn('No options provided for calc view');
           return;
@@ -136,12 +136,12 @@ define(['keys', 'router', 'utils/utils', 'init/swiftclick'], (keys, router, util
         help.activateCalcField(vm, 'curr');
 
         // TODO: Find better way to ensure num exists before triggering swiftclick
-        setTimeout(() => {
+        setTimeout(function() {
           swiftclick.replaceNodeNamesToTrack(['num']);
         },1);
       },
     },
-    activateCalcField: (vm, fieldName) => {
+    activateCalcField: function(vm, fieldName) {
       vm.app.activeField = fieldName !== 'curr' ? 'amountISK' : 'amountCurr';
       var field = document.querySelector('[field="amountCurr"]');
       var otherField = document.querySelector('[field="amountISK"]');
@@ -154,7 +154,7 @@ define(['keys', 'router', 'utils/utils', 'init/swiftclick'], (keys, router, util
         otherField.classList.remove('active');
       }
     },
-    removeFromList: (vm, currency) => {
+    removeFromList: function(vm, currency) {
       var currList = vm.currencyList;
       var index = currList.indexOf(currency.code);
       if (index !== -1) {
@@ -163,7 +163,7 @@ define(['keys', 'router', 'utils/utils', 'init/swiftclick'], (keys, router, util
       vm.$set('currencyList', currList);
       utils.local.setJSON('currencies', vm.currencies);
     },
-    addToList: (vm, currency) => {
+    addToList: function(vm, currency) {
       var currList = vm.currencyList;
       currList.unshift(currency.code);
       vm.$set('currencyList', currList);
@@ -173,7 +173,7 @@ define(['keys', 'router', 'utils/utils', 'init/swiftclick'], (keys, router, util
       vm.$set('currencies', currencies);
       utils.local.setJSON('currencies', vm.currencies);
     },
-    numpad: (vm, key) => {
+    numpad: function(vm, key) {
       var newVal, numpadValue;
       newVal = vm.app[vm.app.activeField].toString();
       numpadValue = utils.numpad(newVal, key);
@@ -191,7 +191,7 @@ define(['keys', 'router', 'utils/utils', 'init/swiftclick'], (keys, router, util
       }
       /* jshint ignore:end */
     },
-    calculate: (vm, srcElement) => {
+    calculate: function(vm, srcElement) {
       if (srcElement === 'amountCurr') {
         vm.app.amountISK = utils.calculate(
           vm.currencies.list[vm.app.currentCurrency].rate,

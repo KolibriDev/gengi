@@ -1,18 +1,18 @@
 'use strict';
-define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftclick'], (Vue, $, promise, keys, router, utils, swiftclick) => {
+define(['vue', 'zepto', 'promise', 'keys', 'router', 'modules/utils', 'init/swiftclick'], function(Vue, $, promise, keys, router, utils, swiftclick) {
   var _gengi = {
     version: '0.0.7',
     vm: false,
-    init: () => {
+    init: function() {
       var keylock = false;
 
-      $(document).on('keyup', (event) => {
+      $(document).on('keyup', function(event) {
         if (router.state.view === 'list') {
         } else if (router.state.view === 'calc' && keylock && keys.isFunctionalKey(event.which)) {
           keylock = false;
         }
       });
-      $(document).on('keydown', (event) => {
+      $(document).on('keydown', function(event) {
         if (router.state.view === 'list') {
           if (keys.isUpDown(event.which)) {
             _gengi.navigateList(event.which);
@@ -107,17 +107,17 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
           },
         },
         methods: {
-          showView: (view, options) => {
+          showView: function(view, options) {
             if (_gengi.showView.hasOwnProperty(view)) {
               _gengi.showView[view](options);
             } else {
               _gengi.showView.catch(view);
             }
           },
-          focusSearchInput: () => {
+          focusSearchInput: function() {
             document.getElementById('search').focus();
           },
-          performSearch: () => {
+          performSearch: function() {
             router.updateState({
               view: _gengi.vm.app.view,
               amountCurr: _gengi.vm.app.amountCurr,
@@ -127,21 +127,21 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
             });
             utils.search(_gengi.vm);
           },
-          toggleInList: (currency) => {
+          toggleInList: function(currency) {
             if(_gengi.vm.currencyList.indexOf(currency.code) > -1) {
               _gengi.removeFromList(currency);
             } else {
               _gengi.addToList(currency);
             }
           },
-          calculate: (event) => {
+          calculate: function(event) {
             var srcElement = event.srcElement.id;
             _gengi.calculate(srcElement);
           },
-          which: (event) => {
+          which: function(event) {
             console.info(event.which, '=>', keys.which(event.which));
           },
-          plusOne: (event) => {
+          plusOne: function(event) {
             var target = event.target.id;
             var newVal = _gengi.vm.app[target];
             newVal = parseFloat(newVal);
@@ -149,7 +149,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
             newVal = newVal + 1;
             _gengi.vm.app[target] = newVal;
           },
-          minusOne: (event) => {
+          minusOne: function(event) {
             var target = event.target.id;
             var newVal = _gengi.vm.app[target];
             newVal = parseFloat(newVal);
@@ -158,10 +158,10 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
             newVal = newVal < 0 ? 0 : newVal;
             _gengi.vm.app[target] = newVal;
           },
-          activate: (fieldName) => {
+          activate: function(fieldName) {
             _gengi.activateCalcField(fieldName);
           },
-          numPad: (event) => {
+          numPad: function(event) {
             var target = event.target;
             // target.classList.remove('click');
             // var durations = window.getComputedStyle(target, ':after').transitionDuration;
@@ -170,9 +170,9 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
             //   durations[index] = parseFloat(duration);
             // });
             // var time = Math.max.apply(durations, durations) * 1000;
-            // setTimeout(() => {
+            // setTimeout(function() {
             //   target.classList.add('click');
-            //   setTimeout(() => {
+            //   setTimeout(function() {
             //     target.classList.remove('click');
             //   }, time);
             // }, 1);
@@ -207,7 +207,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
       }, null, window.location.pathname);
     },
 
-    navigateList: (key) => {
+    navigateList: function(key) {
       key = keys.which(key);
       if (key === 'arrow-up') {
         if (!_gengi.vm.app.highlightedCurrency || _gengi.vm.app.highlightedCurrency < 1) {
@@ -224,7 +224,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
       }
     },
 
-    numpad: (key) => {
+    numpad: function(key) {
       var newVal = _gengi.vm.app[_gengi.vm.app.activeField].toString();
       var numpadValue = utils.numpad(newVal, key);
 
@@ -240,7 +240,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
       }
     },
 
-    calculate: (srcElement) => {
+    calculate: function(srcElement) {
       if (srcElement === 'amountCurr') {
         _gengi.vm.app.amountISK = utils.calculate(
           _gengi.vm.currencies.list[_gengi.vm.app.currentCurrency].rate,
@@ -261,7 +261,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
       });
     },
 
-    removeFromList: (currency) => {
+    removeFromList: function(currency) {
       var currList = _gengi.vm.currencyList;
       var index = currList.indexOf(currency.code);
       if (index !== -1) {
@@ -270,7 +270,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
       _gengi.vm.$set('currencyList', currList);
       utils.local.setJSON('currencies', _gengi.vm.currencies);
     },
-    addToList: (currency) => {
+    addToList: function(currency) {
       var currList = _gengi.vm.currencyList;
       currList.unshift(currency.code);
       _gengi.vm.$set('currencyList', currList);
@@ -282,23 +282,23 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
     },
 
     showView: {
-      catch: (view) => {
+      catch: function(view) {
         _gengi.vm.app.view = view;
       },
 
-      search: (options) => {
+      search: function(options) {
         if (options && options.hasOwnProperty('term')) {
           _gengi.vm.search.term = options.term;
           utils.search(_gengi.vm);
         }
         _gengi.vm.app.view = 'search';
         // TODO: Find better way to ensure input exists before focus
-        setTimeout(() => {
+        setTimeout(function() {
           document.getElementById('search').focus();
         },1);
       },
 
-      calc: (options) => {
+      calc: function(options) {
         if (!options) {
           console.warn('No options provided for calc view');
           return;
@@ -314,13 +314,13 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
         _gengi.activateCalcField('curr');
 
         // TODO: Find better way to ensure num exists before triggering swiftclick
-        setTimeout(() => {
+        setTimeout(function() {
           swiftclick.replaceNodeNamesToTrack(['num']);
         },1);
       },
     },
 
-    activateCalcField: (fieldName) => {
+    activateCalcField: function(fieldName) {
       _gengi.vm.app.activeField = fieldName !== 'curr' ? 'amountISK' : 'amountCurr';
       var field = document.querySelector('[field="amountCurr"]');
       var otherField = document.querySelector('[field="amountISK"]');
@@ -334,7 +334,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
       }
     },
 
-    initializeData: () => {
+    initializeData: function() {
       // Must execute in this order
       _gengi.ensureLocalstoreVersion(_gengi.version);
       _gengi.initData('app');
@@ -342,19 +342,19 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
       _gengi.initCurrencies();
     },
 
-    initializeWatches: () => {
-      _gengi.vm.$watch('app', () => {
+    initializeWatches: function() {
+      _gengi.vm.$watch('app', function() {
         utils.local.setJSON('app', _gengi.vm.app);
       }, {deep: true});
-      _gengi.vm.$watch('currencies', () => {
+      _gengi.vm.$watch('currencies', function() {
         utils.local.setJSON('currencies', _gengi.vm.currencies);
       }, {deep: true});
-      _gengi.vm.$watch('currencyList', () => {
+      _gengi.vm.$watch('currencyList', function() {
         utils.local.setJSON('currencyList', _gengi.vm.currencyList);
       });
 
       // "Router"
-      _gengi.vm.$watch('app.view', () => {
+      _gengi.vm.$watch('app.view', function() {
         router.updateView({
           view: _gengi.vm.app.view,
           amountCurr: _gengi.vm.app.amountCurr,
@@ -365,7 +365,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
       });
 
       // TODO: fix issue #3
-      // $(window).on('popstate', () => {
+      // $(window).on('popstate', function() {
       //   var state = window.history.state;
       //   console.log('popstate', state);
       //   if (!state) { return; }
@@ -380,7 +380,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
       // });
     },
 
-    initCurrencies: () => {
+    initCurrencies: function() {
       var currencies = utils.local.getJSON('currencies');
       if (currencies && currencies.expires >= new Date().getTime()) {
         _gengi.vm.$set('currencies', currencies);
@@ -390,7 +390,7 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
       _gengi.vm.$set('message', 'loading');
       promise.get(
         'http://api-v2.gengi.is/currencies/' + _gengi.vm.currencyList.join(',')
-      ).then((error, response) => {
+      ).then(function(error, response) {
         if (error) {
           if (currencies) {
             _gengi.vm.$set('message', 'expired-error');
@@ -417,14 +417,14 @@ define(['vue', 'zepto', 'promise', 'keys', 'router', 'utils/utils', 'init/swiftc
       });
     },
 
-    ensureLocalstoreVersion: (version) => {
+    ensureLocalstoreVersion: function(version){
       var app = utils.local.getJSON('app');
       if (app === false || !app || app.version !== version) {
         utils.local.clearAll();
       }
     },
 
-    initData: (dataName) => {
+    initData: function(dataName){
       var data = utils.local.getJSON(dataName) || _gengi.vm[dataName];
       utils.local.setJSON(dataName,data);
       _gengi.vm.$set(dataName, data);

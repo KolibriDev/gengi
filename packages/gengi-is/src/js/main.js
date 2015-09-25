@@ -17,9 +17,9 @@ require.config({
 
     bind: 'vendor/event-binding',
 
-    keys: 'kolibri/koli-keys',
-    onLoad: 'kolibri/koli-onload',
-    router: 'kolibri/koli-router',
+    keys: 'modules/keys',
+    onLoad: 'modules/onload',
+    router: 'modules/router',
     vueHelper: 'init/vue-helper',
 
     zepto: 'vendor/zepto-build',
