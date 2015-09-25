@@ -16,10 +16,15 @@ npm:
 test:
 	exit 0
 
+stage:
+	gulp clean --env stage
+	gulp build --env stage
+	gulp manifest --env stage
+
 build:
-	gulp clean --prod
-	gulp build --prod
-	gulp manifest --prod
+	gulp clean --env production
+	gulp build --env production
+	gulp manifest --env production
 
 deploy:
 	rsync --delete -ruP ./dist/* ${WEB_USER}@${TARGET_HOST}:${TARGET_DIR}

@@ -1023,7 +1023,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function enableDebug () {
 
 	  var hasConsole = typeof console !== 'undefined'
-
+	  
 	  /**
 	   * Log a message.
 	   *
@@ -3082,7 +3082,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      },
 	      { sync: true }
 	    )
-
+	    
 	    // set the child initial value first, before setting
 	    // up the child watcher to avoid triggering it
 	    // immediately.
@@ -4812,7 +4812,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  /**
 	   * Set childVM and parent ref
 	   */
-
+	  
 	  setCurrent: function (child) {
 	    this.childVM = child
 	    var refID = child._refID || this.refID
@@ -5149,7 +5149,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  update: function (value) {
 	    this.el[this.attr] = _.toString(value)
 	  }
-
+	  
 	}
 
 /***/ },
@@ -5408,7 +5408,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var removeClass = _.removeClass
 
 	module.exports = {
-
+	  
 	  update: function (value) {
 	    if (this.arg) {
 	      // single toggle
@@ -5464,7 +5464,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  unbind: function () {
 	    delete this.vm.$$[this.expression]
 	  }
-
+	  
 	}
 
 /***/ },
@@ -5492,7 +5492,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // if any.
 	    vm._refID = this.expression
 	  }
-
+	  
 	}
 
 /***/ },
@@ -5673,7 +5673,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *    - transition or animation:
 	 *        wait for end event, remove class, then done if
 	 *        there's no explicit js callback.
-	 *    - no css transition:
+	 *    - no css transition: 
 	 *        done if there's no explicit js callback.
 	 * 7. wait for either done or js callback, then call
 	 *    afterLeave hook.
@@ -6144,7 +6144,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // Support jQuery events, since jQuery.trigger() doesn't
 	    // trigger native events in some cases and some plugins
 	    // rely on $.trigger()
-	    //
+	    // 
 	    // We want to make sure if a listener is attached using
 	    // jQuery, it is also removed with jQuery, that's why
 	    // we do the check for each directive instance and
@@ -7241,7 +7241,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var vm = this.vm
 	    var frag = templateParser.clone(this.template)
 	    // the linker is not guaranteed to be present because
-	    // this function might get called by v-partial
+	    // this function might get called by v-partial 
 	    this.unlink = this.linker(vm, frag)
 	    transition.blockAppend(frag, this.end, vm)
 	    // call attached for all the child components created
@@ -7634,7 +7634,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  unbind: function () {
 	    if (this.unlink) {
 	      this.unlink()
-	    }
+	    } 
 	  }
 	}
 
@@ -7859,7 +7859,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 * Iterator to call attached hook
-	 *
+	 * 
 	 * @param {Vue} child
 	 */
 
@@ -7883,7 +7883,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 * Iterator to call detached hook
-	 *
+	 * 
 	 * @param {Vue} child
 	 */
 
@@ -7960,7 +7960,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	/**
-	 * Initialize the data.
+	 * Initialize the data. 
 	 */
 
 	exports._initData = function () {

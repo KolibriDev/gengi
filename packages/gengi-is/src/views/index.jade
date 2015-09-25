@@ -1,7 +1,10 @@
 extends shared/_layout
 
+block javascript
+  script(data-main='js/main' src='/js/vendor/require.js')
+
 block main
-  gengi(state="{{state}}" view="{{app.view}}")
+  gengi
 
     include partials/_header
 

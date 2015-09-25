@@ -1,23 +1,19 @@
 {
-  "version": "0.1.0",
-  "env": {
-    "development": {
-      "dir": "./dev/"
-    },
-    "production": {
-      "dir": "./dist/"
-    }
+  "version": "1.0.0-rc.3",
+  "defaultEnv": "development",
+  "envdir": {
+    "development": "./dev/",
+    "production": "./dist/"
   },
-  "cmd": {
-    "almond": "./bin/almond.sh",
-    "build": "./bin/build.sh",
-    "deploy-stage": "./bin/deploy-stage.sh",
-    "deploy-live": "./bin/deploy-live.sh",
-    "require": "./bin/require.sh"
-  },
-  "connect": {
+  "cmd": {},
+  "server": {
     "port": "1337",
-    "livereload": true
+    "uiport": "1338",
+    "ghostMode": {
+      "clicks": "true",
+      "forms": "true",
+      "scroll": "true"
+    }
   },
   "templates": {
     "watchSrc": "./src/views/**/*.jade",
@@ -30,20 +26,33 @@
     }
   },
   "scripts": {
-    "src": ["./src/js/**/*.js", "!./src/js/vendor/**/*.js"],
-    "vendorSrc": "./src/js/vendor/**/*.js",
-    "almondSrc": "./src/js/vendor/almond.js",
+    "src": [
+      "./src/js/**/*.js",
+      "!./src/js/modules/**/*.js"
+    ],
     "jsFilter": "**/*.js",
-    "babel": {
-      "src": ["./src/js/**/*.js", "!**/vendor/**"],
-      "config": {
-        "modules": "amd"
-      }
-    },
     "lint": {
-      "config": "./.jshintrc"
+      "config": "./.jshintrc",
+      "src": [
+        "./src/js/**/*.js",
+        "!./src/js/modules/**/*.js",
+        "!./src/**/vendor/**/*"
+      ]
     },
     "subDir": "js/"
+  },
+  "babel": {
+    "src": ["./src/js/modules/**/*.js"],
+    "config": {
+      "modules": "amd"
+    },
+    "lint": {
+      "config": "./.jshintrc",
+      "src": [
+        "./src/js/modules/**/*.js"
+      ]
+    },
+    "subDir": "js/modules"
   },
   "manifest": {
     "filename": "manifest.appcache",

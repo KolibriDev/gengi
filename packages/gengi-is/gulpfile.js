@@ -3,21 +3,24 @@ var gulp = require('gulp');
 
 // Attach plugins and config to gulp object, simply to have it globally accessible
 gulp.plugin = require('gulp-load-plugins')();
-gulp.cfg = require('./blender.json');
-gulp.cfg.env.dir = gulp.plugin.util.env.prod ? gulp.cfg.env.production.dir : gulp.cfg.env.development.dir;
+gulp.plugin.browserSync = require('browser-sync').create();
+
+gulp.cfg = require('./gulp-config.json');
+gulp.cfg.env = gulp.cfg.envdir.hasOwnProperty(gulp.plugin.util.env.env) ? gulp.plugin.util.env.env : gulp.cfg.defaultEnv;
+gulp.cfg.envdir = gulp.cfg.envdir[gulp.cfg.env];
 
 var loadTasks = require('gulp-load')(gulp);
 loadTasks(__dirname);
 
+var notify = require('node-notifier').notify;
 process.on('uncaughtException', function (err) {
   if (err) {
-    var gutil = gulp.plugin.util;
-    gutil.beep();
-    gutil.log(gutil.colors.red('--- Uncaught Exception ---'));
-    gutil.log(gutil.colors.yellow(err));
-    gutil.log(gutil.colors.red('--- -------- --------- ---'));
+    gulp.plugin.util.beep();
+    gulp.plugin.util.log(gulp.plugin.util.colors.red('--- Uncaught Exception ---'));
+    gulp.plugin.util.log(gulp.plugin.util.colors.yellow(err));
+    gulp.plugin.util.log(gulp.plugin.util.colors.red('--- -------- --------- ---'));
 
-    require('node-notifier').notify({
+    notify({
       title: err.name + ' in plugin ' + err.plugin,
       message: err.message,
     });

@@ -1,6 +1,8 @@
 {
   "predef": [
-    "Vue"
+    "define",
+    "require",
+    "requirejs"
   ],
   "node" : true,
   "jquery" : true,
