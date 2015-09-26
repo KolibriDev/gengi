@@ -1,6 +1,6 @@
 'use strict';
-define(['onLoad', 'gengi'], function(onLoad, gengi) {
-  onLoad(function() {
+define(['domReady', 'gengi'], function(domReady, gengi) {
+  domReady(function() {
     gengi.init(gengi);
   });
 });
