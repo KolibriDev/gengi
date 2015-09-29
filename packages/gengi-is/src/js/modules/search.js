@@ -1,7 +1,10 @@
+'use strict';
 import promise from 'promise';
 
-var timeout = 0;
-var _search = (vm) => {
+// TODO: abstract all knowledge of the Vue object from this module
+
+let timeout = 0;
+const search = (vm) => {
   vm.search.done = false;
 
   clearTimeout(timeout);
@@ -27,7 +30,7 @@ var _search = (vm) => {
         console.error('Error ' + xhr.status);
         return;
       }
-      var res = JSON.parse(response);
+      let res = JSON.parse(response);
       vm.$set('search',{
         term: vm.search.term,
         done: true,
@@ -39,4 +42,4 @@ var _search = (vm) => {
   },100);
 };
 
-export default _search;
+export default search;

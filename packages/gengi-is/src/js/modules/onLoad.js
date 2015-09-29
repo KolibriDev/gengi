@@ -1,4 +1,5 @@
 import domReady from 'domReady';
+import $ from 'jquery';
 
 export default (callback, reLoadCallback) => {
   domReady(callback);

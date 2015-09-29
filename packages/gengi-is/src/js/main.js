@@ -4,28 +4,21 @@ require.config({
     moment: { noGlobal: true },
   },
   paths: {
+    vue: 'vendor/vue',
+    zepto: 'vendor/zepto-build',
+    promise: 'vendor/promise',
     domReady: 'vendor/domReady',
-    classList: 'vendor/classList',
-    storage: 'vendor/Storage',
-
     modernizr: 'vendor/modernizr',
+    swiftclick: 'vendor/swiftclick',
 
     moment: 'vendor/moment',
     momentIS: 'vendor/moment-is',
     momenttz: 'vendor/moment-timezone',
-    momentjs: 'init/moment',
+    momentjs: 'modules/moment',
 
-    bind: 'vendor/event-binding',
-
-    keys: 'modules/keys',
-    onLoad: 'modules/onload',
-    router: 'modules/router',
-    vueHelper: 'init/vue-helper',
-
-    zepto: 'vendor/zepto-build',
-    promise: 'vendor/promise',
-    vue: 'vendor/vue',
-    swiftclick: 'vendor/swiftclick',
+    // Folders
+    init: 'modules/init',
+    mod: 'modules',
   },
   shim: {
     modernizr: { exports: 'Modernizr' },
