@@ -1,10 +1,10 @@
 'use strict';
-import keys from 'mod/keys';
-import router from 'mod/router';
-import search from 'mod/search';
-import calculate from 'mod/calculator';
-import storage from 'mod/storage';
-import numpad from 'mod/numpad';
+import keys from 'modules/keys';
+import router from 'modules/router';
+import search from 'modules/search';
+import calculate from 'modules/calculator';
+import storage from 'modules/storage';
+import numpad from 'modules/numpad';
 import swiftclick from 'init/swiftclick';
 
 let help = {

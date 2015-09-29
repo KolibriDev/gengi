@@ -1,4 +1,5 @@
-import format from 'mod/format';
+'use strict';
+import format from 'modules/format';
 
 let Router = class {
   constructor() {

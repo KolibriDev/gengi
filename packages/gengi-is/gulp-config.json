@@ -27,32 +27,31 @@
   },
   "scripts": {
     "src": [
-      "./src/js/**/*.js",
-      "!./src/js/modules/**/*.js"
+      "./src/js/vendor/**/*.js"
     ],
     "jsFilter": "**/*.js",
     "lint": {
       "config": "./.jshintrc",
-      "src": [
-        "./src/js/**/*.js",
-        "!./src/js/modules/**/*.js",
-        "!./src/**/vendor/**/*"
-      ]
+      "src": []
     },
-    "subDir": "js/"
+    "subDir": "js/vendor"
   },
   "babel": {
-    "src": ["./src/js/modules/**/*.js"],
+    "src": [
+      "./src/js/**/*.js",
+      "!./src/js/vendor/**/*.js"
+    ],
     "config": {
       "modules": "amd"
     },
     "lint": {
       "config": "./.jshintrc",
       "src": [
-        "./src/js/modules/**/*.js"
+        "./src/js/**/*.js",
+        "!./src/js/vendor/**/*.js"
       ]
     },
-    "subDir": "js/modules"
+    "subDir": "js"
   },
   "manifest": {
     "src": [

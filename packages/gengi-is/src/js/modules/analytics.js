@@ -1,4 +1,5 @@
-import global from 'mod/global';
+'use strict';
+import global from 'global';
 
 // Setup temporary Google Analytics objects.
 window.GoogleAnalyticsObject = 'ga';

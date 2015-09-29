@@ -1,7 +1,7 @@
 /*
  * @license MIT License (see license.txt)
  */
-
+ 
 function SwiftClick (contextEl)
 {
 	// if SwiftClick has already been initialised on this element then return the instance that's already in the Dictionary.
@@ -55,7 +55,7 @@ function SwiftClick (contextEl)
 		var targetEl = event.target,
 			nodeName = targetEl.nodeName.toLowerCase(),
 			touch = event.changedTouches[0];
-
+		
 		// store touchstart positions so we can check for changes later (within touchend handler).
 		_touchStartPoint.x = touch.pageX;
 		_touchStartPoint.y = touch.pageY;
@@ -156,7 +156,7 @@ function SwiftClick (contextEl)
 		// synthesize a click event.
 		var clickEvent = document.createEvent("MouseEvents");
 		clickEvent.initMouseEvent("click", true, true, window, 1, touchend.screenX, touchend.screenY, touchend.clientX, touchend.clientY, false, false, false, false, 0, null);
-
+		
 		el.dispatchEvent(clickEvent);
 	}
 

@@ -1,5 +1,5 @@
 'use strict';
-import sanitize from 'mod/sanitize';
+import sanitize from 'modules/sanitize';
 
 export const code = function(code) {
   code = sanitize.code(code);

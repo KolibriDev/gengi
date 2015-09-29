@@ -1,6 +1,8 @@
+'use strict';
 
 let Storage = class {
   constructor(){
+    // TODO: Some kind of fallback/polyfill
     this.storage = window.localStorage;
   }
 

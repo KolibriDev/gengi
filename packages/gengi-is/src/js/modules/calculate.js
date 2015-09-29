@@ -1,5 +1,5 @@
 'use strict';
-import {number as sanitizeNumber} from 'mod/sanitize';
+import {number as sanitizeNumber} from 'modules/sanitize';
 
 export default function(rate, amount) {
   if (!rate) { return; }

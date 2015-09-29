@@ -1,5 +1,5 @@
 'use strict';
-import promise from 'promise';
+import promise from 'vendor/promise';
 
 // TODO: abstract all knowledge of the Vue object from this module
 

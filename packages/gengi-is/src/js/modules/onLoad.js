@@ -1,5 +1,6 @@
-import domReady from 'domReady';
-import $ from 'jquery';
+'use strict';
+import jquery from 'vendor/jquery'; // jshint ignore:line
+import domReady from 'vendor/domReady';
 
 export default (callback, reLoadCallback) => {
   domReady(callback);

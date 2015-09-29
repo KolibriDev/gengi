@@ -1,3 +1,4 @@
+'use strict';
 
 export default (value, key) => {
   value = value ? value.toString() : '';

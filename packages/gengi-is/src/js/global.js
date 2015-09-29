@@ -1,5 +1,6 @@
-import $ from 'zepto';
-import _ from 'underscore';
+'use strict';
+import jquery from 'vendor/jquery'; // jshint ignore:line
+import _ from 'vendor/underscore';
 
 let Global = class {
   constructor() {

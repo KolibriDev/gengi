@@ -1,4 +1,4 @@
 'use strict';
-import SwiftClick from 'swiftclick';
+import SwiftClick from 'vendor/swiftclick';
 
 export default new SwiftClick(document.querySelector('numpad'));
