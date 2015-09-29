@@ -10,6 +10,7 @@ require.config({
     domReady: 'vendor/domReady',
     modernizr: 'vendor/modernizr',
     swiftclick: 'vendor/swiftclick',
+    underscore: 'vendor/underscore',
 
     moment: 'vendor/moment',
     momentIS: 'vendor/moment-is',
