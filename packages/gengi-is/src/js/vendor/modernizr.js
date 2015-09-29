@@ -212,7 +212,6 @@ Detects support for the History API for manipulating the browser session history
   function is(obj, type) {
     return typeof obj === type;
   }
-  ;
 
   /**
    * Run through all tests and detect their support in the current UA.
@@ -282,8 +281,6 @@ Detects support for the History API for manipulating the browser session history
     }
   }
 
-  ;
-
   /**
    * docElement is a convenience wrapper to grab the root element of the document
    *
@@ -332,12 +329,14 @@ Detects support for the History API for manipulating the browser session history
     if (Modernizr._config.enableClasses) {
       // Add the new classes
       className += ' ' + classPrefix + classes.join(' ' + classPrefix);
-      isSVG ? docElement.className.baseVal = className : docElement.className = className;
+      if (isSVG) {
+        docElement.className.baseVal = className;
+      } else {
+        docElement.className = className;
+      }
     }
 
   }
-
-  ;
 
   // Run each test
   testRunner();
@@ -355,8 +354,5 @@ Detects support for the History API for manipulating the browser session history
 
   // Leak Modernizr namespace
   window.Modernizr = Modernizr;
-
-
-;
 
 })(window, document);
