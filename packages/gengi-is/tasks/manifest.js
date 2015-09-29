@@ -9,14 +9,7 @@ module.exports = function(gulp) {
       }
     }
     return gulp.src(gulp.cfg.manifest.src)
-      .pipe(gulp.plugin.manifest({
-        hash: true,
-        // timestamp: true,
-        network: gulp.cfg.manifest.network,
-        fallback: gulp.cfg.manifest.fallback,
-        filename: gulp.cfg.manifest.filename,
-        exclude: gulp.cfg.manifest.exclude,
-      }))
+      .pipe(gulp.plugin.manifest(gulp.cfg.manifest.options))
       .pipe(gulp.dest(path));
   });
 };

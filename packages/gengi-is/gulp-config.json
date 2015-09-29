@@ -55,23 +55,24 @@
     "subDir": "js/modules"
   },
   "manifest": {
-    "filename": "manifest.appcache",
     "src": [
       "**/*",
       "**/main.js",
       "!**/img/icon/**/*",
       "!**/img/load/**/*"
     ],
-    "exclude": [
-      "manifest.appcache",
-      "**/img/**/*",
-      "**/fonts/**/*.woff",
-      "**/fonts/**/*.woff2"
-    ],
-    "fallback": ["/ /offline.html"],
-    "network": [
-      "*"
-    ]
+    "options": {
+      "hash": true,
+      "filename": "manifest.appcache",
+      "fallback": ["/ /offline.html"],
+      "network": ["*"],
+      "exclude": [
+        "manifest.appcache",
+        "**/img/**/*",
+        "**/fonts/**/*.woff",
+        "**/fonts/**/*.woff2"
+      ]
+    }
   },
   "images": {
     "src": "./src/img/**/*.{png,gif,jpg,jpeg}",
