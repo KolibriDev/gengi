@@ -12,3 +12,8 @@ export const number = function(value) {
 
   return value;
 };
+
+export default {
+  code: code,
+  number: number,
+};

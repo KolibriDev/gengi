@@ -28,3 +28,11 @@ export const numberIcelandic = function(value, fix) {
 export const numberWithCommas = function(value) {
   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 };
+
+export default {
+  code: code,
+  number: number,
+  numberURL: numberURL,
+  numberIcelandic: numberIcelandic,
+  numberWithCommas: numberWithCommas,
+};
