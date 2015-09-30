@@ -9,22 +9,33 @@ let Global = class {
     };
 
     this.attributes = {};
-
-    this.createEls();
   }
 
-  createEls() {
-    this.els = {
-      overlay: $('<overlay />'),
+  createEl(name, el, target) {
+    target = target || 'body';
+
+    let newEl = $(el);
+    $(target).append(newEl);
+
+    this.els = this.els || {};
+    this.els[name] = {
+      el: newEl,
+      name: name,
+      target: target,
     };
-    $.each(this.els, (index, el) => {
-      $('body').append(el);
-    });
+    return newEl;
   }
 
   getEl(name) {
     if (!name || !this.els.hasOwnProperty(name)) { return undefined; }
     return this.els[name];
+  }
+
+  removeEl(name) {
+    if (!name || !this.els.hasOwnProperty(name)) { return undefined; }
+    let el = this.els[name];
+    $(el.target).find(name).remove();
+    this.els = _.omit(this.els, name);
   }
 
   setAttr(key, value) {
