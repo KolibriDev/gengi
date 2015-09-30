@@ -1,5 +1,6 @@
 {
   "node" : true,
+  "jasmine" : true,
   "jquery" : false,
   "browser" : false,
   "boss" : true,
