@@ -1,9 +1,10 @@
 'use strict';
 
 let Storage = class {
-  constructor(){
+  constructor(namespace){
     // TODO: Some kind of fallback/polyfill
     this.storage = window.localStorage;
+    this.ns = namespace || '';
   }
 
   set(key, value){
@@ -12,9 +13,11 @@ let Storage = class {
       console.warn('No value provided for "%s"\n', key, value);
       return false;
     }
+    key = this.ns ? this.ns + '-' + key : key;
     this.storage.setItem(key, value);
   }
   get(key){
+    key = this.ns ? this.ns + '-' + key : key;
     let value = this.storage.getItem(key);
     value = this.thaw(value);
     return this.isEmpty(value) ? false : value;
@@ -78,4 +81,4 @@ let Storage = class {
   }
 };
 
-export default new Storage();
+export default new Storage('gengi');
