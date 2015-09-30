@@ -25,7 +25,7 @@ endpoint.buildResponse = function(codes, results) {
   return {
     currencyDate: results.currencyDate,
     expires: results.expires,
-    currencies: currencies,
+    list: currencies,
   };
 };
 
