@@ -51,32 +51,32 @@ describe('Endpoints > /currencies/:codes?', function(){
         .expect(200)
         .expect('Content-Type', /json/)
         .expect(function(res) {
-          assert(res.body.hasOwnProperty('currencies'), 'respond should have a currencies property');
+          assert(res.body.hasOwnProperty('list'), 'respond should have a list property');
         })
         .expect(function(res) {
-          var responseType = Object.prototype.toString.call(res.body.currencies);
-          assert(responseType === '[object Object]', 'expected currencies to be an object, got \''+responseType+'\'');
+          var responseType = Object.prototype.toString.call(res.body.list);
+          assert(responseType === '[object Object]', 'expected list to be an object, got \''+responseType+'\'');
         })
         .expect(function(res) {
-          assert(Object.keys(res.body.currencies).length === 2, 'currencies should have exactly two items');
+          assert(Object.keys(res.body.list).length === 2, 'list should have exactly two items');
         })
         .end(done);
     });
 
-    it('should have valid currency item in the currencies array', function(done){
+    it('should have valid currency item in the list object', function(done){
       agent
         .get('/currencies/usd,eur')
         .expect(200)
         .expect('Content-Type', /json/)
         .expect(function(res) {
-          assert(res.body.hasOwnProperty('currencies'), 'respond should have a currencies');
+          assert(res.body.hasOwnProperty('list'), 'respond should have a list');
         })
         .expect(function(res) {
-          var responseType = Object.prototype.toString.call(res.body.currencies);
-          assert(responseType === '[object Object]', 'expected currencies to be an object, got \''+responseType+'\'');
+          var responseType = Object.prototype.toString.call(res.body.list);
+          assert(responseType === '[object Object]', 'expected list to be an object, got \''+responseType+'\'');
         })
         .expect(function(res) {
-          var firstObj = res.body.currencies[Object.keys(res.body.currencies)[0]];
+          var firstObj = res.body.list[Object.keys(res.body.list)[0]];
           assert(firstObj.hasOwnProperty('code') && firstObj.hasOwnProperty('name') && firstObj.hasOwnProperty('rate'), 'currency item should have code, name and rate');
         })
         .end(done);
