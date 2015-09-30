@@ -1,7 +1,12 @@
 extends shared/_layout
 
 block javascript
-  script(data-main='js/gengi' src='/js/vendor/require.js')
+  if env === 'production'
+    script(src='/js/gengi.js')
+    script.
+      require('gengi');
+  else
+    script(data-main='js/gengi' src='/js/vendor/require.js')
 
 block main
   gengi
