@@ -24,7 +24,7 @@ export default {
         return;
       }
       try {
-        let res = JSON.parse(data.response);
+        let res = typeof data === 'string' ? JSON.parse(data) : data;
         storage.set('currencies', res);
         success(res);
       } catch(exc) {
