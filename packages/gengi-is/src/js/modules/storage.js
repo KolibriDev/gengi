@@ -26,7 +26,14 @@ let Storage = class {
     this.storage.removeItem(key);
   }
   clearAll(){
-    this.storage.clear();
+    let regex = new RegExp('^' + this.ns + '-');
+    Object.keys(this.storage).forEach((key) => {
+      console.log('key', key);
+      if (regex.test(key)) {
+        console.log('true', key);
+        this.clear(key);
+      }
+    });
   }
 
   thaw(value){
