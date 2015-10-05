@@ -45,13 +45,11 @@ class Gengi {
     this.amount.isk = sanitize.number(newValue) || this.amount.isk;
     // TODO: Update displayed value
     // this.amount.iskDisplay = format.foo(this.amount.isk);
-    this.store('amount');
   }
   setCur(newValue) {
     this.amount.cur = sanitize.number(newValue) || this.amount.cur;
     // TODO: Update displayed value
     // this.amount.curDisplay = format.foo(this.amount.cur);
-    this.store('amount');
   }
 
   store(target) {
@@ -74,7 +72,6 @@ class Gengi {
       'GBP',
     ];
 
-    this.store('amount');
     this.store('version');
     this.store('selectedCurrencies');
 
