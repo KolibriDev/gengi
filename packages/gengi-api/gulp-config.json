@@ -6,6 +6,9 @@
   },
   "scripts": {
     "src": "./src/**/*.js",
+    "babelconfig": {
+      "modules": "common"
+    },
     "lint": {
       "config": "./.jshintrc"
     }
