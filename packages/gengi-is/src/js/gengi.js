@@ -44,12 +44,12 @@ class Gengi {
   setIsk(newValue) {
     this.amount.isk = sanitize.number(newValue) || this.amount.isk;
     // TODO: Update displayed value
-    // this.amount.iskDisplay = format.foo(this.amount.isk);
+    this.amount.iskDisplay = format.numberIcelandic(this.amount.isk);
   }
   setCur(newValue) {
     this.amount.cur = sanitize.number(newValue) || this.amount.cur;
     // TODO: Update displayed value
-    // this.amount.curDisplay = format.foo(this.amount.cur);
+    this.amount.curDisplay = format.numberIcelandic(this.amount.cur);
   }
 
   store(target) {
