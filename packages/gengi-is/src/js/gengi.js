@@ -1,14 +1,15 @@
 'use strict';
 import global from 'global';
 /* jshint ignore:start */
-// These vendor modules register themselves globally
 import jquery from 'vendor/jquery';
 import underscore from 'vendor/underscore';
+import router from 'init/router';
 /* jshint ignore:end */
 import storage from 'modules/storage';
 import sanitize from 'modules/sanitize';
 import currencies from 'modules/currencies';
 import calculate from 'modules/calculate';
+import templates from 'modules/templates';
 
 class Gengi {
   constructor() {
@@ -16,9 +17,16 @@ class Gengi {
     this.version = '0.0.8';
     this.syncStorage();
 
-    global.setAttr('foo', 'bar');
-
     // this.state = 'loading';
+    this.createList();
+    global.setAttr('foo', 'bar');
+  }
+
+  createList() {
+    _.each(this.selectedCurrencies, (currency) => {
+      currency = this.currencies.list[currency];
+      templates.populateAndAppend('list-item', currency);
+    });
   }
 
   calculate() {
@@ -35,10 +43,14 @@ class Gengi {
 
   setIsk(newValue) {
     this.amount.isk = sanitize.number(newValue) || this.amount.isk;
+    // TODO: Update displayed value
+    // this.amount.iskDisplay = format.foo(this.amount.isk);
     this.store('amount');
   }
   setCur(newValue) {
     this.amount.cur = sanitize.number(newValue) || this.amount.cur;
+    // TODO: Update displayed value
+    // this.amount.curDisplay = format.foo(this.amount.cur);
     this.store('amount');
   }
 

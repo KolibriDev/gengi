@@ -1,90 +1,107 @@
-'use strict';
-import format from 'modules/format';
+// import keys from 'keys';
+// import format from 'modules/format';
+import global from 'global';
+import analytics from 'modules/analytics';
+import historySupported from 'support/history';
 
 let Router = class {
   constructor() {
-    this.title = null;
-    this.state = window.history.state;
-    this.path = window.location.pathname;
+    this.supported = historySupported;
+
+    this.state = {
+      title: null,
+      state: window.history.state || null,
+      path: window.location.pathname || '',
+      navigating: false,
+      last: '',
+    };
+
+    this.setState('path', this.state.path);
+    this.setState('section', '');
+    this.setState('article', '');
+
+    this.processPath();
+
+    window.onpopstate = () => {
+      this.processPath(window.location.pathname);
+    };
+  }
+
+  processPath(path) {
+    path = path || this.state.path;
+    let split = path.split('/');
+
+    if (split.length < 1)  { return; }
+
+    $.each(split, (index, val) => {
+      if (index === 1 && val) {
+      this.setState('section', val);
+      } else if (index > 1 && val) {
+        let $isItem = this.isItem(val);
+        if ($isItem) {
+          let item = $isItem.attr('item');
+          let group = $isItem.attr('group');
+
+          this.setState('article', item);
+
+          $('a[is="item"][item!="' + item + '"]').attr('active', false);
+          $('a[is="item"][item="' + item + '"]').attr('active', true);
+
+          $('article[group="' + group + '"][item="' + item + '"]')
+              .scrollTop(0)
+              .addClass('show')
+            .siblings('article')
+              .removeClass('show');
+        } else {
+          let $ul = $('ul[group="' + val + '"]');
+          $ul.parent().siblings('li')
+            .find('ul[group]').removeClass('show');
+          $ul.addClass('show');
+        }
+      }
+    });
+  }
+
+  isItem(name) {
+    var $item = $('a[item="' + name + '"]');
+    return $item.length !== 0 ? $item : false;
   }
 
   pushState(state, title, path) {
-    state = state || this.state;
-    title = title || this.title;
-    path = path || this.path;
+    state = state || this.state.state;
+    title = title || this.state.title;
+    path = path || this.state.path;
     window.history.pushState(state, title, path);
+
+    analytics('send', 'pageview', {
+      page: analytics.cleanUrl(path),
+      title: title,
+    });
   }
 
   replaceState(state, title, path) {
-    state = state || this.state;
-    title = title || this.title;
-    path = path || this.path;
+    state = state || this.state.state;
+    title = title || this.state.title;
+    path = path || this.state.path;
     window.history.replaceState(state, title, path);
   }
 
-  updateView(state) {
-    this.state = state || this.state;
-    this.path = '/';
+  setState(key, value) {
+    this.state[key] = value;
+    global.setAttr(key, value);
+  }
 
-    this.state['amountISK'] = format.number(this.state['amountISK']);
-    this.state['amountCurr'] = format.number(this.state['amountCurr']);
+  hardNavigate(path) {
+    window.location.href = path;
+  }
 
-    if (this.state['view'] === 'calc') {
-      this.path += (this.state['currentCurrency'] ? this.state['currentCurrency'] + this.state['amountCurr'] : '');
-    } else if (this.state['view'] === 'search') {
-      this.path += 'search/' + this.state['term'];
-    } else if (this.state['view'] !== 'list') {
-      this.path += this.state['view'];
-    }
-
+  navigate(newpath) {
+    this.setState('last', this.state.path);
+    this.setState('path', newpath);
     this.pushState();
-  }
 
-  updateState(state) {
-    this.state = state || this.state;
-    this.path = '/';
-    if (this.state['view'] === 'calc') {
-      this.state['amountISK'] = format.number(this.state['amountISK']);
-      this.state['amountCurr'] = format.number(this.state['amountCurr']);
-      this.state['formattedAmountCurr'] = format.numberURL(this.state['amountCurr']);
-      this.path += this.state['currentCurrency'] ? this.state['currentCurrency'] + this.state['formattedAmountCurr'] : '';
-    } else if (this.state['view'] === 'search') {
-      this.path += 'search/' + this.state['term'];
-    } else if (this.state['view'] !== 'list') {
-      this.path += this.state['view'];
-    }
-
-    this.replaceState();
-  }
-
-  parseQuery(query) {
-    query = query || window.location.pathname.substr(1).toLowerCase();
-    var retobj = {
-      view: 'list',
-      options: {},
-    };
-
-    if (query.substring(0,5) === 'about') {
-      retobj.view = 'about';
-      return retobj;
-    }
-    if (query.substring(0,6) === 'search') {
-      retobj.view = 'search';
-      retobj.options.term = decodeURIComponent(query.split('/').pop());
-      return retobj;
-    }
-
-    if (query.length >= 3) {
-      retobj.view = 'calc';
-      retobj.options.currency = format.code(query.substring(0,3));
-      retobj.options.amount = '';
-
-      if (query.length > 3) {
-        retobj.options.amount = format.number(query.substring(3));
-      }
-    }
-
-    return retobj;
+    $(document).trigger('partial-loading');
+    setTimeout(() => $(document).trigger('partial-loaded') ,300);
   }
 };
 
