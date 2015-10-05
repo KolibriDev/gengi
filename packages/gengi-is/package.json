@@ -4,7 +4,7 @@
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "jshint src/js"
+    "test": "make test"
   },
   "homepage": "https://github.com/KolibriDev/gengi-is",
   "repository": {
@@ -56,11 +56,7 @@
     "main-bower-files": "^2.9.0",
     "merge-stream": "^1.0.0",
     "node-notifier": "^4.3.1",
-    "pre-git": "^0.6.2",
     "q": "^1.4.1",
     "requirejs": "^2.1.20"
-  },
-  "pre-commit": [
-    "npm test"
-  ]
+  }
 }
