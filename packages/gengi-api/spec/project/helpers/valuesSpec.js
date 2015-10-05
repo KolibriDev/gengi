@@ -1,4 +1,4 @@
-var values = require('../dist/helpers/values');
+var values = require('../../../dist/helpers/values');
 var assert = require('assert');
 
 describe('Helpers > values', function(){

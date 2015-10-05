@@ -1,4 +1,4 @@
-var redis = require('../dist/helpers/redis');
+var redis = require('../../../dist/helpers/redis');
 var assert = require('assert');
 
 describe('Helpers > redis', function(){

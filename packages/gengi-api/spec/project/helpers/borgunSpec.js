@@ -1,4 +1,4 @@
-var borgun = require('../dist/helpers/borgun');
+var borgun = require('../../../dist/helpers/borgun');
 var assert = require('assert');
 
 describe('Helpers > borgun', function(){

@@ -1,4 +1,4 @@
-var app = require('../dist/server').app;
+var app = require('../../../dist/server').app;
 var request = require('supertest');
 var assert = require('assert');
 

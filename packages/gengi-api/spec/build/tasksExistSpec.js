@@ -3,13 +3,14 @@
 var gulp = require('gulp'),
     path = require('path');
 
-gulp.cfg = require('../gulp-config.json');
 gulp.plugin = require('gulp-load-plugins')();
-gulp.cfg.env = gulp.plugin.util.env.env || gulp.cfg.defaultEnv;
-gulp.cfg.envdir = gulp.cfg.envdir.hasOwnProperty(gulp.cfg.env) ? gulp.cfg.envdir[gulp.cfg.env] : gulp.cfg.envdir['development'];
+
+gulp.cfg = require('../../gulp-config.json');
+gulp.cfg.env = gulp.cfg.envdir.hasOwnProperty(gulp.plugin.util.env.env) ? gulp.plugin.util.env.env : gulp.cfg.defaultEnv;
+gulp.cfg.envdir = gulp.cfg.envdir[gulp.cfg.env];
 
 var loadTasks = require('gulp-load')(gulp);
-loadTasks(path.resolve(__dirname + '/..'));
+loadTasks(path.resolve(__dirname + '/../..'));
 
 describe('Task runner', function() {
   it('should have a build task ', function() {
