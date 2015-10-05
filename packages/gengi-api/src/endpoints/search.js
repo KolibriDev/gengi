@@ -1,11 +1,11 @@
-var _ = require('underscore');
-var search = require('../helpers/search');
-var helper = require('../helpers/currencies');
+import _ from 'underscore';
+import helper from '../helpers/currencies';
+import search from '../helpers/search';
 
-var endpoint = {};
+let endpoint = {};
 
-endpoint.get = function(term, callback) {
-  helper.get(function(err, results) {
+endpoint.get = (term, callback) => {
+  helper.get((err, results) => {
     if (err) {
       callback(err);
     } else {
@@ -15,13 +15,13 @@ endpoint.get = function(term, callback) {
   });
 };
 
-endpoint.buildResponse = function(term, results) {
-  var searchResults = _.filter(results.currencies, function(value){
+endpoint.buildResponse = (term, results) => {
+  let searchResults = _.filter(results.currencies, (value) =>{
     return search.filter(value, term);
   });
 
-  var currencies = {};
-  _.each(searchResults, function(item){
+  let currencies = {};
+  _.each(searchResults, (item) => {
     currencies[item.code] = helper.toDisplayCurrency(item);
   });
 
@@ -32,7 +32,7 @@ endpoint.buildResponse = function(term, results) {
   };
 };
 
-endpoint.ensureTerm = function(term) {
+endpoint.ensureTerm = (term) => {
   term = term || '';
   term = typeof term === 'string' ? term : term.toString();
   term = term.toUpperCase();

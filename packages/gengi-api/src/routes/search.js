@@ -1,11 +1,12 @@
-var express = require('express');
-var router = express.Router();
-var search = require('../endpoints/search');
+import express from 'express';
+import search from '../endpoints/search';
 
-router.get('/:term?', function(req, res) {
+let router = express.Router();
+
+router.get('/:term?', (req, res) => {
   // Decode search term to make sure special characters work
-  var term = decodeURIComponent(req.params.term);
-  search.get(term, function(err, results) {
+  let term = decodeURIComponent(req.params.term);
+  search.get(term, (err, results) => {
     res.send(err ? err : results);
   });
 });

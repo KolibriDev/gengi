@@ -1,11 +1,11 @@
-var _ = require('underscore');
-var helper = require('../helpers/currencies');
-var calculate = require('../helpers/calculate');
+import _ from 'underscore';
+import helper from '../helpers/currencies';
+import calculate from '../helpers/calculate';
 
-var endpoint = {};
+let endpoint = {};
 
-endpoint.get = function(code, value, callback) {
-  helper.get(function(err, results) {
+endpoint.get = (code, value, callback) => {
+  helper.get((err, results) => {
     if (err) {
       callback(err);
     } else {
@@ -16,11 +16,11 @@ endpoint.get = function(code, value, callback) {
   });
 };
 
-endpoint.buildResponse = function(code, value, results) {
-  var currency = _.findWhere(results.currencies, {code: code});
+endpoint.buildResponse = (code, value, results) => {
+  let currency = _.findWhere(results.currencies, { code: code });
   currency = helper.toDisplayCurrency(currency);
 
-  var response = {};
+  let response = {};
   response['currencyDate'] = results.currencyDate;
   response['expires'] = results.expires;
   response['currency'] = currency;

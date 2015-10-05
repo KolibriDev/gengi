@@ -1,16 +1,16 @@
-var _ = require('underscore');
-var redis = require('./redis');
-var borgun = require('./borgun');
+import _ from 'underscore';
+import redis from './redis';
+import borgun from './borgun';
 
-var currencies = {};
+let currencies = {};
 
 currencies.get = function(callback) {
-  redis.get(function(err, storedResult) {
+  redis.get((err, storedResult) => {
     if (!err && storedResult) {
       callback(null, storedResult);
     } else {
       try {
-        borgun.get(function(err, results) {
+        borgun.get((err, results) => {
           if (err) {
             callback(err);
           } else {
@@ -25,9 +25,9 @@ currencies.get = function(callback) {
   });
 };
 
-currencies.toDisplayCurrency = function(currency){
-  var countryArr = [];
-  _.each(currency.countries, function(country){
+currencies.toDisplayCurrency = function(currency) {
+  let countryArr = [];
+  _.each(currency.countries, (country) => {
     countryArr.push(country.country);
   });
   return {
@@ -43,7 +43,7 @@ currencies.ensureCodes = function(codes, currs) {
   codes = codes.toString().toUpperCase().split(',');
 
   if (codes.length === 1 && codes[0] === '') {
-    _.each(currs, function(curr) {
+    _.each(currs, (curr) => {
       codes.push(curr.code);
     });
   }

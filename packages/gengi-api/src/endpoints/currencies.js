@@ -1,10 +1,10 @@
-var _ = require('underscore');
-var helper = require('../helpers/currencies');
+import _ from 'underscore';
+import helper from '../helpers/currencies';
 
-var endpoint = {};
+let endpoint = {};
 
-endpoint.get = function(codes, callback) {
-  helper.get(function(err, results) {
+endpoint.get = (codes, callback) => {
+  helper.get((err, results) => {
     if (err) {
       callback(err);
     } else {
@@ -14,10 +14,10 @@ endpoint.get = function(codes, callback) {
   });
 };
 
-endpoint.buildResponse = function(codes, results) {
-  var currencies = {};
-  _.each(codes, function(code){
-    var curr = _.findWhere(results.currencies, {code: code});
+endpoint.buildResponse = (codes, results) => {
+  let currencies = {};
+  _.each(codes, (code) => {
+    let curr = _.findWhere(results.currencies, { code: code });
     if (curr && curr.code !== 'ISK') {
       currencies[curr.code] = helper.toDisplayCurrency(curr);
     }

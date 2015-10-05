@@ -1,11 +1,8 @@
+import values from './values';
 
-var values = require('./values');
+let calculate = {};
 
-var calculate = {};
-
-calculate.toISK = function(rate, value) {
-  return values.rate(value * rate);
-};
+calculate.toISK = (rate, value) => values.rate(value * rate);
 
 calculate.ensureCurrency = function(code) {
   code = code || '';

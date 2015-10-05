@@ -1,21 +1,23 @@
-var request = require('request');
-var _ = require('underscore');
-var parseString = require('xml2js').parseString;
-var values = require('./values');
-var time = require('./time');
+import _ from 'underscore';
+import request from 'request';
+import xml2js from 'xml2js';
+import values from './values';
+import time from './time';
 
-var borgun = {};
+let parseString = xml2js.parseString;
+
+let borgun = {};
 
 borgun.get = function(callback) {
   request.get({
     url: 'https://www.borgun.is/Currency/Default.aspx?function=all'
-  }, function(err, response, data) {
+  }, (err, response, data) => {
     if (err || response.statusCode !== 200) {
       callback(err);
       return;
     }
 
-    var parsed = borgun.parse(data);
+    let parsed = borgun.parse(data);
 
     if (parsed.hasOwnProperty('error') && parsed.error) {
       callback(parsed.error, parsed.result);
@@ -26,9 +28,9 @@ borgun.get = function(callback) {
 };
 
 borgun.parse = function(data) {
-  var retVal;
+  let retVal;
 
-  parseString(data, { explicitRoot: false }, function(err, result) {
+  parseString(data, { explicitRoot: false }, (err, result) => {
     if(err || !result.hasOwnProperty('Rate') || result.Status[0].ResultCode[0] !== '0') {
       retVal = {error: err, result: result};
     } else {
@@ -45,10 +47,10 @@ borgun.parse = function(data) {
 };
 
 borgun.parseCurrencies = function(result) {
-  var currencies = {};
+  let currencies = {};
 
-  _.each(result.Rate, function(currency) {
-    borgun.parseCurrency(currency, function(newCurr, country) {
+  _.each(result.Rate, (currency) => {
+    borgun.parseCurrency(currency, (newCurr, country) => {
       if (!currencies.hasOwnProperty(newCurr.code)) {
         currencies[newCurr.code] = newCurr;
       }
@@ -62,12 +64,12 @@ borgun.parseCurrencies = function(result) {
 };
 
 borgun.parseCurrency = function(currency, callback) {
-  var country = {
+  let country = {
     country: currency.Country[0],
     countryCode: currency.CountryCode[0],
     countryEnglish: currency.CountryEnglish[0],
   };
-  var newCurr = {
+  let newCurr = {
     code: currency.CurrencyCode[0],
     rate: values.rate(currency.CurrencyRate[0]),
     name: values.name(currency.CurrencyDescription[0]),
@@ -79,7 +81,7 @@ borgun.parseCurrency = function(currency, callback) {
 
 borgun.sortCurrencies = function(currencies, sortBy) {
   currencies = _.sortBy(currencies, (sortBy || 'code'));
-  _.each(currencies, function(currency){
+  _.each(currencies, (currency) => {
     currency.countries = _.sortBy(currency.countries,'country');
   });
   return currencies;

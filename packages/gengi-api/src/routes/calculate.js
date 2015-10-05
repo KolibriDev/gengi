@@ -1,8 +1,9 @@
-var express = require('express');
-var router = express.Router();
-var calculate = require('../endpoints/calculate');
+import express from 'express';
+import calculate from '../endpoints/calculate';
 
-var docs = {
+let router = express.Router();
+
+let docs = {
   path: '/calculate/:code/:value',
   response: 'Calculated value',
   params: {
@@ -17,14 +18,14 @@ var docs = {
   },
 };
 
-router.get('/', function(req, res) {
+router.get('/', (req, res) => {
   res.send({
     endpoint: docs,
   });
 });
 
-router.get('/:code/:value?', function(req, res) {
-  calculate.get(req.params.code, req.params.value, function(err, results) {
+router.get('/:code/:value?', (req, res) => {
+  calculate.get(req.params.code, req.params.value, (err, results) => {
     res.send(err ? err : results);
   });
 });

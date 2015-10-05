@@ -1,43 +1,44 @@
-var redisClient = require('redis').createClient();
-var time = require('./time');
+import redis from 'redis';
+import time from './time';
 
-var redis = {};
-redis.ready = false;
-redis.error = '';
-redis.cacheKey = 'mastercard-gengi';
+let redisClient = redis.createClient();
 
+let red = {};
+red.ready = false;
+red.error = '';
+red.cacheKey = 'mastercard-gengi';
 
-redisClient.on('error', function (err) {
-  redis.error = err;
-  redis.ready = false;
+redisClient.on('error', (err) => {
+  red.error = err;
+  red.ready = false;
 });
-redisClient.on('ready', function () {
-  redis.error = '';
-  redis.ready = true;
+redisClient.on('ready', () => {
+  red.error = '';
+  red.ready = true;
 });
 
-redis.isReady = function(callback) {
-  if(redis.ready) {
+red.isReady = function(callback) {
+  if(red.ready) {
     callback();
   } else {
-    callback({error: redis.error});
+    callback({error: red.error});
   }
 };
 
-redis.set = function(data) {
-  redis.isReady(function(err){
+red.set = function(data) {
+  red.isReady((err) => {
     if (!err) {
-      redisClient.setex(redis.cacheKey, time.secsToMidnight(), JSON.stringify(data));
+      redisClient.setex(red.cacheKey, time.secsToMidnight(), JSON.stringify(data));
     }
   });
 };
 
-redis.get = function(callback) {
-  redis.isReady(function(err){
+red.get = function(callback) {
+  red.isReady((err) => {
     if (err) {
       callback(err);
     } else {
-      redisClient.get(redis.cacheKey, function(err, results) {
+      redisClient.get(red.cacheKey, (err, results) => {
         if (err) {
           callback(err);
         } else {
@@ -48,12 +49,12 @@ redis.get = function(callback) {
   });
 };
 
-redis.clear = function() {
-  redis.isReady(function(err){
+red.clear = function() {
+  red.isReady((err) => {
     if (!err) {
-      redisClient.del(redis.cacheKey);
+      redisClient.del(red.cacheKey);
     }
   });
 };
 
-module.exports = redis;
+module.exports = red;

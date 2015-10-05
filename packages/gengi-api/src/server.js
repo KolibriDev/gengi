@@ -1,28 +1,25 @@
-var express = require('express');
+import express from 'express';
+import http from 'http';
+import path from 'path';
+import cors from 'cors';
+import fs from 'fs';
 
-var http = require('http'),
-    app = express();
+let app = express();
 
 app.set('port', process.env.PORT || 8002);
-
-// Allow all origins
-app.all('/*', function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With');
-  next();
-});
+app.use( cors() );
 
 // Endpoints
-var endpoints = {};
-var normalizedPath = require('path').join(__dirname, 'routes');
-require('fs').readdirSync(normalizedPath).forEach(function(fileName) {
-  var endpoint = require('./routes/' + fileName);
+let endpoints = {};
+let normalizedPath = path.join(__dirname, 'routes');
+fs.readdirSync(normalizedPath).forEach((fileName) => {
+  let endpoint = require('./routes/' + fileName);
   app.use('/' + endpoint.name, endpoint.router);
   endpoints[endpoint.name] = endpoint.docs;
 });
 
 app.get('/', function(req, res){
-  var pkg = require('./package.json');
+  let pkg = require('./package.json');
   res.send({
     version: pkg.version,
     description: pkg.description,
