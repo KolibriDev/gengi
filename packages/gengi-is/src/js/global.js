@@ -1,6 +1,8 @@
 'use strict';
-import jquery from 'vendor/jquery'; // jshint ignore:line
-import _ from 'vendor/underscore';
+/* jshint ignore:start */
+import jquery from 'vendor/jquery';
+import underscore from 'vendor/underscore';
+/* jshint ignore:end */
 
 let Global = class {
   constructor() {
