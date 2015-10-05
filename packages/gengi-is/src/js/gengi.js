@@ -7,6 +7,7 @@ import router from 'init/router';
 /* jshint ignore:end */
 import storage from 'modules/storage';
 import sanitize from 'modules/sanitize';
+import format from 'modules/format';
 import currencies from 'modules/currencies';
 import calculate from 'modules/calculate';
 import templates from 'modules/templates';
