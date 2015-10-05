@@ -1,10 +1,10 @@
 //- - var manifest = env == 'production' ? '/manifest.appcache' : false;
 - var manifest = false;
 doctype html
-//[if lt IE 9]><html class="no-js lt-ie10 lt-ie9"><![endif]
-//[if IE 9]>   <html class="no-js lt-ie10 ie9"><![endif]
+//[if lt IE 9]><html class="lt-ie10 lt-ie9"><![endif]
+//[if IE 9]>   <html class="lt-ie10 ie9"><![endif]
 //[if gt IE 9]><!
-html.no-js(manifest=manifest)
+html(manifest=manifest)
   //<![endif]
   include _head
 
