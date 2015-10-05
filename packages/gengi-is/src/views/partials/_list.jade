@@ -1,11 +1,7 @@
-currency-list(v-show="app.view === 'list'")
-  template(v-repeat="currency: currencyList")
-    currency(v-if="currencies.list.hasOwnProperty(currency)" v-on="click:showView('calc', {currency: currency})" v-attr="symbol:currencies.list[currency].code, index:$index" v-class="highlighted:app.highlightedCurrency == $index")
-      curr-code(v-text="currencies.list[currency].code")
-      curr-name(v-text="currencies.list[currency].name")
-      curr-rate(v-text="currencies.list[currency].rate")
+currency-list
 
-  links(v-on="click: showView('search', {term: ''})")
-    curr-text +/- Velja myntir
-  links(v-on="click: showView('about')")
-    curr-text Um Gengi.is
+  template(name='list-item')
+    currency(attr='code' template route='/calculator')
+      curr-code(tpl='code')
+      curr-name(tpl='name')
+      curr-rate(tpl='rate')
