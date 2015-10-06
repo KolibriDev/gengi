@@ -4,87 +4,89 @@ import xml2js from 'xml2js';
 import values from './values';
 import time from './time';
 
-let parseString = xml2js.parseString;
+class Borgun {
+  constructor(url){
+    this.options = {
+      url: url || 'https://www.borgun.is/Currency/Default.aspx?function=all',
+    };
+  }
 
-let borgun = {};
+  get(callback){
+    request.get(this.options, (err, response, data) => {
+      if (err || response.statusCode !== 200) {
+        callback(err);
+        return;
+      }
 
-borgun.get = function(callback) {
-  request.get({
-    url: 'https://www.borgun.is/Currency/Default.aspx?function=all'
-  }, (err, response, data) => {
-    if (err || response.statusCode !== 200) {
-      callback(err);
-      return;
-    }
+      const { error, result } = this.parse(data);
+      callback(error, result);
+    });
+  }
 
-    let parsed = borgun.parse(data);
+  parse(data){
+    let retVal = {
+      error: null
+    };
 
-    if (parsed.hasOwnProperty('error') && parsed.error) {
-      callback(parsed.error, parsed.result);
-    }
+    xml2js.parseString(data, { explicitRoot: false }, (err, result) => {
+      if(err || !result.hasOwnProperty('Rate') || result.Status[0].ResultCode[0] !== '0') {
+        retVal = {error: err, result: result};
+      } else {
+        retVal.result = {
+          currencies: this.parseCurrencies(result),
+          currencyDate: result.Rate[0].RateDate[0],
+          // Store expiring timestamp for front-end
+          expires: time.getMidnight(),
+        };
+      }
+    });
 
-    callback(null, parsed);
-  });
-};
+    return retVal;
+  }
 
-borgun.parse = function(data) {
-  let retVal;
+  parseCurrencies(result){
+    let currencies = {};
 
-  parseString(data, { explicitRoot: false }, (err, result) => {
-    if(err || !result.hasOwnProperty('Rate') || result.Status[0].ResultCode[0] !== '0') {
-      retVal = {error: err, result: result};
-    } else {
-      retVal = {
-        currencies: borgun.parseCurrencies(result),
-        currencyDate: result.Rate[0].RateDate[0],
-        // Store expiring timestamp for front-end
-        expires: time.getMidnight(),
-      };
-    }
-  });
+    _.each(result.Rate, (currency) => {
+      let [newCurr, country] = this.parseCurrency(currency);
 
-  return retVal;
-};
-
-borgun.parseCurrencies = function(result) {
-  let currencies = {};
-
-  _.each(result.Rate, (currency) => {
-    borgun.parseCurrency(currency, (newCurr, country) => {
       if (!currencies.hasOwnProperty(newCurr.code)) {
         currencies[newCurr.code] = newCurr;
       }
       currencies[newCurr.code].countries.push(country);
     });
-  });
 
-  currencies = borgun.sortCurrencies(currencies, 'code');
+    let sorted = this.sortCurrencies(currencies, 'code');
 
-  return currencies;
-};
+    return sorted;
+  }
 
-borgun.parseCurrency = function(currency, callback) {
-  let country = {
-    country: currency.Country[0],
-    countryCode: currency.CountryCode[0],
-    countryEnglish: currency.CountryEnglish[0],
-  };
-  let newCurr = {
-    code: currency.CurrencyCode[0],
-    rate: values.rate(currency.CurrencyRate[0]),
-    name: values.name(currency.CurrencyDescription[0]),
-    countries: []
-  };
+  parseCurrency(currency){
+    let country = {
+      country: currency.Country[0],
+      countryCode: currency.CountryCode[0],
+      countryEnglish: currency.CountryEnglish[0],
+    };
+    let newCurr = {
+      code: currency.CurrencyCode[0],
+      rate: values.rate(currency.CurrencyRate[0]),
+      name: values.name(currency.CurrencyDescription[0]),
+      countries: []
+    };
 
-  callback(newCurr, country);
-};
+    return [newCurr, country];
+  }
 
-borgun.sortCurrencies = function(currencies, sortBy) {
-  currencies = _.sortBy(currencies, (sortBy || 'code'));
-  _.each(currencies, (currency) => {
-    currency.countries = _.sortBy(currency.countries,'country');
-  });
-  return currencies;
-};
+  sortCurrencies(currencies, sortBy){
+    let sorted = _.sortBy(currencies, (sortBy || 'code'));
 
-module.exports = borgun;
+    // Sort country names alphabetically
+    _.each(sorted, (currency) => {
+      currency.countries = _.sortBy(currency.countries,'country');
+    });
+
+    return sorted;
+  }
+}
+
+export default new Borgun();
