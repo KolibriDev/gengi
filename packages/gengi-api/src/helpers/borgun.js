@@ -12,6 +12,8 @@ class Borgun {
   }
 
   get(callback){
+    if(!this.options || !this.options.url) { return callback({error:1}); }
+
     request.get(this.options, (err, response, data) => {
       if (err || response.statusCode !== 200) {
         callback(err);
