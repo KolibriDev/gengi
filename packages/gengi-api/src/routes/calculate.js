@@ -25,12 +25,12 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:code/:value?', (req, res) => {
-  calculate.get(req.params.code, req.params.value, (err, results) => {
+  calculate(req.params.code, req.params.value, (err, results) => {
     res.send(err ? err : results);
   });
 });
 
-module.exports = {
+export default {
   router: router,
   name: 'calculate',
   docs: docs,

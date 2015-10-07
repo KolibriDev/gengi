@@ -1,20 +1,16 @@
 import values from './values';
 
-let calculate = {};
+export const toISK = (rate, value) => values.rate(value * rate);
 
-calculate.toISK = (rate, value) => values.rate(value * rate);
-
-calculate.ensureCurrency = function(code) {
+export const ensureCurrency = function(code) {
   code = code || '';
   code = code.toString().toUpperCase();
   code = code.length > 3 ? code.substring(0, 3) : code;
   return code;
 };
 
-calculate.ensureValue = function(value) {
+export const ensureValue = function(value) {
   value = value || 1;
   value = values.rate(value);
   return value;
 };
-
-module.exports = calculate;
