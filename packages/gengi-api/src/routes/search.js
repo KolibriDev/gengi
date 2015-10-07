@@ -18,7 +18,7 @@ let docs = {
 router.get('/:term?', (req, res) => {
   // Decode search term to make sure special characters work
   let term = decodeURIComponent(req.params.term);
-  search.get(term, (err, results) => {
+  search(term, (err, results) => {
     res.send(err ? err : results);
   });
 });

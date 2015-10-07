@@ -2,20 +2,7 @@ import _ from 'underscore';
 import helper from '../helpers/currencies';
 import search from '../helpers/search';
 
-let endpoint = {};
-
-endpoint.get = (term, callback) => {
-  helper.get((err, results) => {
-    if (err) {
-      callback(err);
-    } else {
-      term = endpoint.ensureTerm(term);
-      callback(err, endpoint.buildResponse(term, results));
-    }
-  });
-};
-
-endpoint.buildResponse = (term, results) => {
+const buildResponse = (term, results) => {
   let searchResults = _.filter(results.currencies, (value) =>{
     return search(value, term);
   });
@@ -32,7 +19,7 @@ endpoint.buildResponse = (term, results) => {
   };
 };
 
-endpoint.ensureTerm = (term) => {
+const ensureTerm = (term) => {
   term = term || '';
   term = typeof term === 'string' ? term : term.toString();
   term = term.toUpperCase();
@@ -40,4 +27,13 @@ endpoint.ensureTerm = (term) => {
   return term;
 };
 
-module.exports = endpoint;
+export default (term, callback) => {
+  helper.get((err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      term = ensureTerm(term);
+      callback(err, buildResponse(term, results));
+    }
+  });
+};
