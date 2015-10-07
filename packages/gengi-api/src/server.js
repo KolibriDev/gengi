@@ -19,7 +19,7 @@ fs.readdirSync(normalizedPath).forEach((fileName) => {
 });
 
 app.get('/', function(req, res){
-  let pkg = require('./package.json');
+  let pkg = require(path.join(__dirname, 'package.json'));
   res.send({
     version: pkg.version,
     description: pkg.description,

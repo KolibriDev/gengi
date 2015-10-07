@@ -31,7 +31,7 @@ router.get('/:code/:value?', (req, res) => {
 });
 
 export default {
-  router: router,
   name: 'calculate',
-  docs: docs,
+  router,
+  docs,
 };

@@ -3,6 +3,18 @@ import search from '../endpoints/search';
 
 let router = express.Router();
 
+let docs = {
+  path: '/search/:term',
+  responseWithoutParams: 'Empty list',
+  params: {
+    term: {
+      required: true,
+      description: 'String value, search term to match with available currency objects',
+      response: 'List of matching currencies, if any',
+    }
+  },
+};
+
 router.get('/:term?', (req, res) => {
   // Decode search term to make sure special characters work
   let term = decodeURIComponent(req.params.term);
@@ -11,18 +23,8 @@ router.get('/:term?', (req, res) => {
   });
 });
 
-module.exports = {
-  router: router,
+export default {
   name: 'search',
-  docs: {
-    path: '/search/:term',
-    responseWithoutParams: 'Empty list',
-    params: {
-      term: {
-        required: true,
-        description: 'String value, search term to match with available currency objects',
-        response: 'List of matching currencies, if any',
-      }
-    },
-  },
+  router,
+  docs,
 };
