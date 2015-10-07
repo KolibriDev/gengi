@@ -56,7 +56,7 @@ describe('Endpoints > /', function(){
   it('should have an endpoints object', function(done){
     var endpoints = {};
 
-    fs.readdirSync('./dist/routes').forEach((fileName) => {
+    fs.readdirSync('./dist/routes').forEach(function(fileName) {
       var endpoint = require('../../../dist/routes/' + fileName);
       endpoints[endpoint.name] = endpoint.docs;
     });
