@@ -5,13 +5,8 @@ describe('Helpers > currencies', function(){
 
   describe('get(callback)', function(){
 
-    it('should exist', function(done){
-      assert(currencies.hasOwnProperty('get'), 'expected to have property');
-      done();
-    });
-
-    it('should be a function', function(done){
-      assert(typeof currencies.get === 'function', 'expected currencies.get to be a function');
+    it('should be a method', function(done){
+      assert(typeof currencies.get === 'function', 'expected currencies.get to be a method');
       done();
     });
 
@@ -19,13 +14,8 @@ describe('Helpers > currencies', function(){
 
   describe('toDisplayCurrency(currency)', function(){
 
-    it('should exist', function(done){
-      assert(currencies.hasOwnProperty('toDisplayCurrency'), 'expected to have property');
-      done();
-    });
-
-    it('should be a function', function(done){
-      assert(typeof currencies.toDisplayCurrency === 'function', 'expected currencies.toDisplayCurrency to be a function');
+    it('should be a method', function(done){
+      assert(typeof currencies.toDisplayCurrency === 'function', 'expected currencies.toDisplayCurrency to be a method');
       done();
     });
 
@@ -33,13 +23,8 @@ describe('Helpers > currencies', function(){
 
   describe('ensureCodes(codes, currencies)', function(){
 
-    it('should exist', function(done){
-      assert(currencies.hasOwnProperty('ensureCodes'), 'expected to have property');
-      done();
-    });
-
-    it('should be a function', function(done){
-      assert(typeof currencies.ensureCodes === 'function', 'expected currencies.ensureCodes to be a function');
+    it('should be a method', function(done){
+      assert(typeof currencies.ensureCodes === 'function', 'expected currencies.ensureCodes to be a method');
       done();
     });
 

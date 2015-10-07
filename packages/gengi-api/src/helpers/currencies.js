@@ -2,9 +2,7 @@ import _ from 'underscore';
 import redis from './redis';
 import borgun from './borgun';
 
-let currencies = {};
-
-currencies.get = function(callback) {
+export const get = function(callback) {
   redis.get((err, storedResult) => {
     if (!err && storedResult) {
       callback(null, storedResult);
@@ -25,7 +23,7 @@ currencies.get = function(callback) {
   });
 };
 
-currencies.toDisplayCurrency = function(currency) {
+export const toDisplayCurrency = function(currency) {
   let countryArr = [];
   _.each(currency.countries, (country) => {
     countryArr.push(country.country);
@@ -38,7 +36,7 @@ currencies.toDisplayCurrency = function(currency) {
   };
 };
 
-currencies.ensureCodes = function(codes, currs) {
+export const ensureCodes = function(codes, currs) {
   codes = codes || '';
   codes = codes.toString().toUpperCase().split(',');
 
@@ -51,4 +49,8 @@ currencies.ensureCodes = function(codes, currs) {
   return codes;
 };
 
-module.exports = currencies;
+export default {
+  get: get,
+  toDisplayCurrency: toDisplayCurrency,
+  ensureCodes: ensureCodes
+};

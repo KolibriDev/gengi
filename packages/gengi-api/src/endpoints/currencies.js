@@ -1,20 +1,7 @@
 import _ from 'underscore';
 import helper from '../helpers/currencies';
 
-let endpoint = {};
-
-endpoint.get = (codes, callback) => {
-  helper.get((err, results) => {
-    if (err) {
-      callback(err);
-    } else {
-      codes = helper.ensureCodes(codes, results.currencies);
-      callback(err, endpoint.buildResponse(codes, results));
-    }
-  });
-};
-
-endpoint.buildResponse = (codes, results) => {
+const buildResponse = (codes, results) => {
   let currencies = {};
   _.each(codes, (code) => {
     let curr = _.findWhere(results.currencies, { code: code });
@@ -29,4 +16,13 @@ endpoint.buildResponse = (codes, results) => {
   };
 };
 
-module.exports = endpoint;
+export default (codes, callback) => {
+  helper.get((err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      codes = helper.ensureCodes(codes, results.currencies);
+      callback(err, buildResponse(codes, results));
+    }
+  });
+};

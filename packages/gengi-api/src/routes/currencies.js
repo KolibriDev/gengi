@@ -16,7 +16,7 @@ let docs = {
 };
 
 router.get('/:codes?', (req, res) => {
-  currencies.get(req.params.codes, (err, results) => {
+  currencies(req.params.codes, (err, results) => {
     res.send(err ? err : results);
   });
 });
