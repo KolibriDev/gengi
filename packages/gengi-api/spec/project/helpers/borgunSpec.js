@@ -3,74 +3,19 @@ var assert = require('assert');
 
 describe('Helpers > borgun', function(){
 
-  describe('get(callback)', function(){
-
-    it('should exist', function(done){
-      assert(borgun.get, 'expected \'borgun\' to have property \'get\'');
-      done();
-    });
-
-    it('should be a function', function(done){
-      assert(typeof borgun.get === 'function', 'expected borgun.get to be a function');
-      done();
-    });
-
+  it('should have get method', function(done){
+    assert(borgun.get, 'expected \'borgun\' to have property \'get\'');
+    assert(typeof borgun.get === 'function', 'expected borgun.get to be a function');
+    done();
   });
 
-  describe('parse(data)', function(){
-
-    it('should exist', function(done){
-      assert(borgun.parse, 'expected \'borgun\' to have property \'parse\'');
+  it('should return callback with error and result', function(done){
+    borgun.get(function(error, result){
+      assert(true, 'expected borgun.get to call callback');
+      assert(error !== undefined, 'expected callback to have error argument');
+      assert(result !== undefined, 'expected callback to have result argument');
       done();
     });
-
-    it('should be a function', function(done){
-      assert(typeof borgun.parse === 'function', 'expected borgun.parse to be a function');
-      done();
-    });
-
-  });
-
-  describe('parseCurrencies(result)', function(){
-
-    it('should exist', function(done){
-      assert(borgun.parseCurrencies, 'expected \'borgun\' to have property \'parseCurrencies\'');
-      done();
-    });
-
-    it('should be a function', function(done){
-      assert(typeof borgun.parseCurrencies === 'function', 'expected borgun.parseCurrencies to be a function');
-      done();
-    });
-
-  });
-
-  describe('parseCurrency(currency, callback)', function(){
-
-    it('should exist', function(done){
-      assert(borgun.parseCurrency, 'expected \'borgun\' to have property \'parseCurrency\'');
-      done();
-    });
-
-    it('should be a function', function(done){
-      assert(typeof borgun.parseCurrency === 'function', 'expected borgun.parseCurrency to be a function');
-      done();
-    });
-
-  });
-
-  describe('sortCurrencies(currencies, sortBy)', function(){
-
-    it('should exist', function(done){
-      assert(borgun.sortCurrencies, 'expected \'borgun\' to have property \'sortCurrencies\'');
-      done();
-    });
-
-    it('should be a function', function(done){
-      assert(typeof borgun.sortCurrencies === 'function', 'expected borgun.sortCurrencies to be a function');
-      done();
-    });
-
   });
 
 });
