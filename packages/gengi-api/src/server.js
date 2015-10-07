@@ -11,22 +11,24 @@ app.use( cors() );
 
 // Endpoints
 let endpoints = {};
-let normalizedPath = path.join(__dirname, 'routes');
-fs.readdirSync(normalizedPath).forEach((fileName) => {
-  let endpoint = require('./routes/' + fileName);
-  app.use('/' + endpoint.name, endpoint.router);
-  endpoints[endpoint.name] = endpoint.docs;
+
+fs.readdirSync( path.join(__dirname, 'routes') ).forEach((fileName) => {
+  let {name, router, docs} = require('./routes/' + fileName);
+  app.use('/' + name, router);
+  endpoints[name] = docs;
 });
 
 app.get('/', function(req, res){
-  let pkg = require(path.join(__dirname, 'package.json'));
+  let {
+    version, description, bugs, author, contributors
+  } = require(path.join(__dirname, 'package.json'));
   res.send({
-    version: pkg.version,
-    description: pkg.description,
+    version: version,
+    description: description,
     endpoints: endpoints,
-    bugs: pkg.bugs,
-    author: pkg.author,
-    contributors: pkg.contributors,
+    bugs: bugs,
+    author: author,
+    contributors: contributors,
   });
 });
 
