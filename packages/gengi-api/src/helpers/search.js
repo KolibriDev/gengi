@@ -3,7 +3,7 @@ import _ from 'underscore';
 @search.filter
   Compare search term with available fields and return true for any partial match.
 **/
-exports.filter = function(value, term){
+export default function(value, term){
   term = term ? term.toUpperCase() : false;
   if (!term) { return false; }
   // Ignore ISK
@@ -22,4 +22,4 @@ exports.filter = function(value, term){
     return found;
   }
   return false;
-};
+}

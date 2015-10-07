@@ -17,7 +17,7 @@ endpoint.get = (term, callback) => {
 
 endpoint.buildResponse = (term, results) => {
   let searchResults = _.filter(results.currencies, (value) =>{
-    return search.filter(value, term);
+    return search(value, term);
   });
 
   let currencies = {};
