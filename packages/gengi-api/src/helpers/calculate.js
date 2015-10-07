@@ -1,6 +1,6 @@
-import values from './values';
+import {rate as valueRate} from './values';
 
-export const toISK = (rate, value) => values.rate(value * rate);
+export const toISK = (rate, value) => valueRate(value * rate);
 
 export const ensureCurrency = function(code) {
   code = code || '';
@@ -11,6 +11,6 @@ export const ensureCurrency = function(code) {
 
 export const ensureValue = function(value) {
   value = value || 1;
-  value = values.rate(value);
+  value = valueRate(value);
   return value;
 };

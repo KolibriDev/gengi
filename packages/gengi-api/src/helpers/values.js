@@ -3,7 +3,7 @@
 @values.name
   Parse/format currency name for better human readability.
 **/
-exports.name = function(name){
+export const name = function(name){
   if (!name) { return name; }
   // Change 'dalur, bandarískur' to 'bandarískur dalur'
   name = name.split(',');
@@ -22,6 +22,8 @@ exports.name = function(name){
 @values.rate
   Normalize float values for currency rate.
 **/
-exports.rate = function(value){
+export const rate = function(value){
   return parseFloat(value);
 };
+
+export default { name, rate };
