@@ -1,60 +1,67 @@
 import redis from 'redis';
 import time from './time';
 
-let redisClient = redis.createClient();
+class Redis {
+  constructor(){
+    this.client = redis.createClient();
 
-let red = {};
-red.ready = false;
-red.error = '';
-red.cacheKey = 'mastercard-gengi';
+    this.ready = false;
+    this.error = '';
+    this.cacheKey = 'mastercard-gengi';
 
-redisClient.on('error', (err) => {
-  red.error = err;
-  red.ready = false;
-});
-redisClient.on('ready', () => {
-  red.error = '';
-  red.ready = true;
-});
-
-red.isReady = function(callback) {
-  if(red.ready) {
-    callback();
-  } else {
-    callback({error: red.error});
+    this.clientEvents();
   }
-};
 
-red.set = function(data) {
-  red.isReady((err) => {
-    if (!err) {
-      redisClient.setex(red.cacheKey, time.secsToMidnight(), JSON.stringify(data));
-    }
-  });
-};
+  set(data){
+    this.isReady((err) => {
+      if (!err) {
+        this.client.setex(this.cacheKey, time.secsToMidnight(), JSON.stringify(data));
+      }
+    });
+  }
 
-red.get = function(callback) {
-  red.isReady((err) => {
-    if (err) {
-      callback(err);
+  get(callback){
+    this.isReady((err) => {
+      if (err) {
+        callback(err);
+      } else {
+        this.client.get(this.cacheKey, (err, results) => {
+          if (err) {
+            callback(err);
+          } else {
+            callback(null,JSON.parse(results));
+          }
+        });
+      }
+    });
+  }
+
+  clear(){
+    this.isReady((err) => {
+      if (!err) {
+        this.client.del(this.cacheKey);
+      }
+    });
+  }
+
+  isReady(callback){
+    if(this.ready) {
+      callback();
     } else {
-      redisClient.get(red.cacheKey, (err, results) => {
-        if (err) {
-          callback(err);
-        } else {
-          callback(null,JSON.parse(results));
-        }
-      });
+      callback({error: this.error});
     }
-  });
-};
+  }
 
-red.clear = function() {
-  red.isReady((err) => {
-    if (!err) {
-      redisClient.del(red.cacheKey);
-    }
-  });
-};
+  clientEvents(){
+    this.client.on('error', (err) => {
+      this.error = err;
+      this.ready = false;
+    });
+    this.client.on('ready', () => {
+      this.error = '';
+      this.ready = true;
+    });
+  }
+}
 
-module.exports = red;
+export default new Redis();
