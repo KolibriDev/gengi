@@ -49,8 +49,4 @@ export const ensureCodes = function(codes, currs) {
   return codes;
 };
 
-export default {
-  get: get,
-  toDisplayCurrency: toDisplayCurrency,
-  ensureCodes: ensureCodes
-};
+export default { get, toDisplayCurrency, ensureCodes };
