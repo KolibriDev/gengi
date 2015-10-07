@@ -2,7 +2,7 @@ import _ from 'underscore';
 import request from 'request';
 import xml2js from 'xml2js';
 import values from './values';
-import time from './time';
+import {getMidnight} from './time';
 
 class Borgun {
   constructor(url){
@@ -38,7 +38,7 @@ class Borgun {
           currencies: this.parseCurrencies(result),
           currencyDate: result.Rate[0].RateDate[0],
           // Store expiring timestamp for front-end
-          expires: time.getMidnight(),
+          expires: getMidnight(),
         };
       }
     });
