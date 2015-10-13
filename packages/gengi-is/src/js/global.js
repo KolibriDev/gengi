@@ -6,6 +6,7 @@ import underscore from 'vendor/underscore';
 
 let Global = class {
   constructor() {
+    this.id = 'gengi';
     this.options = {
       debug: false,
     };
@@ -46,8 +47,9 @@ let Global = class {
     key = this.cleanValue(key);
     value = this.cleanValue(value);
 
-    $('html').attr('data-' + key, value);
+    $('html').attr(this.id + '-' + key, value);
     this.attributes[key] = value;
+    $(document).trigger('attr', {key: key, value: value});
     return true;
   }
 
@@ -58,7 +60,7 @@ let Global = class {
   }
   clearAttr(key) {
     if (!key) { return; }
-    $('html').removeAttr('data-' + key);
+    $('html').removeAttr(this.id + '-' + key);
     this.attributes = _.omit(this.attributes, key);
   }
   clearAllAttr() {
