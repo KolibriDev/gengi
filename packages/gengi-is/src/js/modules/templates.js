@@ -37,7 +37,7 @@ let Templates = class {
       return false;
     }
     // TODO: Clear only my own templates
-    item.$parent.html('');
+    item.$parent.find('[template="' + name + '"]').remove();
   }
 
   populateAndAppend(name, data) {
@@ -56,6 +56,8 @@ let Templates = class {
     }
     item.el = item.node.cloneNode(true);
     item.$el = $(item.el);
+
+    item.$el.find('[template]').attr('template', name);
 
     item.$el.find('[tpl]').each((i, sub) => {
       let name = $(sub).attr('tpl');
