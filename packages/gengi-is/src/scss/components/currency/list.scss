@@ -1,10 +1,14 @@
 
 currency-list {
   @extend .y-scroll.force;
-  display: block;
+  display: none;
 
   margin: auto;
   padding: $spacing;
-  height: calc(100% - 64px);
+  height: calc(100% - #{$big-block});
   text-align: center;
+
+  html[gengi-view='home'] & {
+    display: block;
+  }
 }

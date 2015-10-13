@@ -2,23 +2,21 @@
 // import format from 'modules/format';
 import global from 'global';
 import analytics from 'modules/analytics';
+import view from 'modules/view';
 import historySupported from 'support/history';
 
 let Router = class {
   constructor() {
+    console.info('Router constructed');
     this.supported = historySupported;
 
     this.state = {
       title: null,
       state: window.history.state || null,
       path: window.location.pathname || '',
-      navigating: false,
-      last: '',
     };
 
     this.setState('path', this.state.path);
-    this.setState('section', '');
-    this.setState('article', '');
 
     this.processPath();
 
@@ -31,41 +29,21 @@ let Router = class {
     path = path || this.state.path;
     let split = path.split('/');
 
-    if (split.length < 1)  { return; }
+    if (split.length < 1 || (split.length === 2 && split[1] === '') || (split[1] === 'home')) { view.showHome(); return; }
 
-    $.each(split, (index, val) => {
-      if (index === 1 && val) {
-      this.setState('section', val);
-      } else if (index > 1 && val) {
-        let $isItem = this.isItem(val);
-        if ($isItem) {
-          let item = $isItem.attr('item');
-          let group = $isItem.attr('group');
-
-          this.setState('article', item);
-
-          $('a[is="item"][item!="' + item + '"]').attr('active', false);
-          $('a[is="item"][item="' + item + '"]').attr('active', true);
-
-          $('article[group="' + group + '"][item="' + item + '"]')
-              .scrollTop(0)
-              .addClass('show')
-            .siblings('article')
-              .removeClass('show');
-        } else {
-          let $ul = $('ul[group="' + val + '"]');
-          $ul.parent().siblings('li')
-            .find('ul[group]').removeClass('show');
-          $ul.addClass('show');
-        }
-      }
-    });
+    let part = split[1];
+    part = part.toUpperCase();
+    if (this.isCurrency(part)) {
+      view.showCalculator(part);
+    } else {
+      view.showHome();
+    }
   }
 
-  isItem(name) {
-    var $item = $('a[item="' + name + '"]');
-    return $item.length !== 0 ? $item : false;
+  isCurrency(part) {
+    return part.toString().length === 3;
   }
+
 
   pushState(state, title, path) {
     state = state || this.state.state;
@@ -96,12 +74,11 @@ let Router = class {
   }
 
   navigate(newpath) {
-    this.setState('last', this.state.path);
+    $(document).trigger('partial-loading');
+
     this.setState('path', newpath);
     this.pushState();
-
-    $(document).trigger('partial-loading');
-    setTimeout(() => $(document).trigger('partial-loaded') ,300);
+    this.processPath();
   }
 };
 

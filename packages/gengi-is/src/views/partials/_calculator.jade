@@ -1,25 +1,31 @@
 
 calculator
-  currency(field='amountCurr' v-attr='symbol:app.currentCurrency' v-on='click:activate("curr")')
-    curr-input
-      //- input(id='amountCurr' v-model='app.amountCurr | float' placeholder='1')
-      value(v-text='app.amountCurr | icelandicNumber' v-class='empty:app.amountCurr === ""')
-  currency(field='amountISK' symbol='ISK' v-on='click:activate("isk")')
-    curr-input
-      //- input(id='amountISK' v-model='app.amountISK' readonly)
-      value(v-text='app.amountISK | icelandicNumber')
+  input-area
+    template(name='calculator-item')
+      currency(attr='code')
+        curr-input
+          value(tpl='amount')
+
+  //- currency(field='amountCurr' v-attr='symbol:app.currentCurrency' v-on='click:activate("curr")')
+  //-   curr-input
+  //-     //- input(id='amountCurr' v-model='app.amountCurr | float' placeholder='1')
+  //-     value(v-text='app.amountCurr | icelandicNumber' v-class='empty:app.amountCurr === ""')
+  //- currency(field='amountISK' symbol='ISK' v-on='click:activate("isk")')
+  //-   curr-input
+  //-     //- input(id='amountISK' v-model='app.amountISK' readonly)
+  //-     value(v-text='app.amountISK | icelandicNumber')
 
   numpad
-    num(key='1' v-on='click: numPad')
-    num(key='2' v-on='click: numPad')
-    num(key='3' v-on='click: numPad')
-    num(key='4' v-on='click: numPad')
-    num(key='5' v-on='click: numPad')
-    num(key='6' v-on='click: numPad')
-    num(key='7' v-on='click: numPad')
-    num(key='8' v-on='click: numPad')
-    num(key='9' v-on='click: numPad')
-    num(key=',' v-on='click: numPad')
-    num(key='0' v-on='click: numPad')
-    num(key='del' v-class='available: app[app.activeField].toString().length > 0' v-on='click: numPad')
+    num(key='1' numpad)
+    num(key='2' numpad)
+    num(key='3' numpad)
+    num(key='4' numpad)
+    num(key='5' numpad)
+    num(key='6' numpad)
+    num(key='7' numpad)
+    num(key='8' numpad)
+    num(key='9' numpad)
+    num(key=',' numpad)
+    num(key='0' numpad)
+    num(key='del' numpad)
       include ../../img/svg-delete.svg

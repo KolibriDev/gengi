@@ -1,4 +1,14 @@
 
 calculator {
-  @extend currency-list;
+  @extend .y-scroll.force;
+  display: none;
+
+  margin: auto;
+  padding: $spacing;
+  height: calc(100% - #{$big-block});
+  text-align: center;
+
+  html[gengi-view='calculator'] & {
+    display: block;
+  }
 }

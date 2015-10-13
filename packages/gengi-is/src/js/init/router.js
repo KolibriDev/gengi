@@ -25,7 +25,19 @@ var clickHandler = function(event) {
     event.preventDefault();
     return false;
   } else {
-    router.navigate($(event.currentTarget).attr('route'));
+    let href = '';
+    let $target = $(event.currentTarget);
+    let view = $target.attr('route');
+
+    if (view === 'calculator') {
+      href = $target.attr('code');
+    } else if (view === 'home') {
+      href = '';
+    } else {
+      href = view;
+    }
+
+    router.navigate(`/${href}`);
   }
 };
 

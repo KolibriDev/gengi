@@ -9,7 +9,6 @@ let Templates = class {
       this.set(template);
       // $(template).remove();
     });
-    console.log('templates', this.dictionary);
   }
 
   set(template) {
@@ -32,20 +31,29 @@ let Templates = class {
     }
   }
 
-  populateAndAppend(name, data) {
-    if (!name || !data || !this.dictionary.hasOwnProperty(name)) {
+  clearParent(name) {
+    let item = this.get(name);
+    if (!name || !item) {
       return false;
     }
+    // TODO: Clear only my own templates
+    item.$parent.html('');
+  }
+
+  populateAndAppend(name, data) {
     let item = this.populate(name, data);
+    if (!name || !data || !item) {
+      return false;
+    }
     item.$parent.append(item.$el);
-    $(document).trigger('partial-loaded');
+    return item;
   }
 
   populate(name, data) {
-    if (!name || !data || !this.dictionary.hasOwnProperty(name)) {
+    let item = this.get(name);
+    if (!name || !data || !item) {
       return false;
     }
-    let item = this.dictionary[name];
     item.el = item.node.cloneNode(true);
     item.$el = $(item.el);
 
