@@ -7,7 +7,6 @@ import historySupported from 'support/history';
 
 let Router = class {
   constructor() {
-    console.info('Router constructed');
     this.supported = historySupported;
 
     this.state = {
@@ -32,9 +31,11 @@ let Router = class {
     if (split.length < 1 || (split.length === 2 && split[1] === '') || (split[1] === 'home')) { view.showHome(); return; }
 
     let part = split[1];
-    part = part.toUpperCase();
+    part = part;
     if (this.isCurrency(part)) {
       view.showCalculator(part);
+    } else if (part === 'allcurrencies') {
+      view.showAllCurrencies();
     } else {
       view.showHome();
     }

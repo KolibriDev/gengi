@@ -12,7 +12,16 @@ class View {
     let currs = currencies.selected();
 
     currs.done((data) => {
-      this.showList(data, {});
+      templates.clearParent('list-item');
+      _.each(data, (curr) => {
+        templates.populateAndAppend('list-item', curr);
+      });
+      templates.clearParent('all-currencies');
+      templates.populateAndAppend('all-currencies', {
+        code: 'globe',
+        name: 'Allar myntir',
+      });
+      $(document).trigger('partial-loaded');
     });
 
     currs.progress((ignore) => console.info('ignoring progress', ignore));
@@ -20,6 +29,7 @@ class View {
   }
 
   showCalculator(curr, amount) {
+    curr = curr.toString().toUpperCase();
     let foo = currencies.get(curr);
     global.setAttr('view', 'calculator');
     foo.done((data) => {
@@ -33,7 +43,12 @@ class View {
     let currs = currencies.list();
 
     currs.done((data) => {
-      this.showList(data, {});
+      templates.clearParent('all-currencies');
+      templates.clearParent('list-item');
+      _.each(data.list, (curr) => {
+        templates.populateAndAppend('list-item', curr);
+      });
+      $(document).trigger('partial-loaded');
     });
 
     currs.progress((ignore) => console.info('ignoring progress', ignore));
@@ -45,14 +60,6 @@ class View {
   showEmpty() {}
 
   showError() {}
-
-  showList(currs) {
-    templates.clearParent('list-item');
-    _.each(currs, (curr) => {
-      templates.populateAndAppend('list-item', curr);
-    });
-    $(document).trigger('partial-loaded');
-  }
 }
 
 export default new View();

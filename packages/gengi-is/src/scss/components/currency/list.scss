@@ -8,6 +8,7 @@ currency-list {
   height: calc(100% - #{$big-block});
   text-align: center;
 
+  html[gengi-view='allcurrencies'] &,
   html[gengi-view='home'] & {
     display: block;
   }

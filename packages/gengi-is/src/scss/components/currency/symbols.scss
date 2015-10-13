@@ -32,6 +32,7 @@ currency {
 
   // Utils
   &[code="?"]:before { content: '?'; }
+  &[code="globe"]:before { content: '*'; }
   &[code="+"]:before { content: '+'; }
   &[code="+/-"]:before { content: '+/-'; }
 
