@@ -29,7 +29,11 @@ var clickHandler = function(event) {
     let $target = $(event.currentTarget);
     let view = $target.attr('route');
 
-    if (view === 'calculator') {
+
+    if (view === 'back') {
+      window.history.back();
+      return;
+    } else if (view === 'calculator') {
       href = $target.attr('code');
     } else if (view === 'home') {
       href = '';

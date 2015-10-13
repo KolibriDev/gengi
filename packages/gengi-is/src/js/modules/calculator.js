@@ -16,24 +16,24 @@ class Calculator {
     this.elem = {};
   }
 
-  calculate(amount) {
+  calculate() {
     if (this.focus === 'isk') {
-      this.setCur(calculate(this.currency.rate, amount));
+      this.setCur(calculate(this.currency.rate, this.amount.isk));
     } else {
-      this.setIsk(calculate(this.currency.rate, amount));
+      this.setIsk(calculate(this.currency.rate, this.amount.cur));
     }
   }
 
   updateDisplayValues() {
     $('calculator input-area currency[code!="ISK"] value').html(this.amount.curDisplay || this.amount.cur);
     $('calculator input-area currency[code="ISK"] value').html(this.amount.iskDisplay || this.amount.isk);
+    $('header [path] [amount]').html(this.amount.cur);
   }
 
   numpad() {
     $('[numpad]').off('click.numpad').on('click.numpad', (event) => {
-      console.log($(event.target).attr('key'));
-      this.calculate(7);
-
+      this.setCur($(event.target).attr('key'));
+      this.calculate();
     });
   }
 

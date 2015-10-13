@@ -3,11 +3,13 @@ import global from 'global';
 import currencies from 'modules/currencies';
 import calculator from 'modules/calculator';
 import templates from 'modules/templates';
+import header from 'modules/header';
 
 class View {
   constructor() {}
 
   showHome() {
+    header.update({title: 'Gengi.is'});
     global.setAttr('view', 'home');
     let currs = currencies.selected();
 
@@ -33,12 +35,18 @@ class View {
     let foo = currencies.get(curr);
     global.setAttr('view', 'calculator');
     foo.done((data) => {
+      header.update({
+        title: data.code,
+        subtitle: data.name,
+        amount: amount || 1,
+      });
       calculator.show(data, amount);
     });
     foo.fail((data) => this.showError(data));
   }
 
   showAllCurrencies() {
+    header.update({title: 'Allar myntir'});
     global.setAttr('view', 'allcurrencies');
     let currs = currencies.list();
 

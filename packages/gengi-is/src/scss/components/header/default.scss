@@ -1,5 +1,6 @@
 
 header {
+  overflow: hidden;
   user-select: none;
   position: relative;
   margin: 0;
@@ -12,11 +13,6 @@ header {
   background-color: $color-green;
   color: $color-light;
 
-  cursor: pointer;
-  gengi[view="list"] & {
-    cursor: default;
-  }
-
   inner {
     position: relative;
     display: block;
@@ -28,73 +24,57 @@ header {
     height: 100%;
   }
 
-  .current {
+  [back], [logo] {
     position: absolute;
-    top: 0; right: $spacing; bottom: 0;
-
-    margin: auto;
-
-    opacity: 0;
-    transform: translate3d(40%,0,0);
-    transition: opacity $trans-dur, transform $trans-dur;
-
-
-    span {
-      display: block;
-      color: $color-green-darker;
-    }
-  }
-
-  .back,
-  .edit {
-    pointer-events: none;
-    position: absolute;
-    top: 0; bottom: 0;
+    top: 0; left: 0; bottom: 0;
     z-index: 1;
-    margin: auto;
 
-    svg {
-      display: block;
-    }
-  }
-  .back {
-    // @extend svg.svg-arrow-left;
-    left: $spacing;
-    width: 90%;
+    width: $block;
 
-    opacity: 0;
-    transform: translate3d(40%,0,0);
-    transition: opacity $trans-dur, transform $trans-dur;
+    transition: transform $trans-dur, opacity $trans-dur;
 
     svg {
       position: absolute;
-      top: 0; left: 0; bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       margin: auto;
     }
   }
-  .edit {
-    @extend svg.svg-dots;
-    right: $spacing;
-    z-index: 2;
 
-    opacity: 1;
-    transition: opacity $trans-dur;
+  [back] {
+    cursor: pointer;
+    z-index: 99;
   }
 
-  h1.title, hgroup {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    margin: auto;
-    padding: 0 $spacing;
+  [logo] {
+    pointer-events: none;
     opacity: 0;
-    transform: translate3d(-4%,0,0);
-    transition: opacity $trans-dur, transform $trans-dur;
+    transform: translate3d(-10%,0,0);
+  }
+
+  html[gengi-view='home'] & {
+    [back] {
+      pointer-events: none;
+      opacity: 0;
+      transform: translate3d(-10%,0,0);
+    }
+    [logo] {
+      opacity: 1;
+      transform: translate3d(0,0,0);
+    }
   }
 
   hgroup {
     display: block;
-    height: 6vh;
-    padding-left: 7vh;
+
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
+    margin: auto;
+    height: 24px;
+    padding-left: $block;
+
+    color: white;
 
     h1, h2, h3, h4 {
       line-height: 1em;
@@ -102,50 +82,71 @@ header {
     }
 
     h1 {
-      text-transform: uppercase;
+      font-size: 24px;
     }
 
-    &.search {
-      height: 4vh;
+    h4 {
+      display: none;
+      font-size: 12px;
+
+      &:first-letter {
+        text-transform: uppercase;
+      }
+    }
+
+    &[subtitle=true] {
+      height: 36px;
+
+      h4 {
+        display: block;
+      }
     }
   }
 
-  gengi[view="list"] & {
-    h1.title {
-      opacity: 1;
-      transform: translate3d(0,0%,0);
-    }
-  }
+  .right {
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    display: block;
 
-  gengi[view="calc"] & {
-    .edit {
-      opacity: 0;
+    [expired], [edit], [path] {
+      vertical-align: top;
+      display: none;
+
+      cursor: pointer;
+      position: relative;
+      z-index: 2;
+
+      margin: auto;
     }
-    .back,
-    .current,
-    hgroup.calc {
-      opacity: 1;
-      transform: translate3d(0,0%,0);
+
+    [edit] {
+      width: $block;
+      height: $big-block;
+
+      svg {
+        display: block;
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        margin: auto;
+      }
+
+      html[gengi-view='home'] & {
+        display: inline-block;
+      }
     }
-  }
-  gengi[view="search"] & {
-    .edit {
-      opacity: 0;
-    }
-    .back,
-    hgroup.search {
-      opacity: 1;
-      transform: translate3d(0,0%,0);
-    }
-  }
-  gengi[view="about"] & {
-    .edit {
-      opacity: 0;
-    }
-    .back,
-    hgroup.about {
-      opacity: 1;
-      transform: translate3d(0,0%,0);
+    [path] {
+      cursor: default;
+      margin: auto;
+
+      span {
+        vertical-align: top;
+        display: inline-block;
+        color: $color-green-darker;
+      }
+
+      html[gengi-view='calculator'] & {
+        display: inline-block;
+      }
     }
   }
 }

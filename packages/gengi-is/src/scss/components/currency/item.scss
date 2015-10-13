@@ -37,6 +37,10 @@ currency {
     line-height: 2vh;
     font-size: 2vh;
     font-weight: 300;
+
+    &:first-letter {
+      text-transform: uppercase;
+    }
   }
 
   curr-rate {

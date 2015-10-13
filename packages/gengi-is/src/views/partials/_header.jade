@@ -1,19 +1,23 @@
-header(route='home'): inner
-  h1.title(v-text="app.title")
-  div.back
-    include ../../img/svg-arrow-left.svg
-  div.edit
-    include ../../img/svg-dots.svg
-  div.current
-    span Gengi.is/{{app.currentCurrency}}{{app.amountCurr | number}}
-  hgroup.calc
-    h1(v-text="app.currentCurrency")
-    h4(v-text="currencies.list.hasOwnProperty(app.currentCurrency) ? currencies.list[app.currentCurrency].name : ''")
-  hgroup.search
-    h1 Velja myntir
-  hgroup.about
-    h1 Upplýsingar
-    h4 um Gengi.is
+header
+  inner
+    div(back route='back')
+      include ../../img/svg-arrow-left.svg
 
-//- message(v-if="message")
-  h4(v-text="messages[message]")
+    div(logo)
+      include ../../img/svg-logo.svg
+
+    hgroup
+      h1(title) Gengi.is
+      h4(subtitle)
+
+    div.right
+      div(expired)
+        span foobar
+
+      div(edit)
+        include ../../img/svg-dots.svg
+
+      div(path)
+        span Gengi.is/
+        span(code) FOO
+        span(amount) 123
