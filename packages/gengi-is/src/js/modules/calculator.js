@@ -32,7 +32,10 @@ class Calculator {
 
   numpad() {
     $('[numpad]').off('click.numpad').on('click.numpad', (event) => {
-      this.setCur($(event.target).attr('key'));
+      let key = $(event.target).attr('key');
+      let newValue = this.process(this.amount.cur, key);
+
+      this.setCur(newValue);
       this.calculate();
     });
   }
@@ -56,6 +59,35 @@ class Calculator {
     this.amount.cur = sanitize.number(newValue) || this.amount.cur;
     this.amount.curDisplay = format.numberIcelandic(this.amount.cur);
     this.updateDisplayValues();
+  }
+
+  process(value, key) {
+    console.log(value, key);
+    value = value ? value.toString() : '';
+    if (!key) { return; }
+    if (value === '0') {
+      value = '';
+    }
+    if (value.substring(value.length - 1) === '.') {
+      value = value.replace('.','');
+    }
+    // if (key === 'escape') {
+    //   return 'show-list';
+    // } else if (key === 'arrow-up') {
+    //   return 'activate-curr';
+    // } else if (key === 'arrow-down') {
+    //   return 'activate-isk';
+    // } else
+    if (key === ',' || key === 'comma') {
+      if (value.indexOf('.') === -1 && value.substring(value.length - 1) !== ',') {
+        value = value.length >= 1 ? value + ',' : '0' + ',';
+      }
+    } else if (key === 'del' || key === 'delete' || key === 'backspace') {
+      value = value.slice(0, -1);
+    } else {
+      value += key.replace('numpad-','');
+    }
+    return value;
   }
 }
 
