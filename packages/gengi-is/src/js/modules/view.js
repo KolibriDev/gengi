@@ -23,7 +23,7 @@ class View {
         code: 'globe',
         name: 'Allar myntir',
       });
-      $(document).trigger('partial-loaded');
+      $(document).trigger('loaded');
     });
 
     currs.progress((ignore) => console.info('ignoring progress', ignore));
@@ -56,7 +56,7 @@ class View {
       _.each(data.list, (curr) => {
         templates.populateAndAppend('list-item', curr);
       });
-      $(document).trigger('partial-loaded');
+      $(document).trigger('loaded');
     });
 
     currs.progress((ignore) => console.info('ignoring progress', ignore));

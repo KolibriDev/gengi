@@ -75,7 +75,7 @@ let Router = class {
   }
 
   navigate(newpath) {
-    $(document).trigger('partial-loading');
+    $(document).trigger('loading');
 
     this.setState('path', newpath);
     this.pushState();

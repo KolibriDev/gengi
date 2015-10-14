@@ -2,6 +2,7 @@ import templates from 'modules/templates';
 import calculate from 'modules/calculate';
 import sanitize from 'modules/sanitize';
 import format from 'modules/format';
+import SwiftClick from 'vendor/swiftclick';
 
 class Calculator {
   constructor() {
@@ -9,6 +10,8 @@ class Calculator {
       isk: 0,
       cur: 0,
     };
+
+    this.swiftclick = new SwiftClick(document.querySelector('numpad'));
 
     this.numpad();
     this.currency = {};
@@ -48,6 +51,7 @@ class Calculator {
     this.elem.cur = templates.populateAndAppend('calculator-item', {code: curr.code, amount: amount});
     this.elem.isk = templates.populateAndAppend('calculator-item', {code: 'ISK'});
     this.calculate();
+    this.swiftclick.replaceNodeNamesToTrack(['num']);
   }
 
   setIsk(newValue) {
