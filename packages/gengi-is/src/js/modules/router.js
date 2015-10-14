@@ -22,6 +22,11 @@ let Router = class {
     window.onpopstate = () => {
       this.processPath(window.location.pathname);
     };
+
+    $(document).on('amount-changed', (event, data) => {
+      this.setState('path', '/' + data.code.toUpperCase() + data.amount.toString());
+      this.replaceState();
+    });
   }
 
   processPath(path) {
@@ -32,8 +37,9 @@ let Router = class {
 
     let part = split[1];
     part = part;
-    if (this.isCurrency(part)) {
-      view.showCalculator(part);
+    let [code, amount] = this.isCurrency(part);
+    if (code) {
+      view.showCalculator(code, amount);
     } else if (part === 'allcurrencies') {
       view.showAllCurrencies();
     } else {
@@ -42,7 +48,16 @@ let Router = class {
   }
 
   isCurrency(part) {
-    return part.toString().length === 3;
+    let amount, code;
+
+    part.replace(/(\D+)/, (match, p1) => {
+      code = p1;
+    });
+    part.replace(/([0-9]+)/, (match, p1) => {
+      amount = +p1;
+    });
+
+    return code.length === 3 ? [code, amount] : false;
   }
 
 
@@ -80,6 +95,11 @@ let Router = class {
     this.setState('path', newpath);
     this.pushState();
     this.processPath();
+  }
+
+  back() {
+    $(document).trigger('loading');
+    window.history.back();
   }
 };
 

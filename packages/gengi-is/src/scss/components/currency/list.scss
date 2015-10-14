@@ -1,6 +1,8 @@
 
 currency-list {
   @extend .y-scroll.force;
+  position: relative;
+  z-index: 1;
   display: none;
 
   margin: auto;
@@ -12,4 +14,10 @@ currency-list {
   html[gengi-view='home'] & {
     display: block;
   }
+
+  opacity: 1;
+  transform: translate3d(0,0,0);
+  perspective: 1000px;
+  transition: transform $trans-dur, opacity $trans-dur;
+
 }

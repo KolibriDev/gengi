@@ -20,6 +20,45 @@ numpad {
     width: calc(#{100%/3} - #{$spacing*2});
     height: $block;
 
+    opacity: 1;
+
+    transform: translate3d(0,0,0);
+    transform-origin: center center;
+
+    transition: transform $trans-dur-slower, opacity $trans-dur-slower;
+
+    html[gengi-state='leaving'] &,
+    html[gengi-state='loading'] &,
+    html[gengi-state='initial-loading'] & {
+      opacity: 0;
+      transform: translate3d(0,0%,0);
+      transition: transform $trans-dur-slower, opacity $trans-dur-slower;
+      transition-delay: 0ms;
+    }
+    $delay: 50ms;
+    $step: 25ms;
+    @for $i from 1 through 9 {
+      &[key='#{$i}'] {
+        $delay: $delay + $step;
+        transition-delay: $delay;
+      }
+    }
+
+    &[key='0'] {
+      $delay: $delay + $step;
+      transition-delay: $delay;
+    }
+
+    &[key=','] {
+      $delay: $delay + $step;
+      transition-delay: $delay;
+    }
+
+    &[key='del'] {
+      $delay: $delay + $step;
+      transition-delay: $delay;
+    }
+
     &:before {
       content: attr(key);
       display: block;

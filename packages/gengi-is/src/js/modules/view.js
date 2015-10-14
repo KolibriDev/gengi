@@ -8,6 +8,12 @@ import header from 'modules/header';
 class View {
   constructor() {}
 
+  loaded() {
+    setTimeout(() => {
+      $(document).trigger('loaded');
+    },50);
+  }
+
   showHome() {
     header.update({title: 'Gengi.is'});
     global.setAttr('view', 'home');
@@ -23,7 +29,8 @@ class View {
         code: 'globe',
         name: 'Allar myntir',
       });
-      $(document).trigger('loaded');
+
+      this.loaded();
     });
 
     currs.progress((ignore) => console.info('ignoring progress', ignore));
@@ -41,6 +48,8 @@ class View {
         amount: amount || 1,
       });
       calculator.show(data, amount);
+
+      this.loaded();
     });
     foo.fail((data) => this.showError(data));
   }
@@ -56,7 +65,8 @@ class View {
       _.each(data.list, (curr) => {
         templates.populateAndAppend('list-item', curr);
       });
-      $(document).trigger('loaded');
+
+      this.loaded();
     });
 
     currs.progress((ignore) => console.info('ignoring progress', ignore));

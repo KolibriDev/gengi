@@ -15,4 +15,14 @@ generic {
     min-width: $page-min-width;
     max-width: $page-max-width;
   }
+
+  opacity: 1;
+  transform: translate3d(0,0,0);
+  transition: transform $trans-dur, opacity $trans-dur;
+
+  html[gengi-state='initial-loading'] & {
+    opacity: 0;
+    transform: translate3d(0,-10%,0);
+    transition: none;
+  }
 }

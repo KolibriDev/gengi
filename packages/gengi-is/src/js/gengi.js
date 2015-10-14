@@ -16,6 +16,8 @@ class Gengi {
     this.ensureVersion('0.0.8');
 
     global.setAttr('load-step', '2');
+
+    this.setEvents();
     this.initRouter();
 
     setTimeout(() => {
@@ -31,34 +33,43 @@ class Gengi {
     storage.set('version', version);
   }
 
+  setEvents() {
+    $(document).on('leaving loading loaded', (event) => {
+      global.setAttr('state', event.type);
+    });
+  }
+
   initRouter() {
 
     onLoad(() => {
       $('body').find('[route]').off('click.route').on('click.route', (event) => {
-        if (event.currentTarget.tagName === 'A') {
-          if (keys.isClickModifier(event)) { return; }
-          router.navigate(event.currentTarget.pathname || $(event.currentTarget).attr('href'));
-          event.preventDefault();
-          return false;
-        } else {
-          let href = '';
-          let $target = $(event.currentTarget);
-          let view = $target.attr('route');
-
-
-          if (view === 'back') {
-            window.history.back();
-            return;
-          } else if (view === 'calculator') {
-            href = $target.attr('code');
-          } else if (view === 'home') {
-            href = '';
+        $(document).trigger('leaving');
+        setTimeout(() => {
+          if (event.currentTarget.tagName === 'A') {
+            if (keys.isClickModifier(event)) { return; }
+            router.navigate(event.currentTarget.pathname || $(event.currentTarget).attr('href'));
+            event.preventDefault();
+            return false;
           } else {
-            href = view;
-          }
+            let href = '';
+            let $target = $(event.currentTarget);
+            let view = $target.attr('route');
 
-          router.navigate(`/${href}`);
-        }
+
+            if (view === 'back') {
+              router.back();
+              return;
+            } else if (view === 'calculator') {
+              href = $target.attr('code');
+            } else if (view === 'home') {
+              href = '';
+            } else {
+              href = view;
+            }
+
+            router.navigate(`/${href}`);
+          }
+        }, 150);
       });
     });
   }

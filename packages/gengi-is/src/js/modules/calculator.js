@@ -48,6 +48,7 @@ class Calculator {
     this.currency = curr;
 
     templates.clearParent('calculator-item');
+    this.amount.cur = amount;
     this.elem.cur = templates.populateAndAppend('calculator-item', {code: curr.code, amount: amount});
     this.elem.isk = templates.populateAndAppend('calculator-item', {code: 'ISK'});
     this.calculate();
@@ -63,10 +64,11 @@ class Calculator {
     this.amount.cur = sanitize.number(newValue) || this.amount.cur;
     this.amount.curDisplay = format.numberIcelandic(this.amount.cur);
     this.updateDisplayValues();
+
+    $(document).trigger('amount-changed', {code: this.currency.code, amount: this.amount.cur});
   }
 
   process(value, key) {
-    console.log(value, key);
     value = value ? value.toString() : '';
     if (!key) { return; }
     if (value === '0') {
