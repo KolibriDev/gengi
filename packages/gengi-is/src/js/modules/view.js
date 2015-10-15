@@ -19,7 +19,6 @@ class View {
     header.update({title: 'Gengi.is'});
     global.setAttr('view', 'home');
     let currs = currencies.selected();
-
     currs.done((data) => {
       templates.clearParent('list-item');
       _.each(data, (curr) => {
@@ -71,6 +70,13 @@ class View {
       templates.clearParent('all-currencies');
       templates.clearParent('list-item');
       _.each(data.list, (curr) => {
+        if (curr.rate < 1 ) {
+          curr.rate = format.numberIcelandic(curr.rate, 5);
+          curr.low = true;
+        } else {
+          curr.rate = format.numberIcelandic(curr.rate, 2);
+          curr.low = false;
+        }
         templates.populateAndAppend('list-item', curr);
       });
 
@@ -96,6 +102,7 @@ class View {
   showEmpty() {}
 
   showError() {}
+
 }
 
 export default new View();
