@@ -1,0 +1,30 @@
+
+p {
+  margin: 0 auto $spacing;
+  font-size: $font-size;
+  line-height: $line-height;
+
+  &.large {
+    font-size: $font-size-large;
+  }
+
+  &.blue-light {
+    background-color: $color-blue-light;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.large-text {
+  font-size: 18px;
+}
+
+.no-bottom-padding {
+  padding-bottom: 0;
+}

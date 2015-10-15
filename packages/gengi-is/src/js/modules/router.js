@@ -31,6 +31,8 @@ let Router = class {
 
   processPath(path) {
     path = path || this.state.path;
+
+    console.log('processPath', path);
     let split = path.split('/');
 
     if (split.length < 2 || (split.length === 2 && split[1] === '') || (split[1] === 'home')) {
@@ -41,8 +43,8 @@ let Router = class {
 
     if (part === 'allcurrencies') {
       view.showAllCurrencies();
-    } else if (part === 'about') {
-      view.showAbout();
+    } else if (part.length > 4 && part.substring(0, 5) === 'about') {
+      view.showAbout(part);
     } else {
       let [code, amount] = this.isCurrency(part); // BEWARE :) það þarf að tryggja að það sé alltaf skilað valid array.
       if (code) {
@@ -96,6 +98,7 @@ let Router = class {
   }
 
   navigate(newpath) {
+    console.log('navigating', newpath);
     $(document).trigger('loading');
 
     this.setState('path', newpath);

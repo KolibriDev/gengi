@@ -3,15 +3,15 @@ $font-family: 'WorkSans', Helvetica, Arial, sans-serif;
 $font-family-alt: 'Merriweather', 'Georgia', 'Times New Roman', Times, serif;
 $font-sans: $font-family;
 $font-serif: $font-family-alt;
-$font-size: 16px;
+$font-size: 14px;
 $font-weight: 400;
 $font-color: #333;
-$line-height: 1.25;
+$line-height: 1.5;
 
-$font-size-tiny: 14px;
-$font-size-small: 16px;
-$font-size-large: 21px;
-$font-size-larger: 26px;
+$font-size-tiny: 10px;
+$font-size-small: 12px;
+$font-size-large: 16px;
+$font-size-larger: 18px;
 
 // Sizes
 $spacing: 20px;
@@ -34,6 +34,7 @@ $color-gray: #B7BDBE;
 $color-gray-light: #ccc;
 
 // Colors
+$color-blue-light: #E2F4F9;
 $color-green-light: #C4F6EB;
 $color-green: #39D6B3;
 $color-green-dark: #50E3C2;
@@ -41,6 +42,7 @@ $color-green-darker: #178C72;
 $color-yellow: #F8E71C;
 $color-orange: #F6A623;
 $color-dark: #56656B;
+
 $color-light: #EDEDEB;
 
 $color-alert-red: #C25243;

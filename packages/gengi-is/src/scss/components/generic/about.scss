@@ -2,29 +2,122 @@
 about {
   @extend .y-scroll.force;
 
-  display: block;
+  display: none;
 
-  margin: auto;
-  padding: 0 $spacing;
+  margin: 0;
+  padding: 0;
   height: calc(100% - 64px);
 
   hero {
     background: white;
     display: block;
-    margin: auto;
+    margin: 0;
     padding: $spacing*2;
     width: 100%;
     min-width: $page-min-width;
     max-width: $page-max-width;
+
+    svg.svg-logo {
+      vertical-align: middle;
+      width: 64px;
+      height: 64px;
+      margin-right: $spacing/2;
+
+      path.circle {
+        fill: $color-green;
+      }
+
+      g.arrow-right,
+      g.arrow-left {
+        path, rect {
+          fill: white;
+        }
+      }
+    }
+
+    h2 {
+      vertical-align: middle;
+    }
   }
 
   content {
     display: block;
-    margin: auto;
-    padding: $spacing;
-    width: 100%;
+    margin: 0 $spacing;
+    padding: $spacing 0;
     min-width: $page-min-width;
     max-width: $page-max-width;
+
+  }
+
+  section {
+    text-align: center;
+    background-color: white;
+    padding: $spacing;
+    margin: 0 0 $spacing 0;
+
+    .example {
+      p {
+        padding: $spacing/2;
+      }
+      p + p.blue-light {
+        margin-top: -20px;
+
+        a {
+          color: $font-color;
+          text-decoration: none;
+          & + a {
+            margin-left: $spacing/2;
+          }
+
+          svg.svg-link {
+            width: 14px;
+            path {
+              fill: $font-color;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  .logo-center {
+    padding: $spacing;
+    svg.svg-logo {
+      width: 64px;
+      height: 64px;
+      margin: auto;
+
+      path.circle {
+        fill: $color-green;
+      }
+
+      g.arrow-right,
+      g.arrow-left {
+        path, rect {
+          fill: white;
+        }
+      }
+
+    }
+
+  }
+
+  html[gengi-view='about_main'] & {
+    &.main {
+      display: block
+    }
+  }
+  html[gengi-view='about_usage'] & {
+    &.usage {
+      display: block
+    }
+  }
+
+  html[gengi-view='about_whatisnew'] & {
+    &.usage {
+      display: block
+    }
   }
 
   opacity: 1;

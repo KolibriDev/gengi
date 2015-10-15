@@ -73,9 +73,16 @@ class View {
     currs.fail((ignore) => console.warn('ignoring failure', ignore));
   }
 
-  showAbout() {
-    header.update({title: 'Um gengi.is'});
-    global.setAttr('view', 'about');
+  showAbout(path) {
+    let sub = 'main';
+    let split = path.split('_');
+    if (split.length === 2) {
+      sub = split[1];
+    }
+
+    header.update({title: 'Um Gengi.is'});
+    global.setAttr('view', 'about_' + sub);
+
   }
 
   showEmpty() {}

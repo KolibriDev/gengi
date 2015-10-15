@@ -1,13 +1,25 @@
 
 links {
-  @extend currency;
-
-  width: 245px;
+  background-color: white;
+  position: relative;
   display: inline-block;
-  min-width: 0;
-  vertical-align: top;
+  width: 100%;
+  margin: 0;
+  padding: $spacing $spacing*3 $spacing $spacing;
 
-  + links {
-    margin-left: $spacing;
+
+  curr-code {
+    font-size: $font-size-large;
+    font-weight: 700;
+  }
+
+  &:after {
+    content: '>';
+    position: absolute;
+    top: 0;
+    right: 20px;
+    bottom: 0;
+    background-color: blue;
+    width: 20px;
   }
 }
