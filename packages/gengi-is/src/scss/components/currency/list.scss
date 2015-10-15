@@ -20,4 +20,22 @@ currency-list {
   perspective: 1000px;
   transition: transform $trans-dur, opacity $trans-dur;
 
+  div.footer {
+    hr {
+      vertical-align: middle;
+      display: inline-block;
+      width: 30%;
+    }
+
+    svg.svg-kolibri-flower {
+      vertical-align: middle;
+      display: inline-block;
+      width: 32px;
+      margin: $spacing;
+      path {
+        fill: blue;
+      }
+    }
+  }
 }
+

@@ -1,11 +1,17 @@
 currency-list
 
-  template(name='list-item')
-    currency(attr='code' template route='calculator')
-      curr-code(tpl='code')
-      curr-name(tpl='name')
-      curr-rate(tpl='rate')
+  div
+    template(name='list-item')
+      currency(attr='code' template route='calculator')
+        curr-code(tpl='code')
+        curr-name(tpl='name')
+        curr-rate(tpl='rate')
 
-  template(name='all-currencies')
-    currency(attr='code' template route='allcurrencies')
-      curr-code(tpl='name')
+    template(name='all-currencies')
+      currency(attr='code' template route='allcurrencies')
+        curr-code(tpl='name')
+
+  div(route='about').footer
+    hr
+    include ../../img/svg-kolibri-flower.svg
+    hr
