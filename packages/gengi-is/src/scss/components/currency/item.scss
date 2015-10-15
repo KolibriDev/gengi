@@ -86,7 +86,7 @@ currency {
     transform: translateY(-50%);
 
     display: block;
-    font-size: 2vh;
+    font-size: 14px;
     text-align: center;
   }
 
@@ -109,9 +109,9 @@ currency {
       height: 100%;
       line-height: $big-block;
 
-      font-size: 6vh;
+      font-size: 48px;
       font-weight: 700;
-      color: $color-dark;
+      color: $color-green;
 
       border: none;
 
@@ -123,7 +123,7 @@ currency {
 
       &#search {
         padding: 0 $spacing;
-        font-size: 6vh;
+        font-size: 48px;
         text-align: center;
       }
     }

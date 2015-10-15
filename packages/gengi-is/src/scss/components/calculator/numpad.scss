@@ -68,11 +68,11 @@ numpad {
       z-index: 1;
 
       margin: auto;
-      width: 6vh;
-      height: 6vh;
-      line-height: 6vh;
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
 
-      font-size: 6vh;
+      font-size: 36px;
       font-weight: 700;
       color: $color-gray;
     }
@@ -82,7 +82,7 @@ numpad {
     }
 
     &[key='del']:before {
-      font-size: 4vh;
+      font-size: 24px;
       font-weight: 500;
     }
     &[key='del'] {

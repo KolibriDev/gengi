@@ -28,7 +28,6 @@ about {
     padding: $spacing*2;
     width: 100%;
     min-width: $page-min-width;
-    max-width: $page-max-width;
 
     svg.svg-logo {
       vertical-align: middle;
@@ -76,7 +75,6 @@ about {
         margin-top: -20px;
 
         a {
-          display: block;
           color: $font-color;
           text-decoration: none;
           & + a {
