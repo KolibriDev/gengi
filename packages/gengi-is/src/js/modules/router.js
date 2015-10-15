@@ -12,7 +12,7 @@ let Router = class {
     this.state = {
       title: null,
       state: window.history.state || null,
-      path: window.location.pathname || '',
+      path: window.location.pathname || ''
     };
 
     this.setState('path', this.state.path);
@@ -33,17 +33,23 @@ let Router = class {
     path = path || this.state.path;
     let split = path.split('/');
 
-    if (split.length < 1 || (split.length === 2 && split[1] === '') || (split[1] === 'home')) { view.showHome(); return; }
+    if (split.length < 2 || (split.length === 2 && split[1] === '') || (split[1] === 'home')) {
+      view.showHome(); return;
+    }
 
     let part = split[1];
-    part = part;
-    let [code, amount] = this.isCurrency(part);
-    if (code) {
-      view.showCalculator(code, amount);
-    } else if (part === 'allcurrencies') {
+
+    if (part === 'allcurrencies') {
       view.showAllCurrencies();
+    } else if (part === 'about') {
+      view.showAbout();
     } else {
-      view.showHome();
+      let [code, amount] = this.isCurrency(part); // BEWARE :) það þarf að tryggja að það sé alltaf skilað valid array.
+      if (code) {
+        view.showCalculator(code, amount);
+      } else {
+        view.showHome();
+      }
     }
   }
 
@@ -57,7 +63,7 @@ let Router = class {
       amount = +p1;
     });
 
-    return code.length === 3 ? [code, amount] : false;
+    return code.length === 3 ? [code, amount] : [undefined]; // BEWARE :) það þarf að tryggja að það sé alltaf skilað valid array.
   }
 
 
