@@ -1,4 +1,40 @@
 
 about {
-  @extend generic;
+  @extend .y-scroll.force;
+
+  display: block;
+
+  margin: auto;
+  padding: 0 $spacing;
+  height: calc(100% - 64px);
+
+  hero {
+    background: white;
+    display: block;
+    margin: auto;
+    padding: $spacing*2;
+    width: 100%;
+    min-width: $page-min-width;
+    max-width: $page-max-width;
+  }
+
+  content {
+    display: block;
+    margin: auto;
+    padding: $spacing;
+    width: 100%;
+    min-width: $page-min-width;
+    max-width: $page-max-width;
+  }
+
+  opacity: 1;
+  transform: translate3d(0,0,0);
+  transition: transform $trans-dur, opacity $trans-dur;
+
+  html[gengi-state='initial-loading'] & {
+    opacity: 0;
+    transform: translate3d(0,-10%,0);
+    transition: none;
+  }
+
 }

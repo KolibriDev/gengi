@@ -73,7 +73,10 @@ class View {
     currs.fail((ignore) => console.warn('ignoring failure', ignore));
   }
 
-  showAbout() {}
+  showAbout() {
+    header.update({title: 'Um gengi.is'});
+    global.setAttr('view', 'about');
+  }
 
   showEmpty() {}
 
