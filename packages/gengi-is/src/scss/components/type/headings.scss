@@ -1,28 +1,32 @@
 
 h1, h2, h3, h4, h5 {
   margin: 0 0 $spacing;
-}
-
-h1 {
-  font-size: 4vh;
-  font-weight: 700;
+  line-height: 1.1em;
 
   span {
     display: inline-block;
   }
+
   svg {
     display: inline-block;
   }
+
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 700;
 }
 
 h2 {
-  font-size: 3.5vh;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 h3 {
-  font-size: 3vh;
+  font-size: 16px;
 }
 
 h4 {
-  font-size: 2vh;
+  font-size: 12px;
 }
