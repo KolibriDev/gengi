@@ -4,8 +4,10 @@ links {
   position: relative;
   display: inline-block;
   width: 100%;
-  margin: 0;
+  margin: 0 0 $spacing;
   padding: $spacing $spacing*3 $spacing $spacing;
+
+  font-size: $font-size-larger;
 
 
   curr-code {
