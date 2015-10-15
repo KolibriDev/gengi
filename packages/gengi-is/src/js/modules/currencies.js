@@ -60,7 +60,7 @@ export default {
 
     if (!stored) {
       stored = [
-        'EUR', 'USD', 'GBP'
+        'EUR', 'USD', 'GBP', 'BIF'
       ];
       storage.set('selectedCurrencies', stored);
     }

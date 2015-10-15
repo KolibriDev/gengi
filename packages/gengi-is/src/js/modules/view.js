@@ -4,6 +4,7 @@ import currencies from 'modules/currencies';
 import calculator from 'modules/calculator';
 import templates from 'modules/templates';
 import header from 'modules/header';
+import format from 'modules/format';
 
 class View {
   constructor() {}
@@ -22,6 +23,13 @@ class View {
     currs.done((data) => {
       templates.clearParent('list-item');
       _.each(data, (curr) => {
+        if (curr.rate < 1 ) {
+          curr.rate = format.numberIcelandic(curr.rate, 5);
+          curr.low = true;
+        } else {
+          curr.rate = format.numberIcelandic(curr.rate, 2);
+          curr.low = false;
+        }
         templates.populateAndAppend('list-item', curr);
       });
       templates.clearParent('all-currencies');

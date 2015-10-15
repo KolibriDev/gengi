@@ -41,16 +41,16 @@ currency {
     display: block;
     padding: $spacing 0 0;
 
-    line-height: 4vh;
-    font-size: 4vh;
-    font-weight: 500;
+    line-height: 42px;
+    font-size: 36px;
+    font-weight: 700;
   }
   curr-name {
     display: block;
     padding: 0;
 
-    line-height: 2vh;
-    font-size: 2vh;
+    line-height: 16px;
+    font-size: 14px;
     font-weight: 300;
 
     &:first-letter {
@@ -59,16 +59,25 @@ currency {
   }
 
   curr-rate {
+    color: $color-green;
+
     position: absolute;
     top: $spacing; right: $spacing;
 
     display: block;
-    margin: 2.5vh 0 0;
+    margin: $spacing 0 0;
     padding: 0;
-    height: 2vh;
-    line-height: 2vh;
 
-    font-size: 2vh;
+    height: 42px;
+
+    line-height: 42px;
+    font-size: 38px;
+    font-weight: 700;
+
+    &[low='true'] {
+      font-size: 28px;
+      line-height: 32px;
+    }
   }
 
   curr-text {

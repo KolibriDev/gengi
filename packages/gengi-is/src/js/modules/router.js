@@ -31,8 +31,6 @@ let Router = class {
 
   processPath(path) {
     path = path || this.state.path;
-
-    console.log('processPath', path);
     let split = path.split('/');
 
     if (split.length < 2 || (split.length === 2 && split[1] === '') || (split[1] === 'home')) {
@@ -98,7 +96,6 @@ let Router = class {
   }
 
   navigate(newpath) {
-    console.log('navigating', newpath);
     $(document).trigger('loading');
 
     this.setState('path', newpath);
