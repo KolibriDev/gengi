@@ -49,6 +49,34 @@ header {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       margin: auto;
+
+      .circle {
+        transition: opacity $trans-dur-slower;
+        transition-delay: $trans-dur;
+        opacity: 1;
+      }
+
+      .arrow-left,
+      .arrow-right {
+        transition: transform $trans-dur-slower*2, opacity $trans-dur-slower;
+        transition-delay: $trans-dur*1.5;
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      html[gengi-state='initial-loading'] & {
+        .circle {
+          opacity: 0;
+        }
+        .arrow-left {
+          transform: translate3d(5px,0,0);
+          opacity: 0;
+        }
+        .arrow-right {
+          transform: translate3d(-5px,0,0);
+          opacity: 0;
+        }
+      }
     }
   }
 
@@ -60,14 +88,14 @@ header {
   [logo] {
     pointer-events: none;
     opacity: 0;
-    transform: translate3d(-10px,0,0);
+    transform: translate3d(0,0,0) rotateY(-180deg);
   }
 
   html[gengi-view='home'] & {
     [back] {
       pointer-events: none;
       opacity: 0;
-      transform: translate3d(-10px,0,0);
+      transform: translate3d(0,0,0) rotateY(-180deg);
     }
     [logo] {
       opacity: 1;
@@ -80,7 +108,6 @@ header {
 
     position: relative;
     top: 50%;
-    transform: translateY(-50%);
 
     margin: auto;
     height: 24px;
@@ -107,6 +134,16 @@ header {
       h4 {
         display: block;
       }
+    }
+
+    transition: transform $trans-dur-slower*2, opacity $trans-dur-slower;
+    transition-delay: $trans-dur*2;
+    transform: translate3d(0,-50%,0);
+    opacity: 1;
+
+    html[gengi-state='initial-loading'] & {
+      opacity: 0;
+      transform: translate3d(-10px,-50%,0);
     }
   }
 
