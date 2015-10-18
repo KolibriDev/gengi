@@ -2,6 +2,10 @@
 currency-list {
 
   div.footer {
+    margin: auto;
+    min-width: $page-min-width;
+    max-width: $page-max-width;
+
     hr, svg {
       vertical-align: middle;
       display: inline-block;
