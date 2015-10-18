@@ -97,6 +97,7 @@ class View {
     header.update({title: 'Um Gengi.is'});
     global.setAttr('view', 'about_' + sub);
 
+    this.loaded();
   }
 
   showEmpty() {}
