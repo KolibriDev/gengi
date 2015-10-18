@@ -12,4 +12,7 @@ html(gengi-state='initial-loading' manifest=manifest)
     main
       block main
 
+      if env !== 'production'
+        .version=version
+
     block javascript

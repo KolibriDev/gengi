@@ -118,3 +118,25 @@ hr {
     }
   }
 }
+
+.version {
+  user-select: none;
+  white-space: nowrap;
+  pointer-events: none;
+
+  position: absolute;
+  right: 0; bottom: 0;
+  z-index: 99999999999;
+
+  display: block;
+  margin: auto;
+  padding: 0 $spacing/4 0 0;
+
+  text-align: right;
+
+  color: rgba($color-dark,.35);
+
+  &:before {
+    content: 'v';
+  }
+}
