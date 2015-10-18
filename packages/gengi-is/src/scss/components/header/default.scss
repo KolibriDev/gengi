@@ -49,34 +49,6 @@ header {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       margin: auto;
-
-      .circle {
-        transition: opacity $trans-dur-slower;
-        transition-delay: $trans-dur;
-        opacity: 1;
-      }
-
-      .arrow {
-        transition: transform $trans-dur-slower*2, opacity $trans-dur-slower;
-        transition-delay: $trans-dur*1.5;
-        transform: translate3d(0,0,0);
-        opacity: 1;
-      }
-
-      html[gengi-state='initial-loading'] & {
-        .circle {
-          opacity: 0;
-        }
-        .arrow {
-          opacity: 0;
-          &.left {
-            transform: translate3d(5px,0,0);
-          }
-          &.right {
-            transform: translate3d(-5px,0,0);
-          }
-        }
-      }
     }
   }
 
