@@ -13,7 +13,8 @@ global.setAttr('load-step', '1');
 
 class Gengi {
   constructor() {
-    this.ensureVersion('0.0.8');
+    // This is replaced with package.json version during build
+    this.ensureVersion('<%version%>');
 
     global.setAttr('load-step', '2');
 

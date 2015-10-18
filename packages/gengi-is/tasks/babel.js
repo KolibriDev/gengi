@@ -16,6 +16,8 @@ module.exports = function(gulp) {
       .pipe ( gulp.plugin.babel(gulp.cfg.babel.config) )
       .pipe ( gulp.plugin.sourcemaps.write())
 
+      .pipe ( gulp.plugin.replace('<%version%>', gulp.cfg.version) )
+
       .pipe ( gulp.dest(dir) )
 
       .pipe ( gulp.plugin.browserSync.stream() );
