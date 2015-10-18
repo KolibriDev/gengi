@@ -7,6 +7,7 @@ calculator {
   padding: $spacing;
   height: calc(100% - #{$big-block});
   text-align: center;
+  perspective: 1000px;
 
   html[gengi-view='calculator'] & {
     display: block;

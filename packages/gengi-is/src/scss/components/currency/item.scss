@@ -15,6 +15,7 @@ currency {
   text-align: left;
 
   background: white;
+  box-shadow: 0 0 2px rgba(black, 0.1);
 
   cursor: pointer;
 
@@ -30,11 +31,6 @@ currency {
   html[gengi-state='initial-loading'] & {
     opacity: 0;
     transform: translate3d(0,-10%,0) rotateX(90deg);
-  }
-
-
-  &.highlighted {
-    box-shadow: 0 0 2px rgba(black, 0.2);
   }
 
   curr-code {
