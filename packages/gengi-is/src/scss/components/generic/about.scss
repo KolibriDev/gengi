@@ -22,10 +22,11 @@ about {
   }
 
   hero {
+    @extend %clearfix;
     background: white;
     display: block;
     margin: 0;
-    padding: $spacing*2;
+    padding: $spacing $spacing 0;
     width: 100%;
     min-width: $page-min-width;
 
@@ -47,15 +48,44 @@ about {
       }
     }
 
+    inner {
+      display: block;
+      margin: auto;
+      padding: 0;
+      min-width: $page-min-width;
+      max-width: 320px;
+    }
+
     h2 {
-      vertical-align: middle;
+      white-space: nowrap;
+      text-align: center;
+      svg, span {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      svg {
+        .arrow {
+          fill: white;
+        }
+      }
+
+      span {
+        white-space: normal;
+        text-align: left;
+      }
+    }
+
+    p {
+      text-align: center;
+      color: rgba($color-dark,.75);
     }
   }
 
   content {
     display: block;
-    margin: 0 $spacing;
-    padding: $spacing 0;
+    margin: 0 auto;
+    padding: $spacing $spacing 0;
     min-width: $page-min-width;
     max-width: $page-max-width;
 
@@ -115,44 +145,68 @@ about {
 
   }
 
-  html[gengi-view='about_main'] & {
+  html[gengi-view='about-main'] & {
     &.main {
       display: block
     }
   }
 
-  html[gengi-view='about_usage'] & {
+  html[gengi-view='about-usage'] & {
     &.usage {
       display: block
     }
   }
 
-  html[gengi-view='about_whatisnew'] & {
+  html[gengi-view='about-whatisnew'] & {
     &.whatisnew {
       display: block
     }
   }
 
-  html[gengi-view='about_tech'] & {
+  html[gengi-view='about-tech'] & {
     &.tech {
       display: block
     }
   }
 
-  html[gengi-view='about_whodunnit'] & {
+  html[gengi-view='about-whodunnit'] & {
     &.whodunnit {
       display: block
     }
   }
 
-  opacity: 1;
-  transform: translate3d(0,0,0);
-  transition: transform $trans-dur, opacity $trans-dur;
-
-  html[gengi-state='initial-loading'] & {
+  content, section {
     opacity: 0;
-    transform: translate3d(0,-10%,0);
-    transition: none;
+    transform: translate3d(0,-40px,0);
+    transition: transform $trans-dur ease $trans-dur, opacity $trans-dur;
   }
 
+  hero {
+    opacity: 0;
+    transform: translate3d(0,-100%,0);
+    transition: transform $trans-dur ease $trans-dur, opacity $trans-dur;
+
+    > * {
+      opacity: 0;
+      transition: opacity $trans-dur-slow;
+    }
+  }
+
+  html[gengi-state='loaded'][gengi-view^='about-'] &,
+  html[gengi-state='ready'][gengi-view^='about-'] & {
+    hero, content, section {
+      opacity: 1;
+      transform: translate3d(0,0,0);
+    }
+    hero {
+      transition: transform $trans-dur-slower, opacity $trans-dur-slow;
+      > * {
+        opacity: 1;
+        transition-delay: $trans-dur-slow;
+      }
+    }
+    content, section {
+      transition-delay: $trans-dur-slow;
+    }
+  }
 }

@@ -1,27 +1,29 @@
 
 links {
-  background-color: white;
   position: relative;
+
   display: inline-block;
-  width: 100%;
   margin: 0 0 $spacing;
   padding: $spacing $spacing*3 $spacing $spacing;
+  width: 100%;
 
   font-size: $font-size-larger;
 
+  background-color: white;
+  box-shadow: 0 0 2px rgba(black, 0.1);
+
+  &[route] {
+    cursor: pointer;
+  }
 
   curr-code {
     font-size: $font-size-large;
     font-weight: 700;
   }
 
-  &:after {
-    content: '>';
+  svg {
     position: absolute;
-    top: 0;
-    right: 20px;
-    bottom: 0;
-    background-color: blue;
-    width: 20px;
+    top: 0; right: $spacing; bottom: 0;
+    margin: auto;
   }
 }
