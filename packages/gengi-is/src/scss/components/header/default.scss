@@ -31,7 +31,7 @@ header {
 
     html[gengi-state='initial-loading'] & {
       opacity: 0;
-      transform: translate3d(0,-10%,0);
+      transform: translate3d(0,0,0);
       transition: none;
     }
   }
@@ -137,13 +137,18 @@ header {
     }
 
     transition: transform $trans-dur-slower*2, opacity $trans-dur-slower;
-    transition-delay: $trans-dur*2;
     transform: translate3d(0,-50%,0);
     opacity: 1;
 
     html[gengi-state='initial-loading'] & {
       opacity: 0;
       transform: translate3d(-10px,-50%,0);
+    }
+    html[gengi-state='leaving'] & {
+      opacity: 0;
+      transform: translate3d(-10px,-50%,0);
+      transition: transform $trans-dur-fast, opacity $trans-dur-fast;
+      transition-delay: 0ms;
     }
   }
 
