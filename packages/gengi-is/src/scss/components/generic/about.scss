@@ -57,7 +57,7 @@ about {
     }
 
     h2 {
-      white-space: nowrap;
+      &.w-logo { white-space: nowrap; }
       text-align: center;
       svg, span {
         display: inline-block;
@@ -89,6 +89,7 @@ about {
     min-width: $page-min-width;
     max-width: $page-max-width;
 
+    perspective: 1000px;
   }
 
   section {
@@ -175,7 +176,7 @@ about {
     }
   }
 
-  content, section {
+  section {
     opacity: 0;
     transform: translate3d(0,-40px,0);
     transition: transform $trans-dur ease $trans-dur, opacity $trans-dur;
@@ -194,7 +195,7 @@ about {
 
   html[gengi-state='loaded'][gengi-view^='about-'] &,
   html[gengi-state='ready'][gengi-view^='about-'] & {
-    hero, content, section {
+    hero, section {
       opacity: 1;
       transform: translate3d(0,0,0);
     }
@@ -205,8 +206,8 @@ about {
         transition-delay: $trans-dur-slow;
       }
     }
-    content, section {
-      transition-delay: $trans-dur-slow;
+    section {
+      transition-delay: $trans-dur;
     }
   }
 }

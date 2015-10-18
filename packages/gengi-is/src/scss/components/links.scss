@@ -26,4 +26,22 @@ links {
     top: 0; right: $spacing; bottom: 0;
     margin: auto;
   }
+
+  opacity: 1;
+
+  transform: translate3d(0,0,0) rotateX(0deg);
+  transform-origin: center center;
+
+  transition: transform $trans-dur-slower ease 50ms, opacity $trans-dur ease 100ms;
+
+  html[gengi-state='leaving'] &,
+  html[gengi-state='loading'] &,
+  html[gengi-state='initial-loading'] & {
+    opacity: 0;
+    transform: translate3d(0,-10%,0) rotateX(90deg);
+  }
+
+  html[gengi-state='leaving'][gengi-view^='about'] & {
+    transform: translate3d(0,-10%,0) rotateX(-90deg);
+  }
 }

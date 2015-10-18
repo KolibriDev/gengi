@@ -33,6 +33,10 @@ currency {
     transform: translate3d(0,-10%,0) rotateX(90deg);
   }
 
+  html[gengi-state='leaving'][gengi-path='/'][gengi-view='home'] & {
+    transform: translate3d(0,-10%,0) rotateX(-90deg);
+  }
+
   curr-code {
     display: block;
     padding: $spacing 0 0;
