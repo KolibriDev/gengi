@@ -1,12 +1,16 @@
+import jquery from 'jquery'; // jshint ignore:line
+import underscore from 'underscore'; // jshint ignore:line
 import global from 'global';
 
 class Header {
   constructor() {
-    this.state = {
+    this._defaults = {
       title: 'Gengi.is',
       subtitle: '',
       edit: false,
     };
+
+    this.state = _.clone(this._defaults);
 
     this.$wrap = $('header');
     this.$hgroup = this.$wrap.find('hgroup');
@@ -17,6 +21,7 @@ class Header {
   }
 
   update(params) {
+    params = $.extend({}, this._defaults, params);
     $.extend(this.state, params);
     this.redraw();
   }
