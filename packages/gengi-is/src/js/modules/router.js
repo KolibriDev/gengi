@@ -23,12 +23,20 @@ let Router = class {
       $(document).trigger('leaving');
       setTimeout(() => {
         this.processPath(window.location.pathname);
+        this.logView();
       }, 150);
     };
 
     $(document).on('amount-changed', (event, data) => {
       this.setState('path', '/' + data.code.toUpperCase() + data.amount.toString());
       this.replaceState();
+    });
+  }
+
+  logView() {
+    analytics('send', 'pageview', {
+      page: analytics.cleanUrl(this.state.path),
+      title: this.state.title,
     });
   }
 
@@ -69,24 +77,19 @@ let Router = class {
     return code.length === 3 ? [code, amount] : [undefined]; // BEWARE :) það þarf að tryggja að það sé alltaf skilað valid array.
   }
 
-
   pushState(state, title, path) {
-    state = state || this.state.state;
-    title = title || this.state.title;
-    path = path || this.state.path;
-    window.history.pushState(state, title, path);
-
-    analytics('send', 'pageview', {
-      page: analytics.cleanUrl(path),
-      title: title,
-    });
+    this.setState('state', state || this.state.state);
+    this.setState('title', title || this.state.title);
+    this.setState('path', path || this.state.path);
+    window.history.pushState(this.state.state, this.state.title, this.state.path);
+    this.logView();
   }
 
   replaceState(state, title, path) {
-    state = state || this.state.state;
-    title = title || this.state.title;
-    path = path || this.state.path;
-    window.history.replaceState(state, title, path);
+    this.setState('state', state || this.state.state);
+    this.setState('title', title || this.state.title);
+    this.setState('path', path || this.state.path);
+    window.history.replaceState(this.state.state, this.state.title, this.state.path);
   }
 
   setState(key, value) {
