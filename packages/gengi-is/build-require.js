@@ -7,7 +7,7 @@
   modules: [
     {
       name: 'gengi',
-      include: ['vendor/almond']
+      include: ['vendor/require']
     },
   ]
 })
