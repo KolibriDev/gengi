@@ -19,7 +19,7 @@ fs.readdirSync( path.join(__dirname, 'routes') ).forEach((fileName) => {
   endpoints[name] = docs;
 });
 
-app.get('/', function(req, res){
+let rootResponse = function(req, res){
   let {
     version, description, bugs, author, contributors
   } = require(path.join(__dirname, 'package.json'));
@@ -31,8 +31,11 @@ app.get('/', function(req, res){
     author: author,
     contributors: contributors,
   });
-});
+};
+
+app.get('/', rootResponse);
+app.get('/v2', rootResponse);
 
 http.createServer(app).listen(app.get('port'));
 
-exports.app = app;
+export default app;

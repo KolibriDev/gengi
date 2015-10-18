@@ -1,7 +1,7 @@
 {
   "name": "api-gengi-is",
   "description": "Official API for gengi.is",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "private": true,
   "scripts": {
     "start": "node server.js",
