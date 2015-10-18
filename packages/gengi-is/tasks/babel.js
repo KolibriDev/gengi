@@ -3,7 +3,6 @@
 module.exports = function(gulp) {
   var path = require('path');
   var noop = gulp.plugin.util.noop;
-  var prod  = gulp.cfg.env === 'production';
   var dir = path.join(gulp.cfg.envdir, gulp.cfg.babel.subDir);
 
   gulp.task('babel', ['jshint-babel'], function() {
