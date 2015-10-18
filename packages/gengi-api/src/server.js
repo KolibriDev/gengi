@@ -15,6 +15,7 @@ let endpoints = {};
 fs.readdirSync( path.join(__dirname, 'routes') ).forEach((fileName) => {
   let {name, router, docs} = require('./routes/' + fileName);
   app.use('/' + name, router);
+  app.use('/v2/' + name, router);
   endpoints[name] = docs;
 });
 
