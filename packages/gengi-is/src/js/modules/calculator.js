@@ -21,13 +21,15 @@ class Calculator {
 
   calculate() {
     if (this.focus === 'isk') {
-      this.setCur(calculate(this.currency.rate, this.amount.isk));
+      this.setCur(calculate(1 / this.currency.rate, this.amount.isk));
     } else {
       this.setIsk(calculate(this.currency.rate, this.amount.cur));
     }
   }
 
-  updateDisplayValues() {
+  redraw() {
+    $('calculator input-area currency[code!="ISK"]').toggleClass('active', this.focus === 'cur');
+    $('calculator input-area currency[code="ISK"]').toggleClass('active', this.focus === 'isk');
     $('calculator input-area currency[code!="ISK"] value').html(this.amount.curDisplay || this.amount.cur);
     $('calculator input-area currency[code="ISK"] value').html(this.amount.iskDisplay || this.amount.isk);
     $('header [path] [amount]').html(this.amount.cur);
@@ -36,9 +38,9 @@ class Calculator {
   numpad() {
     $('[numpad]').off('click.numpad').on('click.numpad', (event) => {
       let key = $(event.target).attr('key');
-      let newValue = this.process(this.amount.cur, key);
+      let newValue = this.process(this.amount[this.focus], key);
 
-      this.setCur(newValue);
+      this.setFocused(newValue);
       this.calculate();
     });
   }
@@ -49,21 +51,35 @@ class Calculator {
 
     templates.clearParent('calculator-item');
     this.amount.cur = amount;
-    this.elem.cur = templates.populateAndAppend('calculator-item', {code: curr.code, amount: amount});
-    this.elem.isk = templates.populateAndAppend('calculator-item', {code: 'ISK'});
+    templates.populateAndAppend('calculator-item', {code: curr.code, amount: amount});
+    templates.populateAndAppend('calculator-item', {code: 'ISK'});
+    $('calculator input-area currency[code]').off('click.calc').on('click.calc', (event) => {
+      let $el = $(event.currentTarget);
+      let code = $el.attr('code');
+      this.focus = code.toString().toLowerCase() === 'isk' ? 'isk' : 'cur';
+      this.redraw();
+    });
     this.calculate();
     this.swiftclick.replaceNodeNamesToTrack(['num']);
+  }
+
+  setFocused(newValue) {
+    if (this.focus === 'isk') {
+      this.setIsk(newValue);
+    } else {
+      this.setCur(newValue);
+    }
   }
 
   setIsk(newValue) {
     this.amount.isk = sanitize.number(newValue) || this.amount.isk;
     this.amount.iskDisplay = format.numberIcelandic(this.amount.isk);
-    this.updateDisplayValues();
+    this.redraw();
   }
   setCur(newValue) {
     this.amount.cur = sanitize.number(newValue) || this.amount.cur;
     this.amount.curDisplay = format.numberIcelandic(this.amount.cur);
-    this.updateDisplayValues();
+    this.redraw();
 
     $(document).trigger('amount-changed', {code: this.currency.code, amount: this.amount.cur});
   }
