@@ -33,8 +33,8 @@ let Router = class {
   }
 
   processPath(path) {
-    path = path || this.state.path;
-    let split = path.split('/');
+    this.setState('path', path || this.state.path);
+    let split = this.state.path.split('/');
 
     if (split.length < 2 || (split.length === 2 && split[1] === '') || (split[1] === 'home')) {
       view.showHome(); return;
