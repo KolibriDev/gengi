@@ -3,7 +3,7 @@ import jquery from 'vendor/jquery'; // jshint ignore:line
 import storage from 'modules/storage';
 
 export default {
-  source: 'http://api-v2.gengi.is/currencies',
+  source: '//api.gengi.is/v2/currencies',
 
   _list: false,
 
