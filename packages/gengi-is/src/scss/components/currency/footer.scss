@@ -2,23 +2,72 @@
 currency-list {
 
   div.footer {
-    hr {
+    hr, svg {
       vertical-align: middle;
       display: inline-block;
+    }
+
+    hr {
       width: 30%;
+      border-top-color: rgba($color-gray,.25);
     }
 
     svg.svg-kolibri-flower {
-      vertical-align: middle;
-      display: inline-block;
       width: 32px;
       margin: $spacing;
-      .circle {
-        fill: blue;
+
+      path {
+        fill: rgba($color-dark,.35);
+        transition: fill $trans-dur-slower;
       }
-      .arrow-right,
-      .arrow-left {
-        fill: red;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      svg path {
+        fill: rgba($color-dark,1);
+        transition: fill $trans-dur-fast;
+      }
+    }
+
+
+    hr {
+      opacity: 0;
+      transition: transform $trans-dur-slower, opacity $trans-dur;
+
+      &:first-child {
+        transform: translate3d(-100%,0,0);
+      }
+
+      &:last-child {
+        transform: translate3d(100%,0,0);
+      }
+    }
+
+    svg {
+      opacity: 0;
+      transition: transform $trans-dur-slower, opacity $trans-dur;
+
+      transform: translate3d(0,0,0) scale(0);
+    }
+
+    html[gengi-state='ready'][gengi-view='allcurrencies'] &,
+    html[gengi-state='loaded'][gengi-view='allcurrencies'] &,
+    html[gengi-state='ready'][gengi-view='home'] &,
+    html[gengi-state='loaded'][gengi-view='home'] & {
+      opacity: 1;
+
+      hr {
+        opacity: 1;
+        transform: translate3d(0,0,0);
+        transition-delay: $trans-dur/2;
+      }
+
+      svg {
+        opacity: 1;
+        transform: translate3d(0,0,0) scale(1);
+        transition-delay: $trans-dur;
       }
     }
   }
