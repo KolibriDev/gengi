@@ -94,7 +94,7 @@ class View {
       sub = split[1];
     }
 
-    header.update({title: 'Um Gengi.is'});
+    header.update({title: 'Um Gengi.is', subtitle: sub === 'main' ? '' : sub});
     global.setAttr('view', 'about_' + sub);
 
     this.loaded();
