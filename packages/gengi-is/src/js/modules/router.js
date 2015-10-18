@@ -20,7 +20,10 @@ let Router = class {
     this.processPath();
 
     window.onpopstate = () => {
-      this.processPath(window.location.pathname);
+      $(document).trigger('leaving');
+      setTimeout(() => {
+        this.processPath(window.location.pathname);
+      }, 150);
     };
 
     $(document).on('amount-changed', (event, data) => {
@@ -104,7 +107,6 @@ let Router = class {
   }
 
   back() {
-    $(document).trigger('loading');
     window.history.back();
   }
 };
