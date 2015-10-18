@@ -4,7 +4,7 @@ block javascript
   if env === 'production'
     script(src='/js/gengi.js')
     script.
-      require('gengi');
+      require(['gengi']);
   else
     script(data-main='js/gengi' src='/js/vendor/require.js')
 
