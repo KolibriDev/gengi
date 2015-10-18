@@ -93,8 +93,15 @@ class View {
     if (split.length === 2) {
       sub = split[1];
     }
+    let subtitle = '';
+    if (sub !== 'main') {
+      subtitle = sub === 'usage' ? 'Notkun' : subtitle;
+      subtitle = sub === 'whatisnew' ? 'Nýtt í v2' : subtitle;
+      subtitle = sub === 'tech' ? 'Tæknin' : subtitle;
+      subtitle = sub === 'whodunnit' ? 'Who dunnit?' : subtitle;
+    }
 
-    header.update({title: 'Um Gengi.is', subtitle: sub === 'main' ? '' : sub});
+    header.update({title: 'Um Gengi.is', subtitle: subtitle});
     global.setAttr('view', 'about-' + sub);
 
     this.loaded();
