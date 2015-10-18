@@ -1,21 +1,39 @@
 
 currency {
   &[code] {
-    padding-left: $block + $spacing;
-    font-size: 38px;
+    padding-left: $big-block-small;
+    font-size: 24px;
+
+    @include respond-to(medium) {
+      padding-left: $big-block;
+      font-size: 32px;
+    }
   }
 
+  curr-symbol {
+    svg {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      margin: auto;
+
+      width: 50% !important;
+      height: auto !important;
+    }
+  }
+
+  curr-symbol,
   &[code]:before {
     position: absolute;
     top: $spacing/2; left: $spacing/2; bottom: $spacing/2;
 
     overflow: hidden;
     display: block;
-    width: $big-block - $spacing;
-    height: $big-block - $spacing;
+    width: $big-block-small - $spacing;
+    height: $big-block-small - $spacing;
 
-    line-height: $block*.9;
-    font-weight: 700;
+    line-height: $big-block-small - $spacing - 2px;
+    font-family: $font-sans;
+    font-weight: 500;
     font-size: 1em;
     text-align: center;
     color: $color-green-dark;
@@ -30,14 +48,28 @@ currency {
     content: '¤';
   }
 
+  @include respond-to(medium) {
+    curr-symbol,
+    &[code]:before {
+      width: $big-block - $spacing;
+      height: $big-block - $spacing;
+      line-height: $big-block - $spacing - 2px;
+    }
+  }
+
   // Utils
   &[code="?"]:before { content: '?'; }
-  &[code="globe"]:before { content: '*'; }
+  &[code="globe"]:before { content: none; }
   &[code="+"]:before { content: '+'; }
   &[code="+/-"]:before { content: '+/-'; }
 
   // Currencies
-  &[code="ISK"]:before { content: 'ISK'; font-size: 0.7em; line-height: $block; }
+  &[code="ISK"]:before {
+    content: 'ISK'; font-size: 0.7em; line-height: $big-block-small - $spacing;
+    @include respond-to(medium) {
+      line-height: $big-block - $spacing;
+    }
+  }
 
   &[code=AED]:before { content: 'د.إ'; } // latin: DH or Dhs
   &[code=AFN]:before { content: '؋'; }

@@ -3,7 +3,7 @@ numpad {
   user-select: none;
   display: block;
   margin: 0 auto $spacing;
-  padding: $spacing 0 0;
+  padding: 0 0;
   width: 100%;
   min-width: $page-min-width;
   max-width: $page-max-width;
@@ -16,9 +16,19 @@ numpad {
     position: relative;
 
     display: inline-block;
-    margin: 0 $spacing $spacing;
+    margin: 0 $spacing 0;
     width: calc(#{100%/3} - #{$spacing*2});
-    height: $block;
+    height: $block-small;
+
+    @include respond-to(medium) {
+      margin: 0 $spacing 0;
+      height: $block;
+    }
+
+    @include respond-to(large) {
+      margin: 0 $spacing $spacing;
+      height: $block;
+    }
 
     opacity: 1;
 

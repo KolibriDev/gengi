@@ -8,12 +8,17 @@ header {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: $big-block;
+  height: $big-block-small;
 
-  line-height: $big-block;
+  line-height: $big-block-small;
 
   background-color: $color-green;
   color: $color-light;
+
+  @include respond-to(medium) {
+    height: $big-block;
+    line-height: $big-block;
+  }
 
   inner {
     position: relative;

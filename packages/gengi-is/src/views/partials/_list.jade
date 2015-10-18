@@ -9,6 +9,7 @@ currency-list
 
     template(name='all-currencies')
       currency(attr='code' template route='allcurrencies')
+        curr-symbol: include ../../img/svg-globe.svg
         curr-code(tpl='name')
 
   div(route='about' title='Um Gengi.is').footer

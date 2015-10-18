@@ -5,11 +5,15 @@ calculator {
 
   margin: auto;
   padding: $spacing;
-  height: calc(100% - #{$big-block});
+  height: calc(100% - #{$big-block-small});
   text-align: center;
   perspective: 1000px;
 
   html[gengi-view='calculator'] & {
     display: block;
+  }
+
+  @include respond-to(medium) {
+    height: calc(100% - #{$big-block});
   }
 }
