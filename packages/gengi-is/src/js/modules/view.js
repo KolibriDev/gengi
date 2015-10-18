@@ -89,13 +89,13 @@ class View {
 
   showAbout(path) {
     let sub = 'main';
-    let split = path.split('_');
+    let split = path.split('-');
     if (split.length === 2) {
       sub = split[1];
     }
 
     header.update({title: 'Um Gengi.is', subtitle: sub === 'main' ? '' : sub});
-    global.setAttr('view', 'about_' + sub);
+    global.setAttr('view', 'about-' + sub);
 
     this.loaded();
   }

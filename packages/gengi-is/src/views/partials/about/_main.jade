@@ -1,24 +1,23 @@
 about.main
-  hero
+  hero: inner
     h2
       include ../../../img/svg-logo.svg
-
-      | Gengisupplýsingar á svipstundu
+      span Gengisupplýsingar<br>á svipstundu
 
     p Gengi.is er gengisreiknivél fyrir íslenska krónu þar sem þú getur nálgast nýjustu upplýsingar um gengi gjaldmiðla á fljótlegan og aðgengilegan hátt.
     p Vefurinn er sérstaklega hugsaður með hraða og snjallsíma í huga og er hannaður og framleiddur af Kolibri.
 
   content
-    links(route='about_usage')
+    links(route='about-usage')
       curr-code Góð ráð við notkun
 
-    links(route='about_whatisnew')
+    links(route='about-whatisnew')
       curr-code Hvað er nýtt í v2
 
-    links(route='about_tech')
+    links(route='about-tech')
       curr-code Tæknin
 
-    links(route='about_whodunnit')
+    links(route='about-whodunnit')
       curr-code Hver gerði
 
   section
