@@ -35,4 +35,4 @@ app.use(function(req, res){
 
 http.createServer(app).listen(app.get('port'));
 
-export default app;
+exports.app = app;
