@@ -68,6 +68,11 @@ class Gengi {
               href = view;
             }
 
+            // Manually scroll to top when not going 'back'
+            $('currency-list, calculator, about').stop().animate({
+              scrollTop: 0
+            }, 250);
+
             router.navigate(`/${href}`);
           }
         }, 150);
