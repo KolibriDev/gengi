@@ -1,13 +1,7 @@
 <svg class="svg-logo" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g class="g-logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
     <path class="circle" fill="#FFFFFF" d="M16,32 C24.8365564,32 32,24.8365564 32,16 C32,7.16344357 24.8365564,0 16,0 C7.16344357,0 0,7.16344357 0,16 C0,24.8365564 7.16344357,32 16,32 Z"></path>
-    <g class="arrow-right" transform="translate(16.858491, 11.509434) rotate(-180.000000) translate(-16.858491, -11.509434) translate(9.358491, 7.509434)" fill="#178C72">
-      <path class="triangle" d="M0.709921647,7.84388911 L0.709921647,0.560870237 L5.35577722,4.44060241 L0.709921647,7.84388911 Z" transform="translate(3.032849, 4.202380) rotate(-180.000000) translate(-3.032849, -4.202380) "></path>
-      <rect class="line" x="4.35849057" y="2.50943396" width="10" height="3"></rect>
-    </g>
-    <g class="arrow-left" transform="translate(7.358491, 16.283019)" fill="#178C72">
-      <path class="triangle" d="M0.709921647,8.04569006 L0.709921647,0.762671195 L5.62023525,4.61778923 L0.709921647,8.04569006 Z" transform="translate(3.165078, 4.404181) rotate(-180.000000) translate(-3.165078, -4.404181) "></path>
-      <rect class="line" x="4.64150943" y="2.71698113" width="10" height="3"></rect>
-    </g>
+    <path class="arrow-right" fill="#178C72" d="M19.5,13 L10,13 L10,10 L19.5,10 L19.5,7.96446609 L24.0355339,11.5 L19.5,15.0355339 L19.5,13 Z"></path>
+    <path class="arrow-left" fill="#178C72" d="M12.5,22 L22,22 L22,19 L12.5,19 L12.5,16.9644661 L7.96446609,20.5 L12.5,24.0355339 L12.5,22 Z"></path>
   </g>
 </svg>

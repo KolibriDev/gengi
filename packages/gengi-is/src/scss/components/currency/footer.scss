@@ -13,8 +13,12 @@ currency-list {
       display: inline-block;
       width: 32px;
       margin: $spacing;
-      path {
+      .circle {
         fill: blue;
+      }
+      .arrow-right,
+      .arrow-left {
+        fill: red;
       }
     }
   }
