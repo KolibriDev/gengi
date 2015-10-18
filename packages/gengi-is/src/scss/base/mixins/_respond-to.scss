@@ -1,42 +1,17 @@
 
 @mixin respond-to($media,$value:'') {
 
-  @if $media == xsmall-up or $media == xsmall {
-    @media #{$xsmall-up} { @content; }
+  @if $media == small {
+    @media #{$screen} and (min-width: $break-small) { @content; }
   }
-  @else if $media == small-up or $media == small {
-    @media #{$small-up} { @content; }
+  @else if $media == medium {
+    @media #{$screen} and (min-width: $break-medium) { @content; }
   }
-  @else if $media == medium-up or $media == medium {
-    @media #{$medium-up} { @content; }
+  @else if $media == large {
+    @media #{$screen} and (min-width: $break-large) { @content; }
   }
-  @else if $media == large-up or $media == large {
-    @media #{$large-up} { @content; }
-  }
-  @else if $media == xlarge-up or $media == xlarge {
-    @media #{$xlarge-up} { @content; }
-  }
-  @else if $media == xxlarge-up or $media == xxlarge {
-    @media #{$xxlarge-up} { @content; }
-  }
-
-  @else if $media == xsmall-only {
-    @media #{$xsmall-only} { @content; }
-  }
-  @else if $media == small-only {
-    @media #{$small-only} { @content; }
-  }
-  @else if $media == medium-only {
-    @media #{$medium-only} { @content; }
-  }
-  @else if $media == large-only {
-    @media #{$large-only} { @content; }
-  }
-  @else if $media == xlarge-only {
-    @media #{$xlarge-only} { @content; }
-  }
-  @else if $media == xxlarge-only {
-    @media #{$xxlarge-only} { @content; }
+  @else if $media == full {
+    @media #{$screen} and (min-width: $break-full) { @content; }
   }
 
   @else if $media == landscape {
