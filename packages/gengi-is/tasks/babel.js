@@ -10,7 +10,6 @@ module.exports = function(gulp) {
     return gulp.src(gulp.cfg.babel.src)
       .pipe ( gulp.plugin.plumber({errorHandler: gulp.plugin.notify.onError('<%= error.message %>')}) )
 
-      .pipe ( prod ? noop() : gulp.plugin.changed(dir) )
       .pipe ( !gulp.cfg.debug ? noop() : gulp.plugin.debug({title:'--babel:'}) )
 
       .pipe ( gulp.plugin.sourcemaps.init() )
