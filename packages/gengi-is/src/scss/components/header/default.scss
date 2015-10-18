@@ -56,8 +56,7 @@ header {
         opacity: 1;
       }
 
-      .arrow-left,
-      .arrow-right {
+      .arrow {
         transition: transform $trans-dur-slower*2, opacity $trans-dur-slower;
         transition-delay: $trans-dur*1.5;
         transform: translate3d(0,0,0);
@@ -68,13 +67,14 @@ header {
         .circle {
           opacity: 0;
         }
-        .arrow-left {
-          transform: translate3d(5px,0,0);
+        .arrow {
           opacity: 0;
-        }
-        .arrow-right {
-          transform: translate3d(-5px,0,0);
-          opacity: 0;
+          &.left {
+            transform: translate3d(5px,0,0);
+          }
+          &.right {
+            transform: translate3d(-5px,0,0);
+          }
         }
       }
     }
@@ -104,6 +104,7 @@ header {
   }
 
   hgroup {
+    cursor: default;
     display: block;
 
     position: relative;

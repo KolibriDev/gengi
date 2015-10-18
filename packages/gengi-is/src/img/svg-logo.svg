@@ -1,7 +1,7 @@
 <svg class="svg-logo" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g class="g-logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
     <path class="circle" fill="#FFFFFF" d="M16,32 C24.8365564,32 32,24.8365564 32,16 C32,7.16344357 24.8365564,0 16,0 C7.16344357,0 0,7.16344357 0,16 C0,24.8365564 7.16344357,32 16,32 Z"></path>
-    <path class="arrow-right" fill="#178C72" d="M19.5,13 L10,13 L10,10 L19.5,10 L19.5,7.96446609 L24.0355339,11.5 L19.5,15.0355339 L19.5,13 Z"></path>
-    <path class="arrow-left" fill="#178C72" d="M12.5,22 L22,22 L22,19 L12.5,19 L12.5,16.9644661 L7.96446609,20.5 L12.5,24.0355339 L12.5,22 Z"></path>
+    <path class="arrow right" fill="#178C72" d="M19.5,13 L10,13 L10,10 L19.5,10 L19.5,7.96446609 L24.0355339,11.5 L19.5,15.0355339 L19.5,13 Z"></path>
+    <path class="arrow left" fill="#178C72" d="M12.5,22 L22,22 L22,19 L12.5,19 L12.5,16.9644661 L7.96446609,20.5 L12.5,24.0355339 L12.5,22 Z"></path>
   </g>
 </svg>
