@@ -49,7 +49,7 @@ currency-list {
       opacity: 0;
       transition: transform $trans-dur-slower, opacity $trans-dur;
 
-      transform: translate3d(0,0,0) scale(0);
+      transform: scale(0);
     }
 
     html[gengi-state='ready'][gengi-view='allcurrencies'] &,
@@ -66,8 +66,30 @@ currency-list {
 
       svg {
         opacity: 1;
-        transform: translate3d(0,0,0) scale(1);
+        transform: scale(1);
         transition-delay: $trans-dur;
+
+      }
+
+      &:hover {
+
+        hr, svg {
+          transition-duration: $trans-dur;
+          transition-delay: 0ms;
+        }
+
+        hr {
+          &:first-child {
+            transform: translate3d(-5%,0,0);
+          }
+          &:last-child {
+            transform: translate3d(5%,0,0);
+          }
+        }
+
+        svg {
+          transform: scale(1.2);
+        }
       }
     }
   }
