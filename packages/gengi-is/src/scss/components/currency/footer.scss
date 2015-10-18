@@ -1,0 +1,22 @@
+
+currency-list {
+
+  div.footer {
+    hr {
+      vertical-align: middle;
+      display: inline-block;
+      width: 30%;
+    }
+
+    svg.svg-kolibri-flower {
+      vertical-align: middle;
+      display: inline-block;
+      width: 32px;
+      margin: $spacing;
+      path {
+        fill: blue;
+      }
+    }
+  }
+}
+
