@@ -44,6 +44,7 @@ class Gengi {
     });
     $('[done]').off('click.done').on('click.done', () => {
       global.setAttr('edit-mode', false);
+      router.processPath();
     });
   }
 

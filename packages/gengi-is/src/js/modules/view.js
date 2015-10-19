@@ -9,9 +9,12 @@ import format from 'modules/format';
 class View {
   constructor() {}
 
-  loaded() {
+  loaded(callback) {
     setTimeout(() => {
       $(document).trigger('loaded');
+      if (typeof callback === 'function') {
+        callback();
+      }
     },50);
   }
 
@@ -20,6 +23,7 @@ class View {
     global.setAttr('view', 'home');
     global.setAttr('editable', true);
     let currs = currencies.selected();
+    let $tplParent;
     currs.done((data) => {
       templates.clearParent('list-item');
       _.each(data, (curr) => {
@@ -31,7 +35,9 @@ class View {
           curr.low = false;
         }
         curr.onhome = true;
-        templates.populateAndAppend('list-item', curr);
+        let item = templates.populateAndAppend('list-item', curr);
+
+        $tplParent = $tplParent || item.$parent;
       });
       templates.clearParent('all-currencies');
       templates.populateAndAppend('all-currencies', {
@@ -39,7 +45,20 @@ class View {
         name: 'Allar myntir',
       });
 
-      this.loaded();
+      this.loaded(() => {
+        $tplParent.find('currency').find('curr-selected').off('click.onhome').on('click.onhome', (event) => {
+          let $target = $(event.currentTarget);
+          let code = $target.parent().attr('code');
+
+          if ($target.attr('onhome') === 'true') {
+            currencies.removeSelected(code);
+            $target.attr('onhome', false);
+          } else {
+            currencies.addSelected(code);
+            $target.attr('onhome', true);
+          }
+        });
+      });
     });
 
     currs.progress((ignore) => console.info('ignoring progress', ignore));
@@ -69,6 +88,7 @@ class View {
     global.setAttr('view', 'allcurrencies');
     global.setAttr('editable', true);
     let currs = currencies.list();
+    let $tplParent;
 
     currs.done((data) => {
       templates.clearParent('all-currencies');
@@ -82,10 +102,25 @@ class View {
           curr.low = false;
         }
         curr.onhome = currencies.isSelected(curr.code);
-        templates.populateAndAppend('list-item', curr);
+
+        let item = templates.populateAndAppend('list-item', curr);
+        $tplParent = $tplParent || item.$parent;
       });
 
-      this.loaded();
+      this.loaded(() => {
+        $tplParent.find('currency').find('curr-selected').off('click.onhome').on('click.onhome', (event) => {
+          let $target = $(event.currentTarget);
+          let code = $target.parent().attr('code');
+
+          if ($target.attr('onhome') === 'true') {
+            currencies.removeSelected(code);
+            $target.attr('onhome', false);
+          } else {
+            currencies.addSelected(code);
+            $target.attr('onhome', true);
+          }
+        });
+      });
     });
 
     currs.progress((ignore) => console.info('ignoring progress', ignore));

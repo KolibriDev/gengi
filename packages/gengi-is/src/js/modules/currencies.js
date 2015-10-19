@@ -53,6 +53,23 @@ export default {
     return $.when( deferred.promise() );
   },
 
+  addSelected: function(code) {
+    if (this.isSelected(code)) { return; }
+
+    let stored = this.ensureSelected();
+    stored.push(code);
+
+    storage.set('selectedCurrencies', stored);
+  },
+  removeSelected: function(code) {
+    if (!this.isSelected(code)) { return; }
+
+    let stored = this.ensureSelected();
+    stored = _.without(stored, code);
+
+    storage.set('selectedCurrencies', stored);
+  },
+
   isSelected: function(code) {
     let stored = this.ensureSelected();
 
