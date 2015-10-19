@@ -1,5 +1,6 @@
 
 currency {
+  overflow: hidden;
   user-select: none;
   position: relative;
   display: block;
@@ -84,6 +85,17 @@ currency {
     }
   }
 
+  &[code]:before,
+  &:not([code='globe']) curr-code,
+  &:not([code='globe']) curr-name {
+    transform: translate3d(0,0,0);
+    transition: transform $trans-dur;
+
+    html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] & {
+      transform: translate3d(50px,0,0);
+    }
+  }
+
   curr-rate {
     color: $color-green;
 
@@ -114,6 +126,45 @@ currency {
         top: 22px;
         height: 32px;
         font-size: 28px;
+      }
+    }
+
+    transform: translate3d(0,0,0);
+    transition: transform $trans-dur, opacity $trans-dur;
+
+    html[gengi-editable='true'][gengi-edit-mode='true'] & {
+      transform: translate3d(10px,0,0);
+      opacity: 0;
+    }
+  }
+
+  curr-drag {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    z-index: 1;
+
+    margin: auto;
+    width: 60px;
+    height: auto;
+
+    opacity: 0;
+    transform: translate3d(-10px,0,0);
+    transition: transform $trans-dur, opacity $trans-dur;
+
+    html[gengi-editable='true'][gengi-edit-mode='true'] & {
+      transform: translate3d(0,0,0);
+      opacity: 1;
+    }
+
+    svg {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      margin: auto;
+      width: 20px;
+      height: auto;
+
+      rect {
+        fill: rgba($color-dark,.35);
       }
     }
   }

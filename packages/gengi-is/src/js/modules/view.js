@@ -18,6 +18,7 @@ class View {
   showHome() {
     header.update({title: 'Gengi.is'});
     global.setAttr('view', 'home');
+    global.setAttr('editable', true);
     let currs = currencies.selected();
     currs.done((data) => {
       templates.clearParent('list-item');
@@ -48,6 +49,7 @@ class View {
     curr = curr.toString().toUpperCase();
     let foo = currencies.get(curr);
     global.setAttr('view', 'calculator');
+    global.setAttr('editable', false);
     foo.done((data) => {
       header.update({
         title: data.code,
@@ -64,6 +66,7 @@ class View {
   showAllCurrencies() {
     header.update({title: 'Allar myntir'});
     global.setAttr('view', 'allcurrencies');
+    global.setAttr('editable', true);
     let currs = currencies.list();
 
     currs.done((data) => {
@@ -103,6 +106,7 @@ class View {
 
     header.update({title: 'Um Gengi.is', subtitle: subtitle});
     global.setAttr('view', 'about-' + sub);
+    global.setAttr('editable', false);
 
     this.loaded();
   }

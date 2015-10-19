@@ -134,7 +134,7 @@ header {
 
   .right {
     position: absolute;
-    top: 0; right: $spacing; bottom: 0;
+    top: 0; right: 0; bottom: 0;
     display: block;
 
     opacity: 1;
@@ -149,7 +149,7 @@ header {
       transform: translate3d(10px,0,0);
     }
 
-    [expired], [edit], [path] {
+    [expired], [edit], [done], [path] {
       vertical-align: top;
       display: none;
 
@@ -160,9 +160,14 @@ header {
       margin: auto;
     }
 
+    [done],
     [edit] {
       width: $block;
-      height: $big-block;
+      height: $big-block-small;
+
+      @include respond-to(medium) {
+        height: $big-block;
+      }
 
       svg {
         display: block;
@@ -170,8 +175,15 @@ header {
         top: 0; left: 0; right: 0; bottom: 0;
         margin: auto;
       }
-
-      html[gengi-view='home'] & {
+    }
+    [done] {
+      background: $color-orange;
+      html[gengi-editable='true'][gengi-edit-mode='true'] & {
+        display: inline-block;
+      }
+    }
+    [edit] {
+      html[gengi-editable='true']:not([gengi-edit-mode='true']) & {
         display: inline-block;
       }
     }

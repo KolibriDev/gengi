@@ -3,6 +3,7 @@ currency-list
   div
     template(name='list-item')
       currency(attr='code' template route='calculator')
+        curr-drag: include ../../img/svg-drag.svg
         curr-code(tpl='code')
         curr-name(tpl='name')
         curr-rate(tpl='rate' attr='low')

@@ -18,6 +18,10 @@ currency {
 
       width: 50% !important;
       height: auto !important;
+
+      path {
+        transition: background $trans-dur;
+      }
     }
   }
 
@@ -25,6 +29,7 @@ currency {
   &[code]:before {
     position: absolute;
     top: $spacing/2; left: $spacing/2; bottom: $spacing/2;
+    z-index: 2;
 
     overflow: hidden;
     display: block;
@@ -43,9 +48,17 @@ currency {
 
     -webkit-font-smoothing: antialiased;
 
-    transition: background $trans-dur-fast, opacity $trans-dur-fast;
+    transition: background $trans-dur-fast, opacity $trans-dur-fast, transform $trans-dur;
 
     content: '¤';
+  }
+
+  html[gengi-editable='true'][gengi-edit-mode='true'] & curr-symbol {
+    background: $color-orange;
+
+    svg path {
+      fill: white;
+    }
   }
 
   @include respond-to(medium) {

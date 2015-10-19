@@ -38,6 +38,13 @@ class Gengi {
     $(document).on('leaving loading loaded', (event) => {
       global.setAttr('state', event.type);
     });
+
+    $('[edit]').off('click.edit').on('click.edit', () => {
+      global.setAttr('edit-mode', true);
+    });
+    $('[done]').off('click.done').on('click.done', () => {
+      global.setAttr('edit-mode', false);
+    });
   }
 
   initRouter() {
