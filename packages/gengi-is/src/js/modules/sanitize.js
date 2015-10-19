@@ -4,6 +4,9 @@ export const code = function(code) {
   return code.indexOf('NAN') > -1 && code.length > 3 ? code.replace('NAN','') : code;
 };
 export const number = function(value) {
+  if (!value && (value === 0 || value === '')) {
+    return value;
+  }
   value = value || '';
   if (value.toString().indexOf(',')) {
     value = value.toString().replace(',', '.');

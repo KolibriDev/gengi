@@ -115,6 +115,7 @@ numpad {
       &.available {
         cursor: pointer;
         opacity: 1;
+        transition-delay: 0ms;
       }
     }
 
