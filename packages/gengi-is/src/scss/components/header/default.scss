@@ -15,6 +15,8 @@ header {
   background-color: $color-green;
   color: $color-light;
 
+  perspective: 1000px;
+
   @include respond-to(medium) {
     height: $big-block;
     line-height: $big-block;
@@ -48,7 +50,7 @@ header {
 
     width: $block;
 
-    transition: transform $trans-dur, opacity $trans-dur;
+    transition: transform $trans-dur-slow, opacity $trans-dur;
 
     svg {
       position: absolute;
