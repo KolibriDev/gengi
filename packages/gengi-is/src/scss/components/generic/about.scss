@@ -6,6 +6,7 @@ about {
 
   margin: 0;
   padding: 0;
+  padding-bottom: $spacing;
   height: calc(100% - 64px);
 
   a {
@@ -98,6 +99,10 @@ about {
     padding: $spacing;
     margin: 0 0 $spacing 0;
 
+    &.dark {
+      background-color: $color-light;
+    }
+
     .example {
       p {
         padding: $spacing/2;
@@ -120,6 +125,13 @@ about {
           }
         }
       }
+    }
+
+  }
+
+  div.footer {
+    &:hover {
+      color: red;
     }
 
   }

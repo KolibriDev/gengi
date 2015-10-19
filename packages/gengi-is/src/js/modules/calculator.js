@@ -52,7 +52,7 @@ class Calculator {
     $('[numpad][key="' + key+'"]').addClass('reset').removeClass('press');
     setTimeout(() => {
       $('[numpad][key="' + key+'"]').removeClass('reset').addClass('press');
-    },50);
+    }, 50);
 
     let newValue = this.process(this.amount[this.focus], key);
 
