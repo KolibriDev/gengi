@@ -45,6 +45,7 @@ numpad {
       transition: transform $trans-dur-slower, opacity $trans-dur-slower;
       transition-delay: 0ms;
     }
+
     $delay: 50ms;
     $step: 25ms;
     @for $i from 1 through 9 {
@@ -137,10 +138,16 @@ numpad {
 
       opacity: 1;
       transform: scale(0);
-      transition: transform $trans-dur*3, opacity $trans-dur*4 ease $trans-dur/2;
+      transition: transform $trans-dur, opacity $trans-dur*2 ease $trans-dur/2;
     }
 
-    &.click:after {
+    &.reset:after {
+      opacity: 1;
+      transform: scale(0);
+      transition: none;
+    }
+
+    &.press:after {
       opacity: 0;
       transform: scale(1);
     }

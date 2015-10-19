@@ -1,7 +1,9 @@
+import global from 'global';
 import templates from 'modules/templates';
 import sanitize from 'modules/sanitize';
 import format from 'modules/format';
 import SwiftClick from 'vendor/swiftclick';
+import keys from 'modules/keys';
 
 class Calculator {
   constructor() {
@@ -39,13 +41,59 @@ class Calculator {
     }
   }
 
+  numpadMagic(key) {
+    key = key.replace('numpad-', '');
+    key = key.replace('period', ',');
+    key = key.replace('comma', ',');
+    key = key.replace('decimal', ',');
+    key = key.replace('backspace', 'del');
+    key = key.replace('delete', 'del');
+
+    $('[numpad][key="' + key+'"]').addClass('reset').removeClass('press');
+    setTimeout(() => {
+      $('[numpad][key="' + key+'"]').removeClass('reset').addClass('press');
+    },50);
+
+    let newValue = this.process(this.amount[this.focus], key);
+
+    this.setFocused(newValue);
+    this.calculate();
+  }
+
   numpad() {
     $('[numpad]').off('click.numpad').on('click.numpad', (event) => {
-      let key = $(event.target).attr('key');
-      let newValue = this.process(this.amount[this.focus], key);
+      this.numpadMagic($(event.target).attr('key'));
+    });
 
-      this.setFocused(newValue);
-      this.calculate();
+    $(document).on('visibilitychange', () => {
+      if (!document.hidden && this.disableNumpad) {
+        this.disableNumpad = false;
+      }
+    });
+
+    this.disableNumpad = false;
+    $(document).off('keyup.calc').on('keyup.calc', () => {
+      if (global.getAttr('view') === 'calculator') {
+        if (this.disableNumpad && keys.isFunctionalKey(event.which)) {
+          this.disableNumpad = false;
+        }
+      }
+    });
+
+    $(document).off('keydown.calc').on('keydown.calc', (event) => {
+      if (global.getAttr('view') === 'calculator') {
+        if (!this.disableNumpad && keys.isFunctionalKey(event.which)) {
+          this.disableNumpad = true;
+        }
+
+        if (!this.disableNumpad && keys.isNumPad(event.which)) {
+          let key = keys.which(event.which);
+          this.numpadMagic(key);
+
+          event.preventDefault();
+          return false;
+        }
+      }
     });
   }
 
@@ -80,14 +128,14 @@ class Calculator {
     if (value.substring(value.length - 1) === '.') {
       value = value.replace('.','');
     }
-    if (key === ',' || key === 'comma') {
+    if (key === ',' || key === 'comma' || key === '.' || key === 'period' || key === 'decimal') {
       if (value.indexOf('.') === -1 && value.indexOf(',') === -1) {
         value = value.length >= 1 ? value + ',' : '0' + ',';
       }
     } else if (key === 'del' || key === 'delete' || key === 'backspace') {
       value = value.slice(0, -1);
     } else {
-      value += key.replace('numpad-','');
+      value += key;
     }
     return value;
   }

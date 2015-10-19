@@ -127,6 +127,7 @@ let keys = {
 keys.isNumPad = (which) => {
   which = which || 0;
   return which === keys.comma ||
+    which === keys.period ||
     which === keys['0'] ||
     which === keys['1'] ||
     which === keys['2'] ||
@@ -147,8 +148,10 @@ keys.isNumPad = (which) => {
     which === keys['numpad-7'] ||
     which === keys['numpad-8'] ||
     which === keys['numpad-9'] ||
-    which === keys.backspace ||
-    which === keys.escape;
+    which === keys['numpad-decimal'] ||
+    which === keys.tab ||
+    which === keys.delete ||
+    which === keys.backspace;
 };
 
 keys.isUpDown = which => {
@@ -165,11 +168,7 @@ keys.isFunctionalKey = (which) => {
     which === keys.end ||
     which === keys.shift ||
     which === keys.tab ||
-    which === keys.cmd ||
-    which === keys['arrow-left'] ||
-    which === keys['arrow-up'] ||
-    which === keys['arrow-right'] ||
-    which === keys['arrow-down'];
+    which === keys.cmd;
 };
 keys.isClickModifier = (event) => {
   return event && (event.ctrlKey ||
