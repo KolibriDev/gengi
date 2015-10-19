@@ -70,7 +70,8 @@ let Router = class {
     part.replace(/(\D+)/, (match, p1) => {
       code = p1;
     });
-    part.replace(/([0-9]+)/, (match, p1) => {
+    part.replace(/([0-9.,]+)/, (match, p1) => {
+      p1 = p1.toString().replace(',','.');
       amount = +p1;
     });
 

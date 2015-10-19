@@ -93,12 +93,13 @@ class Calculator {
   }
 
   setIsk(newValue) {
-    this.amount.isk = sanitize.number(newValue);
+    this.amount.isk = newValue;
     this.amount.iskDisplay = format.numberIcelandic(this.amount.isk);
     this.redraw();
   }
+
   setCur(newValue) {
-    this.amount.cur = sanitize.number(newValue);
+    this.amount.cur = newValue;
     this.amount.curDisplay = format.numberIcelandic(this.amount.cur);
     this.redraw();
 
@@ -114,15 +115,8 @@ class Calculator {
     if (value.substring(value.length - 1) === '.') {
       value = value.replace('.','');
     }
-    // if (key === 'escape') {
-    //   return 'show-list';
-    // } else if (key === 'arrow-up') {
-    //   return 'activate-curr';
-    // } else if (key === 'arrow-down') {
-    //   return 'activate-isk';
-    // } else
     if (key === ',' || key === 'comma') {
-      if (value.indexOf('.') === -1 && value.substring(value.length - 1) !== ',') {
+      if (value.indexOf('.') === -1 && value.indexOf(',') === -1) {
         value = value.length >= 1 ? value + ',' : '0' + ',';
       }
     } else if (key === 'del' || key === 'delete' || key === 'backspace') {
