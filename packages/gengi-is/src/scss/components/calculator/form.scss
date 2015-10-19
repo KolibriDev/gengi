@@ -16,4 +16,8 @@ calculator {
   @include respond-to(medium) {
     height: calc(100% - #{$big-block});
   }
+
+  currency {
+    cursor: pointer;
+  }
 }
