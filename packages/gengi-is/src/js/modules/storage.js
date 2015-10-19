@@ -2,6 +2,11 @@
 
 let Storage = class {
   constructor(namespace){
+    this.pickStorage();
+    this.ns = namespace || '';
+  }
+
+  pickStorage(){
     if (this.support('localStorage')) {
       this.storage = window.localStorage;
     } else if (this.support('sessionStorage')) {
@@ -10,13 +15,11 @@ let Storage = class {
       console.warn('No persisted storage available!');
       this.storage = false;
     }
-    this.ns = namespace || '';
   }
 
   support(type){
     type = type || 'localStorage';
     try {
-      if (type === 'localStorage') { return false; }
       let mod = 'modernizr';
       window[type].setItem(mod, mod);
       window[type].removeItem(mod);
