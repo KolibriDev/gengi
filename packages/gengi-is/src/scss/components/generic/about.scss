@@ -176,10 +176,10 @@ about {
     }
   }
 
-  section {
+  content, section {
     opacity: 0;
     transform: translate3d(0,-40px,0);
-    transition: transform $trans-dur ease $trans-dur, opacity $trans-dur;
+    transition: transform $trans-dur, opacity $trans-dur;
   }
 
   hero {
@@ -195,7 +195,7 @@ about {
 
   html[gengi-state='loaded'][gengi-view^='about-'] &,
   html[gengi-state='ready'][gengi-view^='about-'] & {
-    hero, section {
+    hero, content, section {
       opacity: 1;
       transform: translate3d(0,0,0);
     }
@@ -206,7 +206,7 @@ about {
         transition-delay: $trans-dur-slow;
       }
     }
-    section {
+    content, section {
       transition-delay: $trans-dur;
     }
   }

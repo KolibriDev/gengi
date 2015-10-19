@@ -16,6 +16,8 @@ svg.svg-logo {
     opacity: 1;
   }
 
+  html[gengi-state='leaving'] &,
+  html[gengi-state='loading'] &,
   html[gengi-state='initial-loading'] & {
     .circle {
       opacity: 0;

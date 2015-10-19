@@ -38,10 +38,10 @@ links {
   html[gengi-state='loading'] &,
   html[gengi-state='initial-loading'] & {
     opacity: 0;
-    transform: translate3d(0,-10%,0) rotateX(90deg);
+    transform: translate3d(0,-10%,0) rotateX(0deg);
   }
 
   html[gengi-state='leaving'][gengi-view^='about'] & {
-    transform: translate3d(0,-10%,0) rotateX(-90deg);
+    transform: translate3d(0,-10%,0) rotateX(-0deg);
   }
 }
