@@ -143,19 +143,15 @@ about {
       height: 64px;
       margin: auto;
 
-      path.circle {
+      .circle {
         fill: $color-green;
       }
 
-      g.arrow-right,
-      g.arrow-left {
-        path, rect {
-          fill: white;
-        }
+      .arrow {
+        fill: white;
       }
 
     }
-
   }
 
   html[gengi-view='about-main'] & {
