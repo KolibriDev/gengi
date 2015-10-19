@@ -79,17 +79,17 @@ let Router = class {
   }
 
   pushState(state, title, path) {
-    this.setState('state', state || this.state.state);
-    this.setState('title', title || this.state.title);
     this.setState('path', path || this.state.path);
+    this.state.state = state || this.state.state;
+    this.state.title = title || this.state.title;
     window.history.pushState(this.state.state, this.state.title, this.state.path);
     this.logView();
   }
 
   replaceState(state, title, path) {
-    this.setState('state', state || this.state.state);
-    this.setState('title', title || this.state.title);
     this.setState('path', path || this.state.path);
+    this.state.state = state || this.state.state;
+    this.state.title = title || this.state.title;
     window.history.replaceState(this.state.state, this.state.title, this.state.path);
   }
 
