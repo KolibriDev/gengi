@@ -53,9 +53,13 @@ export default {
     return $.when( deferred.promise() );
   },
 
-  selected: function() {
-    let deferred = jQuery.Deferred();
+  isSelected: function(code) {
+    let stored = this.ensureSelected();
 
+    return _.indexOf(stored, code) !== -1;
+  },
+
+  ensureSelected: function() {
     let stored = storage.get('selectedCurrencies');
 
     if (!stored) {
@@ -64,6 +68,14 @@ export default {
       ];
       storage.set('selectedCurrencies', stored);
     }
+
+    return stored;
+  },
+
+  selected: function() {
+    let deferred = jQuery.Deferred();
+
+    let stored = this.ensureSelected();
 
     let foo = this.list();
 

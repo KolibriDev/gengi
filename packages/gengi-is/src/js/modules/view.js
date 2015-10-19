@@ -30,6 +30,7 @@ class View {
           curr.rate = format.numberIcelandic(curr.rate, 2);
           curr.low = false;
         }
+        curr.onhome = true;
         templates.populateAndAppend('list-item', curr);
       });
       templates.clearParent('all-currencies');
@@ -80,6 +81,7 @@ class View {
           curr.rate = format.numberIcelandic(curr.rate, 2);
           curr.low = false;
         }
+        curr.onhome = currencies.isSelected(curr.code);
         templates.populateAndAppend('list-item', curr);
       });
 

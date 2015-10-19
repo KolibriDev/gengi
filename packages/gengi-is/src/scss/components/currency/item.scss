@@ -138,6 +138,50 @@ currency {
     }
   }
 
+  curr-selected {
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+
+    margin: auto;
+    width: 60px;
+    height: auto;
+
+    svg {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+
+      margin: auto;
+      width: 20px;
+      height: auto;
+
+      opacity: 0;
+      transform: translate3d(10px,0,0);
+      transition: opacity $trans-dur, transform $trans-dur;
+
+      &.svg-add path {
+        fill: $color-green;
+      }
+
+      &.svg-remove path {
+        fill: $color-orange;
+      }
+    }
+    html[gengi-editable='true'][gengi-edit-mode='true'] & {
+      &[onhome='true'] {
+        svg.svg-remove {
+          transform: translate3d(0,0,0);
+          opacity: 1;
+        }
+      }
+      &[onhome='false'] {
+        svg.svg-add {
+          transform: translate3d(0,0,0);
+          opacity: 1;
+        }
+      }
+    }
+  }
+
   curr-drag {
     position: absolute;
     top: 0; left: 0; bottom: 0;
