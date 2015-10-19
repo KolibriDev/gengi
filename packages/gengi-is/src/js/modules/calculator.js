@@ -19,6 +19,8 @@ class Calculator {
       headerpath: $('header [path] [amount]'),
       numpad: $('calculator numpad'),
     };
+
+    this.draw();
   }
 
   calculate() {
@@ -37,19 +39,6 @@ class Calculator {
     }
   }
 
-  redraw() {
-    this.elem.cur.toggleClass('active', this.focus === 'cur');
-    this.elem.cur.find('value').toggleClass('empty', this.amount.cur === '');
-    this.elem.cur.find('value').html(this.amount.curDisplay || this.amount.cur);
-
-    this.elem.isk.toggleClass('active', this.focus === 'isk');
-    this.elem.isk.find('value').toggleClass('empty', this.amount.isk === '');
-    this.elem.isk.find('value').html(this.amount.iskDisplay || this.amount.isk);
-
-    this.elem.headerpath.html(this.amount.cur);
-    this.elem.numpad.find('[key="del"]').toggleClass('available', this.amount[this.focus].toString().length > 0);
-  }
-
   numpad() {
     $('[numpad]').off('click.numpad').on('click.numpad', (event) => {
       let key = $(event.target).attr('key');
@@ -58,30 +47,6 @@ class Calculator {
       this.setFocused(newValue);
       this.calculate();
     });
-  }
-
-  show(curr, amount) {
-    amount = amount || '';
-    this.currency = curr;
-
-    templates.clearParent('calculator-item');
-    this.amount.cur = amount;
-    templates.populateAndAppend('calculator-item', {code: curr.code, amount: amount});
-    templates.populateAndAppend('calculator-item', {code: 'ISK'});
-    this.elem.cur = $('calculator input-area currency[code!="ISK"]');
-    this.elem.isk = $('calculator input-area currency[code="ISK"]');
-
-    this.elem.isk.off('click.calc').on('click.calc', () => {
-      this.focus = 'isk';
-      this.redraw();
-    });
-    this.elem.cur.off('click.calc').on('click.calc', () => {
-      this.focus = 'cur';
-      this.redraw();
-    });
-
-    this.calculate();
-    this.swiftclick.replaceNodeNamesToTrack(['num']);
   }
 
   setFocused(newValue) {
@@ -125,6 +90,52 @@ class Calculator {
       value += key.replace('numpad-','');
     }
     return value;
+  }
+
+  show(curr, amount) {
+    this.currency = curr;
+    this.elem.cur.attr('code', curr.code);
+
+    this.focus = 'cur';
+    this.setCur(amount || '');
+
+    this.calculate();
+
+    this.swiftclick.replaceNodeNamesToTrack(['num']);
+  }
+
+  redraw() {
+    if (this.elem.cur && this.elem.cur.length > 0) {
+      this.elem.cur.toggleClass('active', this.focus === 'cur');
+      this.elem.cur.find('value').toggleClass('empty', this.amount.cur === '');
+      this.elem.cur.find('value').html(this.amount.curDisplay || this.amount.cur);
+    }
+
+    if (this.elem.isk && this.elem.isk.length > 0) {
+      this.elem.isk.toggleClass('active', this.focus === 'isk');
+      this.elem.isk.find('value').toggleClass('empty', this.amount.isk === '');
+      this.elem.isk.find('value').html(this.amount.iskDisplay || this.amount.isk);
+    }
+
+    this.elem.headerpath.html(this.amount.cur);
+    this.elem.numpad.find('[key="del"]').toggleClass('available', this.amount[this.focus].toString().length > 0);
+  }
+
+  draw() {
+    templates.clearParent('calculator-item');
+    templates.populateAndAppend('calculator-item', {code: 'globe'});
+    templates.populateAndAppend('calculator-item', {code: 'ISK'});
+    this.elem.cur = $('calculator input-area currency[code!="ISK"]');
+    this.elem.isk = $('calculator input-area currency[code="ISK"]');
+
+    this.elem.isk.off('click.calc').on('click.calc', () => {
+      this.focus = 'isk';
+      this.redraw();
+    });
+    this.elem.cur.off('click.calc').on('click.calc', () => {
+      this.focus = 'cur';
+      this.redraw();
+    });
   }
 }
 
