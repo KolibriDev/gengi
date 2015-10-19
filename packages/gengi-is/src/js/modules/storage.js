@@ -2,9 +2,28 @@
 
 let Storage = class {
   constructor(namespace){
-    // TODO: Some kind of fallback/polyfill
-    this.storage = window.localStorage;
+    if (this.support('localStorage')) {
+      this.storage = window.localStorage;
+    } else if (this.support('sessionStorage')) {
+      this.storage = window.sessionStorage;
+    } else {
+      console.warn('No persisted storage available!');
+      this.storage = false;
+    }
     this.ns = namespace || '';
+  }
+
+  support(type){
+    type = type || 'localStorage';
+    try {
+      if (type === 'localStorage') { return false; }
+      let mod = 'modernizr';
+      window[type].setItem(mod, mod);
+      window[type].removeItem(mod);
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   set(key, value){
@@ -14,26 +33,42 @@ let Storage = class {
       return false;
     }
     key = this.ns ? this.ns + '-' + key : key;
-    this.storage.setItem(key, value);
+    try {
+      this.storage.setItem(key, value);
+    } catch(e) {
+      return false;
+    }
   }
   get(key){
-    key = this.ns ? this.ns + '-' + key : key;
-    let value = this.storage.getItem(key);
-    value = this.thaw(value);
-    return this.isEmpty(value) ? false : value;
+    try {
+      key = this.ns ? this.ns + '-' + key : key;
+      let value = this.storage.getItem(key);
+      value = this.thaw(value);
+      return this.isEmpty(value) ? false : value;
+    } catch(e) {
+      return false;
+    }
   }
   clear(key){
-    this.storage.removeItem(key);
+    try {
+      this.storage.removeItem(key);
+      return true;
+    } catch(e) {
+      return false;
+    }
   }
   clearAll(){
-    let regex = new RegExp('^' + this.ns + '-');
-    Object.keys(this.storage).forEach((key) => {
-      console.log('key', key);
-      if (regex.test(key)) {
-        console.log('true', key);
-        this.clear(key);
-      }
-    });
+    try {
+      let regex = new RegExp('^' + this.ns + '-');
+      Object.keys(this.storage).forEach((key) => {
+        if (regex.test(key)) {
+          this.clear(key);
+        }
+      });
+      return true;
+    } catch(e) {
+      return false;
+    }
   }
 
   thaw(value){

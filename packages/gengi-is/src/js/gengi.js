@@ -28,7 +28,7 @@ class Gengi {
   }
 
   ensureVersion(version) {
-    if (storage.get('version') !== version) {
+    if (storage.get('version') && storage.get('version') !== version) {
       storage.clearAll();
     }
     storage.set('version', version);
