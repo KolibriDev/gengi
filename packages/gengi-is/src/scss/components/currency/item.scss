@@ -42,6 +42,10 @@ currency {
     transform: translate3d(0,-10%,0) rotateX(-90deg);
   }
 
+  html[gengi-editable='true'][gengi-edit-mode='true'] &[route='calculator'] {
+    cursor: default;
+  }
+
   curr-code {
     display: block;
     padding: $spacing*.5 0 0;

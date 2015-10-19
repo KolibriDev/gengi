@@ -51,6 +51,12 @@ class Gengi {
 
     onLoad(() => {
       $('body').find('[route]').off('click.route').on('click.route', (event) => {
+        let $target = $(event.currentTarget);
+        let view = $target.attr('route');
+
+        if (view === 'calculator' && global.getAttr('edit-mode') === 'true') {
+          return;
+        }
         $(document).trigger('leaving');
         setTimeout(() => {
           if (event.currentTarget.tagName === 'A') {
@@ -60,9 +66,6 @@ class Gengi {
             return false;
           } else {
             let href = '';
-            let $target = $(event.currentTarget);
-            let view = $target.attr('route');
-
 
             if (view === 'back') {
               router.back();
