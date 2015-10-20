@@ -68,18 +68,12 @@ error {
       top: 12px;
 
       &.tbrun1 {
-        left: 230px;
-        @include respond-to(medium) {
-          left: 270px;
-        }
+        right: 20px;
         z-index: 2;
       }
 
       &.tbrun2 {
-        left: 190px;
-        @include respond-to(medium) {
-          left: 220px;
-        }
+        right: 90px;
         z-index: 2;
       }
     }
