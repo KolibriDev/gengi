@@ -81,7 +81,7 @@ export default {
 
     if (!stored) {
       stored = [
-        'EUR', 'USD', 'GBP', 'BIF'
+        'USD', 'EUR', 'GBP', 'NOK', 'DKK', 'SEK'
       ];
       storage.set('selectedCurrencies', stored);
     }
