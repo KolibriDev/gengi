@@ -122,7 +122,7 @@ let Storage = class {
   }
 
   isEmpty(value){
-    return (!value && value !== '') || value === '{}' || value === '[]';
+    return (!value && value !== '') || value === '{}' || value === '[]' || (Array.isArray(value) && value.length === 1 && value[0] === '');
   }
 };
 
