@@ -5,8 +5,6 @@ import storage from 'modules/storage';
 export default {
   source: '//api.gengi.is/v2/currencies',
 
-  _list: false,
-
   get: function(id) {
     let deferred = jQuery.Deferred();
     let foo = this.list();
@@ -25,7 +23,7 @@ export default {
   list: function() {
     let deferred = jQuery.Deferred();
 
-    let storedCurrencies = this._list || storage.get('currencies');
+    let storedCurrencies = storage.get('currencies');
     if (storedCurrencies && storedCurrencies.expires >= new Date().getTime()) {
       deferred.resolve(storedCurrencies);
     } else {
@@ -40,7 +38,6 @@ export default {
         try {
           let res = typeof data === 'string' ? JSON.parse(data) : data;
           storage.set('currencies', res);
-          this._list = res;
           deferred.resolve(res);
         } catch(exc) {
           deferred.reject(storedCurrencies, {reason: 'failed to parse json'});
@@ -89,6 +86,10 @@ export default {
     return stored;
   },
 
+  reorderSelected: function(newsorted) {
+    storage.set('selectedCurrencies', newsorted);
+  },
+
   selected: function() {
     let deferred = jQuery.Deferred();
 
@@ -99,10 +100,8 @@ export default {
     foo.done((data) => {
       let retobj = {};
 
-      _.each(data.list, (item, key) => {
-        if (_.indexOf(stored, key) !== -1) {
-          retobj[key] = item;
-        }
+      _.each(stored, (item) => {
+        retobj[item] = _.where(data.list, {code: item})[0];
       });
 
       deferred.resolve(retobj);

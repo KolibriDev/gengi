@@ -46,6 +46,11 @@ currency {
     cursor: default;
   }
 
+  html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] &[route='calculator'] {
+    cursor: move;
+    cursor: ns-resize;
+  }
+
   curr-code {
     display: block;
     padding: $spacing*.5 0 0;
@@ -168,6 +173,8 @@ currency {
 
       path {
         fill: $color-green;
+
+        transition: fill $trans-dur;
       }
     }
     html[gengi-editable='true'][gengi-edit-mode='true'] & {
@@ -187,9 +194,12 @@ currency {
   }
 
   curr-drag {
+    cursor: move;
+    cursor: ns-resize;
+
     position: absolute;
     top: 0; left: 0; bottom: 0;
-    z-index: 1;
+    z-index: -1;
 
     margin: auto;
     width: 60px;
@@ -199,9 +209,10 @@ currency {
     transform: translate3d(-10px,0,0);
     transition: transform $trans-dur, opacity $trans-dur;
 
-    html[gengi-editable='true'][gengi-edit-mode='true'] & {
+    html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] & {
       transform: translate3d(0,0,0);
       opacity: 1;
+      z-index: 10;
     }
 
     svg {
@@ -213,6 +224,8 @@ currency {
 
       rect {
         fill: rgba($color-dark,.35);
+
+        transition: fill $trans-dur;
       }
     }
   }
@@ -302,5 +315,25 @@ currency {
   }
   &.active:after {
     width: 6px;
+  }
+
+  &.sortable-dragging {
+    curr-selected {
+      opacity: 0.25;
+    }
+  }
+
+  &[placeholder] {
+    width: 100%;
+    min-width: $page-min-width;
+    max-width: $page-max-width;
+    height: $big-block-small !important;
+    @include respond-to(medium) {
+      height: $big-block !important;
+    }
+
+    background: rgba($color-dark,0.05);
+    // border: 2px dashed $color-green;
+    box-shadow: inset 0 0 0 2px rgba($color-green, 0.5);
   }
 }

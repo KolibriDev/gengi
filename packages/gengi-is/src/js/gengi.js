@@ -3,11 +3,13 @@ import global from 'global';
 /* jshint ignore:start */
 import jquery from 'vendor/jquery';
 import underscore from 'vendor/underscore';
+import sortable from 'vendor/html.sortable';
 /* jshint ignore:end */
 import storage from 'modules/storage';
 import router from 'modules/router';
 import onLoad from 'modules/onLoad';
 import keys from 'modules/keys';
+import currencies from 'modules/currencies';
 
 global.setAttr('load-step', '1');
 
@@ -37,14 +39,42 @@ class Gengi {
   setEvents() {
     $(document).on('leaving loading loaded', (event) => {
       global.setAttr('state', event.type);
+
+      if (global.getAttr('view') === 'home' && global.getAttr('edit-mode') === 'true') {
+        this.dragList();
+      }
     });
 
     $('[edit]').off('click.edit').on('click.edit', () => {
       global.setAttr('edit-mode', true);
+      this.dragList();
     });
     $('[done]').off('click.done').on('click.done', () => {
       global.setAttr('edit-mode', false);
-      router.processPath();
+      this.disableDragList();
+    });
+  }
+
+  disableDragList() {
+    $('currency-list > div.list').sortable('disable');
+  }
+  dragList() {
+    $('currency-list > div.list').sortable({
+      items: 'currency',
+      hoverClass: 'is-hovered',
+      draggingClass: 'sortable-dragging',
+      sortableClass: 'my-placeholder fade',
+      forcePlaceholderSize: true,
+      placeholder: '<currency placeholder></currency>',
+    }).on('sortstart sortstop sortupdate', (event) => {
+      if (event.type === 'sortupdate') {
+        // Update selected currencies order
+        let currlist = [];
+        $('currency-list > div.list > currency[template="list-item"]').each((i, el) => {
+          currlist.push($(el).attr('code'));
+        });
+        currencies.reorderSelected(currlist);
+      }
     });
   }
 

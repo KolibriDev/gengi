@@ -17,7 +17,8 @@
     "moment-timezone": "~0.4.0",
     "vue": "~0.12.1",
     "swiftclick": "~1.1.5",
-    "jquery": "~2.1.4"
+    "jquery": "~2.1.4",
+    "html.sortable": "~0.3.0"
   },
   "overrides": {
     "normalize-scss": {
