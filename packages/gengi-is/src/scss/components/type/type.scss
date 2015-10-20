@@ -8,6 +8,10 @@ p {
     font-size: $font-size-large;
   }
 
+  &.bold {
+    font-weight: 700;
+  }
+
   &.blue-light {
     background-color: $color-blue-light;
   }
