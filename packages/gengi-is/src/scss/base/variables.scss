@@ -39,38 +39,22 @@ $color-gray-light: #ccc;
 // Colors
 $color-blue-light: #E2F4F9;
 $color-green-light: #C4F6EB;
-$color-green: #39D6B3;
+
+$color-green: #39D6B3; //(57, 214, 179)
 $color-green-dark: #50E3C2;
 $color-green-darker: #178C72;
-$color-yellow: #F8E71C;
+
 $color-orange: #F6A623;
 $color-dark: #56656B;
 
 $color-light: #EDEDEB;
 
-$color-kolibri: #FFD100;
+$color-kolibri-yellow: #FFD100;
 
 $color-alert-red: #C25243;
 $color-alert-green: #85C243;
 
 $font-color: $color-dark;
-
-// Color array used for hr, links, boxes, buttons, forms, messages and sections
-// "primary" item is default style for buttons and messages
-// color-name   color-value         font-color
-$colorArray:
-  ('green-light', $color-green-light, $font-color)
-  ('green', $color-green, white)
-  ('green-dark', $color-green-dark, white)
-  ('green-darker', $color-green-darker, white)
-  ('yellow', $color-yellow, $color-dark)
-  ('orange', $color-orange, $color-dark)
-  ('dark', $color-dark, $color-green)
-  ('light', $color-light, $font-color)
-  ('gray', $color-gray, $font-color)
-  ('white', white, $font-color)
-;
-$color-count: length($colorArray);
 
 // Applied to html and main
 $main-background: $color-light;

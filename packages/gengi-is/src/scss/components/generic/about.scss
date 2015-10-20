@@ -15,15 +15,6 @@ about {
     color: $font-color;
     text-decoration: none;
 
-    svg {
-      width: 15px;
-      height: auto;
-      margin-right: 5px;
-      path {
-        fill: $color-dark;
-      }
-    }
-
     &.large {
       font-size: $font-size-large;
       font-weight: 700;
@@ -42,30 +33,27 @@ about {
     &.kolibri {
       padding: $spacing;
       text-align: center;
-      background-color: $color-kolibri;
+      background-color: $color-kolibri-yellow;
       svg {
         height: 40px;
         width: auto;
       }
     }
 
-    svg.svg-logo {
-      vertical-align: middle;
-      width: 64px;
-      height: 64px;
-      margin-right: $spacing/2;
-
-      path.circle {
-        fill: $color-green;
-      }
-
-      g.arrow-right,
-      g.arrow-left {
-        path, rect {
-          fill: white;
-        }
-      }
-    }
+    //svg.svg-logo {
+    //  vertical-align: middle;
+    //  width: 64px;
+    //  height: 64px;
+    //  margin-right: $spacing/2;
+    //
+    //  path.circle {
+    //    fill: $color-green;
+    //  }
+    //
+    //  path.arrow {
+    //    fill: white;
+    //  }
+    //}
 
     inner {
       display: block;
@@ -81,12 +69,6 @@ about {
       svg, span {
         display: inline-block;
         vertical-align: middle;
-      }
-
-      svg {
-        .arrow {
-          fill: white;
-        }
       }
 
       span {
@@ -137,24 +119,6 @@ about {
       color: red;
     }
 
-  }
-
-  .logo-center {
-    padding: $spacing;
-    svg.svg-logo {
-      width: 64px;
-      height: 64px;
-      margin: auto;
-
-      .circle {
-        fill: $color-green;
-      }
-
-      .arrow {
-        fill: white;
-      }
-
-    }
   }
 
   html[gengi-view='about-main'] & {
