@@ -138,7 +138,7 @@ class View {
       subtitle = sub === 'usage' ? 'Notkun' : subtitle;
       subtitle = sub === 'whatisnew' ? 'Nýtt í v2' : subtitle;
       subtitle = sub === 'tech' ? 'Tæknin' : subtitle;
-      subtitle = sub === 'whodunnit' ? 'Who dunnit?' : subtitle;
+      subtitle = sub === 'whodunnit' ? 'The usual suspects.' : subtitle;
     }
 
     header.update({title: 'Um Gengi.is', subtitle: subtitle});

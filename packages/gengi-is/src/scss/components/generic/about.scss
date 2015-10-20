@@ -39,6 +39,16 @@ about {
     width: 100%;
     min-width: $page-min-width;
 
+    &.kolibri {
+      padding: $spacing;
+      text-align: center;
+      background-color: $color-kolibri;
+      svg {
+        height: 40px;
+        width: auto;
+      }
+    }
+
     svg.svg-logo {
       vertical-align: middle;
       width: 64px;
