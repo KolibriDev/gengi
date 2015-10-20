@@ -1,13 +1,10 @@
-<svg class="svg-delete" viewBox="0 0 28 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g id="Main" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g class="color-gray" id="Currency" transform="translate(-245.000000, -579.000000)">
-            <g id="Main" transform="translate(20.000000, 120.000000)">
-                <g id="Keyboard-A" transform="translate(0.000000, 220.000000)">
-                    <g id="Numbers" transform="translate(25.000000, 13.000000)">
-                        <path d="M218.5,234.292893 L215.318019,231.110913 L214.610913,231.818019 L217.792893,235 L214.610913,238.181981 L215.318019,238.889087 L218.5,235.707107 L221.681981,238.889087 L222.389087,238.181981 L219.207107,235 L222.389087,231.818019 L221.681981,231.110913 L218.5,234.292893 Z M200.079489,235 L210,226 L228,226 L228,244 L210,244 L200.079489,235 Z" id="svg-delete"></path>
-                    </g>
-                </g>
-            </g>
-        </g>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="28px" height="18px" viewBox="0 0 28 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
+    <title>svg-delete</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <path d="M18.4729537,8.292893 L15.2819137,5.110913 L14.5727946,5.818019 L17.7638336,9 L14.5727946,12.181981 L15.2819137,12.889087 L18.4729537,9.707107 L21.6639938,12.889087 L22.3731129,12.181981 L19.1820739,9 L22.3731129,5.818019 L21.6639938,5.110913 L18.4729537,8.292893 L18.4729537,8.292893 Z M9.94875445,0 L28,0 L28,18 L9.94875445,18 L-2.84217094e-14,9 L9.94875445,0 Z" id="svg-delete" fill="#000000" sketch:type="MSShapeGroup"></path>
     </g>
 </svg>

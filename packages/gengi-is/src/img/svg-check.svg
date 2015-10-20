@@ -1,9 +1,10 @@
-<svg class="svg-check" viewBox="0 0 18 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g id="Main" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g class="color-white" id="Front---Edit" transform="translate(-336.000000, -53.000000)">
-            <g id="Navbar---Front" transform="translate(0.000000, 20.000000)">
-                <path d="M343,47 C342.67474,47 342.584776,46.9659619 342,47 L336,41 L339,38 L343,41 L351,33 C350.889274,32.9557498 354,36 354,36 C354.044983,35.8830551 343,47 343,47 Z" id="svg-check"></path>
-            </g>
-        </g>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="18px" height="14px" viewBox="0 0 18 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
+    <title>svg-check</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <path d="M7,14.0004778 C6.67474024,14.0004778 6.58477575,13.9664397 6,14.0004778 L0,8.00047777 L3,5.00047777 L7,8.00047777 L15,0.00047777105 C14.8892738,-0.0437723873 18,3.00047777 18,3.00047777 C18.0449829,2.88353292 7,14.0004778 7,14.0004778 Z" id="check" fill="#000000" sketch:type="MSShapeGroup"></path>
     </g>
 </svg>
