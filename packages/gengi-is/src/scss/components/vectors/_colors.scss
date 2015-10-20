@@ -1,9 +1,0 @@
-
-svg {
-
-  @each $name, $color, $font-color in $colorArray {
-    .color-#{$name} {
-      fill: $color;
-    }
-  }
-}

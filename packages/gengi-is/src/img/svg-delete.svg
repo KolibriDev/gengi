@@ -1,10 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="28px" height="18px" viewBox="0 0 28 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
-    <title>svg-delete</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <path d="M18.4729537,8.292893 L15.2819137,5.110913 L14.5727946,5.818019 L17.7638336,9 L14.5727946,12.181981 L15.2819137,12.889087 L18.4729537,9.707107 L21.6639938,12.889087 L22.3731129,12.181981 L19.1820739,9 L22.3731129,5.818019 L21.6639938,5.110913 L18.4729537,8.292893 L18.4729537,8.292893 Z M9.94875445,0 L28,0 L28,18 L9.94875445,18 L-2.84217094e-14,9 L9.94875445,0 Z" id="svg-delete" fill="#000000" sketch:type="MSShapeGroup"></path>
-    </g>
+<svg class="svg-delete" viewBox="0 0 28 18">
+  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <path fill="#000000" d="M18.4729537,8.292893 L15.2819137,5.110913 L14.5727946,5.818019 L17.7638336,9 L14.5727946,12.181981 L15.2819137,12.889087 L18.4729537,9.707107 L21.6639938,12.889087 L22.3731129,12.181981 L19.1820739,9 L22.3731129,5.818019 L21.6639938,5.110913 L18.4729537,8.292893 L18.4729537,8.292893 Z M9.94875445,0 L28,0 L28,18 L9.94875445,18 L-2.84217094e-14,9 L9.94875445,0 Z"></path>
+  </g>
 </svg>

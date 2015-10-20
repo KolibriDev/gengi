@@ -1,14 +1,28 @@
 
+svg {
+  width: auto;
+  height: auto;
+  path, rect {
+    fill: $color-dark;
+  }
+}
+
 @import
-  "colors",
-  "svg-logo",
-  "svg-kolibri-flower",
-  "svg-back",
-  "svg-check",
-  "svg-delete",
-  "svg-edit",
-  "svg-globe",
-  "svg-github",
-  "svg-link",
-  "svg-mail",
-  "svg-next";
+  'svg-addremove',
+  'svg-back',
+  'svg-check',
+  'svg-delete',
+  'svg-drag',
+  'svg-edit',
+  'svg-facebook',
+  'svg-github',
+  'svg-globe',
+  'svg-kolibri-flower',
+  'svg-kolibri-logo',
+  'svg-link',
+  'svg-location',
+  'svg-logo',
+  'svg-mail',
+  'svg-next',
+  'svg-reload',
+  'svg-twitter';

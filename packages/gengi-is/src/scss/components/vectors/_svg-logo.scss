@@ -1,15 +1,16 @@
 
 svg.svg-logo {
   width: 32px;
-  height: 32px;
 
   .circle {
+    fill: white;
     transition: opacity $trans-dur-slower;
     transition-delay: $trans-dur;
     opacity: 1;
   }
 
   .arrow {
+    fill: $color-green;
     transition: transform $trans-dur-slower*2, opacity $trans-dur-slower;
     transition-delay: $trans-dur*1.5;
     transform: translate3d(0,0,0);
