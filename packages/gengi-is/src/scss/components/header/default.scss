@@ -41,6 +41,16 @@ header {
       transform: translate3d(0,0,0);
       transition: none;
     }
+
+    svg.svg-logo {
+      width: 32px;
+      path.circle {
+        fill: white;
+      }
+      path.arrow {
+        fill: $color-green;
+      }
+    }
   }
 
   [back], [logo] {
