@@ -222,3 +222,21 @@ about {
     }
   }
 }
+
+div.circle {
+  display:inline-block;
+  background: $color-dark;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  margin: 0 $spacing;
+  line-height: 60px;
+
+  svg {
+    width: 20px;
+    height: auto;
+    path {
+      fill: white;
+    }
+  }
+}
