@@ -78,7 +78,7 @@ export default {
 
     if (!stored) {
       stored = [
-        'USD', 'EUR', 'GBP', 'NOK', 'DKK', 'SEK'
+        'USD', 'EUR', 'GBP', 'NOK', 'DKK', 'SEK', 'globe'
       ];
       storage.set('selectedCurrencies', stored);
     }
@@ -100,8 +100,18 @@ export default {
     foo.done((data) => {
       let retobj = {};
 
-      _.each(stored, (item) => {
-        retobj[item] = _.where(data.list, {code: item})[0];
+      _.each(stored, (code) => {
+        let item = _.where(data.list, {code: code})[0];
+        if (item) {
+          retobj[code] = item;
+        } else if (code === 'globe') {
+          retobj[code] = {
+            code: 'globe',
+            title: 'Allar myntir',
+            alttitle: 'Bæta við',
+            name: 'Setja aðra mynt á forsíðu',
+          };
+        }
       });
 
       deferred.resolve(retobj);

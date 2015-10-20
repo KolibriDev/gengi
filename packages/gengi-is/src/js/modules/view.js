@@ -26,33 +26,43 @@ class View {
     let $tplParent;
     currs.done((data) => {
       templates.clearParent('list-item');
+      templates.clearParent('all-currencies');
       _.each(data, (curr) => {
-        if (curr.rate < 1 ) {
-          curr.rate = format.numberIcelandic(curr.rate, 5);
-          curr.low = true;
+        let item;
+        if (curr.code === 'globe') {
+          item = templates.populateAndAppend('all-currencies', {
+            code: curr.code,
+            title: curr.title,
+            alttitle: curr.alttitle,
+            name: curr.name,
+          });
         } else {
-          curr.rate = format.numberIcelandic(curr.rate, 2);
-          curr.low = false;
+          if (curr.rate < 1 ) {
+            curr.rate = format.numberIcelandic(curr.rate, 5);
+            curr.low = true;
+          } else {
+            curr.rate = format.numberIcelandic(curr.rate, 2);
+            curr.low = false;
+          }
+          curr.onhome = true;
+          item = templates.populateAndAppend('list-item', curr);
+
         }
-        curr.onhome = true;
-        let item = templates.populateAndAppend('list-item', curr);
 
         $tplParent = $tplParent || item.$parent;
-      });
-      templates.clearParent('all-currencies');
-      templates.populateAndAppend('all-currencies', {
-        code: 'globe',
-        name: 'Allar myntir',
       });
 
       this.loaded(() => {
         $tplParent.find('currency').find('curr-selected').off('click.onhome').on('click.onhome', (event) => {
+          event.stopPropagation();
+
           let $target = $(event.currentTarget);
           let code = $target.parent().attr('code');
 
           if ($target.attr('onhome') === 'true') {
             currencies.removeSelected(code);
             $target.attr('onhome', false);
+            $target.parent().addClass('hide');
           } else {
             currencies.addSelected(code);
             $target.attr('onhome', true);
@@ -109,6 +119,8 @@ class View {
 
       this.loaded(() => {
         $tplParent.find('currency').find('curr-selected').off('click.onhome').on('click.onhome', (event) => {
+          event.stopPropagation();
+
           let $target = $(event.currentTarget);
           let code = $target.parent().attr('code');
 

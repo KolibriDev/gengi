@@ -3,8 +3,8 @@ import global from 'global';
 /* jshint ignore:start */
 import jquery from 'vendor/jquery';
 import underscore from 'vendor/underscore';
-import sortable from 'vendor/html.sortable';
 /* jshint ignore:end */
+import sortable from 'vendor/sortable';
 import storage from 'modules/storage';
 import router from 'modules/router';
 import onLoad from 'modules/onLoad';
@@ -22,6 +22,7 @@ class Gengi {
 
     this.setEvents();
     this.initRouter();
+    this.initSorting();
 
     setTimeout(() => {
       global.clearAttr('load-step');
@@ -41,41 +42,69 @@ class Gengi {
       global.setAttr('state', event.type);
 
       if (global.getAttr('view') === 'home' && global.getAttr('edit-mode') === 'true') {
-        this.dragList();
+        this.enableEdit();
       }
     });
 
     $('[edit]').off('click.edit').on('click.edit', () => {
-      global.setAttr('edit-mode', true);
-      this.dragList();
+      this.enableEdit();
     });
     $('[done]').off('click.done').on('click.done', () => {
-      global.setAttr('edit-mode', false);
-      this.disableDragList();
+      this.disableEdit();
     });
   }
 
-  disableDragList() {
-    $('currency-list > div.list').sortable('disable');
+  enableEdit() {
+    global.setAttr('edit-mode', true);
+    this.sortingOptions({
+      'delay': 0,
+    });
   }
-  dragList() {
-    $('currency-list > div.list').sortable({
-      items: 'currency',
-      hoverClass: 'is-hovered',
-      draggingClass: 'sortable-dragging',
-      sortableClass: 'my-placeholder fade',
-      forcePlaceholderSize: true,
-      placeholder: '<currency placeholder></currency>',
-    }).on('sortstart sortstop sortupdate', (event) => {
-      if (event.type === 'sortupdate') {
-        // Update selected currencies order
+  disableEdit() {
+    global.setAttr('edit-mode', false);
+    this.sortingOptions({
+      'delay': 250,
+    });
+  }
+
+  sortingOptions(options) {
+    options = options || {};
+    _.each(options, (value, key) => {
+      this.sortablelist.option(key, value);
+    });
+  }
+
+  initSorting(options) {
+    options = options || {};
+    this.sortableOptions = {
+      group: 'currency-list',
+      sort: true,
+      delay: 250,
+      disabled: false,
+      animation: 150,
+      draggable: 'currency',
+      ghostClass: 'sortable-ghost',
+      chosenClass: 'sortable-chosen',
+
+      scroll: true,
+      scrollSensitivity: 30,
+      scrollSpeed: 10,
+
+      onStart: () => {
+        this.enableEdit();
+      },
+
+      onUpdate: () => {
         let currlist = [];
-        $('currency-list > div.list > currency[template="list-item"]').each((i, el) => {
+        $('currency-list > div.list > currency').each((i, el) => {
           currlist.push($(el).attr('code'));
         });
         currencies.reorderSelected(currlist);
-      }
-    });
+      },
+    };
+    $.extend(this.sortableOptions, options);
+
+    this.sortablelist = sortable.create($('currency-list > div.list').get(0), this.sortableOptions);
   }
 
   initRouter() {

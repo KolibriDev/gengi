@@ -29,7 +29,12 @@ currency {
   transform: translate3d(0,0,0) rotateX(0deg);
   transform-origin: center center;
 
-  transition: transform $trans-dur-slower, opacity $trans-dur ease 50ms;
+  transition: transform $trans-dur-slower, opacity $trans-dur ease 50ms, box-shadow $trans-dur, height $trans-dur, margin $trans-dur;
+
+  &.hide {
+    margin-bottom: 0px;
+    height: 0px;
+  }
 
   html[gengi-state='leaving'] &,
   html[gengi-state='loading'] &,
@@ -40,15 +45,6 @@ currency {
 
   html[gengi-state='leaving'][gengi-path='/'][gengi-view='home'] & {
     transform: translate3d(0,-10%,0) rotateX(-90deg);
-  }
-
-  html[gengi-editable='true'][gengi-edit-mode='true'] &[route='calculator'] {
-    cursor: default;
-  }
-
-  html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] &[route='calculator'] {
-    cursor: move;
-    cursor: ns-resize;
   }
 
   curr-code {
@@ -66,6 +62,7 @@ currency {
   }
   &[code='globe'] {
     curr-code {
+      position: relative;
       padding-top: 18px;
       font-size: 22px;
 
@@ -73,8 +70,65 @@ currency {
         padding-top: 28px;
         font-size: 24px;
       }
+
+      &:before {
+        content: attr(title);
+        transition: opacity $trans-dur;
+      }
+
+      span.alt {
+        display: inline-block;
+        position: absolute;
+        left: 0; bottom: 0;
+
+        opacity: 0;
+        transition: opacity $trans-dur;
+      }
     }
-    curr-name { display: none; }
+    curr-name {
+      opacity: 0;
+    }
+    curr-symbol {
+      .globe {
+        opacity: 1;
+        transition: opacity $trans-dur;
+      }
+      .plus {
+        opacity: 0;
+        transition: opacity $trans-dur;
+
+        svg {
+          width: 30% !important;
+        }
+      }
+    }
+
+    html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] & {
+      curr-code {
+        padding-top: $spacing*.5 + 2px;
+        @include respond-to(medium) {
+          padding-top: $spacing*.75 + 5px;
+        }
+
+        &:before {
+          opacity: 0;
+        }
+        span.alt {
+          opacity: 1;
+        }
+      }
+      curr-name {
+        opacity: 1;
+      }
+      curr-symbol {
+        .globe {
+          opacity: 0;
+        }
+        .plus {
+          opacity: 1;
+        }
+      }
+    }
   }
   curr-name {
     display: block;
@@ -95,14 +149,11 @@ currency {
   }
 
   &[code]:before,
-  &:not([code='globe']) curr-code,
-  &:not([code='globe']) curr-name {
+  curr-code,
+  curr-name {
     transform: translate3d(0,0,0);
-    transition: transform $trans-dur;
+    transition: transform $trans-dur, opacity $trans-dur, padding $trans-dur;
 
-    html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] & {
-      transform: translate3d(50px,0,0);
-    }
   }
 
   curr-rate {
@@ -141,12 +192,9 @@ currency {
     transform: translate3d(0,0,0);
     transition: transform $trans-dur, opacity $trans-dur;
 
-    html[gengi-editable='true'][gengi-edit-mode='true'] & {
-      transform: translate3d(10px,0,0);
-      opacity: 0;
-    }
   }
 
+  curr-next,
   curr-selected {
     position: absolute;
     top: 0; right: 0; bottom: 0;
@@ -169,7 +217,7 @@ currency {
 
       opacity: 0;
       transform: rotate(0deg);
-      transition: opacity $trans-dur, transform $trans-dur-slow;
+      transition: opacity $trans-dur, transform $trans-dur-slow*2;
 
       path {
         fill: $color-green;
@@ -177,19 +225,14 @@ currency {
         transition: fill $trans-dur;
       }
     }
-    html[gengi-editable='true'][gengi-edit-mode='true'] & {
-      svg {
-        opacity: 1;
-      }
-      &[onhome='true'] {
-        svg {
-          transform: rotate(45deg);
+  }
 
-          path {
-            fill: $color-orange;
-          }
-        }
-      }
+  curr-next {
+
+    svg.svg-next {
+      width: 14px;
+
+      opacity: 1;
     }
   }
 
@@ -208,12 +251,6 @@ currency {
     opacity: 0;
     transform: translate3d(-10px,0,0);
     transition: transform $trans-dur, opacity $trans-dur;
-
-    html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] & {
-      transform: translate3d(0,0,0);
-      opacity: 1;
-      z-index: 10;
-    }
 
     svg {
       position: absolute;
@@ -317,23 +354,72 @@ currency {
     width: 6px;
   }
 
-  &.sortable-dragging {
-    curr-selected {
-      opacity: 0.25;
+  html[gengi-editable='true'][gengi-edit-mode='true'] &[route='calculator'] {
+    cursor: default;
+  }
+
+  html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] & {
+    cursor: move;
+    cursor: ns-resize;
+  }
+
+  html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] & {
+    curr-drag {
+      transform: translate3d(0,0,0);
+      opacity: 1;
+      z-index: 10;
     }
   }
 
-  &[placeholder] {
-    width: 100%;
-    min-width: $page-min-width;
-    max-width: $page-max-width;
-    height: $big-block-small !important;
-    @include respond-to(medium) {
-      height: $big-block !important;
-    }
 
-    background: rgba($color-dark,0.05);
-    // border: 2px dashed $color-green;
-    box-shadow: inset 0 0 0 2px rgba($color-green, 0.5);
+  html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] & {
+    &[code]:before,
+    &[code] curr-symbol,
+    curr-code,
+    curr-name {
+      transform: translate3d(50px,0,0);
+    }
+  }
+
+  html[gengi-editable='true'][gengi-edit-mode='true'] & {
+    curr-rate {
+      transform: translate3d(10px,0,0);
+      opacity: 0;
+    }
+  }
+
+  html[gengi-editable='true'][gengi-edit-mode='true'] & {
+    curr-next,
+    curr-selected {
+      svg {
+        opacity: 1;
+        &.svg-next path {
+          fill: $color-orange;
+        }
+      }
+      &[onhome='true'] {
+        svg {
+          transform: rotate(45deg);
+
+          path {
+            fill: $color-orange;
+          }
+        }
+      }
+    }
+  }
+
+  &.sortable-chosen {
+    transition-duration: $trans-dur;
+    box-shadow: 0 0 2px 1px $color-green;
+    transition-delay: $trans-dur;
+  }
+
+  &.sortable-dragging,
+  &.sortable-ghost,
+  &.sortable-chosen {
+    cursor: -webkit-grabbing !important;
+    cursor: -moz-grabbing !important;
+    cursor: grabbing !important;
   }
 }

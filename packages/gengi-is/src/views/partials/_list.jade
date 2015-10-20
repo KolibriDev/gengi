@@ -12,8 +12,15 @@ currency-list
 
     template(name='all-currencies')
       currency(attr='code' template route='allcurrencies')
-        curr-symbol: include ../../img/svg-globe.svg
-        curr-code(tpl='name')
+        curr-drag: include ../../img/svg-drag.svg
+        curr-symbol
+          .globe: include ../../img/svg-globe.svg
+          .plus: include ../../img/svg-plus.svg
+        curr-code(attr='title')
+          span.alt(tpl='alttitle')
+        curr-name(tpl='name')
+        curr-next(attr='onhome')
+          include ../../img/svg-next.svg
 
   div(route='about' title='Um Gengi.is').footer
     hr

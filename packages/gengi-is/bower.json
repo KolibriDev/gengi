@@ -18,7 +18,7 @@
     "vue": "~0.12.1",
     "swiftclick": "~1.1.5",
     "jquery": "~2.1.4",
-    "html.sortable": "~0.3.0"
+    "Sortable": "~1.4.1"
   },
   "overrides": {
     "normalize-scss": {
@@ -26,6 +26,12 @@
     },
     "moment-timezone": {
       "ignore": true
+    },
+    "moment": {
+      "ignore": true
+    },
+    "Sortable": {
+      "main": "Sortable.js"
     },
     "promise-ajax-js": {
       "main": "./promise.js"
