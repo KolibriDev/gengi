@@ -1,0 +1,87 @@
+error {
+  z-index: 999;
+  display: none;
+
+  margin: auto;
+  padding: $spacing;
+  height: calc(100% - #{$big-block});
+  text-align: center;
+
+  content {
+    display: block;
+    margin: 0 auto $spacing*2;
+    padding: $spacing*3 $spacing 0;
+    width: 100%;
+    min-width: $page-min-width;
+    max-width: $page-max-width;
+
+    @include respond-to(medium) {
+      margin: 0 auto $spacing*4;
+      padding: $spacing*5 $spacing 0;
+    }
+  }
+
+  h2 {
+    font-size: 28px;
+    font-weight: 300;
+    text-transform: uppercase;
+    line-height: 36px;
+    color: $color-gray;
+  }
+
+  p {
+    font-size: $font-size-large;
+    color: $color-gray;
+    margin-bottom: $spacing*3;
+  }
+
+  a {
+    font-size: $font-size;
+    line-height: 16px;
+    color: $color-dark;
+    text-decoration: none;
+    vertical-align: middle;
+
+    svg.svg-reload {
+      vertical-align: middle;
+      margin-left: 5px;
+    }
+  }
+
+  html[gengi-view='error'] & {
+    display: block;
+  }
+
+  div.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    height: $spacing*4;
+
+    img {
+      position: absolute;
+      width: auto;
+      height: $spacing*2;
+
+      top: 12px;
+
+      &.tbrun1 {
+        left: 230px;
+        @include respond-to(medium) {
+          left: 270px;
+        }
+        z-index: 2;
+      }
+
+      &.tbrun2 {
+        left: 190px;
+        @include respond-to(medium) {
+          left: 220px;
+        }
+        z-index: 2;
+      }
+    }
+  }
+}
