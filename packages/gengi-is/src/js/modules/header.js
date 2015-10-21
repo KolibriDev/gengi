@@ -36,6 +36,9 @@ class Header {
       this.$path.$code.text(this.state.title);
       this.$path.$amount.text(this.state.amount);
     }
+
+    this.$wrap.find('[expired]').find('span.text').html(global.getAttr('expired-text'));
+
   }
 }
 

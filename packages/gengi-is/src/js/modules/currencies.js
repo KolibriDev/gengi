@@ -1,6 +1,7 @@
 import jquery from 'vendor/jquery'; // jshint ignore:line
-
 import storage from 'modules/storage';
+import global from 'global';
+import moment from 'vendor/moment';
 
 export default {
   source: '//api.gengi.is/v2/currencies',
@@ -23,10 +24,17 @@ export default {
   list: function() {
     let deferred = jQuery.Deferred();
 
+    let now = new Date().getTime();
+
     let storedCurrencies = storage.get('currencies');
-    if (storedCurrencies && storedCurrencies.expires >= new Date().getTime()) {
+    //if (false) {
+    if (storedCurrencies && storedCurrencies.expires >= now) {
       deferred.resolve(storedCurrencies);
     } else {
+      // TODO use locale
+      global.setAttr('expired-text', 'síðast uppfært <br>' + moment(moment(storedCurrencies.expires).subtract(1, 'day')).fromNow());
+      global.setAttr('expired', 'true');
+
       $.ajax({
         method: 'GET',
         url: this.source,
@@ -38,6 +46,8 @@ export default {
         try {
           let res = typeof data === 'string' ? JSON.parse(data) : data;
           storage.set('currencies', res);
+          global.setAttr('expired-text', '');
+          global.setAttr('expired', 'false');
           deferred.resolve(res);
         } catch(exc) {
           deferred.reject(storedCurrencies, {reason: 'failed to parse json'});

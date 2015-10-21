@@ -197,6 +197,36 @@ header {
         display: inline-block;
       }
     }
+    [expired] {
+      html[gengi-expired='true'] & {
+        display: inline-block;
+      }
+
+      height: $big-block-small;
+
+      @include respond-to(medium) {
+        height: $big-block;
+      }
+
+      span.dark {
+        height: $big-block-small;
+        line-height: 12px;
+
+        @include respond-to(medium) {
+          height: $big-block;
+          line-height: 20px;
+        }
+
+        display: inline-block;
+        margin: 0;
+        padding: $spacing 0;
+      }
+
+      svg.svg-reload {
+        margin-top: -20px;
+      }
+
+    }
     [path] {
       cursor: default;
       margin: auto;

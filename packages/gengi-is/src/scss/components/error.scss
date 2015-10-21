@@ -41,11 +41,6 @@ error {
     color: $color-dark;
     text-decoration: none;
     vertical-align: middle;
-
-    svg.svg-reload {
-      vertical-align: middle;
-      margin-left: 5px;
-    }
   }
 
   html[gengi-view='error'] & {

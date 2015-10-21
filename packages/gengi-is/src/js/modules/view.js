@@ -25,6 +25,7 @@ class View {
     let currs = currencies.selected();
     let $tplParent;
     currs.done((data) => {
+      header.redraw();
       templates.clearParent('list-item');
       templates.clearParent('all-currencies');
       _.each(data, (curr) => {
