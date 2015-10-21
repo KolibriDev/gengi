@@ -50,7 +50,9 @@ let Router = class {
 
     let part = split[1];
 
-    if (part === 'allcurrencies') {
+    if (part === 'error' || part === '500' || part === '404') {
+      view.showError();
+    } else if (part === 'allcurrencies') {
       view.showAllCurrencies();
     } else if (part.length > 4 && part.substring(0, 5) === 'about') {
       view.showAbout(part);

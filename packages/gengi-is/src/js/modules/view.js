@@ -162,7 +162,13 @@ class View {
 
   showEmpty() {}
 
-  showError() {}
+  showError() {
+    header.update({title: 'Oh shit oh shit', subtitle: 'hasta la vista baby'});
+    global.setAttr('view', 'error');
+    global.setAttr('editable', false);
+
+    this.loaded();
+  }
 
 }
 
