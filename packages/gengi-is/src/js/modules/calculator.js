@@ -115,14 +115,14 @@ class Calculator {
     this.amount.isk = newValue;
     this.amount.iskDisplay = format.numberIcelandic(this.amount.isk);
 
-    $('currency[code="ISK"]').find('value').removeClass('largeAmount');
-    $('currency[code="ISK"]').find('value').removeClass('infinity');
+    $('currency').find('value').removeClass('largeAmount');
+    $('currency').find('value').removeClass('infinity');
 
     if (this.amount.isk > this.infinityThreshold) {
-      $('currency[code="ISK"]').find('value').addClass('infinity');
+      $('currency').find('value').addClass('infinity');
       this.amount.iskDisplay = '∞';
     } else if (this.amount.isk > 999999) {
-      $('currency[code="ISK"]').find('value').addClass('largeAmount');
+      $('currency').find('value').addClass('largeAmount');
     }
 
     this.redraw();
@@ -134,15 +134,15 @@ class Calculator {
 
     let pathAmount = this.amount.cur;
 
-    $('currency[code!="ISK"]').find('value').removeClass('largeAmount');
-    $('currency[code!="ISK"]').find('value').removeClass('infinity');
+    $('currency').find('value').removeClass('largeAmount');
+    $('currency').find('value').removeClass('infinity');
 
     if (this.amount.cur > this.infinityThreshold) {
       this.amount.curDisplay = '∞';
       pathAmount = '∞';
-      $('currency[code!="ISK"]').find('value').addClass('infinity');
+      $('currency').find('value').addClass('infinity');
     } else if (this.amount.cur > 999999) {
-      $('currency[code!="ISK"]').find('value').addClass('largeAmount');
+      $('currency').find('value').addClass('largeAmount');
     }
 
     this.redraw();
