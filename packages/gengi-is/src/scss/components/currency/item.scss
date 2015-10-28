@@ -286,6 +286,7 @@ currency {
     value {
       cursor: pointer;
       overflow: hidden;
+      transition: font-size $trans-dur-slow;
     }
 
     value,
