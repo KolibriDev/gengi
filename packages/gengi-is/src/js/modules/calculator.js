@@ -31,8 +31,11 @@ class Calculator {
 
     let value = amount * rate;
     let fix = value < 1 && value > 0.001 ? (value === 0 ? 0 : 5) : 2;
-
     let retValue = parseFloat(value).toFixed(fix);
+
+    if (value > 999) {
+      retValue = parseInt(retValue);
+    }
 
     if (this.focus === 'isk') {
       this.setCur(retValue);
@@ -108,12 +111,34 @@ class Calculator {
   setIsk(newValue) {
     this.amount.isk = newValue;
     this.amount.iskDisplay = format.numberIcelandic(this.amount.isk);
+
+    $('currency[code="ISK"]').find('value').removeClass('largeAmount');
+    $('currency[code="ISK"]').find('value').removeClass('infinity');
+
+    if (this.amount.isk > 999999999) {
+      $('currency[code="ISK"]').find('value').addClass('infinity');
+      this.amount.iskDisplay = '∞';
+    } else if (this.amount.isk > 999999) {
+      $('currency[code="ISK"]').find('value').addClass('largeAmount');
+    }
+
     this.redraw();
   }
 
   setCur(newValue) {
     this.amount.cur = newValue;
     this.amount.curDisplay = format.numberIcelandic(this.amount.cur);
+
+    $('currency[code!="ISK"]').find('value').removeClass('largeAmount');
+    $('currency[code!="ISK"]').find('value').removeClass('infinity');
+
+    if (this.amount.cur > 999999999) {
+      this.amount.curDisplay = '∞';
+      $('currency[code!="ISK"]').find('value').addClass('infinity');
+    } else if (this.amount.cur > 999999) {
+      $('currency[code!="ISK"]').find('value').addClass('largeAmount');
+    }
+
     this.redraw();
 
     $(document).trigger('amount-changed', {code: this.currency.code, amount: this.amount.cur});

@@ -300,7 +300,11 @@ currency {
         line-height: $big-block;
       }
 
-      font-size: 32px;
+      font-size: 36px;
+      &.largeAmount {
+        font-size: 28px;
+      }
+
       font-weight: 700;
       color: $color-green;
 
@@ -320,6 +324,9 @@ currency {
 
       @include respond-to(360px) {
         font-size: 48px;
+        &.largeAmount {
+          font-size: 36px;
+        }
       }
     }
 
