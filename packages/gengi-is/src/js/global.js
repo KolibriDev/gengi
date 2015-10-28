@@ -12,6 +12,8 @@ let Global = class {
     };
 
     this.attributes = {};
+
+    this.setAttr('infinityThreshold', 999999999);
   }
 
   createEl(name, el, target) {

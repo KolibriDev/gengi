@@ -6,7 +6,10 @@ import SwiftClick from 'vendor/swiftclick';
 import keys from 'modules/keys';
 
 class Calculator {
+
   constructor() {
+    this.infinityThreshold = parseInt(global.getAttr('infinityThreshold'));
+
     this.amount = {
       isk: 0,
       cur: 0,
@@ -115,7 +118,7 @@ class Calculator {
     $('currency[code="ISK"]').find('value').removeClass('largeAmount');
     $('currency[code="ISK"]').find('value').removeClass('infinity');
 
-    if (this.amount.isk > 999999999) {
+    if (this.amount.isk > this.infinityThreshold) {
       $('currency[code="ISK"]').find('value').addClass('infinity');
       this.amount.iskDisplay = '∞';
     } else if (this.amount.isk > 999999) {
@@ -129,11 +132,14 @@ class Calculator {
     this.amount.cur = newValue;
     this.amount.curDisplay = format.numberIcelandic(this.amount.cur);
 
+    let pathAmount = this.amount.cur;
+
     $('currency[code!="ISK"]').find('value').removeClass('largeAmount');
     $('currency[code!="ISK"]').find('value').removeClass('infinity');
 
-    if (this.amount.cur > 999999999) {
+    if (this.amount.cur > this.infinityThreshold) {
       this.amount.curDisplay = '∞';
+      pathAmount = '∞';
       $('currency[code!="ISK"]').find('value').addClass('infinity');
     } else if (this.amount.cur > 999999) {
       $('currency[code!="ISK"]').find('value').addClass('largeAmount');
@@ -141,7 +147,7 @@ class Calculator {
 
     this.redraw();
 
-    $(document).trigger('amount-changed', {code: this.currency.code, amount: this.amount.cur});
+    $(document).trigger('amount-changed', {code: this.currency.code, amount: pathAmount});
   }
 
   process(value, key) {
@@ -190,7 +196,12 @@ class Calculator {
       this.elem.isk.find('value').html(this.amount.iskDisplay || this.amount.isk);
     }
 
-    this.elem.headerpath.html(this.amount.cur);
+    let amount = this.amount.cur;
+    if (this.amount.cur > this.infinityThreshold) {
+      amount = '∞';
+    }
+
+    this.elem.headerpath.html(amount);
     this.elem.numpad.find('[key="del"]').toggleClass('available', this.amount[this.focus].toString().length > 0);
   }
 

@@ -7,6 +7,8 @@ import historySupported from 'support/history';
 
 let Router = class {
   constructor() {
+    this.infinityThreshold = global.getAttr('infinityThreshold');
+
     this.supported = historySupported;
 
     this.state = {
@@ -28,6 +30,7 @@ let Router = class {
     };
 
     $(document).on('amount-changed', (event, data) => {
+      console.log('data', data);
       this.setState('path', '/' + data.code.toUpperCase() + data.amount.toString());
       this.replaceState();
     });
@@ -68,14 +71,23 @@ let Router = class {
 
   isCurrency(part) {
     let amount, code;
+    part = decodeURI(part);
 
-    part.replace(/(\D+)/, (match, p1) => {
-      code = p1;
-    });
-    part.replace(/([0-9.,]+)/, (match, p1) => {
-      p1 = p1.toString().replace(',','.');
-      amount = +p1;
-    });
+    if (part.length === 4 && part[0] === '∞') {
+      code = part.substr(1, 3);
+      amount = this.infinityThreshold+'9';
+    } else if (part.length === 4 && part[3] === '∞') {
+      code = part.substr(0, 3);
+      amount = this.infinityThreshold+'9';
+    } else {
+      part.replace(/(\D+)/, (match, p1) => {
+        code = p1;
+      });
+      part.replace(/([0-9.,]+)/, (match, p1) => {
+        p1 = p1.toString().replace(',','.');
+        amount = +p1;
+      });
+    }
 
     return code.length === 3 ? [code, amount] : [undefined]; // BEWARE :) það þarf að tryggja að það sé alltaf skilað valid array.
   }
