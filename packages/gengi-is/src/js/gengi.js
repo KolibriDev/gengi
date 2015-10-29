@@ -10,6 +10,7 @@ import router from 'modules/router';
 import onLoad from 'modules/onLoad';
 import keys from 'modules/keys';
 import currencies from 'modules/currencies';
+import SwiftClick from 'vendor/swiftclick';
 
 global.setAttr('load-step', '1');
 
@@ -23,10 +24,10 @@ class Gengi {
     this.setEvents();
     this.initRouter();
     this.initSorting();
+    this.swiftclick = new SwiftClick(document.body);
 
     setTimeout(() => {
-      global.clearAttr('load-step');
-      global.setAttr('state', 'ready');
+      $(document).trigger('loaded');
     }, 500);
   }
 
@@ -39,7 +40,21 @@ class Gengi {
 
   setEvents() {
     $(document).on('leaving loading loaded', (event) => {
+      global.clearAttr('load-step');
       global.setAttr('state', event.type);
+
+      if (event.type === 'leaving') {
+        console.log(event.type, 'view', global.getAttr('view'));
+      }
+      if (event.type === 'loading') {
+      }
+      if (event.type === 'loaded' && global.getAttr('view') !== 'home' && global.getAttr('view') !== 'allcurrencies'  && global.getAttr('edit-mode') === 'true') {
+        this.disableEdit();
+      }
+      if (event.type === 'loaded') {
+        this.initSorting();
+        this.swiftclick.replaceNodeNamesToTrack(['currency','curr-selected','curr-next','div','num']);
+      }
 
       if (global.getAttr('view') === 'home' && global.getAttr('edit-mode') === 'true') {
         this.enableEdit();
@@ -104,7 +119,7 @@ class Gengi {
     };
     $.extend(this.sortableOptions, options);
 
-    this.sortablelist = sortable.create($('currency-list > div.list').get(0), this.sortableOptions);
+    window._sortlist = this.sortablelist = sortable.create($('currency-list > div.list').get(0), this.sortableOptions);
   }
 
   initRouter() {

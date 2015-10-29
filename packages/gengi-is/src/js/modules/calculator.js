@@ -2,7 +2,6 @@ import global from 'global';
 import templates from 'modules/templates';
 import sanitize from 'modules/sanitize';
 import format from 'modules/format';
-import SwiftClick from 'vendor/swiftclick';
 import keys from 'modules/keys';
 
 class Calculator {
@@ -14,8 +13,6 @@ class Calculator {
       isk: 0,
       cur: 0,
     };
-
-    this.swiftclick = new SwiftClick(document.querySelector('numpad'));
 
     this.numpad();
     this.currency = {};
