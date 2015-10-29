@@ -48,6 +48,7 @@ class Calculator {
   }
 
   numpadMagic(key) {
+    key = key || '';
     key = key.replace('numpad-', '');
     key = key.replace('period', ',');
     key = key.replace('comma', ',');
