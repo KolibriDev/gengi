@@ -116,16 +116,6 @@ class Calculator {
     this.amount.isk = newValue;
     this.amount.iskDisplay = format.numberIcelandic(this.amount.isk);
 
-    $('currency').find('value').removeClass('largeAmount');
-    $('currency').find('value').removeClass('infinity');
-
-    if (this.amount.isk > this.infinityThreshold) {
-      $('currency').find('value').addClass('infinity');
-      this.amount.iskDisplay = '∞';
-    } else if (this.amount.isk > 999999) {
-      $('currency').find('value').addClass('largeAmount');
-    }
-
     this.redraw();
   }
 
@@ -133,22 +123,7 @@ class Calculator {
     this.amount.cur = newValue;
     this.amount.curDisplay = format.numberIcelandic(this.amount.cur);
 
-    let pathAmount = this.amount.cur;
-
-    $('currency').find('value').removeClass('largeAmount');
-    $('currency').find('value').removeClass('infinity');
-
-    if (this.amount.cur > this.infinityThreshold) {
-      this.amount.curDisplay = '∞';
-      pathAmount = '∞';
-      $('currency').find('value').addClass('infinity');
-    } else if (this.amount.cur > 999999) {
-      $('currency').find('value').addClass('largeAmount');
-    }
-
     this.redraw();
-
-    $(document).trigger('amount-changed', {code: this.currency.code, amount: pathAmount});
   }
 
   process(value, key) {
@@ -180,21 +155,42 @@ class Calculator {
     this.setCur(amount || '');
 
     this.calculate();
+  }
 
-    this.swiftclick.replaceNodeNamesToTrack(['num']);
+  isLargeAmount() {
+    return this.amount.isk > 999999 || this.amount.cur > 999999;
+  }
+
+  isInfinity(field) {
+    if (!field) { return undefined; }
+
+    let amount = this.amount[field];
+
+    return amount > this.infinityThreshold;
   }
 
   redraw() {
     if (this.elem.cur && this.elem.cur.length > 0) {
       this.elem.cur.toggleClass('active', this.focus === 'cur');
       this.elem.cur.find('value').toggleClass('empty', this.amount.cur === '');
-      this.elem.cur.find('value').html(this.amount.curDisplay || this.amount.cur);
+
+      let curValue = this.isInfinity('cur') ? '∞' : this.amount.curDisplay || this.amount.cur;
+      this.elem.cur.find('value').html(curValue);
+
+      this.elem.cur.find('value').toggleClass('infinity', this.isInfinity('cur'));
+      this.elem.cur.find('value').toggleClass('largeAmount', this.isLargeAmount());
     }
 
     if (this.elem.isk && this.elem.isk.length > 0) {
       this.elem.isk.toggleClass('active', this.focus === 'isk');
       this.elem.isk.find('value').toggleClass('empty', this.amount.isk === '');
       this.elem.isk.find('value').html(this.amount.iskDisplay || this.amount.isk);
+
+      let iskValue = this.isInfinity('isk') ? '∞' : this.amount.iskDisplay || this.amount.isk;
+      this.elem.isk.find('value').html(iskValue);
+
+      this.elem.isk.find('value').toggleClass('infinity', this.isInfinity('isk'));
+      this.elem.isk.find('value').toggleClass('largeAmount', this.isLargeAmount());
     }
 
     let amount = this.amount.cur;
@@ -204,6 +200,7 @@ class Calculator {
 
     this.elem.headerpath.html(amount);
     this.elem.numpad.find('[key="del"]').toggleClass('available', this.amount[this.focus].toString().length > 0);
+    $(document).trigger('amount-changed', {code: this.currency.code, amount: amount});
   }
 
   draw() {
