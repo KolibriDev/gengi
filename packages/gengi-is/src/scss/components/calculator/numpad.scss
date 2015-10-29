@@ -90,6 +90,7 @@ numpad {
 
     &[key=',']:before {
       font-weight: 500;
+      line-height: 14px;
     }
 
     &[key='del']:before {
@@ -111,6 +112,10 @@ numpad {
         z-index: 2;
 
         margin: auto;
+
+        path {
+          fill: $color-gray;
+        }
       }
 
       &.available {
