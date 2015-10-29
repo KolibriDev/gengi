@@ -117,8 +117,6 @@ let Router = class {
   }
 
   navigate(newpath) {
-    $(document).trigger('loading');
-
     this.setState('path', newpath);
     this.pushState();
     this.processPath();
