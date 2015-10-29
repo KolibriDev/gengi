@@ -1,3 +1,4 @@
+import underscore from 'vendor/underscore'; // jshint ignore:line
 import jquery from 'vendor/jquery'; // jshint ignore:line
 import storage from 'modules/storage';
 import global from 'global';
@@ -64,7 +65,13 @@ export default {
     if (this.isSelected(code)) { return; }
 
     let stored = this.ensureSelected();
-    stored.push(code);
+    if (stored[stored.length - 1] === 'globe') {
+      stored = _.without(stored, 'globe');
+      stored.push(code);
+      stored.push('globe');
+    } else {
+      stored.push(code);
+    }
 
     storage.set('selectedCurrencies', stored);
   },
