@@ -7,8 +7,12 @@ currency-list {
 
   margin: auto;
   padding: $spacing;
-  height: calc(100% - #{$big-block});
+  height: calc(100% - #{$big-block-small});
   text-align: center;
+
+  @include respond-to(medium) {
+    height: calc(100% - #{$big-block});
+  }
 
   html[gengi-view='allcurrencies'] &,
   html[gengi-view='home'] & {

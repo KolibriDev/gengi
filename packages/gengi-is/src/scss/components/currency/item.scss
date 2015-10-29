@@ -48,6 +48,7 @@ currency {
   }
 
   curr-code {
+    pointer-events: none;
     display: block;
     padding: $spacing*.5 0 0;
 
@@ -131,6 +132,7 @@ currency {
     }
   }
   curr-name {
+    pointer-events: none;
     display: block;
     padding: 0;
 
@@ -157,6 +159,7 @@ currency {
   }
 
   curr-rate {
+    pointer-events: none;
     color: $color-green;
 
     position: absolute;
@@ -196,6 +199,7 @@ currency {
 
   curr-next,
   curr-selected {
+    pointer-events: none;
     position: absolute;
     top: 0; right: 0; bottom: 0;
     z-index: 10;
@@ -268,6 +272,7 @@ currency {
   }
 
   curr-text {
+    pointer-events: none;
     position: relative;
     top: 50%;
     transform: translateY(-50%);
@@ -278,6 +283,7 @@ currency {
   }
 
   curr-input {
+    pointer-events: none;
     cursor: default;
     display: block;
     width: 100%;
@@ -399,6 +405,7 @@ currency {
   html[gengi-editable='true'][gengi-edit-mode='true'] & {
     curr-next,
     curr-selected {
+      pointer-events: initial;
       svg {
         opacity: 1;
         &.svg-next path {
@@ -423,8 +430,11 @@ currency {
     transition-delay: $trans-dur;
   }
 
+  &.sortable-ghost {
+    // opacity: 0.25;
+  }
+
   &.sortable-dragging,
-  &.sortable-ghost,
   &.sortable-chosen {
     cursor: -webkit-grabbing !important;
     cursor: -moz-grabbing !important;

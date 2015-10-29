@@ -470,7 +470,7 @@
 				}
 
 				// as well as creating the ghost element on the document body
-				this._appendGhost();
+				// this._appendGhost();
 
 				var touch = evt.touches ? evt.touches[0] : evt,
 					dx = touch.clientX - tapEvt.clientX,
@@ -943,7 +943,7 @@
 		destroy: function () {
 			var el = this.el;
 
-			el[expando] = null;
+			el[expando] = false;
 
 			_off(el, 'mousedown', this._onTapStart);
 			_off(el, 'touchstart', this._onTapStart);
