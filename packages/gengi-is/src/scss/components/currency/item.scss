@@ -311,6 +311,13 @@ currency {
       &.largeAmount {
         font-size: 28px;
       }
+      &.infinity {
+        font-family: 'Verdana', $font-sans;
+        line-height: $big-block-small - 4px;
+        @include respond-to(medium) {
+          line-height: $big-block - 6px;
+        }
+      }
 
       font-weight: 700;
       color: $color-green;
