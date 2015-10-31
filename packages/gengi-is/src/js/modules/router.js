@@ -30,9 +30,10 @@ let Router = class {
     };
 
     $(document).on('amount-changed', (event, data) => {
-      console.log('data', data);
-      this.setState('path', '/' + data.code.toUpperCase() + data.amount.toString());
-      this.replaceState();
+      if (data && data.code) {
+        this.setState('path', '/' + data.code.toUpperCase() + data.amount.toString());
+        this.replaceState();
+      }
     });
   }
 
