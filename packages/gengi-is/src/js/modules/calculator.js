@@ -23,6 +23,14 @@ class Calculator {
     };
 
     this.draw();
+
+    let resizeTimeout = 0;
+    $(window).on('resize.calculator', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        this.redraw();
+      }, 200);
+    });
   }
 
   calculate() {
