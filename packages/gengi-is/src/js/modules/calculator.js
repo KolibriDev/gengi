@@ -154,8 +154,23 @@ class Calculator {
     this.calculate();
   }
 
-  isLargeAmount() {
-    return this.amount.isk > 999999 || this.amount.cur > 999999;
+  inputSize() {
+    let curHuge = false, iskHuge = false;
+    let curLarger = false, iskLarger = false;
+    let curLarge = false, iskLarge = false;
+
+    // TODO: Figure out a way to do this dynamically
+    if (this.elem.cur && this.elem.cur.length > 0) {
+      curHuge = this.amount.cur > 999999999999;
+      curLarger = this.amount.cur > 999999999;
+      curLarge = this.amount.cur > 999999;
+    }
+    if (this.elem.isk && this.elem.isk.length > 0) {
+      iskHuge = this.amount.isk > 999999999999;
+      iskLarger = this.amount.isk > 999999999;
+      iskLarge = this.amount.isk > 999999;
+    }
+    return curHuge || iskHuge ? 'huge' : (curLarger || iskLarger ? 'larger' : (curLarge || iskLarge ? 'large': 'normal'));
   }
 
   isInfinity(field) {
@@ -170,24 +185,23 @@ class Calculator {
     if (this.elem.cur && this.elem.cur.length > 0) {
       this.elem.cur.toggleClass('active', this.focus === 'cur');
       this.elem.cur.find('value').toggleClass('empty', this.amount.cur === '');
+      this.elem.cur.find('value').toggleClass('infinity', this.isInfinity('cur'));
 
       let curValue = this.isInfinity('cur') ? '∞' : this.amount.curDisplay || this.amount.cur;
       this.elem.cur.find('value').html(curValue);
-
-      this.elem.cur.find('value').toggleClass('infinity', this.isInfinity('cur'));
-      this.elem.cur.find('value').toggleClass('largeAmount', this.isLargeAmount());
     }
 
     if (this.elem.isk && this.elem.isk.length > 0) {
       this.elem.isk.toggleClass('active', this.focus === 'isk');
       this.elem.isk.find('value').toggleClass('empty', this.amount.isk === '');
-      this.elem.isk.find('value').html(this.amount.iskDisplay || this.amount.isk);
+      this.elem.isk.find('value').toggleClass('infinity', this.isInfinity('isk'));
 
       let iskValue = this.isInfinity('isk') ? '∞' : this.amount.iskDisplay || this.amount.isk;
       this.elem.isk.find('value').html(iskValue);
+    }
 
-      this.elem.isk.find('value').toggleClass('infinity', this.isInfinity('isk'));
-      this.elem.isk.find('value').toggleClass('largeAmount', this.isLargeAmount());
+    if (this.elem.wrap && this.elem.wrap.length > 0) {
+      this.elem.wrap.attr('size',this.inputSize());
     }
 
     let amount = this.amount.cur;
@@ -204,6 +218,7 @@ class Calculator {
     templates.clearParent('calculator-item');
     templates.populateAndAppend('calculator-item', {code: 'globe'});
     templates.populateAndAppend('calculator-item', {code: 'ISK'});
+    this.elem.wrap = $('calculator input-area');
     this.elem.cur = $('calculator input-area currency[code!="ISK"]');
     this.elem.isk = $('calculator input-area currency[code="ISK"]');
 

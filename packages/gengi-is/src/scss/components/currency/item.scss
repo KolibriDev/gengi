@@ -1,4 +1,9 @@
 
+input-area {
+  @extend %clearfix;
+  display: block;
+}
+
 currency {
   overflow: hidden;
   user-select: none;
@@ -284,16 +289,14 @@ currency {
 
   curr-input {
     pointer-events: none;
+    overflow: hidden;
     cursor: default;
     display: block;
+    padding-right: 20px;
     width: 100%;
     height: 100%;
 
-    value {
-      cursor: pointer;
-      overflow: hidden;
-      transition: font-size $trans-dur-slow;
-    }
+    text-align: right;
 
     value,
     input {
@@ -307,10 +310,6 @@ currency {
         line-height: $big-block;
       }
 
-      font-size: 36px;
-      &.largeAmount {
-        font-size: 28px;
-      }
       &.infinity {
         font-family: 'Verdana', $font-sans;
         line-height: $big-block-small - 4px;
@@ -336,17 +335,42 @@ currency {
         text-align: center;
       }
 
-      @include respond-to(360px) {
-        font-size: 48px;
-        &.largeAmount {
-          font-size: 36px;
-        }
+      font-size: 36px;
+      @include respond-to(360px) { font-size: 48px; }
+      [size='large'] & {
+        font-size: 28px;
+        @include respond-to(360px) { font-size: 36px; }
+        @include respond-to(420px) { font-size: 42px; }
+        @include respond-to(480px) { font-size: 48px; }
+      }
+      [size='larger'] & {
+        font-size: 22px;
+        @include respond-to(360px) { font-size: 28px; }
+        @include respond-to(420px) { font-size: 32px; }
+        @include respond-to(480px) { font-size: 40px; }
+        @include respond-to(520px) { font-size: 44px; }
+        @include respond-to(540px) { font-size: 48px; }
+      }
+      [size='huge'] & {
+        font-size: 18px;
+        @include respond-to(360px) { font-size: 22px; }
+        @include respond-to(420px) { font-size: 24px; }
+        @include respond-to(480px) { font-size: 28px; }
+        @include respond-to(500px) { font-size: 30px; }
+        @include respond-to(520px) { font-size: 32px; }
+        @include respond-to(540px) { font-size: 34px; }
       }
     }
 
     value {
-      @include text-overflow();
-      padding: 0 $spacing 0 0;
+      cursor: pointer;
+      white-space: nowrap;
+
+      display: inline-block;
+      padding: 0 0 0 0;
+      width: auto;
+
+      transition: font-size $trans-dur-slow;
 
       &.empty {
         &:after {
