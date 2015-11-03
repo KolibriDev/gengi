@@ -91,7 +91,7 @@ class View {
 
       this.loaded();
     });
-    foo.fail((data) => this.showError(data));
+    foo.fail((data) => this.showError('404-curr', { curr, amount, data }));
   }
 
   showAllCurrencies() {
@@ -163,7 +163,9 @@ class View {
 
   showEmpty() {}
 
-  showError() {
+  showError(type, data) {
+    console.log(type, data);
+
     header.update({title: 'Oh shit oh shit', subtitle: 'hasta la vista baby'});
     global.setAttr('view', 'error');
     global.setAttr('editable', false);
