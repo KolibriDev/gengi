@@ -71,15 +71,15 @@ class Gengi {
 
   enableEdit() {
     global.setAttr('edit-mode', true);
-    this.sortingOptions({
-      'delay': 0,
-    });
+    // this.sortingOptions({
+    //   'delay': 0,
+    // });
   }
   disableEdit() {
     global.setAttr('edit-mode', false);
-    this.sortingOptions({
-      'delay': 250,
-    });
+    // this.sortingOptions({
+    //   'delay': 250,
+    // });
   }
 
   sortingOptions(options) {
@@ -94,7 +94,7 @@ class Gengi {
     this.sortableOptions = {
       group: 'currency-list',
       sort: true,
-      delay: 250,
+      delay: 10,
       disabled: false,
       animation: 150,
       draggable: 'currency',
