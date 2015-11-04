@@ -1,5 +1,5 @@
 'use strict';
-import jquery from 'vendor/jquery'; // jshint ignore:line
+import $ from 'modules/jquery';
 import domReady from 'vendor/domReady';
 
 export default (callback, reLoadCallback) => {

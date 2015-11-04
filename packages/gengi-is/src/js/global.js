@@ -1,7 +1,5 @@
 'use strict';
-/* jshint ignore:start */
-import jquery from 'vendor/jquery';
-/* jshint ignore:end */
+import $ from 'modules/jquery';
 import _ from 'modules/underscore';
 
 let Global = class {

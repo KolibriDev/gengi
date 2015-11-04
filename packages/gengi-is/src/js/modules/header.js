@@ -1,4 +1,4 @@
-import jquery from 'vendor/jquery'; // jshint ignore:line
+import $ from 'modules/jquery';
 import _ from 'modules/underscore';
 import global from 'global';
 

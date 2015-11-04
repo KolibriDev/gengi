@@ -1,8 +1,6 @@
 'use strict';
 import global from 'global';
-/* jshint ignore:start */
-import jquery from 'vendor/jquery';
-/* jshint ignore:end */
+import $ from 'modules/jquery';
 import _ from 'modules/underscore';
 import sortable from 'vendor/sortable';
 import storage from 'modules/storage';
