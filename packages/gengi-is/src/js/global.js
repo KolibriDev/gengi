@@ -1,8 +1,8 @@
 'use strict';
 /* jshint ignore:start */
 import jquery from 'vendor/jquery';
-import underscore from 'vendor/underscore';
 /* jshint ignore:end */
+import _ from 'modules/underscore';
 
 let Global = class {
   constructor() {

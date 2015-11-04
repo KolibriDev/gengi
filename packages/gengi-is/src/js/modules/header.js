@@ -1,5 +1,5 @@
 import jquery from 'vendor/jquery'; // jshint ignore:line
-import underscore from 'vendor/underscore'; // jshint ignore:line
+import _ from 'modules/underscore';
 import global from 'global';
 
 class Header {

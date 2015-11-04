@@ -1,12 +1,12 @@
 'use strict';
-import sanitize from 'modules/sanitize';
+import _ from 'modules/underscore';
 
 export const code = function(code) {
-  code = sanitize.code(code);
+  code = _(code).sanitizeCode();
   return code.toUpperCase();
 };
 export const number = function(value, fix) {
-  value = sanitize.number(value);
+  value = _(value).sanitizeNumber();
   return !fix ? value : parseFloat(value).toFixed(fix);
 };
 export const numberURL = function(value) {

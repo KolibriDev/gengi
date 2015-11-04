@@ -1,4 +1,4 @@
-import underscore from 'vendor/underscore'; // jshint ignore:line
+import _ from 'modules/underscore';
 import global from 'global';
 import currencies from 'modules/currencies';
 import calculator from 'modules/calculator';

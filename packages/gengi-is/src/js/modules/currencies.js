@@ -1,5 +1,5 @@
-import underscore from 'vendor/underscore'; // jshint ignore:line
 import jquery from 'vendor/jquery'; // jshint ignore:line
+import _ from 'modules/underscore';
 import storage from 'modules/storage';
 import global from 'global';
 import moment from 'vendor/moment';

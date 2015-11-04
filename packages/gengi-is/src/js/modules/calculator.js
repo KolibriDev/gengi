@@ -1,6 +1,6 @@
 import global from 'global';
+import _ from 'modules/underscore';
 import templates from 'modules/templates';
-import sanitize from 'modules/sanitize';
 import format from 'modules/format';
 import keys from 'modules/keys';
 
@@ -34,8 +34,8 @@ class Calculator {
   }
 
   calculate() {
-    let rate = sanitize.number(this.focus === 'isk' ? 1 / this.currency.rate : this.currency.rate);
-    let amount = sanitize.number(this.amount[this.focus] || 1);
+    let rate = _(this.focus === 'isk' ? 1 / this.currency.rate : this.currency.rate).sanitizeNumber();
+    let amount = _(this.amount[this.focus] || 1).sanitizeNumber();
 
     let value = amount * rate;
     let fix = value < 1 && value > 0.001 ? (value === 0 ? 0 : 5) : 2;
