@@ -23,10 +23,6 @@ class Gengi {
     this.initRouter();
     this.initSorting();
     this.swiftclick = new SwiftClick(document.body);
-
-    setTimeout(() => {
-      $(document).trigger('loaded');
-    }, 500);
   }
 
   ensureVersion(version) {
@@ -49,19 +45,19 @@ class Gengi {
         if (global.getAttr('edit-mode') === 'true' && global.getAttr('view') !== 'home' && global.getAttr('view') !== 'allcurrencies') {
           this.disableEdit();
         }
-      }
 
-      if (global.getAttr('view') === 'home') {
-        if (global.getAttr('edit-mode') === 'true') {
-          this.enableEdit();
-          this.enableSorting();
+        if (global.getAttr('view') === 'home') {
+          if (global.getAttr('edit-mode') === 'true') {
+            this.enableEdit();
+            this.enableSorting();
+          } else {
+            this.disableEdit();
+            this.disableSorting();
+          }
         } else {
           this.disableEdit();
-          this.softdisableSorting();
+          this.disableSorting();
         }
-      } else {
-        this.disableEdit();
-        this.disableSorting();
       }
     });
 
@@ -128,7 +124,7 @@ class Gengi {
     this.sortableOptions = {
       group: 'currency-list',
       sort: true,
-      delay: 250,
+      delay: 10,
       disabled: true,
       animation: 150,
       draggable: 'currency',
@@ -141,6 +137,7 @@ class Gengi {
 
       onStart: () => {
         this.enableEdit();
+        this.enableSorting();
       },
 
       onUpdate: () => {
