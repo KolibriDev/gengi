@@ -1,17 +1,40 @@
 about.tech
   hero: inner
-    h2 Ze tech
+    h2 Á hvaða tækni keyrir Gengi
+      br
+      | – og af hverju?
 
   content
     section
-      h3 Hugmyndafræðin
-      p fo fo foooo
+      h2
+      p Til að öðlast þá gagnvirkni og léttleika sem við sóttumst eftir að útfæra var ákveðið að notast ekki við
+        | neitt framework (t.d. AngularJS), eins lítið af pökkum og raunhæft var og enga icon fonta.
 
     section
-      p Til að öðlast þá gagnvirkni og léttleika sem við sóttumst eftir að útfæra var ákveðið að notast ekki við neitt framework (e.g. AngularJS) og eins lítið af pökkum og mögulegt.
-      p Notum ECMAScript 2015 (futureproofing), jade vegna þess að hrátt html sukkar, Sass (scss) vegna þess að hrátt CSS sukkar, underscore, jquery, swiftclick og HTML5 sortable
-      p gulp og babel
-      p convertum öllu í AMD modula í buildi og getum þar með skipt um skoðun síðar
+      h3 Forritun
+      p Við notum ECMAScript 2015 (futureproofing) og Babel til að breyta því í ES5 við build,
+        br
+        | Jade til þæginda og Sass (scss) vegna þess að það gefur okkur aukinn svegjanleika og viðhaldanleika á stílum.
+        br
+        | Einnig notum við meðal annars MomentJS, Swiftclick og Sortable
+
+      h3 Léttleiki
+      p Skiptum appinu upp í REST-api sem forvinnur gögnin eins og unnt er fyrir viðmótið.
+      p Notum manifest og localstorage til að halda gagnaflutningum í algjöru lágmarki.
+
+      h2 Hlekkir
+      .example: p.blue-light.large.medium
+        a(href='http://www.ecma-international.org/ecma-262/6.0/') ECMAScript 2015
+      .example: p.blue-light.large.medium
+        a(href='http://jade-lang.com/') Jade
+      .example: p.blue-light.large.medium
+        a(href='http://sass-lang.com/') Sass/Scss
+      .example: p.blue-light.large.medium
+        a(href='http://momentjs.com/') MomentJS
+      .example: p.blue-light.large.medium
+        a(href='https://github.com/munkychop/swiftclick/') Swiftclick
+      .example: p.blue-light.large.medium
+        a(href='https://github.com/RubaXa/Sortable') Sortable
 
   include _footer
 
