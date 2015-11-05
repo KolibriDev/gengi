@@ -166,40 +166,44 @@ class View {
   showError(type, data) {
     console.log(type, data);
 
-    let title = '', subtitle = '';
+    let title = '', subtitle = '', reason = '';
 
     if (type.indexOf('404') > -1) {
       if (type === '404-curr' && data && data.curr) {
         title = `${data.curr} er ekki til`;
-        subtitle = 'Smelltu á örina til að fara til baka';
+        reason = `Því miður höfum við engan gjaldmiðil með ISO 4217 kóðann <b>${data.curr}</b>`;
+        // reason += `Ef þú telur þetta vera skammarleg mistök af okkar hálfu viljum við endilega heyra frá þér, annars skaltu fara bara aftur heim.`;
       } else if (data && data.path && false) {
         title = `${data.path} er ekki alvöru síða`;
-        subtitle = 'Smelltu á örina til að fara til baka';
       } else {
-        title = `Do what I do`;
+        title = `Do what I do,`;
         subtitle = 'Hold tight and pretend it’s a plan!';
       }
     } else {
       title = 'Oh shit, oh shit';
-      let subtitles = [
-        'Hasta la vista baby',
-        'Fuck you, asshole',
-        'I need your clothes, your boots and your motorcycle',
-        'Why do you cry?',
-        'Come with me if you want to live',
-        'Terminated',
-        'I need a vacation',
-        'I’ll be back',
-
-        'Bow ties are cool',
-        'Whatever you do, don’t blink',
-      ];
-      subtitle = subtitles[_.random(0,subtitles.length - 1)];
+      reason = 'Hugsanlega einhver gagnavilla, eða gagnaþjónn niðri';
     }
+
+    let subtitles = [
+      'Hasta la vista baby',
+      'Fuck you, asshole',
+      'I need your clothes, your boots and your motorcycle',
+      'Why do you cry?',
+      'Come with me if you want to live',
+      'Terminated',
+      'I need a vacation',
+      'I’ll be back',
+
+      'Bow ties are cool',
+      'Whatever you do, don’t blink',
+    ];
+    subtitle = subtitle || subtitles[_.random(0,subtitles.length - 1)];
 
     header.update({title, subtitle});
     global.setAttr('view', 'error');
     global.setAttr('editable', false);
+
+    $('[reason]').html(reason);
 
     this.loaded();
   }
