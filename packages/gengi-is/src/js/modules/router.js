@@ -12,6 +12,7 @@ let Router = class {
     this.supported = historySupported;
 
     this.state = {
+      tick: 0,
       title: null,
       state: window.history.state || null,
       path: window.location.pathname || ''
@@ -128,13 +129,32 @@ let Router = class {
   }
 
   navigate(newpath) {
+    this.state.tick++;
     this.setState('path', newpath);
     this.pushState();
     this.processPath();
   }
 
   back() {
-    window.history.back();
+    let view = global.getAttr('view');
+    if (view !== 'about-main' && view.indexOf('about-') === 0) {
+      console.log('BACK', 'about');
+
+      $(document).trigger('leaving');
+      setTimeout(() => {
+        this.navigate('/about');
+      }, 150);
+    } else if (this.state.tick > 1 && view === 'calculator') {
+      console.log('BACK', 'back');
+      window.history.back();
+    } else {
+      console.log('BACK', 'home');
+
+      $(document).trigger('leaving');
+      setTimeout(() => {
+        this.navigate('/');
+      }, 150);
+    }
   }
 };
 

@@ -80,6 +80,14 @@ class Gengi {
         this.disableSorting();
       }
     });
+
+    $(document).off('keydown.esc').on('keydown.esc', (event) => {
+      if (keys.which(event.which) === 'escape') {
+        router.back();
+        event.preventDefault();
+        return false;
+      }
+    });
   }
 
   enableEdit() {
