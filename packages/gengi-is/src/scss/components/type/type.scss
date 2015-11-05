@@ -12,8 +12,16 @@ p {
     font-weight: 700;
   }
 
+  &.medium {
+    font-weight: 500;
+  }
+
   &.blue-light {
     background-color: $color-blue-light;
+  }
+
+  &.lighter {
+    background-color: $color-lighter;
   }
 }
 

@@ -1,25 +1,35 @@
 about.whodunnit
   hero.kolibri: inner
     include ../../../img/svg-kolibri-logo.svg
+    p Gengi.is er tilraunaverkefni unnið af hugbúnaðarfyrirtækinu Kolibri þar sem hönnuðir, forritarar, og teymisþjálfarar starfa í teymum með kúnna með það að markmiði að bæta stafrænar viðskiptaupplifanir.
   content
     section
-      p Kolibri er fyrirtæki sem sérhæfir sig í Digital Business, en finnst gaman að leika sér og láta gott af sér leiða.
+      h2 Úrvalsverkefni
+      p Verkefnið er unnið í svokölluðum „úrvalstíma“ þar sem starfsfólk Kolibri leikur sér að læra. Í þessu tilfelli er prófað nýjar og framúrstefnulegar aðferðir í þróun vefappa sem og ferska, létta, og aðgengilega nálgun í hönnun.
+
+      h2 Viltu vita meira
+      .example: p.lighter.large.medium
+        a(href='http://kolibri.is', tartet='_blank') Vefur Kólibri
+      .example: p.lighter.large.medium
+        a(href='/about-tech') Tæknin í Gengi.is
 
 
-    section.contact
-      h3 Endilega hafðu samband
-      p
-        a(href='mailto:hallo@kolibri.is') hallo@kolibri.is
-      p
-        a(href='tel:+3545228900') 522 8900
-      p
-        a(target='_blank' href='https://www.facebook.com/HelloKolibri') Facebook
-      p
-        a(target='_blank' href='https://twitter.com/HelloKolibri') Twitter
+    section
+      h2 Hafðu samband
 
-      h3 eða komdu í kaffi
-      p Laugavegi 26, 101 Reykjavík
-        a(href='http://kort.kolibri.is/' target='_blank') PIN
+      p Okkur finnst gaman að fá ábendingar, hrós, eða uppbyggilegt last ;)
 
+      .example
+        p.lighter.large.medium
+          include ../../../img/svg-mail.svg
+          b: a(href='mailto:hallo@kolibri.is') E-mail
+
+      .example
+        p.lighter.large.medium
+          include ../../../img/svg-twitter.svg
+          b: a(target='_blank' href='https://twitter.com/HelloKolibri') Twitter
+
+          include ../../../img/svg-facebook.svg
+          b: a(target='_blank' href='https://www.facebook.com/HelloKolibri') Facebook
 
   include _footer
