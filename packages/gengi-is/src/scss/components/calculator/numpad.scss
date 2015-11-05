@@ -17,7 +17,8 @@ numpad {
 
     display: inline-block;
     margin: 0 $spacing 0;
-    width: calc(#{100%/3} - #{$spacing*2});
+    $third: percentage(100/3);
+    width: calc(#{$third} - #{$spacing*2});
     height: $block-small;
 
     @include respond-to(medium) {
