@@ -23,6 +23,11 @@ class Gengi {
     this.initRouter();
     this.initSorting();
     this.swiftclick = new SwiftClick(document.body);
+
+    setTimeout(() => {
+      // Make sure we're loaded
+      $(document).trigger('loaded');
+    }, 500);
   }
 
   ensureVersion(version) {
