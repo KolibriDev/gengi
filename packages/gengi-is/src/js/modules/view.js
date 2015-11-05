@@ -192,6 +192,7 @@ class View {
         'I’ll be back',
 
         'Bow ties are cool',
+        'Whatever you do, don’t blink',
       ];
       subtitle = subtitles[_.random(0,subtitles.length - 1)];
     }
