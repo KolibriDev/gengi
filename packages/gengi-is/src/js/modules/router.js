@@ -53,7 +53,7 @@ let Router = class {
       view.showHome(); return;
     }
 
-    let part = split[1];
+    let part = split[1].toString().toLowerCase();
 
     if (part === 'error' || part === '500' || part === '404') {
       view.showError(part, {path: this.state.path});
@@ -66,7 +66,11 @@ let Router = class {
       if (code) {
         view.showCalculator(code, amount);
       } else {
-        view.showHome();
+        if (part.length > 0) {
+          view.showError('404');
+        } else {
+          view.showHome();
+        }
       }
     }
   }
