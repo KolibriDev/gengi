@@ -19,5 +19,29 @@ calculator {
 
   currency {
     cursor: pointer;
+
+    value {
+      transform: translate3d(0,0,0);
+      transition-delay: $trans-dur*.75;
+    }
+    &.active value {
+      transition-delay: 0ms;
+    }
+  }
+
+  .changing {
+
+    currency {
+      cursor: wait;
+
+      value {
+        opacity: 0;
+        transform: translate3d(100%,0,0);
+        transition-delay: 0ms;
+      }
+      &.active value {
+        transition-delay: 0ms;
+      }
+    }
   }
 }

@@ -21,6 +21,7 @@ class Calculator {
       headerpath: $('header [path] [amount]'),
       numpad: $('calculator numpad'),
     };
+    this.focustimeout = 0;
 
     this.draw();
 
@@ -109,6 +110,21 @@ class Calculator {
     });
   }
 
+  setFocus(focus) {
+    if ((this.focus === 'isk' && focus === 'cur') || (this.focus === 'cur' && focus === 'isk')) {
+      this.elem.wrap.addClass('changing');
+
+      clearTimeout(this.focustimeout);
+      this.focustimeout = setTimeout(() => {
+        this.elem.wrap.removeClass('changing');
+        this.focus = focus;
+
+        this.setFocused(focus === 'isk' ? this.amount.cur : this.amount.isk);
+        this.calculate();
+      },250);
+    }
+  }
+
   setFocused(newValue) {
     if (this.focus === 'isk') {
       this.setIsk(newValue);
@@ -146,6 +162,8 @@ class Calculator {
       }
     } else if (key === 'del' || key === 'delete' || key === 'backspace') {
       value = value.slice(0, -1);
+    } else if (key === 'tab') {
+      this.setFocus(this.focus === 'isk' ? 'cur' : 'isk');
     } else {
       value += key;
     }
@@ -231,12 +249,10 @@ class Calculator {
     this.elem.isk = $('calculator input-area currency[code="ISK"]');
 
     this.elem.isk.off('click.calc').on('click.calc', () => {
-      this.focus = 'isk';
-      this.redraw();
+      this.setFocus('isk');
     });
     this.elem.cur.off('click.calc').on('click.calc', () => {
-      this.focus = 'cur';
-      this.redraw();
+      this.setFocus('cur');
     });
   }
 }

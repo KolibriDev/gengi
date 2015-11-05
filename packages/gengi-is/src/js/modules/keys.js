@@ -166,8 +166,6 @@ keys.isFunctionalKey = (which) => {
     which === keys.alt ||
     which === keys.home ||
     which === keys.end ||
-    which === keys.shift ||
-    which === keys.tab ||
     which === keys.cmd;
 };
 keys.isClickModifier = (event) => {
