@@ -398,6 +398,9 @@ currency {
   &.active:after {
     width: 6px;
   }
+  .changing &:after {
+    width: 0px;
+  }
 
   html[gengi-editable='true'][gengi-edit-mode='true'] &[route='calculator'] {
     cursor: default;
