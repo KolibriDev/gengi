@@ -1,6 +1,6 @@
 header {
   html[gengi-view='about-whodunnit'] & {
-    background-color: $color-kolibri-yellow;
+    background-color: mix(black, $color-kolibri-yellow, 5%);
 
     &, hgroup {
       color: rgba(black, 0.25);
