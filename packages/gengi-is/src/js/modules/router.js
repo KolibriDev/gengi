@@ -62,7 +62,6 @@ let Router = class {
       view.showAbout(part);
     } else {
       let [code, amount] = this.isCurrency(part); // BEWARE :) það þarf að tryggja að það sé alltaf skilað valid array.
-      console.log('xx', code, amount);
       if (code) {
         view.showCalculator(code, amount);
       } else {
@@ -101,7 +100,6 @@ let Router = class {
       });
     }
 
-    console.log('code, amount', code.length, code, amount);
     return code.length === 3 ? [code, amount] : [undefined]; // BEWARE :) það þarf að tryggja að það sé alltaf skilað valid array.
   }
 
