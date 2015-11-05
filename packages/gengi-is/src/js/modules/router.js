@@ -55,7 +55,7 @@ let Router = class {
     let part = split[1];
 
     if (part === 'error' || part === '500' || part === '404') {
-      view.showError(part);
+      view.showError(part, {path: this.state.path});
     } else if (part === 'allcurrencies') {
       view.showAllCurrencies();
     } else if (part.length > 4 && part.substring(0, 5) === 'about') {

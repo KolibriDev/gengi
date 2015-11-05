@@ -166,7 +166,37 @@ class View {
   showError(type, data) {
     console.log(type, data);
 
-    header.update({title: 'Oh shit oh shit', subtitle: 'hasta la vista baby'});
+    let title = '', subtitle = '';
+
+    if (type.indexOf('404') > -1) {
+      if (type === '404-curr' && data && data.curr) {
+        title = `${data.curr} er ekki til`;
+        subtitle = 'Smelltu á örina til að fara til baka';
+      } else if (data && data.path && false) {
+        title = `${data.path} er ekki alvöru síða`;
+        subtitle = 'Smelltu á örina til að fara til baka';
+      } else {
+        title = `Do what I do`;
+        subtitle = 'Hold tight and pretend it’s a plan!';
+      }
+    } else {
+      title = 'Oh shit, oh shit';
+      let subtitles = [
+        'Hasta la vista baby',
+        'Fuck you, asshole',
+        'I need your clothes, your boots and your motorcycle',
+        'Why do you cry?',
+        'Come with me if you want to live',
+        'Terminated',
+        'I need a vacation',
+        'I’ll be back',
+
+        'Bow ties are cool',
+      ];
+      subtitle = subtitles[_.random(0,subtitles.length - 1)];
+    }
+
+    header.update({title, subtitle});
     global.setAttr('view', 'error');
     global.setAttr('editable', false);
 
