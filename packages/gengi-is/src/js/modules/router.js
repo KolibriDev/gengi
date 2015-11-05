@@ -62,6 +62,7 @@ let Router = class {
       view.showAbout(part);
     } else {
       let [code, amount] = this.isCurrency(part); // BEWARE :) það þarf að tryggja að það sé alltaf skilað valid array.
+      console.log('xx', code, amount);
       if (code) {
         view.showCalculator(code, amount);
       } else {
@@ -81,15 +82,26 @@ let Router = class {
       code = part.substr(0, 3);
       amount = this.infinityThreshold+'9';
     } else {
-      part.replace(/(\D+)/, (match, p1) => {
+
+
+      //part.replace(/(\D+)/g, (match, p1) => {
+      //  console.log('match:'+match, 'p1:'+p1);
+      //  if (p1 !== '.' && p1 !== ',') {
+      //    code = p1;
+      //  }
+      //});
+
+      part.replace(/([a-z,A-Z]+)/, (match, p1) => {
         code = p1;
       });
+
       part.replace(/([0-9.,]+)/, (match, p1) => {
         p1 = p1.toString().replace(',','.');
         amount = +p1;
       });
     }
 
+    console.log('code, amount', code.length, code, amount);
     return code.length === 3 ? [code, amount] : [undefined]; // BEWARE :) það þarf að tryggja að það sé alltaf skilað valid array.
   }
 
