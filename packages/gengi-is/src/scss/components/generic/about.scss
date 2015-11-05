@@ -89,11 +89,21 @@ about {
 
     .example {
       p {
+        font-size: $font-size-large;
+        font-weight: 500;
         padding: $spacing/2;
+
+        &.highlight {
+          margin-bottom: $spacing/2;
+        }
       }
-      p + p.blue-light {
+      p + p.highlight {
         margin-top: -20px;
       }
+
+      margin-right: -$spacing;
+      margin-left: -$spacing;
+
     }
 
   }
