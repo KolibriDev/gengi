@@ -138,18 +138,13 @@ let Router = class {
   back() {
     let view = global.getAttr('view');
     if (view !== 'about-main' && view.indexOf('about-') === 0) {
-      console.log('BACK', 'about');
-
       $(document).trigger('leaving');
       setTimeout(() => {
         this.navigate('/about');
       }, 150);
     } else if (this.state.tick > 1 && view === 'calculator') {
-      console.log('BACK', 'back');
       window.history.back();
     } else {
-      console.log('BACK', 'home');
-
       $(document).trigger('leaving');
       setTimeout(() => {
         this.navigate('/');
