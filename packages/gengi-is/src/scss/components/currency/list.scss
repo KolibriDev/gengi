@@ -19,6 +19,16 @@ currency-list {
     display: block;
   }
 
+  div.allcurrencies {
+    display: none;
+  }
+
+  html[gengi-view='home'] & {
+    div.allcurrencies {
+      display: block;
+    }
+  }
+
   opacity: 1;
   transform: translate3d(0,0,0);
   perspective: 1000px;

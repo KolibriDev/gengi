@@ -404,8 +404,10 @@ currency {
   }
 
   html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] & {
-    cursor: move;
-    cursor: ns-resize;
+    &[code]:not([code='globe']) {
+      cursor: move;
+      cursor: ns-resize;
+    }
   }
 
   html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] & {
@@ -419,9 +421,8 @@ currency {
 
   html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] & {
     &[code]:before,
-    &[code] curr-symbol,
-    curr-code,
-    curr-name {
+    &:not([code='globe']) curr-code,
+    &:not([code='globe']) curr-name {
       transform: translate3d(50px,0,0);
     }
   }

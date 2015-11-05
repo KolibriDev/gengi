@@ -65,13 +65,7 @@ export default {
     if (this.isSelected(code)) { return; }
 
     let stored = this.ensureSelected();
-    if (stored[stored.length - 1] === 'globe') {
-      stored = _.without(stored, 'globe');
-      stored.push(code);
-      stored.push('globe');
-    } else {
-      stored.push(code);
-    }
+    stored.push(code);
 
     storage.set('selectedCurrencies', stored);
   },
@@ -95,7 +89,7 @@ export default {
 
     if (!stored) {
       stored = [
-        'USD', 'EUR', 'GBP', 'NOK', 'DKK', 'SEK', 'globe'
+        'USD', 'EUR', 'GBP', 'NOK', 'DKK', 'SEK'
       ];
       storage.set('selectedCurrencies', stored);
     }
@@ -121,13 +115,6 @@ export default {
         let item = _.where(data.list, {code: code})[0];
         if (item) {
           retobj[code] = item;
-        } else if (code === 'globe') {
-          retobj[code] = {
-            code: 'globe',
-            title: 'Allar myntir',
-            alttitle: 'Bæta við',
-            name: 'Setja aðra mynt á forsíðu',
-          };
         }
       });
 

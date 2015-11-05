@@ -9,18 +9,16 @@ currency-list
         curr-rate(tpl='rate' attr='low')
         curr-selected(attr='onhome')
           include ../../img/svg-addremove.svg
-
-    template(name='all-currencies')
-      currency(attr='code' template route='allcurrencies')
-        curr-drag: include ../../img/svg-drag.svg
-        curr-symbol
-          .globe: include ../../img/svg-globe.svg
-          .plus: include ../../img/svg-plus.svg
-        curr-code(attr='title')
-          span.alt(tpl='alttitle')
-        curr-name(tpl='name')
-        curr-next(attr='onhome')
-          include ../../img/svg-next.svg
+  div.allcurrencies
+    currency(code='globe' template route='allcurrencies')
+      curr-symbol
+        .globe: include ../../img/svg-globe.svg
+        .plus: include ../../img/svg-plus.svg
+      curr-code(title='Allar myntir')
+        span.alt Bæta við
+      curr-name Setja aðra mynt á forsíðu
+      curr-next
+        include ../../img/svg-next.svg
 
   div(route='about' title='Um Gengi.is').footer
     hr
