@@ -1,0 +1,14 @@
+header {
+  html[gengi-view='about-whodunnit'] & {
+    background-color: $color-kolibri-yellow;
+
+    &, hgroup {
+      color: rgba(black, 0.25);
+    }
+
+    inner svg.svg-logo path.arrow,
+    [back] path {
+      fill: rgba(black, 0.25);
+    }
+  }
+}
