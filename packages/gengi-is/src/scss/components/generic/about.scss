@@ -43,7 +43,7 @@ about {
     inner {
       display: block;
       margin: auto;
-      padding: 0;
+      padding: $spacing 0;
       min-width: $page-min-width;
       max-width: 320px;
     }
@@ -89,23 +89,31 @@ about {
 
     .example {
       p {
-        font-size: $font-size-large;
-        font-weight: 500;
         padding: $spacing/2;
 
-        &.blue-light {
-          margin-bottom: $spacing/2;
+        &.blue-light, &.lighter {
+          font-size: $font-size-large;
+          font-weight: 500;
+          margin-bottom: $spacing;
         }
+
       }
-      p + p.blue-light {
+      p + p.blue-light,
+      p + p.lighter {
         margin-top: -20px;
       }
 
       margin-right: -$spacing;
       margin-left: -$spacing;
-
     }
 
+    h1, h2, h3, h4, h5, h6 {
+      padding-top: $spacing/2;
+    }
+
+    .logo-center {
+      margin-bottom: $spacing;
+    }
   }
 
   div.footer {
