@@ -15,6 +15,12 @@ about {
     color: $font-color;
     text-decoration: none;
 
+    width: 100%;
+
+    &.narrow {
+      width: 50%;
+    }
+
     &.large {
       font-size: $font-size-large;
       font-weight: 700;
