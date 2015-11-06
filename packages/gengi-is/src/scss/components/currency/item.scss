@@ -370,7 +370,7 @@ currency {
       padding: 0 0 0 0;
       width: auto;
 
-      transition: font-size $trans-dur-slow, opacity $trans-dur-slow, transform $trans-dur-slow;
+      transition: font-size $trans-dur-slow, opacity $trans-dur-slow ease $trans-dur*.75, transform $trans-dur-slow ease $trans-dur*.75;
 
       &.empty {
         &:after {
