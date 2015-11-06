@@ -23,15 +23,18 @@ about.whodunnit
 
       .example
         p.lighter
-          include ../../../img/svg-mail.svg
-          b: a(href='mailto:hallo@kolibri.is') E-mail
+          a(href='mailto:hallo@kolibri.is' target='_blank')
+            include ../../../img/svg-mail.svg
+            b E-mail
 
       .example
         p.lighter
-          include ../../../img/svg-twitter.svg
-          b: a(target='_blank' href='https://twitter.com/HelloKolibri') Twitter
+          a(href='https://twitter.com/HelloKolibri' target='_blank')
+            include ../../../img/svg-twitter.svg
+            b Twitter
 
-          include ../../../img/svg-facebook.svg
-          b: a(target='_blank' href='https://www.facebook.com/HelloKolibri') Facebook
+          a(href='https://www.facebook.com/HelloKolibri' target='_blank')
+            include ../../../img/svg-facebook.svg
+            b Facebook
 
   include _footer
