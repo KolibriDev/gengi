@@ -1,5 +1,4 @@
 
-body.mce-content-body,
 html {
   overflow: hidden;
   height: 100%;
@@ -12,6 +11,9 @@ html {
   color: $font-color;
 
   background-color: $body-background;
+  &[gengi-view='about-whodunnit'] {
+    background-color: $color-kolibri-yellow;
+  }
 
   direction: $text-direction;
 
@@ -26,6 +28,9 @@ body {
   height: 100%;
 
   background-color: $body-background;
+  html[gengi-view='about-whodunnit'] & {
+    background-color: $color-kolibri-yellow;
+  }
 }
 
 main {

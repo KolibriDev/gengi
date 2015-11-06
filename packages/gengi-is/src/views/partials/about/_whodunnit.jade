@@ -22,19 +22,17 @@ about.whodunnit
       p Okkur finnst gaman að fá ábendingar, hrós, eða uppbyggilegt last ;)
 
       .example
-        p.lighter
-          a(href='mailto:hallo@kolibri.is' target='_blank')
-            include ../../../img/svg-mail.svg
-            b E-mail
+        a.lighter(href='mailto:hallo@kolibri.is' target='_blank')
+          include ../../../img/svg-mail.svg
+          b E-mail
 
       .example
-        p.lighter
-          a(href='https://twitter.com/HelloKolibri' target='_blank').narrow
-            include ../../../img/svg-twitter.svg
-            b Twitter
+        a.lighter.narrow(href='https://twitter.com/HelloKolibri' target='_blank')
+          include ../../../img/svg-twitter.svg
+          b Twitter
 
-          a(href='https://www.facebook.com/HelloKolibri' target='_blank').narrow
-            include ../../../img/svg-facebook.svg
-            b Facebook
+        a.lighter.narrow(href='https://www.facebook.com/HelloKolibri' target='_blank')
+          include ../../../img/svg-facebook.svg
+          b Facebook
 
   include _footer
