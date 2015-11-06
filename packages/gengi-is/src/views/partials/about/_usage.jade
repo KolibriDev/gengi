@@ -8,16 +8,19 @@ about.usage
 
       p Hægt er að sækja gengisupplýsingar ákveðins gjaldmiðils með því að stimpla skammstöfun hans beint í vefslóðina.
 
+      p Þannig má sækja gengi bandaríkjadals beint á slóðinni:
       .example
-        p Þannig má sækja gengi bandaríkjadals beint á slóðinni:
-        p.blue-light gengi.is/
+        span.blue-light
+          | gengi.is/
           b USD
 
+      p Einnig er hægt að slá inn upphæðir beint í vefslóðina og þannig má m.a. reikna út gengi 11,5 evra:
       .example
-        p Einnig er hægt að slá inn upphæðir beint í vefslóðina og þannig má m.a. reikna út gengi 11,5 evra:
-        p.blue-light gengi.is/
+        span.blue-light
+          | gengi.is/
           b EUR11,5
-        p.blue-light gengi.is/
+        span.blue-light
+          | gengi.is/
           b 11.5EUR
 
     section
@@ -30,11 +33,10 @@ about.usage
 
       .example
         p.bold Skoðaðu leiðbeiningar fyrir þinn síma:
-        p.blue-light
-          a(href='http://www.tech-recipes.com/rx/44908/ios-add-website-shortcut-to-home-screen/' target='_blank').narrow.large
-            include ../../../img/svg-link.svg
-            | iPhone
-          a(href='http://mobile-pixels.com/pin-webapp-website-android-homescreen/' target='_blank').narrow.large
-            include ../../../img/svg-link.svg
-            | Android
+        a.blue-light.narrow(href='http://www.tech-recipes.com/rx/44908/ios-add-website-shortcut-to-home-screen/' target='_blank')
+          include ../../../img/svg-link.svg
+          | iPhone
+        a.blue-light.narrow(href='http://mobile-pixels.com/pin-webapp-website-android-homescreen/' target='_blank')
+          include ../../../img/svg-link.svg
+          | Android
   include _footer

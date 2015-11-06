@@ -9,5 +9,32 @@ icon {
 
   line-height: 70px;
 
-  margin: $spacing 0;
+  margin: $spacing;
+
+  > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  svg {
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &.dark {
+    background: $color-dark;
+
+    svg {
+      // width: 20px;
+
+      path {
+        fill: white;
+      }
+    }
+  }
 }

@@ -9,24 +9,6 @@ about {
   padding-bottom: $spacing;
   height: calc(100% - 64px);
 
-  a {
-    display: inline-block;
-    padding: 0 $spacing;
-    color: $font-color;
-    text-decoration: none;
-
-    width: 100%;
-
-    &.narrow {
-      width: 50%;
-    }
-
-    &.large {
-      font-size: $font-size-large;
-      font-weight: 700;
-    }
-  }
-
   hero {
     @extend %clearfix;
     background: white;
@@ -84,9 +66,10 @@ about {
   }
 
   section {
+    @extend %clearfix;
     text-align: center;
     background-color: white;
-    padding: $spacing;
+    padding: $spacing $spacing 0;
     margin: 0 0 $spacing 0;
 
     &.dark {
@@ -94,19 +77,39 @@ about {
     }
 
     .example {
-      p {
+      @extend %clearfix;
+      + p {
+        padding-top: $spacing/2;
+      }
+
+      span, a {
+        display: block;
+        margin-bottom: $spacing/2;
         padding: $spacing/2;
+        color: $font-color;
+        font-weight: 700;
+        font-size: $font-size-large;
+        text-decoration: none;
+
+        @include respond-to(400px) {
+          &.narrow {
+            display: inline-block;
+            width: 50%;
+          }
+        }
+
+        &.blue-light {
+          background-color: $color-blue-light;
+        }
+
+        &.lighter {
+          background-color: $color-lighter;
+        }
 
         &.blue-light, &.lighter {
           font-size: $font-size-large;
           font-weight: 500;
-          margin-bottom: $spacing/2;
         }
-
-      }
-      p + p.blue-light,
-      p + p.lighter {
-        margin-top: -10px;
       }
 
       margin-right: -$spacing;
@@ -191,24 +194,6 @@ about {
     }
     content, section {
       transition-delay: $trans-dur;
-    }
-  }
-}
-
-div.circle {
-  display:inline-block;
-  background: $color-dark;
-  width: 60px;
-  height: 60px;
-  border-radius: 100%;
-  margin: 0 $spacing;
-  line-height: 60px;
-
-  svg {
-    width: 20px;
-    height: auto;
-    path {
-      fill: white;
     }
   }
 }
