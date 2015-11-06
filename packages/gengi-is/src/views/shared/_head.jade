@@ -15,52 +15,58 @@ head
 
   meta(name="apple-mobile-web-app-capable", content="yes")
   meta(name="apple-mobile-web-app-title", content=appTitle)
-  meta(name="apple-mobile-web-app-status-bar-style", content="black")
+  meta(name="apple-mobile-web-app-status-bar-style", content="black-translucent")
 
-  link(rel="apple-touch-startup-image", href="/img/apple-load-screen.png" media="")
+  link(rel="apple-touch-startup-image", href="/img/splash/1440x2560.png")
 
-  //- iPad retina portrait startup image
-  link(href="https://placehold.it/1536x2008/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)")
-  //- iPad retina landscape startup image
-  link(href="https://placehold.it/1496x2048/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)")
-  //- iPad non-retina portrait startup image
-  link(href="https://placehold.it/768x1004/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 1) and (orientation: portrait)")
-  //- iPad non-retina landscape startup image
-  link(href="https://placehold.it/748x1024/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 1) and (orientation: landscape)")
-  //- iPhone 6 Plus portrait startup image
-  link(href="https://placehold.it/1242x2148/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)")
-  //- iPhone 6 Plus landscape startup image
-  link(href="https://placehold.it/1182x2208/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)")
-  //- iPhone 6 startup image
-  link(href="https://placehold.it/750x1294/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)")
-  //- iPhone 5 startup image
-  link(href="https://placehold.it/640x1096/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)")
-  //- iPhone < 5 retina startup image
-  link(href="https://placehold.it/640x920/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)")
-  //- iPhone < 5 non-retina startup image
-  link(href="https://placehold.it/320x460/39D6B3/EDEDEB.png?text=#{appTitle}" rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)")
+  //- iOS - Portrait - iPhone 3 & 4@1x
+  link(rel="apple-touch-startup-image" href="/img/splash/320x480.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)")
+  //- iOS - Portrait - iPhone 3 & 4@2x
+  link(rel="apple-touch-startup-image" href="/img/splash/640x960.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)")
+  //- iOS - Portrait - iPhone 5@2x
+  link(rel="apple-touch-startup-image" href="/img/splash/640x1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)")
+  //- iOS - Portrait - iPhone 6@2x
+  link(rel="apple-touch-startup-image" href="/img/splash/750x1334.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)")
+  //- iOS - Portrait - iPhone 6 Plus@3x
+  link(rel="apple-touch-startup-image" href="/img/splash/1242x2208.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)")
+  //- iOS - Landscape - iPhone 6 Plus@3x
+  link(rel="apple-touch-startup-image" href="/img/splash/2208x1242.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)")
+
+  //- Android - Portrait - ldpi 120
+  link(rel="apple-touch-startup-image" href="/img/splash/270x480.png" media="(device-width: 270px) and (device-height: 480px) and (resolution: 120dpi)")
+  //- Android - Portrait - mdpi (baseline) 160
+  link(rel="apple-touch-startup-image" href="/img/splash/360x640.png" media="(device-width: 360px) and (device-height: 640px) and (resolution: 160dpi)")
+  //- Android - Portrait - hdpi 240
+  link(rel="apple-touch-startup-image" href="/img/splash/540x960.png" media="(device-width: 540px) and (device-height: 960px) and (resolution: 240dpi)")
+  //- Android - Portrait - xhdpi 320
+  link(rel="apple-touch-startup-image" href="/img/splash/720x1280.png" media="(device-width: 720px) and (device-height: 1280px) and (resolution: 320dpi)")
+  //- Android - Portrait - xxhdpi 480
+  link(rel="apple-touch-startup-image" href="/img/splash/1080x1920.png" media="(device-width: 1080px) and (device-height: 1920px) and (resolution: 480dpi)")
+  //- Android - Portrait - xxxhdpi 640
+  link(rel="apple-touch-startup-image" href="/img/splash/1440x2560.png" media="(device-width: 1440px) and (device-height: 2560px) and (resolution: 640dpi)")
 
   meta(name="format-detection", content="telephone=no")
 
   meta(property="og:title", content="Gengi.is - Reiknaðu nýjasta gengi gjaldmiðla")
   meta(property="og:description", content="Náðu í nýjasta gengi gjaldmiðla og reiknaðu á einfaldan hátt í snjallsímavænu viðmóti. Gengi dollars, evru, punds, bitcoin og svo margt fleira.")
-  meta(property="og:image", content="http://www.gengi.is/img/gengi-facebook.png")
+  meta(property="og:image", content="http://www.gengi.is/img/share.png")
   meta(property="og:image:type", content="image/jpg")
   meta(property="og:image:width", content="1200")
   meta(property="og:image:height", content="627")
 
-  //- //- Retina >= iOS 7
-  link(rel="apple-touch-icon-precomposed", sizes="180x180", href="https://placehold.it/180x180/39D6B3/EDEDEB.png?text=#{appTitle}")
-  link(rel="apple-touch-icon-precomposed", sizes="152x152", href="https://placehold.it/152x152/39D6B3/EDEDEB.png?text=#{appTitle}")
-  link(rel="apple-touch-icon-precomposed", sizes="120x120", href="https://placehold.it/120x120/39D6B3/EDEDEB.png?text=#{appTitle}")
-  //- //- Retina <= iOS 6
-  link(rel="apple-touch-icon-precomposed", sizes="144x144", href="https://placehold.it/144x144/39D6B3/EDEDEB.png?text=#{appTitle}")
-  link(rel="apple-touch-icon-precomposed", sizes="114x114", href="https://placehold.it/114x114/39D6B3/EDEDEB.png?text=#{appTitle}")
-  //- //- Non-retina
-  link(rel="apple-touch-icon-precomposed", sizes="76x76",   href="https://placehold.it/76x76/39D6B3/EDEDEB.png?text=#{appTitle}")
-  link(rel="apple-touch-icon-precomposed", sizes="72x72",   href="https://placehold.it/72x72/39D6B3/EDEDEB.png?text=#{appTitle}")
-  link(rel="apple-touch-icon-precomposed", sizes="60x60",   href="https://placehold.it/60x60/39D6B3/EDEDEB.png?text=#{appTitle}")
-  link(rel="apple-touch-icon-precomposed",                  href="https://placehold.it/57x57/39D6B3/EDEDEB.png?text=#{appTitle}")
+  link(rel="apple-touch-icon-precomposed" sizes="256x256" href="/img/icon/256.png")
+  link(rel="apple-touch-icon-precomposed" sizes="195x195" href="/img/icon/195.png")
+  link(rel="apple-touch-icon-precomposed" sizes="152x152" href="/img/icon/152.png")
+  link(rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/icon/144.png")
+  link(rel="apple-touch-icon-precomposed" sizes="128x128" href="/img/icon/128.png")
+  link(rel="apple-touch-icon-precomposed" sizes="120x120" href="/img/icon/120.png")
+  link(rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/icon/114.png")
+  link(rel="apple-touch-icon-precomposed" sizes="96x96"   href="/img/icon/96.png")
+  link(rel="apple-touch-icon-precomposed" sizes="72x72"   href="/img/icon/72.png")
+  link(rel="apple-touch-icon-precomposed" sizes="57x57"   href="/img/icon/57.png")
+  link(rel="apple-touch-icon-precomposed" sizes="48x48"   href="/img/icon/48.png")
+  link(rel="apple-touch-icon-precomposed" sizes="32x32"   href="/img/icon/32.png")
+  link(rel="apple-touch-icon-precomposed" sizes="16x16"   href="/img/icon/16.png")
 
   //- //- Windows Pinned site
   meta(name="application-name", content=title)
