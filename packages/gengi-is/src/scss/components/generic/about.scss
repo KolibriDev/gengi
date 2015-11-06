@@ -35,7 +35,8 @@ about {
       text-align: center;
       background-color: $color-kolibri-yellow;
       svg {
-        width: 200px;
+        margin: $spacing*2 0 $spacing*2 0;
+       width: 200px;
       }
     }
 
@@ -93,11 +94,11 @@ about {
         font-weight: 500;
         padding: $spacing/2;
 
-        &.highlight {
+        &.blue-light {
           margin-bottom: $spacing/2;
         }
       }
-      p + p.highlight {
+      p + p.blue-light {
         margin-top: -20px;
       }
 

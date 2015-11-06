@@ -16,9 +16,14 @@ p {
     font-weight: 500;
   }
 
-  &.highlight {
+  &.blue-light {
+    background-color: $color-blue-light;
+  }
+
+  &.lighter {
     background-color: $color-lighter;
   }
+
 
 }
 
