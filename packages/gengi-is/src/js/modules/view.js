@@ -6,6 +6,11 @@ import templates from 'modules/templates';
 import header from 'modules/header';
 import format from 'modules/format';
 
+let updateTitle = function(title) {
+  title = title || 'Gengi.is - Nýjasta gengi gjaldmiðla á svipstundu';
+  document.title = title;
+};
+
 class View {
   constructor() {}
 
@@ -19,6 +24,7 @@ class View {
   }
 
   showHome() {
+    updateTitle();
     header.update({title: 'Gengi.is'});
     global.setAttr('view', 'home');
     global.setAttr('editable', true);
@@ -89,12 +95,14 @@ class View {
       });
       calculator.show(data, amount);
 
+      updateTitle(`${data.name} - ${data.code} - Gengi.is`);
       this.loaded();
     });
     foo.fail((data) => this.showError('404-curr', { curr, amount, data }));
   }
 
   showAllCurrencies() {
+    updateTitle('Allar myntir - Gengi.is');
     header.update({title: 'Allar myntir'});
     global.setAttr('view', 'allcurrencies');
     global.setAttr('editable', true);
@@ -141,6 +149,7 @@ class View {
   }
 
   showAbout(path) {
+    updateTitle('Um appið - Gengi.is');
     let sub = 'main';
     let split = path.split('-');
     if (split.length === 2) {
@@ -198,6 +207,8 @@ class View {
       'Whatever you do, don’t blink',
     ];
     subtitle = subtitle || subtitles[_.random(0,subtitles.length - 1)];
+
+    updateTitle(`${title} - ${subtitle} - Gengi.is`);
 
     header.update({title, subtitle});
     global.setAttr('view', 'error');
