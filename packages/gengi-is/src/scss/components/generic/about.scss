@@ -94,13 +94,13 @@ about {
         &.blue-light, &.lighter {
           font-size: $font-size-large;
           font-weight: 500;
-          margin-bottom: $spacing;
+          margin-bottom: $spacing/2;
         }
 
       }
       p + p.blue-light,
       p + p.lighter {
-        margin-top: -20px;
+        margin-top: -10px;
       }
 
       margin-right: -$spacing;
