@@ -10,13 +10,20 @@ currency-list
         curr-selected(attr='onhome')
           include ../../img/svg-addremove.svg
   div.allcurrencies
-    currency(code='globe' template route='allcurrencies')
+    currency(code='globe' route='allcurrencies')
       curr-symbol
         .globe: include ../../img/svg-globe.svg
         .plus: include ../../img/svg-plus.svg
       curr-code(title='Allar myntir')
         span.alt Bæta við
       curr-name Setja aðra mynt á forsíðu
+      curr-next
+        include ../../img/svg-next.svg
+
+  div.whatisnew
+    currency(route='about-whatisnew')
+      curr-code Uppfært gengi.is
+      curr-name Kynntu þér stórbætta virkni
       curr-next
         include ../../img/svg-next.svg
 

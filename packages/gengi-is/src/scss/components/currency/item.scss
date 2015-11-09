@@ -66,6 +66,23 @@ currency {
       font-size: 36px;
     }
   }
+  .whatisnew > & {
+    curr-code,
+    curr-name {
+      padding-left: $spacing;
+    }
+
+    curr-code {
+      padding-top: $spacing*.65;
+      font-size: 22px;
+
+      color: $color-green;
+
+      @include respond-to(360px) {
+        padding-top: $spacing;
+      }
+    }
+  }
   &[code='globe'] {
     curr-code {
       position: relative;
@@ -406,14 +423,14 @@ currency {
     cursor: default;
   }
 
-  html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] & {
-    &[code]:not([code='globe']) {
+  html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] .list & {
+    &[code] {
       cursor: move;
       cursor: ns-resize;
     }
   }
 
-  html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] & {
+  html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] .list & {
     curr-drag {
       transform: translate3d(0,0,0);
       opacity: 1;
@@ -422,22 +439,22 @@ currency {
   }
 
 
-  html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] & {
+  html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] .list & {
     &[code]:before,
-    &:not([code='globe']) curr-code,
-    &:not([code='globe']) curr-name {
+    curr-code,
+    curr-name {
       transform: translate3d(50px,0,0);
     }
   }
 
-  html[gengi-editable='true'][gengi-edit-mode='true'] & {
+  html[gengi-editable='true'][gengi-edit-mode='true'] .list & {
     curr-rate {
       transform: translate3d(10px,0,0);
       opacity: 0;
     }
   }
 
-  html[gengi-editable='true'][gengi-edit-mode='true'] & {
+  html[gengi-editable='true'][gengi-edit-mode='true'] .list & {
     curr-next,
     curr-selected {
       pointer-events: initial;
