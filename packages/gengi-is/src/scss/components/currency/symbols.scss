@@ -4,7 +4,7 @@ currency {
     padding-left: $big-block-small;
     font-size: 24px;
 
-    @include respond-to(medium) {
+    @include respond-to(xxsmall) {
       padding-left: $big-block;
       font-size: 32px;
     }
@@ -61,7 +61,7 @@ currency {
     }
   }
 
-  @include respond-to(medium) {
+  @include respond-to(xxsmall) {
     curr-symbol,
     &[code]:before {
       width: $big-block - $spacing;
@@ -79,7 +79,7 @@ currency {
   // Currencies
   &[code="ISK"]:before {
     content: 'ISK'; font-size: 0.7em; line-height: $big-block-small - $spacing;
-    @include respond-to(medium) {
+    @include respond-to(xxsmall) {
       line-height: $big-block - $spacing;
     }
   }

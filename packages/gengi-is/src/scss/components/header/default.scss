@@ -19,7 +19,7 @@ header {
 
   perspective: 1000px;
 
-  @include respond-to(medium) {
+  @include respond-to(xxsmall) {
     height: $big-block;
     line-height: $big-block;
   }
@@ -181,7 +181,7 @@ header {
       width: $block;
       height: $big-block-small;
 
-      @include respond-to(medium) {
+      @include respond-to(xxsmall) {
         height: $big-block;
       }
 
@@ -210,7 +210,7 @@ header {
 
       height: $big-block-small;
 
-      @include respond-to(medium) {
+      @include respond-to(xxsmall) {
         height: $big-block;
       }
 
@@ -218,7 +218,7 @@ header {
         height: $big-block-small;
         line-height: 12px;
 
-        @include respond-to(medium) {
+        @include respond-to(xxsmall) {
           height: $big-block;
           line-height: 20px;
         }

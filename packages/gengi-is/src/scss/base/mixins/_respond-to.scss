@@ -1,8 +1,14 @@
 
 @mixin respond-to($media,$value:'') {
 
-  @if $media == small {
+  @if $media == xxsmall {
+    @media #{$screen} and (min-width: $break-xxsmall) { @content; }
+  }
+  @else if $media == small {
     @media #{$screen} and (min-width: $break-small) { @content; }
+  }
+  @else if $media == xxsmall {
+    @media #{$screen} and (min-width: $break-xxsmall) { @content; }
   }
   @else if $media == medium {
     @media #{$screen} and (min-width: $break-medium) { @content; }
@@ -10,8 +16,8 @@
   @else if $media == large {
     @media #{$screen} and (min-width: $break-large) { @content; }
   }
-  @else if $media == full {
-    @media #{$screen} and (min-width: $break-full) { @content; }
+  @else if $media == xlarge {
+    @media #{$screen} and (min-width: $break-xlarge) { @content; }
   }
 
   @else if $media == landscape {

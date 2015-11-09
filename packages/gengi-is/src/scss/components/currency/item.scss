@@ -17,7 +17,7 @@ currency {
   max-width: $page-max-width;
   height: $big-block-small;
 
-  @include respond-to(medium) {
+  @include respond-to(xxsmall) {
     height: $big-block;
   }
 
@@ -61,7 +61,7 @@ currency {
     font-size: 28px;
     font-weight: 700;
 
-    @include respond-to(medium) {
+    @include respond-to(xxsmall) {
       padding: $spacing*.75 0 0;
       font-size: 36px;
     }
@@ -78,7 +78,7 @@ currency {
 
       color: $color-green;
 
-      @include respond-to(360px) {
+      @include respond-to(xxsmall) {
         padding-top: $spacing;
       }
     }
@@ -89,7 +89,7 @@ currency {
       padding-top: 18px;
       font-size: 22px;
 
-      @include respond-to(medium) {
+      @include respond-to(xxsmall) {
         padding-top: 28px;
         font-size: 24px;
       }
@@ -129,7 +129,7 @@ currency {
     html[gengi-view='home'][gengi-editable='true'][gengi-edit-mode='true'] & {
       curr-code {
         padding-top: $spacing*.5 + 2px;
-        @include respond-to(medium) {
+        @include respond-to(xxsmall) {
           padding-top: $spacing*.75 + 5px;
         }
 
@@ -166,7 +166,7 @@ currency {
       text-transform: uppercase;
     }
 
-    @include respond-to(medium) {
+    @include respond-to(xxsmall) {
       line-height: 16px;
       font-size: 14px;
     }
@@ -203,7 +203,7 @@ currency {
       font-size: 20px;
     }
 
-    @include respond-to(360px) {
+    @include respond-to(xxsmall) {
       height: 40px;
       font-size: 36px;
 
@@ -323,14 +323,14 @@ currency {
       width: 100%;
       height: 100%;
       line-height: $big-block-small;
-      @include respond-to(medium) {
+      @include respond-to(xxsmall) {
         line-height: $big-block;
       }
 
       &.infinity {
         font-family: 'Verdana', $font-sans;
         line-height: $big-block-small - 4px;
-        @include respond-to(medium) {
+        @include respond-to(xxsmall) {
           line-height: $big-block - 6px;
         }
       }
@@ -353,29 +353,29 @@ currency {
       }
 
       font-size: 36px;
-      @include respond-to(360px) { font-size: 48px; }
+      @include respond-to(xxsmall) { font-size: 48px; }
       [size='large'] & {
         font-size: 28px;
-        @include respond-to(360px) { font-size: 36px; }
-        @include respond-to(420px) { font-size: 42px; }
-        @include respond-to(480px) { font-size: 48px; }
+        @include respond-to(xxsmall) { font-size: 36px; }
+        @include respond-to(xsmall) { font-size: 42px; }
+        @include respond-to(small) { font-size: 48px; }
       }
       [size='larger'] & {
         font-size: 22px;
-        @include respond-to(360px) { font-size: 28px; }
-        @include respond-to(420px) { font-size: 32px; }
-        @include respond-to(480px) { font-size: 40px; }
-        @include respond-to(520px) { font-size: 44px; }
-        @include respond-to(540px) { font-size: 48px; }
+        @include respond-to(xxsmall) { font-size: 28px; }
+        @include respond-to(xsmall) { font-size: 32px; }
+        @include respond-to(small) { font-size: 40px; }
+        @include respond-to(large) { font-size: 44px; }
+        @include respond-to(xlarge) { font-size: 48px; }
       }
       [size='huge'] & {
         font-size: 18px;
-        @include respond-to(360px) { font-size: 22px; }
-        @include respond-to(420px) { font-size: 24px; }
-        @include respond-to(480px) { font-size: 28px; }
-        @include respond-to(500px) { font-size: 30px; }
-        @include respond-to(520px) { font-size: 32px; }
-        @include respond-to(540px) { font-size: 34px; }
+        @include respond-to(xxsmall) { font-size: 22px; }
+        @include respond-to(xsmall) { font-size: 24px; }
+        @include respond-to(small) { font-size: 28px; }
+        @include respond-to(medium) { font-size: 30px; }
+        @include respond-to(large) { font-size: 32px; }
+        @include respond-to(xlarge) { font-size: 34px; }
       }
     }
 

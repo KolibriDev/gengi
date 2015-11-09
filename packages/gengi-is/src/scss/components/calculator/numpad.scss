@@ -21,12 +21,12 @@ numpad {
     width: calc(#{$third} - #{$spacing*2});
     height: $block-small;
 
-    @include respond-to(medium) {
+    @include respond-to(xxsmall) {
       margin: 0 $spacing 0;
       height: $block;
     }
 
-    @include respond-to(large) {
+    @include respond-to(small) {
       margin: 0 $spacing $spacing;
       height: $block;
     }

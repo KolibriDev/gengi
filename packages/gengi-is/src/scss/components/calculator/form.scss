@@ -13,7 +13,7 @@ calculator {
     display: block;
   }
 
-  @include respond-to(medium) {
+  @include respond-to(xxsmall) {
     height: calc(100% - #{$big-block});
   }
 

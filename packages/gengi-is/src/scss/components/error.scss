@@ -19,7 +19,7 @@ error {
     top: calc(50% - 20px);
     transform: translateY(-50%);
 
-    @include respond-to(medium) {
+    @include respond-to(xxsmall) {
       margin: 0 auto $spacing*4;
       padding: $spacing*5 $spacing 0;
       top: auto;
