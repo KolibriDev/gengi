@@ -78,18 +78,19 @@ about {
 
     .example {
       @extend %clearfix;
-      + p {
-        padding-top: $spacing/2;
-      }
 
       span, a {
         display: block;
-        margin-bottom: $spacing/2;
+        margin-bottom: $spacing;
         padding: $spacing/2;
         color: $font-color;
         font-weight: 700;
         font-size: $font-size-large;
         text-decoration: none;
+
+        + span, + a {
+          margin-top: -$spacing/2;
+        }
 
         @include respond-to(400px) {
           &.narrow {
