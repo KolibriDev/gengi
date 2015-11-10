@@ -50,7 +50,8 @@ let Router = class {
     let split = this.state.path.split('/');
 
     if (split.length < 2 || (split.length === 2 && split[1] === '') || (split[1] === 'home')) {
-      view.showHome(); return;
+      view.showHome();
+      return;
     }
 
     let part = split[1].toString().toLowerCase();
@@ -62,12 +63,12 @@ let Router = class {
     } else if (part.length > 4 && part.substring(0, 5) === 'about') {
       view.showAbout(part);
     } else {
-      let [code, amount] = this.isCurrency(part); // BEWARE :) það þarf að tryggja að það sé alltaf skilað valid array.
+      let [code, amount] = this.isCurrency(part);
       if (code) {
         view.showCalculator(code, amount);
       } else {
         if (part.length > 0) {
-          view.showError('404');
+          view.showError('404', {path: this.state.path});
         } else {
           view.showHome();
         }
@@ -86,15 +87,6 @@ let Router = class {
       code = part.substr(0, 3);
       amount = this.infinityThreshold+'9';
     } else {
-
-
-      //part.replace(/(\D+)/g, (match, p1) => {
-      //  console.log('match:'+match, 'p1:'+p1);
-      //  if (p1 !== '.' && p1 !== ',') {
-      //    code = p1;
-      //  }
-      //});
-
       part.replace(/([a-z,A-Z]+)/, (match, p1) => {
         code = p1;
       });

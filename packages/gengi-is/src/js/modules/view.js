@@ -177,13 +177,16 @@ class View {
 
     let title = '', subtitle = '', reason = '';
 
-    if (type.indexOf('404') > -1) {
+    if (type.indexOf('404') !== -1) {
       if (type === '404-curr' && data && data.curr) {
         title = `${data.curr} er ekki til`;
         reason = `Því miður höfum við engan gjaldmiðil með ISO 4217 kóðann <b>${data.curr}</b>`;
-        // reason += `Ef þú telur þetta vera skammarleg mistök af okkar hálfu viljum við endilega heyra frá þér, annars skaltu fara bara aftur heim.`;
-      } else if (data && data.path && false) {
-        title = `${data.path} er ekki alvöru síða`;
+      } else if (data && data.path !== '/404') {
+        title = `Slóð fannst ekki`;
+        reason = `<b>${data.path}</b> er ekki alvöru síða`;
+      } else if (data && data.path === '/404') {
+        title = `Welcome to the pleasuredome`;
+        reason = `Þetta er flotta villusíðan okkar`;
       } else {
         title = `Do what I do,`;
         subtitle = 'Hold tight and pretend it’s a plan!';
@@ -195,7 +198,6 @@ class View {
 
     let subtitles = [
       'Hasta la vista baby',
-      'Fuck you, asshole',
       'I need your clothes, your boots and your motorcycle',
       'Why do you cry?',
       'Come with me if you want to live',
