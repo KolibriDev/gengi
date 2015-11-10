@@ -29,7 +29,7 @@ export default {
 
     let storedCurrencies = storage.get('currencies');
     //if (false) {
-    if (storedCurrencies && storedCurrencies.expires >= now) {
+    if (storedCurrencies && _.isObject(storedCurrencies) && storedCurrencies.expires >= now) {
       deferred.resolve(storedCurrencies);
     } else {
       // TODO use locale
@@ -87,7 +87,7 @@ export default {
   ensureSelected: function() {
     let stored = storage.get('selectedCurrencies');
 
-    if (!stored) {
+    if (!stored || !_.isArray(stored)) {
       stored = [
         'USD', 'EUR', 'GBP', 'NOK', 'DKK', 'SEK'
       ];

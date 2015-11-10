@@ -173,8 +173,6 @@ class View {
   showEmpty() {}
 
   showError(type, data) {
-    console.log(type, data);
-
     let title = '', subtitle = '', reason = '';
 
     if (type.indexOf('404') !== -1) {
