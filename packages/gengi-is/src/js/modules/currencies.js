@@ -28,12 +28,19 @@ export default {
     let now = new Date().getTime();
 
     let storedCurrencies = storage.get('currencies');
+
     //if (false) {
     if (storedCurrencies && _.isObject(storedCurrencies) && storedCurrencies.expires >= now) {
       deferred.resolve(storedCurrencies);
     } else {
+      let expires = (storedCurrencies && storedCurrencies.expires) || moment(moment().format('YYYY.MM.DD')).unix();
+
       // TODO use locale
-      global.setAttr('expired-text', 'síðast uppfært <br>' + moment(moment(storedCurrencies.expires).subtract(1, 'day')).fromNow());
+
+      //moment.locale('is');
+      //moment.tz.setDefault('Atlantic/Reykjavik');
+
+      global.setAttr('expired-text', 'síðast uppfært <br>' + moment(expires).subtract(1, 'day').fromNow());
       global.setAttr('expired', 'true');
 
       $.ajax({
@@ -121,7 +128,18 @@ export default {
       deferred.resolve(retobj);
     });
 
-    foo.fail((data, param) => deferred.reject(data, param));
+    foo.fail((data, param) => {
+      let retobj = {};
+
+      _.each(stored, (code) => {
+        let item = _.where(data.list, {code: code})[0];
+        if (item) {
+          retobj[code] = item;
+        }
+      });
+
+      deferred.reject(retobj, param);
+    });
 
     return $.when( deferred.promise() );
   },
