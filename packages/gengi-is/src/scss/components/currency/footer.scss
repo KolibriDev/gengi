@@ -12,7 +12,7 @@ div.footer {
   }
 
   hr {
-    width: 30%;
+    width: calc(50% - 39px);
     border-top-color: rgba($color-gray, .25);
   }
 
