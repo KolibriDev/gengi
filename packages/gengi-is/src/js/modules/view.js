@@ -29,6 +29,7 @@ class View {
     global.setAttr('view', 'home');
     global.setAttr('editable', true);
     let currs = currencies.selected();
+
     let $tplParent;
     currs.done((data) => {
       header.redraw();
@@ -78,8 +79,11 @@ class View {
       });
     });
 
+    currs.fail(() => {
+      this.showError('500', 'Villa við að sækja gengi');
+    });
+
     currs.progress((ignore) => console.info('ignoring progress', ignore));
-    currs.fail((ignore) => console.warn('ignoring failure', ignore));
   }
 
   showCalculator(curr, amount) {
@@ -144,8 +148,11 @@ class View {
       });
     });
 
+    currs.fail(() => {
+      this.showError('500', 'Villa við að sækja gengi');
+    });
+
     currs.progress((ignore) => console.info('ignoring progress', ignore));
-    currs.fail((ignore) => console.warn('ignoring failure', ignore));
   }
 
   showAbout(path) {
@@ -189,6 +196,9 @@ class View {
         title = `Do what I do,`;
         subtitle = 'Hold tight and pretend it’s a plan!';
       }
+    } else if (type === '500') {
+      title = 'Oh shit, oh shit';
+      reason = data || 'Hugsanlega einhver gagnavilla, eða gagnaþjónn niðri';
     } else {
       title = 'Oh shit, oh shit';
       reason = 'Hugsanlega einhver gagnavilla, eða gagnaþjónn niðri';
