@@ -63,6 +63,10 @@ error {
         fill: $color-dark;
       }
     }
+
+    span + svg {
+      margin-left:$spacing/2;
+    }
   }
 
   html[gengi-view='error'] & {
