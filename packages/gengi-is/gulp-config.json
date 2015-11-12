@@ -41,9 +41,6 @@
       "./src/js/**/*.js",
       "!./src/js/vendor/**/*.js"
     ],
-    "config": {
-      "modules": "amd"
-    },
     "lint": {
       "config": "./.jshintrc",
       "src": [

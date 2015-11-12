@@ -12,7 +12,7 @@ module.exports = function(gulp) {
       .pipe ( !gulp.cfg.debug ? noop() : gulp.plugin.debug({title:'--babel:'}) )
 
       .pipe ( gulp.plugin.sourcemaps.init() )
-      .pipe ( gulp.plugin.babel(gulp.cfg.babel.config) )
+      .pipe ( gulp.plugin.babel() )
       .pipe ( gulp.plugin.sourcemaps.write())
 
       .pipe ( gulp.plugin.replace('<%version%>', gulp.cfg.version) )
