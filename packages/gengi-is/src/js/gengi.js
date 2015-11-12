@@ -8,12 +8,15 @@ import router from 'modules/router';
 import onLoad from 'modules/onLoad';
 import keys from 'modules/keys';
 import currencies from 'modules/currencies';
+import analytics from 'modules/analytics';
 import SwiftClick from 'vendor/swiftclick';
 
+analytics.logTime('JS Dependencies', 'load');
 global.setAttr('load-step', '1');
 
 class Gengi {
   constructor() {
+    analytics.logTime('Gengi app', 'construct');
     // This is replaced with package.json version during build
     this.ensureVersion('<%version%>');
 
@@ -32,6 +35,7 @@ class Gengi {
 
   ensureVersion(version) {
     if (storage.get('version') && storage.get('version') !== version) {
+      // analytics('send', 'event');
       storage.clearAll();
     }
     storage.set('version', version);

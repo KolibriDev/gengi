@@ -52,10 +52,12 @@
   },
   "manifest": {
     "src": [
-      "**/*",
-      "**/main.js",
-      "!**/img/icon/**/*",
-      "!**/img/load/**/*"
+      "fonts/**/**-Bold.ttf",
+      "fonts/**/**-Light.ttf",
+      "css/**/*.css",
+      "js/gengi.js",
+      "img/**/*.png",
+      "img/**/*.ico"
     ],
     "options": {
       "hash": true,

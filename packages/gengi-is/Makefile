@@ -30,6 +30,7 @@ build: gulpbuild requirejs
 
 gulpbuild:
 	gulp build --env=production
+	gulp manifest --env=production
 
 requirejs:
 	@./node_modules/.bin/r.js -o build-require.js
