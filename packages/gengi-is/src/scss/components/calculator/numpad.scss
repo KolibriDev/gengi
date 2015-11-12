@@ -91,14 +91,9 @@ numpad {
     }
 
     &[key=',']:before {
-      font-weight: 500;
       line-height: 14px;
     }
 
-    &[key='del']:before {
-      font-size: 24px;
-      font-weight: 500;
-    }
     &[key='del'] {
       cursor: default;
       opacity: 0.2;
