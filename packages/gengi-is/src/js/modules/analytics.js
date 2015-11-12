@@ -21,9 +21,20 @@ let analytics = function() {
   // window.ga.apply(this, arguments);
 };
 
+analytics.logTime = function(category, id) {
+  if (window.hasOwnProperty('performance') && category !== undefined && id !== undefined) {
+    this('send', 'timing', category, id, window.performance.now());
+  }
+};
+
+analytics.logException = function(desc, fatal) {
+  if (desc === undefined) { return; }
+  this('send', 'exception', desc, !!fatal);
+};
+
 analytics.cleanUrl = function(url) {
   if (!url) {
-    return window.location.pathname;
+    return window.location.pathname.toString().toLowerCase();
   }
   if (url.indexOf('localhost') > -1 || url.indexOf('.is') > -1) {
     var divider = url.indexOf('localhost') > -1 ? 'localhost:1337' : '.is';
@@ -38,7 +49,7 @@ analytics.cleanUrl = function(url) {
     url = url.split('?');
     url = url[0];
   }
-  return url;
+  return url.toString().toLowerCase();
 };
 
 // Asynchronously load Google Analytics, letting it take over our `window.ga`

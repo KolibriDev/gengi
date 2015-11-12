@@ -5,6 +5,7 @@ import calculator from 'modules/calculator';
 import templates from 'modules/templates';
 import header from 'modules/header';
 import format from 'modules/format';
+import analytics from 'modules/analytics';
 
 let updateTitle = function(title) {
   title = title || 'Gengi.is - Nýjasta gengi gjaldmiðla á svipstundu';
@@ -88,8 +89,10 @@ class View {
     currs.fail((data) => {
       if (data) {
         this.displayCurrs(data);
+        analytics.logException('Failed to get selected currencies, showing stored - ' + (data && JSON.stringify(data)), false);
       } else {
         this.showError('500', 'Villa við að sækja gengi');
+        analytics.logException('Failed to get selected currencies - ' + (data && JSON.stringify(data)), true);
       }
     });
 
@@ -158,8 +161,9 @@ class View {
       });
     });
 
-    currs.fail(() => {
+    currs.fail((data) => {
       this.showError('500', 'Villa við að sækja gengi');
+      analytics.logException('Failed to get currencies - ' + (data && JSON.stringify(data)), true);
     });
 
     currs.progress((ignore) => console.info('ignoring progress', ignore));
@@ -237,6 +241,8 @@ class View {
     global.setAttr('editable', false);
 
     $('[reason]').html(reason);
+
+    analytics('send', 'event', 'error', `${type} >> ${title} - ${subtitle}: ${reason}`);
 
     this.loaded();
   }
