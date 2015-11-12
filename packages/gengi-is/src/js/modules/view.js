@@ -195,12 +195,13 @@ class View {
     if (type.indexOf('404') !== -1) {
       if (type === '404-curr' && data && data.curr) {
         title = `${data.curr} er ekki til`;
-        reason = `Því miður höfum við engan gjaldmiðil með ISO 4217 kóðann <b>${data.curr}</b>`;
+        reason = `Því miður höfum við engan gjaldmiðil með <a target="_blank" href="https://is.wikipedia.org/wiki/ISO_4217">ISO 4217</a> kóðann&nbsp;<b>${data.curr}</b>`;
       } else if (data && data.path !== '/404') {
         title = `Slóð fannst ekki`;
         reason = `<b>${data.path}</b> er ekki alvöru síða`;
       } else if (data && data.path === '/404') {
-        title = `Welcome to the pleasuredome`;
+        title = `To err is human`;
+        subtitle = `Blaming it on a computer, even more so`;
         reason = `Þetta er flotta villusíðan okkar`;
       } else {
         title = `Do what I do,`;
@@ -227,6 +228,7 @@ class View {
       'Whatever you do, don’t blink',
     ];
     subtitle = subtitle || subtitles[_.random(0,subtitles.length - 1)];
+    reason = reason || subtitles[_.random(0,subtitles.length - 1)];
 
     updateTitle(`${title} - ${subtitle} - Gengi.is`);
 

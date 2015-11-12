@@ -39,6 +39,11 @@ error {
     font-size: $font-size-large;
     color: $color-dark;
     margin-bottom: $spacing*3;
+
+    a {
+      font-size: $font-size-large;
+      border-bottom: 1px solid rgba($color-dark, 0.5);
+    }
   }
 
   a {

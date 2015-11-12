@@ -97,6 +97,8 @@ let Router = class {
       });
     }
 
+    code = code || '';
+
     return code.length === 3 ? [code, amount] : [undefined]; // BEWARE :) það þarf að tryggja að það sé alltaf skilað valid array.
   }
 
