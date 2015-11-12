@@ -187,14 +187,14 @@ class Calculator {
 
     // TODO: Figure out a way to do this dynamically
     if (this.elem.cur && this.elem.cur.length > 0) {
-      curHuge = this.amount.cur > 999999999999;
-      curLarger = this.amount.cur > 999999999;
-      curLarge = this.amount.cur > 999999;
+      curHuge = this.amount.cur.toString().length > 12;
+      curLarger = this.amount.cur.toString().length > 9;
+      curLarge = this.amount.cur.toString().length > 6;
     }
     if (this.elem.isk && this.elem.isk.length > 0) {
-      iskHuge = this.amount.isk > 999999999999;
-      iskLarger = this.amount.isk > 999999999;
-      iskLarge = this.amount.isk > 999999;
+      iskHuge = this.amount.isk.toString().length > 12;
+      iskLarger = this.amount.isk.toString().length > 9;
+      iskLarge = this.amount.isk.toString().length > 6;
     }
     return curHuge || iskHuge ? 'huge' : (curLarger || iskLarger ? 'larger' : (curLarge || iskLarge ? 'large': 'normal'));
   }
