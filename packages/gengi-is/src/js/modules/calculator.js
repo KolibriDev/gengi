@@ -231,7 +231,7 @@ class Calculator {
     }
 
     let amount = this.amount.cur;
-    if (this.amount.cur > this.infinityThreshold) {
+    if (this.isInfinity('cur')) {
       amount = '∞';
     }
 
