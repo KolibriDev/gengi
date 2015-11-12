@@ -4,11 +4,11 @@
   @if $media == xxsmall {
     @media #{$screen} and (min-width: $break-xxsmall) { @content; }
   }
+  @else if $media == xsmall {
+    @media #{$screen} and (min-width: $break-xsmall) { @content; }
+  }
   @else if $media == small {
     @media #{$screen} and (min-width: $break-small) { @content; }
-  }
-  @else if $media == xxsmall {
-    @media #{$screen} and (min-width: $break-xxsmall) { @content; }
   }
   @else if $media == medium {
     @media #{$screen} and (min-width: $break-medium) { @content; }
