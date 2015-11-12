@@ -90,8 +90,13 @@ numpad {
       color: $color-gray;
     }
 
-    &[key=',']:before {
-      line-height: 14px;
+    &[key=','] {
+      cursor: default;
+      opacity: 0.2;
+
+      &:before {
+        line-height: 14px;
+      }
     }
 
     &[key='del'] {
@@ -114,12 +119,12 @@ numpad {
           fill: $color-gray;
         }
       }
+    }
 
-      &.available {
-        cursor: pointer;
-        opacity: 1;
-        transition-delay: 0ms;
-      }
+    &.available {
+      cursor: pointer;
+      opacity: 1;
+      transition-delay: 0ms;
     }
 
 

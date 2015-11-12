@@ -62,10 +62,14 @@ class Calculator {
     key = key.replace('backspace', 'del');
     key = key.replace('delete', 'del');
 
+    if ((key === ',' || key === 'del') && !$('[numpad][key="' + key + '"]').hasClass('available')) {
+      return;
+    }
+
     $('[numpad][key="' + key+'"]').addClass('reset').removeClass('press');
     setTimeout(() => {
       $('[numpad][key="' + key+'"]').removeClass('reset').addClass('press');
-    }, 50);
+    }, 20);
 
     let newValue = this.process(this.amount[this.focus], key);
 
@@ -236,6 +240,7 @@ class Calculator {
     }
 
     this.elem.headerpath.html(amount);
+    this.elem.numpad.find('[key=","]').toggleClass('available', this.amount[this.focus].toString().indexOf(',') === -1 && this.amount[this.focus].toString().indexOf('.') === -1);
     this.elem.numpad.find('[key="del"]').toggleClass('available', this.amount[this.focus].toString().length > 0);
     $(document).trigger('amount-changed', {code: this.currency.code, amount: amount});
   }
