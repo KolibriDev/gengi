@@ -3,6 +3,7 @@ import _ from 'modules/underscore';
 import templates from 'modules/templates';
 import format from 'modules/format';
 import keys from 'modules/keys';
+import analytics from 'modules/analytics';
 
 class Calculator {
 
@@ -65,6 +66,8 @@ class Calculator {
     if ((key === ',' || key === 'del') && !$('[numpad][key="' + key + '"]').hasClass('available')) {
       return;
     }
+
+    analytics.logFirst('numpad');
 
     $('[numpad][key="' + key+'"]').addClass('reset').removeClass('press');
     setTimeout(() => {

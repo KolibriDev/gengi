@@ -25,6 +25,7 @@ let Router = class {
     window.onpopstate = () => {
       $(document).trigger('leaving');
       setTimeout(() => {
+        analytics.logFirst(`popstate to ${window.location.pathname}`);
         this.processPath(window.location.pathname);
         this.logView();
       }, 150);
@@ -127,6 +128,7 @@ let Router = class {
   }
 
   navigate(newpath) {
+    analytics.logFirst(`navigate to ${newpath}`);
     this.state.tick++;
     this.setState('path', newpath);
     this.pushState();

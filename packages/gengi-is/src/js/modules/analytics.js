@@ -32,6 +32,13 @@ analytics.logException = function(desc, fatal) {
   this('send', 'exception', desc, !!fatal);
 };
 
+let flag = false;
+analytics.logFirst = function(type) {
+  if (flag) { return; }
+  flag = true;
+  analytics.logTime('First Interaction', type || 'unknown');
+};
+
 analytics.cleanUrl = function(url) {
   if (!url) {
     return window.location.pathname.toString().toLowerCase();
