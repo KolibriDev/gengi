@@ -2,7 +2,7 @@ import $ from 'modules/jquery';
 import _ from 'modules/underscore';
 import storage from 'modules/storage';
 import global from 'global';
-import moment from 'vendor/moment';
+import momentjs from 'vendor/momentjs';
 
 export default {
   source: '//api.gengi.is/v2/currencies',
@@ -19,28 +19,35 @@ export default {
       }
     });
 
+    foo.fail((data) => {
+      if(data && data.list.hasOwnProperty(id)) {
+        deferred.reject(data.list[id], {reason: `${id} probably expired`});
+      } else {
+        deferred.reject({reason: `${id} not found`});
+      }
+    });
+
     return $.when( deferred.promise() );
   },
 
   list: function() {
     let deferred = jQuery.Deferred();
 
-    let now = new Date().getTime();
+    let now;
+    now = new Date().getTime();
 
     let storedCurrencies = storage.get('currencies');
 
-    //if (false) {
+    // if (false) {
     if (storedCurrencies && _.isObject(storedCurrencies) && storedCurrencies.expires >= now) {
       deferred.resolve(storedCurrencies);
     } else {
-      let expires = (storedCurrencies && storedCurrencies.expires) || moment(moment().format('YYYY.MM.DD')).unix();
+      let expires = (storedCurrencies && storedCurrencies.expires) || (momentjs().seconds(0).hour(0).minutes(0).unix() * 1000);
+      // Fake expired
+      // expires = 1447259200000;
+      // deferred.reject(storedCurrencies, {reason: 'transport layer error'});
 
-      // TODO use locale
-
-      //moment.locale('is');
-      //moment.tz.setDefault('Atlantic/Reykjavik');
-
-      global.setAttr('expired-text', 'síðast uppfært <br>' + moment(expires).subtract(1, 'day').fromNow());
+      global.setAttr('expired-text', 'síðast&nbsp;uppfært ' + momentjs(expires).subtract(1, 'day').fromNow());
       global.setAttr('expired', 'true');
 
       $.ajax({
