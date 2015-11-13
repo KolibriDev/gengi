@@ -2,7 +2,7 @@ currency-list
 
   div.list
     template(name='list-item')
-      currency(attr='code' template route='calculator')
+      a(href='' route='calculator' attr='code' template): currency(attr='code')
         curr-drag: include ../../img/svg-drag.svg
         curr-code(tpl='code')
         curr-name(tpl='name')
@@ -10,7 +10,7 @@ currency-list
         curr-selected(attr='onhome')
           include ../../img/svg-addremove.svg
   div.allcurrencies
-    currency(code='globe' route='allcurrencies')
+    a(href='/allcurrencies' route): currency(code='globe')
       curr-symbol
         .globe: include ../../img/svg-globe.svg
         .plus: include ../../img/svg-plus.svg
@@ -21,7 +21,7 @@ currency-list
         include ../../img/svg-next.svg
 
   div.whatisnew
-    currency(route='about-whatisnew')
+    a(href='/about-whatisnew' route): currency
       curr-code Uppfært gengi.is
       curr-name Kynntu þér stórbætta virkni
       curr-next

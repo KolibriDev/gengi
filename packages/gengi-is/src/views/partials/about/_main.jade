@@ -8,23 +8,23 @@ about.main
     p Vefurinn er sérstaklega hugsaður með hraða og snjallsíma í huga og er hannaður og framleiddur af Kolibri.
 
   content
-    links(route='about-usage')
+    a.links(href='/about-usage' route)
       curr-code Góð ráð við notkun
       include ../../../img/svg-next.svg
 
-    links(route='about-whatisnew')
+    a.links(href='/about-whatisnew' route)
       curr-code Hvað er nýtt í v2
       include ../../../img/svg-next.svg
 
-    links(route='about-tech')
+    a.links(href='/about-tech' route)
       curr-code Tæknin
       include ../../../img/svg-next.svg
 
-    links(route='about-whodunnit')
+    a.links(href='/about-whodunnit' route)
       curr-code Hver gerði
       include ../../../img/svg-next.svg
 
-  section.dark
-    include _contact
+    section.dark
+      include _contact
 
   include _footer

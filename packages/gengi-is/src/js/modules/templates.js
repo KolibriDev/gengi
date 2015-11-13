@@ -67,6 +67,9 @@ let Templates = class {
       }
     });
     item.$el.find('[attr]').each((i, sub) => {
+      if (sub.tagName === 'A' && data.hasOwnProperty('code')) {
+        $(sub).attr('href', `/${data.code}`);
+      }
       let name = $(sub).attr('attr');
       if (data.hasOwnProperty(name)) {
         $(sub).attr(name, data[name]);

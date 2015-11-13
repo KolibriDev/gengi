@@ -4,6 +4,21 @@ input-area {
   display: block;
 }
 
+currency-list {
+  a {
+    @extend %clearfix;
+    display: block;
+    margin: 0 auto $spacing;
+    padding: 0;
+    width: 100%;
+    min-width: $page-min-width;
+    max-width: $page-max-width;
+
+    color: $font-color;
+    text-decoration: none;
+  }
+}
+
 currency {
   overflow: hidden;
   user-select: none;
@@ -17,6 +32,10 @@ currency {
   max-width: $page-max-width;
   height: $big-block-small;
 
+  a > & {
+    margin-bottom: 0;
+  }
+
   @include respond-to(xxsmall) {
     height: $big-block;
   }
@@ -26,8 +45,6 @@ currency {
 
   background: white;
   box-shadow: 0 0 2px rgba(black, 0.1);
-
-  cursor: pointer;
 
   opacity: 1;
 
@@ -66,7 +83,7 @@ currency {
       font-size: 36px;
     }
   }
-  .whatisnew > & {
+  .whatisnew & {
     curr-code,
     curr-name {
       padding-left: $spacing;

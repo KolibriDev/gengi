@@ -47,7 +47,7 @@ class Gengi {
       global.setAttr('state', event.type);
 
       if (event.type === 'loaded') {
-        this.swiftclick.replaceNodeNamesToTrack(['currency','curr-selected','curr-next','div','num']);
+        this.swiftclick.replaceNodeNamesToTrack(['a', 'currency','curr-selected','curr-next','div','num']);
 
         if (global.getAttr('edit-mode') === 'true' && global.getAttr('view') !== 'home' && global.getAttr('view') !== 'allcurrencies') {
           this.disableEdit();
@@ -142,7 +142,7 @@ class Gengi {
       delay: 250,
       disabled: true,
       animation: 150,
-      draggable: 'currency',
+      draggable: 'a',
       ghostClass: 'sortable-ghost',
       chosenClass: 'sortable-chosen',
 
@@ -158,7 +158,7 @@ class Gengi {
       onUpdate: () => {
         if (global.getAttr('view') === 'home') {
           let currlist = [];
-          $('currency-list > div.list > currency').each((i, el) => {
+          $('currency-list > div.list > a').each((i, el) => {
             currlist.push($(el).attr('code'));
           });
           currencies.reorderSelected(currlist);
@@ -177,16 +177,28 @@ class Gengi {
         let $target = $(event.currentTarget);
         let view = $target.attr('route');
 
-        if (view === 'calculator' && global.getAttr('edit-mode') === 'true') {
+        if (event.currentTarget.tagName === 'A' && keys.isClickModifier(event)) {
           return;
         }
+
+        if (view === 'calculator' && global.getAttr('edit-mode') === 'true') {
+          if (event.currentTarget.tagName === 'A') {
+            console.log('preventdefault');
+            event.preventDefault();
+            return false;
+          } else {
+            return;
+          }
+        }
+
         $(document).trigger('leaving');
         setTimeout(() => {
           if (event.currentTarget.tagName === 'A') {
-            if (keys.isClickModifier(event)) { return; }
-            router.navigate(event.currentTarget.pathname || $(event.currentTarget).attr('href'));
-            event.preventDefault();
-            return false;
+
+            let href = $target.attr('href');
+
+            router.navigate(href);
+
           } else {
             let href = '';
 
@@ -209,6 +221,11 @@ class Gengi {
             router.navigate(`/${href}`);
           }
         }, 150);
+
+        if (event.currentTarget.tagName === 'A') {
+          event.preventDefault();
+          return false;
+        }
       });
     });
   }

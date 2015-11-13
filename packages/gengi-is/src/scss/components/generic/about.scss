@@ -58,9 +58,9 @@ about {
   content {
     display: block;
     margin: 0 auto;
-    padding: $spacing 0 0;
+    padding: $spacing $spacing 0;
     min-width: $page-min-width;
-    max-width: $page-max-width;
+    max-width: $page-max-width + $spacing*2;
 
     perspective: 1000px;
   }

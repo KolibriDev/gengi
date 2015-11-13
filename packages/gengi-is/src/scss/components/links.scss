@@ -1,5 +1,5 @@
 
-links {
+a.links {
   position: relative;
 
   display: inline-block;
@@ -7,7 +7,9 @@ links {
   padding: $spacing $spacing*3 $spacing $spacing;
   width: 100%;
 
+  color: $font-color;
   font-size: $font-size-larger;
+  text-decoration: none;
 
   background-color: white;
   box-shadow: 0 0 2px rgba(black, 0.1);
