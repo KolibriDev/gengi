@@ -191,6 +191,9 @@ header {
         top: 0; left: 0; right: 0; bottom: 0;
         margin: auto;
       }
+      html[gengi-expired='true'] & {
+        display: none !important;
+      }
     }
     [done] {
       background: $color-orange;
@@ -208,7 +211,9 @@ header {
         display: inline-block;
       }
 
+      padding: 0 $spacing/2 0 0;
       height: $big-block-small;
+      text-align: right;
 
       @include respond-to(xxsmall) {
         height: $big-block;
@@ -216,16 +221,21 @@ header {
 
       span.dark {
         height: $big-block-small;
-        line-height: 12px;
+        line-height: 18px;
 
-        @include respond-to(xxsmall) {
-          height: $big-block;
-          line-height: 20px;
+        span.text {
+          display: inline-block;
         }
 
         display: inline-block;
         margin: 0;
-        padding: $spacing 0;
+        padding: $spacing/2 0;
+
+        @include respond-to(xxsmall) {
+          padding: $spacing 0;
+          height: $big-block;
+          line-height: 20px;
+        }
       }
 
       svg.svg-reload {

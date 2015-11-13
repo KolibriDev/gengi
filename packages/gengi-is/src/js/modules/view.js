@@ -218,8 +218,6 @@ class View {
 
     this.loaded(() => {
       $tplParent.find('currency').find('curr-selected').off('click.onhome').on('click.onhome', (event) => {
-        event.stopPropagation();
-
         let $target = $(event.currentTarget);
         let code = $target.parent().attr('code');
 
@@ -231,6 +229,8 @@ class View {
           currencies.addSelected(code);
           $target.attr('onhome', true);
         }
+        event.stopPropagation();
+        return false;
       });
     });
   }

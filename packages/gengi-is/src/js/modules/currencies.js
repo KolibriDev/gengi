@@ -36,6 +36,14 @@ export default {
     let now;
     now = new Date().getTime();
 
+    momentjs().calendar(null, {
+      sameDay: '[Today]',
+      nextDay: '[Tomorrow]',
+      nextWeek: 'dddd',
+      lastDay: 'Í GÆR',
+      lastWeek: '[Last] dddd'
+    });
+
     let storedCurrencies = storage.get('currencies');
 
     // if (false) {
@@ -44,11 +52,14 @@ export default {
     } else {
       let expires = (storedCurrencies && storedCurrencies.expires) || (momentjs().seconds(0).hour(0).minutes(0).unix() * 1000);
       // Fake expired
-      // expires = 1447259200000;
-      // deferred.reject(storedCurrencies, {reason: 'transport layer error'});
+      // expires = 1447429200000;
+      let magicdate = momentjs(expires).subtract(1, 'day').fromNow();
 
-      global.setAttr('expired-text', 'síðast&nbsp;uppfært ' + momentjs(expires).subtract(1, 'day').fromNow());
+      magicdate = magicdate.replace(' síðan', '');
+      magicdate = magicdate.replace('fyrir degi', 'í gær');
+      global.setAttr('expired-text', `Síðast&nbsp;uppfært<br><b>${magicdate}</b>`);
       global.setAttr('expired', 'true');
+      // deferred.reject(storedCurrencies, {reason: 'transport layer error'});
 
       $.ajax({
         method: 'GET',

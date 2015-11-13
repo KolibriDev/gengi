@@ -173,6 +173,9 @@ class Gengi {
   initRouter() {
 
     onLoad(() => {
+      // $('body').find('[expired]').off('click.expired').on('click.expired', () => {
+      //   storage.clearAll();
+      // });
       $('body').find('[route]').off('click.route').on('click.route', (event) => {
         let $target = $(event.currentTarget);
         let view = $target.attr('route');
@@ -180,10 +183,8 @@ class Gengi {
         if (event.currentTarget.tagName === 'A' && keys.isClickModifier(event)) {
           return;
         }
-
         if (view === 'calculator' && global.getAttr('edit-mode') === 'true') {
           if (event.currentTarget.tagName === 'A') {
-            console.log('preventdefault');
             event.preventDefault();
             return false;
           } else {
