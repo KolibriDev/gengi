@@ -27,7 +27,6 @@ let Router = class {
       setTimeout(() => {
         analytics.logFirst(`popstate to ${window.location.pathname}`);
         this.processPath(window.location.pathname);
-        this.logView();
       }, 150);
     };
 
@@ -36,13 +35,6 @@ let Router = class {
         this.setState('path', '/' + data.code.toUpperCase() + data.amount.toString());
         this.replaceState();
       }
-    });
-  }
-
-  logView() {
-    analytics('send', 'pageview', {
-      page: analytics.cleanUrl(this.state.path),
-      title: this.state.title,
     });
   }
 
@@ -106,9 +98,8 @@ let Router = class {
   pushState(state, title, path) {
     this.setState('path', path || this.state.path);
     this.state.state = state || this.state.state;
-    this.state.title = title || this.state.title;
+    this.state.title = title || this.state.title || document.title;
     window.history.pushState(this.state.state, this.state.title, this.state.path);
-    this.logView();
   }
 
   replaceState(state, title, path) {

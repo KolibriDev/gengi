@@ -13,11 +13,21 @@ let updateTitle = function(title) {
 };
 
 class View {
-  constructor() {}
+  constructor() {
+    this.url = window.location.pathname;
+  }
+
+  logView() {
+    analytics('send', 'pageview', {
+      page: analytics.cleanUrl(this.url),
+      title: document.title,
+    });
+  }
 
   loaded(callback) {
     setTimeout(() => {
       $(document).trigger('loaded');
+      this.logView();
       if (typeof callback === 'function') {
         callback();
       }
@@ -76,6 +86,7 @@ class View {
   }
 
   showHome() {
+    this.url = window.location.pathname;
     updateTitle();
     header.update({title: 'Gengi.is'});
     global.setAttr('view', 'home');
@@ -100,6 +111,7 @@ class View {
   }
 
   showCalculator(curr, amount) {
+    this.url = `/${curr}`;
     curr = curr.toString().toUpperCase();
     let foo = currencies.get(curr);
     global.setAttr('view', 'calculator');
@@ -170,7 +182,7 @@ class View {
   }
 
   showAbout(path) {
-    updateTitle('Um appið - Gengi.is');
+    this.url = window.location.pathname;
     let sub = 'main';
     let split = path.split('-');
     if (split.length === 2) {
@@ -184,6 +196,8 @@ class View {
       subtitle = sub === 'whodunnit' ? 'The usual suspects.' : subtitle;
     }
 
+    updateTitle(`${subtitle ? subtitle + ' - ' : ''}Um Gengi.is`);
+
     header.update({title: 'Um Gengi.is', subtitle: subtitle});
     global.setAttr('view', 'about-' + sub);
     global.setAttr('editable', false);
@@ -194,6 +208,7 @@ class View {
   showEmpty() {}
 
   showError(type, data) {
+    this.url = window.location.pathname;
     let title = '', subtitle = '', reason = '';
 
     if (type.indexOf('404') !== -1) {

@@ -1,5 +1,4 @@
 'use strict';
-import global from 'global';
 
 // Setup temporary Google Analytics objects.
 window.GoogleAnalyticsObject = 'ga';
@@ -8,17 +7,10 @@ window.ga = function () {
 };
 window.ga.l = 1 * new Date();
 
-// Immediately add a pageview event to the queue.
-console.warn('analytics disabled');
-// window.ga('create', 'UA-XXXXXXXX-X', 'gengi.is');
-// window.ga('send', 'pageview');
+window.ga('create', 'UA-42500963-1', 'gengi.is');
 
 let analytics = function() {
-  if (global.options.debug) {
-    console.info('analytics', arguments);
-  }
-  console.warn('analytics disabled', this, arguments);
-  // window.ga.apply(this, arguments);
+  window.ga.apply(this, arguments);
 };
 
 analytics.logTime = function(category, id) {
