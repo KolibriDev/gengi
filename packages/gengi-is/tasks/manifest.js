@@ -8,7 +8,7 @@ module.exports = function(gulp) {
         gulp.cfg.manifest.src[i] = path + gulp.cfg.manifest.src[i];
       }
     }
-    console.log(gulp.cfg.manifest);
+
     return gulp.src(gulp.cfg.manifest.src)
       .pipe(gulp.plugin.manifest(gulp.cfg.manifest.options))
       .pipe(gulp.dest(gulp.cfg.envdir));
