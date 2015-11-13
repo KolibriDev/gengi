@@ -62,7 +62,7 @@
     "options": {
       "hash": true,
       "filename": "manifest.appcache",
-      "fallback": ["/ /offline.html"],
+      "fallback": ["/ /index.html"],
       "network": ["*"],
       "exclude": [
         "manifest.appcache",
