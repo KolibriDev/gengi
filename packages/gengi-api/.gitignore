@@ -17,3 +17,4 @@ node_modules
 deploy_key
 deploy_key.pub
 dist/*
+*.rdb
