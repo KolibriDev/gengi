@@ -34,57 +34,6 @@ class View {
     },50);
   }
 
-  displayCurrs(data) {
-    let $tplParent;
-
-    header.redraw();
-    templates.clearParent('list-item');
-    templates.clearParent('all-currencies');
-    _.each(data, (curr) => {
-      let item;
-      if (curr.code === 'globe') {
-        item = templates.populateAndAppend('all-currencies', {
-          code: curr.code,
-          title: curr.title,
-          alttitle: curr.alttitle,
-          name: curr.name,
-        });
-      } else {
-        if (curr.rate < 1 ) {
-          curr.rate = format.numberIcelandic(curr.rate, 5);
-          curr.low = true;
-        } else {
-          curr.rate = format.numberIcelandic(curr.rate, 2);
-          curr.low = false;
-        }
-        curr.onhome = true;
-        item = templates.populateAndAppend('list-item', curr);
-
-      }
-
-      $tplParent = $tplParent || item.$parent;
-    });
-
-    this.loaded(() => {
-      $tplParent.find('currency').find('curr-selected').off('click.onhome').on('click.onhome', (event) => {
-        event.stopPropagation();
-
-        let $target = $(event.currentTarget);
-        let code = $target.parent().attr('code');
-
-        if ($target.attr('onhome') === 'true') {
-          currencies.removeSelected(code);
-          $target.attr('onhome', false);
-          $target.parent().addClass('hide');
-        } else {
-          currencies.addSelected(code);
-          $target.attr('onhome', true);
-        }
-      });
-    });
-
-  }
-
   showHome() {
     this.url = window.location.pathname;
     updateTitle();
@@ -94,16 +43,16 @@ class View {
     let currs = currencies.selected();
 
     currs.done((data) => {
-      this.displayCurrs(data);
+      this._displayCurrs(data);
     });
 
     currs.fail((data) => {
       if (data) {
-        this.displayCurrs(data);
-        analytics.logException('Failed to get selected currencies, showing stored - ' + (data && JSON.stringify(data)), false);
+        this._displayCurrs(data);
+        analytics.logException('Failed to get selected currencies, showing stored', false);
       } else {
         this.showError('500', 'Villa við að sækja gengi');
-        analytics.logException('Failed to get selected currencies - ' + (data && JSON.stringify(data)), true);
+        analytics.logException('Failed to get selected currencies', true);
       }
     });
 
@@ -117,17 +66,18 @@ class View {
     global.setAttr('view', 'calculator');
     global.setAttr('editable', false);
     foo.done((data) => {
-      header.update({
-        title: data.code,
-        subtitle: data.name,
-        amount: amount || 1,
-      });
-      calculator.show(data, amount);
-
-      updateTitle(`${data.name} - ${data.code} - Gengi.is`);
-      this.loaded();
+      this._displayCalc(data, curr, amount);
     });
-    foo.fail((data) => this.showError('404-curr', { curr, amount, data }));
+    foo.fail((data) => {
+      console.log('showcalc fail', data);
+      if (data) {
+        this._displayCalc(data, curr, amount);
+        analytics.logException('Expired currencies', false);
+      } else {
+        this.showError('404-curr', { curr, amount, data });
+        analytics.logException(`${curr} not found`, false);
+      }
+    });
   }
 
   showAllCurrencies() {
@@ -136,46 +86,19 @@ class View {
     global.setAttr('view', 'allcurrencies');
     global.setAttr('editable', true);
     let currs = currencies.list();
-    let $tplParent;
 
     currs.done((data) => {
-      templates.clearParent('all-currencies');
-      templates.clearParent('list-item');
-      _.each(data.list, (curr) => {
-        if (curr.rate < 1 ) {
-          curr.rate = format.numberIcelandic(curr.rate, 5);
-          curr.low = true;
-        } else {
-          curr.rate = format.numberIcelandic(curr.rate, 2);
-          curr.low = false;
-        }
-        curr.onhome = currencies.isSelected(curr.code);
-
-        let item = templates.populateAndAppend('list-item', curr);
-        $tplParent = $tplParent || item.$parent;
-      });
-
-      this.loaded(() => {
-        $tplParent.find('currency').find('curr-selected').off('click.onhome').on('click.onhome', (event) => {
-          event.stopPropagation();
-
-          let $target = $(event.currentTarget);
-          let code = $target.parent().attr('code');
-
-          if ($target.attr('onhome') === 'true') {
-            currencies.removeSelected(code);
-            $target.attr('onhome', false);
-          } else {
-            currencies.addSelected(code);
-            $target.attr('onhome', true);
-          }
-        });
-      });
+      this._displayAllCurrs(data);
     });
 
     currs.fail((data) => {
-      this.showError('500', 'Villa við að sækja gengi');
-      analytics.logException('Failed to get currencies - ' + (data && JSON.stringify(data)), true);
+      if (data) {
+        this._displayAllCurrs(data);
+        analytics.logException('Expired currencies', false);
+      } else {
+        this.showError('500', 'Villa við að sækja gengi');
+        analytics.logException('Failed to get currencies', true);
+      }
     });
 
     currs.progress((ignore) => console.info('ignoring progress', ignore));
@@ -262,6 +185,104 @@ class View {
     this.loaded();
   }
 
+  _displayCurrs(data) {
+    let $tplParent;
+
+    header.redraw();
+    templates.clearParent('list-item');
+    templates.clearParent('all-currencies');
+    _.each(data, (curr) => {
+      let item;
+      if (curr.code === 'globe') {
+        item = templates.populateAndAppend('all-currencies', {
+          code: curr.code,
+          title: curr.title,
+          alttitle: curr.alttitle,
+          name: curr.name,
+        });
+      } else {
+        if (curr.rate < 1 ) {
+          curr.rate = format.numberIcelandic(curr.rate, 5);
+          curr.low = true;
+        } else {
+          curr.rate = format.numberIcelandic(curr.rate, 2);
+          curr.low = false;
+        }
+        curr.onhome = true;
+        item = templates.populateAndAppend('list-item', curr);
+
+      }
+
+      $tplParent = $tplParent || item.$parent;
+    });
+
+    this.loaded(() => {
+      $tplParent.find('currency').find('curr-selected').off('click.onhome').on('click.onhome', (event) => {
+        event.stopPropagation();
+
+        let $target = $(event.currentTarget);
+        let code = $target.parent().attr('code');
+
+        if ($target.attr('onhome') === 'true') {
+          currencies.removeSelected(code);
+          $target.attr('onhome', false);
+          $target.parent().addClass('hide');
+        } else {
+          currencies.addSelected(code);
+          $target.attr('onhome', true);
+        }
+      });
+    });
+  }
+
+  _displayAllCurrs(data) {
+    let $tplParent;
+
+    templates.clearParent('all-currencies');
+    templates.clearParent('list-item');
+    _.each(data.list, (curr) => {
+      if (curr.rate < 1 ) {
+        curr.rate = format.numberIcelandic(curr.rate, 5);
+        curr.low = true;
+      } else {
+        curr.rate = format.numberIcelandic(curr.rate, 2);
+        curr.low = false;
+      }
+      curr.onhome = currencies.isSelected(curr.code);
+
+      let item = templates.populateAndAppend('list-item', curr);
+      $tplParent = $tplParent || item.$parent;
+    });
+
+    this.loaded(() => {
+      $tplParent.find('currency').find('curr-selected').off('click.onhome').on('click.onhome', (event) => {
+        event.stopPropagation();
+
+        let $target = $(event.currentTarget);
+        let code = $target.parent().attr('code');
+
+        if ($target.attr('onhome') === 'true') {
+          currencies.removeSelected(code);
+          $target.attr('onhome', false);
+        } else {
+          currencies.addSelected(code);
+          $target.attr('onhome', true);
+        }
+      });
+    });
+  }
+
+  _displayCalc(data, curr, amount) {
+    header.update({
+      title: data.code,
+      subtitle: data.name,
+      amount: amount || 1,
+    });
+    calculator.show(data, amount);
+
+    updateTitle(`${data.name} - ${data.code} - Gengi.is`);
+    this.loaded();
+  }
 }
 
 export default new View();
