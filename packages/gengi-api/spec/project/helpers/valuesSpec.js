@@ -28,7 +28,7 @@ describe('Helpers > values', function(){
     });
 
     it('should return correctly formatted name', function(done){
-      assert(name === 'sterlingspund', 'expected \'sterlingspund\', got \''+name+'\'');
+      assert(name === 'Sterlingspund', 'expected \'Sterlingspund\', got \''+name+'\'');
       done();
     });
 
@@ -40,7 +40,7 @@ describe('Helpers > values', function(){
 
     var nocomma = values.name('sterlingspund');
     it('should return sterlingspund', function(done){
-      assert(nocomma === 'sterlingspund', 'expected \'sterlingspund\', got \''+nocomma+'\'');
+      assert(nocomma === 'Sterlingspund', 'expected \'Sterlingspund\', got \''+nocomma+'\'');
       done();
     });
 
