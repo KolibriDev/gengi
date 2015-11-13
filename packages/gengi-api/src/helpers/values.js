@@ -15,6 +15,8 @@ export const name = function(name){
     name = name.replace((split[split.length-1] + ' ' + split[split.length-1]), split[split.length-1]);
   }
 
+  name = name.trim().charAt(0).toUpperCase() + name.slice(1);
+
   return name;
 };
 
