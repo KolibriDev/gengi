@@ -7,6 +7,15 @@ about.tech
   content
     section
       icon
+        include ../../../img/svg-feather.svg
+      h2 Léttleiki
+      p Til að öðlast þann léttleika sem við sóttumst eftir var ákveðið að notast ekki við
+        | neitt framework (t.d. AngularJS), eins lítið af pökkum og raunhæft og enga icon fonta.
+      p Við notum manifest og localstorage og erum með REST-api sem forvinnur og minnkar gögnin eins og unnt er
+        | til að halda gagnaflutningum í algjöru lágmarki.
+
+    section
+      icon
         include ../../../img/svg-code.svg
       h2 Forritun
       p Til að öðlast þá gagnvirkni sem við
@@ -18,36 +27,36 @@ about.tech
         br
         | einnig notum við MomentJS, Swiftclick og Sortable
 
-    section
-      icon
-        include ../../../img/svg-feather.svg
-      h2 Léttleiki
-      p Til að öðlast þann léttleika sem við sóttumst eftir var ákveðið að notast ekki við
-        | neitt framework (t.d. AngularJS), eins lítið af pökkum og raunhæft og enga icon fonta.
-      p Við notum manifest og localstorage og erum með REST-api sem forvinnur og minnkar gögnin eins og unnt er
-        | til að halda gagnaflutningum í algjöru lágmarki.
-
-    section
-      h2 Hlekkir
       .example
-        a.blue-light.narrow.margin-bottom(href='http://www.ecma-international.org/ecma-262/6.0/' target='_blank')
+        a.blue-light.narrow(href='http://www.ecma-international.org/ecma-262/6.0/' target='_blank')
           include ../../../img/svg-link.svg
           | ECMAScript 2015
-        a.blue-light.narrow.margin-bottom(href='http://jade-lang.com/' target='_blank')
+        a.blue-light.narrow(href='http://jade-lang.com/' target='_blank')
           include ../../../img/svg-link.svg
           | Jade
-        a.blue-light.narrow.margin-bottom(href='http://sass-lang.com/' target='_blank')
+        a.blue-light.narrow(href='http://sass-lang.com/' target='_blank')
           include ../../../img/svg-link.svg
           | Sass/Scss
-        a.blue-light.narrow.margin-bottom(href='http://momentjs.com/' target='_blank')
+        a.blue-light.narrow(href='http://momentjs.com/' target='_blank')
           include ../../../img/svg-link.svg
           | MomentJS
-        a.blue-light.narrow.margin-bottom(href='https://github.com/munkychop/swiftclick/' target='_blank')
+        a.blue-light.narrow(href='https://github.com/munkychop/swiftclick/' target='_blank')
           include ../../../img/svg-link.svg
           | Swiftclick
-        a.blue-light.narrow.margin-bottom(href='https://github.com/RubaXa/Sortable' target='_blank')
+        a.blue-light.narrow(href='https://github.com/RubaXa/Sortable' target='_blank')
           include ../../../img/svg-link.svg
           | Sortable
+
+    section
+      p Kóðinn á bakvið verkefnið er aðgengilegur á github.
+
+      .example
+        a.blue-light(href='https://github.com/KolibriDev/gengi-is' target='_blank')
+          include ../../../img/svg-github.svg
+          | KolibriDev/gengi-is
+        a.blue-light(href='https://github.com/KolibriDev/api-gengi-is' target='_blank')
+          include ../../../img/svg-github.svg
+          | KolibriDev/api-gengi-is
 
   include _footer
 
