@@ -2,7 +2,7 @@ import _ from 'underscore';
 import redis from './redis';
 import borgun from './borgun';
 
-export const get = function(callback) {
+let get = (callback) => {
   redis.get((err, storedResult) => {
     if (!err && storedResult) {
       callback(null, storedResult);
@@ -23,7 +23,7 @@ export const get = function(callback) {
   });
 };
 
-export const toDisplayCurrency = function(currency) {
+let toDisplayCurrency = (currency) => {
   let countryArr = [];
   _.each(currency.countries, (country) => {
     countryArr.push(country.country);
@@ -36,7 +36,7 @@ export const toDisplayCurrency = function(currency) {
   };
 };
 
-export const ensureCodes = function(codes, currs) {
+let ensureCodes = (codes, currs) => {
   codes = codes || '';
   codes = codes.toString().toUpperCase().split(',');
 
