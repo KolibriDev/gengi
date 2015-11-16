@@ -69,8 +69,7 @@ class View {
       this._displayCalc(data, curr, amount);
     });
     foo.fail((data) => {
-      console.log('showcalc fail', data);
-      if (data) {
+      if (data && data.curr) {
         this._displayCalc(data, curr, amount);
         analytics.logException('Expired currencies', false);
       } else {
