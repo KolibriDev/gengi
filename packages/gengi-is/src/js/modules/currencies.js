@@ -5,7 +5,7 @@ import global from 'global';
 import momentjs from 'vendor/momentjs';
 
 export default {
-  source: '//api.gengi.is/v2/currencies',
+  source: '//api.gengi.is/currencies',
 
   get: function(id) {
     let deferred = jQuery.Deferred();
