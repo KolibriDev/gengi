@@ -1,12 +1,13 @@
+import moment from 'moment';
 
 /**
 @secsToMidnight
   Returns seconds to next midnight, or midnight of given date
 **/
-export const secsToMidnight = function(now) {
-    var msd = 8.64e7;
-    now = now instanceof Date ? now : new Date();
-    return Math.floor((msd - (now - now.getTimezoneOffset()*1000) % msd)/1000);
+export const secsToMidnight = function() {
+  let now = moment().unix();
+  let midnight = getMidnight() / 1000;
+  return midnight - now;
 };
 
 /**
@@ -14,12 +15,12 @@ export const secsToMidnight = function(now) {
   Returns timestamp for next midnight.
 **/
 export const getMidnight = function() {
-    var midnight = new Date();
-    midnight.setHours(24);
-    midnight.setMinutes(0);
-    midnight.setSeconds(0);
-    midnight.setMilliseconds(0);
-    return midnight.getTime();
+  var midnight = moment();
+  midnight.hours(24);
+  midnight.minutes(0);
+  midnight.seconds(0);
+  midnight.milliseconds(0);
+  return midnight.unix() * 1000;
 };
 
 export default { secsToMidnight, getMidnight };
