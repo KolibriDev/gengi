@@ -85,6 +85,12 @@ class Calculator {
       this.numpadMagic($(event.target).attr('key'));
     });
 
+    $(window).on('focus', () => {
+      if (!document.hidden && this.disableNumpad) {
+        this.disableNumpad = false;
+      }
+    });
+
     $(document).on('visibilitychange', () => {
       if (!document.hidden && this.disableNumpad) {
         this.disableNumpad = false;
