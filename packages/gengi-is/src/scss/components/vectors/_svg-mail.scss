@@ -1,4 +1,8 @@
 
 svg.svg-mail {
   width: 16px;
+
+  .contact & {
+    width: 23px;
+  }
 }
