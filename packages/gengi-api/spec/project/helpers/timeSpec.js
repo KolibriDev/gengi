@@ -3,18 +3,23 @@ var assert = require('assert');
 
 describe('Helpers > time', function(){
 
-  describe('secsToMidnight(now)', function(){
+  describe('getExpirytime(now)', function(){
 
     it('should be a method', function(done){
-      assert(time.hasOwnProperty('secsToMidnight'), 'expected \'time\' to have property \'secsToMidnight\'');
-      assert(typeof time.secsToMidnight === 'function', 'expected time.secsToMidnight to be a method');
+      assert(time.hasOwnProperty('getExpirytime'), 'expected \'time\' to have property \'getExpirytime\'');
+      assert(typeof time.getExpirytime === 'function', 'expected time.getExpirytime to be a method');
       done();
     });
 
-    var value = time.secsToMidnight();
+    var value = time.getExpirytime('01.01.2014');
 
     it('should return a number', function(done){
       assert(typeof value === 'number', 'expected a number');
+      done();
+    });
+
+    it('should return exactly 10 minutes in seconds', function(done){
+      assert(value === 60 * 10, 'expected \'600\' got \'' + value + '\'');
       done();
     });
 

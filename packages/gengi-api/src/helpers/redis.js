@@ -1,5 +1,5 @@
 import redis from 'redis';
-import {secsToMidnight} from './time';
+import {getExpirytime} from './time';
 
 class Redis {
   constructor(){
@@ -15,7 +15,7 @@ class Redis {
   set(data){
     this.isReady((err) => {
       if (!err) {
-        this.client.setex(this.cacheKey, secsToMidnight(), JSON.stringify(data));
+        this.client.setex(this.cacheKey, getExpirytime(data.currencyDate), JSON.stringify(data));
       }
     });
   }

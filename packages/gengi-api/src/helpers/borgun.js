@@ -38,7 +38,7 @@ class Borgun {
           currencies: this.parseCurrencies(result),
           currencyDate: result.Rate[0].RateDate[0],
           // Store expiring timestamp for front-end
-          expires: getMidnight(),
+          expires: getMidnight(result.Rate[0].RateDate[0]),
         };
       }
     });
