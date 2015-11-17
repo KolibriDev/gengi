@@ -138,17 +138,17 @@ currency {
       opacity: 0;
     }
     curr-symbol {
-      .globe {
+      .globe svg, .plus svg {
         opacity: 1;
         transition: opacity $trans-dur;
       }
-      .plus {
+      .globe svg {
+        z-index: 1;
+      }
+      .plus svg {
         opacity: 0;
-        transition: opacity $trans-dur;
-
-        svg {
-          width: 30% !important;
-        }
+        width: 30% !important;
+        z-index: 2;
       }
     }
 
@@ -170,10 +170,12 @@ currency {
         opacity: 1;
       }
       curr-symbol {
-        .globe {
-          opacity: 0;
+        .globe svg {
+          path {
+            fill: $color-orange;
+          }
         }
-        .plus {
+        .plus svg {
           opacity: 1;
         }
       }

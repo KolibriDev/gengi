@@ -56,7 +56,7 @@ currency {
   html[gengi-editable='true'][gengi-edit-mode='true'] & curr-symbol {
     background: $color-orange;
 
-    svg path {
+    .plus svg path {
       fill: white;
     }
   }
