@@ -11,7 +11,7 @@ let Global = class {
 
     this.attributes = {};
 
-    this.setAttr('infinityThreshold', Number.MAX_SAFE_INTEGER || Number.MAX_VALUE || 999999999999);
+    this.setAttr('infinityThreshold', Number.MAX_SAFE_INTEGER || 9000000000000000);
   }
 
   createEl(name, el, target) {
