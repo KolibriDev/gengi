@@ -19,6 +19,13 @@ currency-list {
   }
 }
 
+a[route='calculator'] {
+  transition: margin $trans-dur;
+  &.hide {
+    margin-bottom: 0;
+  }
+}
+
 currency {
   overflow: hidden;
   user-select: none;
@@ -53,6 +60,7 @@ currency {
 
   transition: transform $trans-dur-slower, opacity $trans-dur ease 50ms, box-shadow $trans-dur, height $trans-dur, margin $trans-dur;
 
+  a.hide > &,
   &.hide {
     margin-bottom: 0px;
     height: 0px;

@@ -1,14 +1,14 @@
 currency-list
 
   div.list
-    template(name='list-item')
-      a(href='' route='calculator' attr='code' template): currency(attr='code')
-        curr-drag: include ../../img/svg-drag.svg
-        curr-code(tpl='code')
-        curr-name(tpl='name')
-        curr-rate(tpl='rate' attr='low')
-        curr-selected(attr='onhome')
-          include ../../img/svg-addremove.svg
+    a(href='' route='calculator' attr='code' template='list-item'): currency(attr='code')
+      curr-drag: include ../../img/svg-drag.svg
+      curr-code(tpl='code')
+      curr-name(tpl='name')
+      curr-rate(tpl='rate' attr='low')
+      curr-selected(attr='onhome')
+        include ../../img/svg-addremove.svg
+
   div.allcurrencies
     a(href='/allcurrencies' route): currency(code='globe')
       curr-symbol

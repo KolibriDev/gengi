@@ -223,7 +223,7 @@ class View {
         if ($target.attr('onhome') === 'true') {
           currencies.removeSelected(code);
           $target.attr('onhome', false);
-          $target.parent().addClass('hide');
+          $target.parent().parent().addClass('hide');
         } else {
           currencies.addSelected(code);
           $target.attr('onhome', true);

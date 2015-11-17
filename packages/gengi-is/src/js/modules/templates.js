@@ -5,20 +5,20 @@ let Templates = class {
   constructor() {
     this.dictionary = {};
 
-    $('template').each((index, template) => {
+    $('[template]').each((index, template) => {
       this.set(template);
-      // $(template).remove();
+      $(template).remove();
     });
   }
 
   set(template) {
     let $template = $(template);
-    let name = $template.attr('name');
-    let node = $template.get(0).content.cloneNode(true);
+    let name = $template.attr('template');
+    let $node = $template.clone();
 
     this.dictionary[name] = {
       name: name,
-      node: node,
+      $node: $node,
       $parent : $template.parent(),
     };
   }
@@ -54,10 +54,17 @@ let Templates = class {
     if (!name || !data || !item) {
       return false;
     }
-    item.el = item.node.cloneNode(true);
-    item.$el = $(item.el);
+    item.$el = item.$node.clone();
 
-    item.$el.find('[template]').attr('template', name);
+    _.each(data, (value, key) => {
+      if (item.$el.attr('attr') === key) {
+        item.$el.attr(key, value);
+
+        if (key === 'code' && item.$el.prop('tagName') === 'A') {
+          item.$el.attr('href', `/${value}`);
+        }
+      }
+    });
 
     item.$el.find('[tpl]').each((i, sub) => {
       let name = $(sub).attr('tpl');
@@ -67,9 +74,6 @@ let Templates = class {
       }
     });
     item.$el.find('[attr]').each((i, sub) => {
-      if (sub.tagName === 'A' && data.hasOwnProperty('code')) {
-        $(sub).attr('href', `/${data.code}`);
-      }
       let name = $(sub).attr('attr');
       if (data.hasOwnProperty(name)) {
         $(sub).attr(name, data[name]);

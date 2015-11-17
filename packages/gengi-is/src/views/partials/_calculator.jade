@@ -1,10 +1,9 @@
 
 calculator
   input-area
-    template(name='calculator-item')
-      currency(attr='code' template)
-        curr-input
-          value(tpl='amount')
+    currency(attr='code' template='calculator-item')
+      curr-input
+        value(tpl='amount')
 
   //- currency(field='amountCurr' v-attr='symbol:app.currentCurrency' v-on='click:activate("curr")')
   //-   curr-input
