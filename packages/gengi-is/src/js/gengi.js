@@ -22,6 +22,10 @@ class Gengi {
 
     global.setAttr('load-step', '2');
 
+    if (window.navigator.standalone !== undefined) {
+      global.setAttr('safari-standalone', window.navigator.standalone);
+    }
+
     this.setEvents();
     this.initRouter();
     this.initSorting();

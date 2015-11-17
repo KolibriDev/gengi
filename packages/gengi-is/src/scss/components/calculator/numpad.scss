@@ -32,6 +32,20 @@ numpad {
       max-height: $block;
     }
 
+    html[gengi-safari-standalone='false'] & {
+      $ios-safari-navbar: 80px;
+      height: calc(25vh - #{($spacing*3 + $big-block-small*3 + $ios-safari-navbar) / 4});
+
+      @include respond-to(xxsmall) {
+        height: calc(25vh - #{($spacing*3 + $big-block*3 + $ios-safari-navbar) / 4});
+      }
+
+      @include respond-to(small) {
+        height: calc(25vh - #{$spacing + ($spacing*3 + $big-block*3 + $ios-safari-navbar) / 4});
+      }
+
+    }
+
     opacity: 1;
 
     transform: translate3d(0,0,0);
