@@ -6,9 +6,13 @@ currency-list {
   display: none;
 
   margin: auto;
-  padding: $spacing;
+  padding: $spacing/2;
   height: calc(100% - #{$big-block-small});
   text-align: center;
+
+  @include respond-to('height', 480px) {
+    padding: $spacing;
+  }
 
   @include respond-to(xxsmall) {
     height: calc(100% - #{$big-block});

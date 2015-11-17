@@ -3,11 +3,16 @@ about {
   @extend .y-scroll.force;
 
   display: none;
+  max-width: 100%;
 
   margin: 0;
   padding: 0;
-  padding-bottom: $spacing;
+  padding-bottom: $spacing/2;
   height: calc(100% - 64px);
+
+  @include respond-to('height', 480px) {
+    padding-bottom: $spacing;
+  }
 
   hero {
     @extend %clearfix;
@@ -58,11 +63,15 @@ about {
   content {
     display: block;
     margin: 0 auto;
-    padding: $spacing $spacing 0;
+    padding: $spacing/2 $spacing/2 0;
     min-width: $page-min-width;
     max-width: $page-max-width + $spacing*2;
 
     perspective: 1000px;
+
+    @include respond-to('height', 480px) {
+      padding: $spacing $spacing 0;
+    }
   }
 
   section {
@@ -70,9 +79,13 @@ about {
     text-align: center;
     background-color: white;
     padding: $spacing $spacing 0;
-    margin: 0 0 $spacing 0;
+    margin: 0 0 $spacing/2;
 
     box-shadow: 0 0 2px rgba(black, 0.1);
+
+    @include respond-to('height', 480px) {
+      margin-bottom: $spacing;
+    }
 
     &.dark {
       background-color: $color-light;

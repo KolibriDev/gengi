@@ -1,13 +1,17 @@
 
 calculator {
-  @extend .y-scroll.force;
+  overflow: hidden;
   display: none;
 
   margin: auto;
-  padding: $spacing;
+  padding: $spacing/2;
   height: calc(100% - #{$big-block-small});
   text-align: center;
   perspective: 1000px;
+
+  @include respond-to('height', 480px) {
+    padding: $spacing;
+  }
 
   html[gengi-view='calculator'] & {
     display: block;

@@ -8,7 +8,7 @@ currency-list {
   a {
     @extend %clearfix;
     display: block;
-    margin: 0 auto $spacing;
+    margin: 0 auto $spacing/2;
     padding: 0;
     width: 100%;
     min-width: $page-min-width;
@@ -16,6 +16,10 @@ currency-list {
 
     color: $font-color;
     text-decoration: none;
+
+    @include respond-to('height', 480px) {
+      margin-bottom: $spacing;
+    }
   }
 }
 
@@ -32,12 +36,16 @@ currency {
   position: relative;
   display: block;
 
-  margin: 0 auto $spacing;
+  margin: 0 auto $spacing/2;
   padding: 0;
   width: 100%;
   min-width: $page-min-width;
   max-width: $page-max-width;
   height: $big-block-small;
+
+  @include respond-to('height', 480px) {
+    margin-bottom: $spacing;
+  }
 
   a > & {
     margin-bottom: 0;
