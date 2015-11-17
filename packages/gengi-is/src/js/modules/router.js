@@ -20,8 +20,6 @@ let Router = class {
 
     this.setState('path', this.state.path);
 
-    this.processPath();
-
     window.onpopstate = () => {
       $(document).trigger('leaving');
       setTimeout(() => {

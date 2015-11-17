@@ -38,10 +38,17 @@ class Gengi {
   }
 
   ensureVersion(version) {
-    if (storage.get('version') && storage.get('version') !== version) {
-      // analytics('send', 'event');
-      storage.clearAll();
+    let storedVersion = storage.get('version');
+
+    // Only clear on major/minor releases
+    storedVersion = storedVersion.substring(0, storedVersion.lastIndexOf('.'));
+    let compareVersion = version.substring(0, version.lastIndexOf('.'));
+
+    if (storedVersion && storedVersion !== compareVersion) {
+      storage.clear('version');
+      storage.clear('currencies');
     }
+
     storage.set('version', version);
   }
 
@@ -175,6 +182,7 @@ class Gengi {
   }
 
   initRouter() {
+    router.processPath();
 
     onLoad(() => {
       // $('body').find('[expired]').off('click.expired').on('click.expired', () => {

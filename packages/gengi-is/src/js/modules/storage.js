@@ -54,6 +54,7 @@ let Storage = class {
   }
   clear(key){
     try {
+      key = this.ns ? this.ns + '-' + key : key;
       this.storage.removeItem(key);
       return true;
     } catch(e) {
