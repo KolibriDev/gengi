@@ -41,7 +41,7 @@ class Gengi {
     let storedVersion = storage.get('version');
 
     // Only clear on major/minor releases
-    storedVersion = storedVersion.substring(0, storedVersion.lastIndexOf('.'));
+    storedVersion = storedVersion ? storedVersion.substring(0, storedVersion.lastIndexOf('.')) : '';
     let compareVersion = version.substring(0, version.lastIndexOf('.'));
 
     if (storedVersion && storedVersion !== compareVersion) {
