@@ -1,28 +1,28 @@
-import _ from 'underscore';
-import helper from '../helpers/currencies';
+import _ from 'underscore'
+import helper from '../helpers/currencies'
 
 const buildResponse = (codes, results) => {
-  let currencies = {};
+  const currencies = {}
   _.each(codes, (code) => {
-    let curr = _.findWhere(results.currencies, { code: code });
+    const curr = _.findWhere(results.currencies, { code })
     if (curr && curr.code !== 'ISK') {
-      currencies[curr.code] = helper.toDisplayCurrency(curr);
+      currencies[curr.code] = helper.toDisplayCurrency(curr)
     }
-  });
+  })
   return {
     currencyDate: results.currencyDate,
     expires: results.expires,
     list: currencies,
-  };
-};
+  }
+}
 
 export default (codes, callback) => {
   helper.get((err, results) => {
     if (err) {
-      callback(err);
+      callback(err)
     } else {
-      codes = helper.ensureCodes(codes, results.currencies);
-      callback(err, buildResponse(codes, results));
+      const retCodes = helper.ensureCodes(codes, results.currencies)
+      callback(err, buildResponse(retCodes, results))
     }
-  });
-};
+  })
+}

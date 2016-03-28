@@ -1,39 +1,37 @@
-import _ from 'underscore';
-import helper from '../helpers/currencies';
-import search from '../helpers/search';
+import _ from 'underscore'
+import helper from '../helpers/currencies'
+import search from '../helpers/search'
 
 const buildResponse = (term, results) => {
-  let searchResults = _.filter(results.currencies, (value) =>{
-    return search(value, term);
-  });
+  const searchResults = _.filter(results.currencies, (value) => search(value, term))
 
-  let currencies = {};
+  const currencies = {}
   _.each(searchResults, (item) => {
-    currencies[item.code] = helper.toDisplayCurrency(item);
-  });
+    currencies[item.code] = helper.toDisplayCurrency(item)
+  })
 
   return {
     currencyDate: results.currencyDate,
     expires: results.expires,
-    currencies: currencies,
-  };
-};
+    currencies,
+  }
+}
 
 const ensureTerm = (term) => {
-  term = term || '';
-  term = typeof term === 'string' ? term : term.toString();
-  term = term.toUpperCase();
+  let value = term || ''
+  value = typeof value === 'string' ? value : value.toString()
+  value = value.toUpperCase()
 
-  return term;
-};
+  return value
+}
 
 export default (term, callback) => {
   helper.get((err, results) => {
     if (err) {
-      callback(err);
+      callback(err)
     } else {
-      term = ensureTerm(term);
-      callback(err, buildResponse(term, results));
+      const retTerm = ensureTerm(term)
+      callback(err, buildResponse(retTerm, results))
     }
-  });
-};
+  })
+}

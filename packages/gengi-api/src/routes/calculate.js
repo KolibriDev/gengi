@@ -1,9 +1,9 @@
-import express from 'express';
-import calculate from '../endpoints/calculate';
+import express from 'express'
+import calculate from '../endpoints/calculate'
 
-let router = express.Router();
+const router = express.Router() // eslint-disable-line new-cap
 
-let docs = {
+const docs = {
   path: '/calculate/:code/:value',
   response: 'Calculated value',
   params: {
@@ -14,24 +14,24 @@ let docs = {
     value: {
       required: false,
       description: 'Number, defaults to 1',
-    }
+    },
   },
-};
+}
 
 router.get('/', (req, res) => {
   res.send({
     endpoint: docs,
-  });
-});
+  })
+})
 
 router.get('/:code/:value?', (req, res) => {
   calculate(req.params.code, req.params.value, (err, results) => {
-    res.send(err ? err : results);
-  });
-});
+    res.send(err || results)
+  })
+})
 
 export default {
   name: 'calculate',
   router,
   docs,
-};
+}

@@ -1,5 +1,5 @@
-'use strict';
+'use strict'
 
-module.exports = function(gulp) {
-  gulp.task('default', ['build']);
-};
+module.exports = (gulp) => {
+  gulp.task('default', ['build'])
+}

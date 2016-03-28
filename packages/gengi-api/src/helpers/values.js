@@ -3,29 +3,30 @@
 @values.name
   Parse/format currency name for better human readability.
 **/
-export const name = function(name){
-  if (!name) { return name; }
+export const name = (providedName) => {
+  if (!providedName) { return providedName }
   // Change 'dalur, bandarískur' to 'bandarískur dalur'
-  name = name.split(',');
-  name = name.length > 1 ? name[1].trim() + ' ' + name[0].trim() : name[0];
+  let value = providedName.split(',')
+  value = value.length > 1 ? `${value[1].trim()} ${value[0].trim()}` : value[0]
 
-  if (name.indexOf(' ') > -1) {
-    // Remove duplicates in name, e.g. 'sterlingspund pund'
-    var split = name.split(' ');
-    name = name.replace((split[split.length-1] + ' ' + split[split.length-1]), split[split.length-1]);
+  if (value.indexOf(' ') > -1) {
+    // Remove duplicates in value, e.g. 'sterlingspund pund'
+    const split = value.split(' ')
+    // value = value.replace((split[split.length-1] + ' ' + split[split.length-1]), split[split.length-1])
+    value = value.replace((`${split[split.length - 1]} ${split[split.length - 1]}`), split[split.length - 1])
   }
 
-  name = name.trim().charAt(0).toUpperCase() + name.slice(1);
+  value = value.trim().charAt(0).toUpperCase() + value.slice(1)
 
-  return name;
-};
+  return value
+}
 
 /**
 @values.rate
   Normalize float values for currency rate.
 **/
-export const rate = function(value){
-  return parseFloat(value);
-};
+export const rate = function (value) {
+  return parseFloat(value)
+}
 
-export default { name, rate };
+export default { name, rate }

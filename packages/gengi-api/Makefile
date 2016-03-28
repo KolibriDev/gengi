@@ -16,16 +16,16 @@ npm:
 	npm install --loglevel=error
 
 .PHONY: test, test-build
-test: jshint jasmine
+test: lint jasmine
 
 jasmine: build
 	@./node_modules/.bin/jasmine
 
-jshint:
-	@./node_modules/.bin/jshint ./gulpfile.js --verbose --reporter node_modules/jshint-stylish
-	@./node_modules/.bin/jshint ./tasks       --verbose --reporter node_modules/jshint-stylish
-	@./node_modules/.bin/jshint ./src         --verbose --reporter node_modules/jshint-stylish
-	@./node_modules/.bin/jshint ./spec        --verbose --reporter node_modules/jshint-stylish
+lint:
+	@./node_modules/.bin/eslint ./gulpfile.js
+	@./node_modules/.bin/eslint ./tasks
+	@./node_modules/.bin/eslint ./src
+	@./node_modules/.bin/eslint ./spec
 
 build:
 	gulp build

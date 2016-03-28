@@ -1,52 +1,52 @@
-import _ from 'underscore';
-import redis from './redis';
-import borgun from './borgun';
+import _ from 'underscore'
+import redis from './redis'
+import borgun from './borgun'
 
-let get = (callback) => {
+const get = (callback) => {
   redis.get((err, storedResult) => {
     if (!err && storedResult) {
-      callback(null, storedResult);
+      callback(null, storedResult)
     } else {
       try {
-        borgun.get((err, results) => {
-          if (err) {
-            callback(err);
+        borgun.get((error, results) => {
+          if (error) {
+            callback(error)
           } else {
-            redis.set(results);
-            callback(null, results);
+            redis.set(results)
+            callback(null, results)
           }
-        });
-      } catch(exc) {
-        callback(exc);
+        })
+      } catch (exc) {
+        callback(exc)
       }
     }
-  });
-};
+  })
+}
 
-let toDisplayCurrency = (currency) => {
-  let countryArr = [];
+const toDisplayCurrency = (currency) => {
+  const countryArr = []
   _.each(currency.countries, (country) => {
-    countryArr.push(country.country);
-  });
+    countryArr.push(country.country)
+  })
   return {
     code: currency.code,
     name: currency.name,
     rate: currency.rate,
     countries: countryArr,
-  };
-};
+  }
+}
 
-let ensureCodes = (codes, currs) => {
-  codes = codes || '';
-  codes = codes.toString().toUpperCase().split(',');
+const ensureCodes = (Codes, currs) => {
+  let codes = Codes || ''
+  codes = codes.toString().toUpperCase().split(',')
 
   if (codes.length === 1 && codes[0] === '') {
     _.each(currs, (curr) => {
-      codes.push(curr.code);
-    });
+      codes.push(curr.code)
+    })
   }
 
-  return codes;
-};
+  return codes
+}
 
-export default { get, toDisplayCurrency, ensureCodes };
+export default { get, toDisplayCurrency, ensureCodes }

@@ -1,4 +1,4 @@
-var SpecReporter = require('jasmine-spec-reporter');
+const SpecReporter = require('jasmine-spec-reporter')
 jasmine.getEnv().addReporter(new SpecReporter({
   displayStacktrace: 'none',
   displayFailuresSummary: false,
@@ -11,12 +11,12 @@ jasmine.getEnv().addReporter(new SpecReporter({
   colors: {
     success: 'green',
     failure: 'red',
-    pending: 'yellow'
+    pending: 'yellow',
   },
   prefixes: {
     success: '✓ ',
     failure: '✗ ',
-    pending: '* '
+    pending: '* ',
   },
-  customProcessors: []
-}));
+  customProcessors: [],
+}))

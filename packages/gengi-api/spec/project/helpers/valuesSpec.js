@@ -1,75 +1,71 @@
-var values = require('../../../dist/helpers/values');
-var assert = require('assert');
+'use strict'
 
-describe('Helpers > values', function(){
+const values = require('../../../dist/helpers/values')
+const assert = require('assert')
 
-  describe('name(name)', function(){
+describe('Helpers > values', () => {
+  describe('name(name)', () => {
+    it('should exist', (done) => {
+      assert(values.hasOwnProperty('name'), 'expected \'values\' to have property \'name\'')
+      done()
+    })
 
-    it('should exist', function(done){
-      assert(values.hasOwnProperty('name'), 'expected \'values\' to have property \'name\'');
-      done();
-    });
+    it('should be a function', (done) => {
+      assert(typeof values.name === 'function', 'expected values.name to be a function')
+      done()
+    })
 
-    it('should be a function', function(done){
-      assert(typeof values.name === 'function', 'expected values.name to be a function');
-      done();
-    });
+    it('should return given value if falsy', (done) => {
+      assert(values.name(undefined) === undefined, 'expected undefined')
+      done()
+    })
 
-    it('should return given value if falsy', function(done){
-      assert(values.name(undefined) === undefined, 'expected undefined');
-      done();
-    });
+    const name = values.name('pund, sterlingspund')
 
-    var name = values.name('pund, sterlingspund');
+    it('should return a string', (done) => {
+      assert(typeof name === 'string', 'expected a string')
+      done()
+    })
 
-    it('should return a string', function(done){
-      assert(typeof name === 'string', 'expected a string');
-      done();
-    });
+    it('should return correctly formatted name', (done) => {
+      assert(name === 'Sterlingspund', `expected 'Sterlingspund', got '${name}'`)
+      done()
+    })
 
-    it('should return correctly formatted name', function(done){
-      assert(name === 'Sterlingspund', 'expected \'Sterlingspund\', got \''+name+'\'');
-      done();
-    });
+    const noname = values.name('')
+    it('should return empty string', (done) => {
+      assert(noname === '', `expected '', got '${noname}'`)
+      done()
+    })
 
-    var noname = values.name('');
-    it('should return empty string', function(done){
-      assert(noname === '', 'expected \'\', got \''+noname+'\'');
-      done();
-    });
+    const nocomma = values.name('sterlingspund')
+    it('should return sterlingspund', (done) => {
+      assert(nocomma === 'Sterlingspund', `expected 'Sterlingspund', got '${nocomma}'`)
+      done()
+    })
+  })
 
-    var nocomma = values.name('sterlingspund');
-    it('should return sterlingspund', function(done){
-      assert(nocomma === 'Sterlingspund', 'expected \'Sterlingspund\', got \''+nocomma+'\'');
-      done();
-    });
+  describe('rate(value)', () => {
+    it('should exist', (done) => {
+      assert(values.hasOwnProperty('rate'), 'expected \'values\' to have property \'rate\'')
+      done()
+    })
 
-  });
+    it('should be a function', (done) => {
+      assert(typeof values.rate === 'function', 'expected values.rate to be a function')
+      done()
+    })
 
-  describe('rate(value)', function(){
+    const rate = values.rate(123.456789)
 
-    it('should exist', function(done){
-      assert(values.hasOwnProperty('rate'), 'expected \'values\' to have property \'rate\'');
-      done();
-    });
+    it('should return a float', (done) => {
+      assert(!isNaN(rate) && rate.toString().indexOf('.') !== -1, 'expected a float')
+      done()
+    })
 
-    it('should be a function', function(done){
-      assert(typeof values.rate === 'function', 'expected values.rate to be a function');
-      done();
-    });
-
-    var rate = values.rate(123.456789);
-
-    it('should return a float', function(done){
-      assert(!isNaN(rate) && rate.toString().indexOf('.') !== -1, 'expected a float');
-      done();
-    });
-
-    it('should return correctly formatted rate', function(done){
-      assert(rate === 123.456789, 'expected \'123.456789\', not \''+rate+'\'');
-      done();
-    });
-
-  });
-
-});
+    it('should return correctly formatted rate', (done) => {
+      assert(rate === 123.456789, `expected '123.456789', not '${rate}'`)
+      done()
+    })
+  })
+})

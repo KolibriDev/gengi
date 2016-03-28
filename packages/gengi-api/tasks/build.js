@@ -1,7 +1,6 @@
-'use strict';
+'use strict'
 
-module.exports = function(gulp) {
-  gulp.task('build', ['clean'], function() {
-    return gulp.start('babel','config');
-  });
-};
+module.exports = (gulp) => {
+  gulp.task('rebuild', ['clean'], () => gulp.start('build'))
+  gulp.task('build', () => gulp.start('babel', 'config'))
+}

@@ -1,42 +1,47 @@
-import moment from 'moment';
+import moment from 'moment'
 
 /**
 @getMidnight
   Returns timestamp for next midnight of given date, or todays next midnight.
 **/
-export const getMidnight = function(date) {
-  var midnight;
-  if (date) {
-    date = date.split('.');
-    date = date[2] + '-' + date[1] + '-' + date[0];
+export const getMidnight = (providedDate) => {
+  let midnight
+  let date
+  if (providedDate) {
+    date = providedDate.split('.')
+    date = `${date[2]}-${date[1]}-${date[0]}`
 
-    midnight = moment(date);
+    midnight = moment(date)
   } else {
-    midnight = moment();
+    midnight = moment()
   }
 
-  midnight.hours(24);
-  midnight.minutes(0);
-  midnight.seconds(0);
-  midnight.milliseconds(0);
-  return midnight.unix() * 1000;
-};
+  midnight.hours(24)
+  midnight.minutes(0)
+  midnight.seconds(0)
+  midnight.milliseconds(0)
+  return midnight.unix() * 1000
+}
 
 /**
 @getExpirytime
   Returns seconds to expired data.
 **/
-export const getExpirytime = function(date) {
-  date = date.split('.');
-  date = date[2] + '-' + date[1] + '-' + date[0];
+export const getExpirytime = (expiryDate) => {
+  let date = expiryDate.split('.')
+  date = `${date[2]}-${date[1]}-${date[0]}`
+
+  let retVal = 0
 
   if (moment(date).isSame(moment().format('YYYY-MM-DD'))) {
-    let now = moment().unix();
-    let midnight = getMidnight() / 1000;
-    return midnight - now;
+    const now = moment().unix()
+    const midnight = getMidnight() / 1000
+    retVal = midnight - now
   } else {
-    return 60 * 10;
+    retVal = 60 * 10
   }
-};
 
-export default { getMidnight, getExpirytime };
+  return retVal
+}
+
+export default { getMidnight, getExpirytime }
