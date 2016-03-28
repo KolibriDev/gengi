@@ -16,16 +16,21 @@ npm:
 	npm install --loglevel=error
 
 .PHONY: test, test-build
-test: lint jasmine
+test: lint build jasmine
+test-dev:
+	./node_modules/.bin/supervisor -w spec,dist -n exit -x make jasmine
 
-jasmine: build
-	@./node_modules/.bin/jasmine
+dev:
+	./node_modules/.bin/supervisor -w dist -n exit -x node dist/server.js
+
+jasmine:
+	./node_modules/.bin/jasmine
 
 lint:
-	@./node_modules/.bin/eslint ./gulpfile.js
-	@./node_modules/.bin/eslint ./tasks
-	@./node_modules/.bin/eslint ./src
-	@./node_modules/.bin/eslint ./spec
+	./node_modules/.bin/eslint ./gulpfile.js
+	./node_modules/.bin/eslint ./tasks
+	./node_modules/.bin/eslint ./src
+	./node_modules/.bin/eslint ./spec
 
 build:
 	gulp build
