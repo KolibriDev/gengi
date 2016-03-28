@@ -4,6 +4,12 @@ import { toISK, ensureCurrency, ensureValue } from '../helpers/calculate'
 
 const buildResponse = (code, value, results) => {
   let currency = _.findWhere(results.currencies, { code })
+  if (!currency) {
+    return {
+      status: 404,
+      statusText: `No currency found with code '${code}'`,
+    }
+  }
   currency = helper.toDisplayCurrency(currency)
 
   const response = {}
@@ -23,7 +29,7 @@ export default (code, value, callback) => {
     } else {
       const retCode = ensureCurrency(code)
       const retValue = ensureValue(value)
-      callback(err, buildResponse(retCode, retValue, results))
+      callback(null, buildResponse(retCode, retValue, results))
     }
   })
 }

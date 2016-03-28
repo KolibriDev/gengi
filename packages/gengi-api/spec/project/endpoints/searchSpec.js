@@ -16,7 +16,13 @@ describe('Endpoints > /search/:term?', () => {
         .expect((res) => {
           assert(Object.prototype.toString.call(res.body) === '[object Object]', 'res.body should be an object')
         })
-        .end(done)
+        .end((err) => {
+          if (err) {
+            done.fail(err)
+          } else {
+            done(err)
+          }
+        })
     })
 
     it('should have a currencyDate string', (done) => {
@@ -30,7 +36,13 @@ describe('Endpoints > /search/:term?', () => {
         .expect((res) => {
           assert(typeof res.body.currencyDate === 'string', 'currencyDate should be a string')
         })
-        .end(done)
+        .end((err) => {
+          if (err) {
+            done.fail(err)
+          } else {
+            done(err)
+          }
+        })
     })
 
     it('should have an expires number', (done) => {
@@ -44,7 +56,13 @@ describe('Endpoints > /search/:term?', () => {
         .expect((res) => {
           assert(typeof res.body.expires === 'number', 'expires should be a number')
         })
-        .end(done)
+        .end((err) => {
+          if (err) {
+            done.fail(err)
+          } else {
+            done(err)
+          }
+        })
     })
 
     it('should have a currencies object containing DKK', (done) => {
@@ -62,7 +80,13 @@ describe('Endpoints > /search/:term?', () => {
         .expect((res) => {
           assert(res.body.currencies.hasOwnProperty('DKK'), 'currencies should contain DKK')
         })
-        .end(done)
+        .end((err) => {
+          if (err) {
+            done.fail(err)
+          } else {
+            done(err)
+          }
+        })
     })
   })
 })

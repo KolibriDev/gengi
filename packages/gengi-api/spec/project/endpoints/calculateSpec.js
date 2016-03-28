@@ -7,6 +7,24 @@ const assert = require('assert')
 describe('Endpoints > /calculate/:code/:value?', () => {
   const agent = request.agent(app)
 
+  describe('GET /calculate/wat', () => {
+    it('should respond with 404 and message', (done) => {
+      agent
+        .get('/calculate/wat')
+        .expect(404)
+        .expect((res) => {
+          assert(res.body.statusText, `expected text, got ${res.body.statusText}`)
+        })
+        .end((err) => {
+          if (err) {
+            done.fail(err)
+          } else {
+            done(err)
+          }
+        })
+    })
+  })
+
   describe('GET /calculate/usd/22', () => {
     it('should respond with json', (done) => {
       agent
@@ -16,7 +34,13 @@ describe('Endpoints > /calculate/:code/:value?', () => {
         .expect((res) => {
           assert(Object.prototype.toString.call(res.body) === '[object Object]', 'res.body should be an object')
         })
-        .end(done)
+        .end((err) => {
+          if (err) {
+            done.fail(err)
+          } else {
+            done(err)
+          }
+        })
     })
 
     it('should have a currencyDate string', (done) => {
@@ -30,7 +54,13 @@ describe('Endpoints > /calculate/:code/:value?', () => {
         .expect((res) => {
           assert(typeof res.body.currencyDate === 'string', 'currencyDate should be a string')
         })
-        .end(done)
+        .end((err) => {
+          if (err) {
+            done.fail(err)
+          } else {
+            done(err)
+          }
+        })
     })
 
     it('should have an expires number', (done) => {
@@ -44,7 +74,13 @@ describe('Endpoints > /calculate/:code/:value?', () => {
         .expect((res) => {
           assert(typeof res.body.expires === 'number', 'expires should be a number')
         })
-        .end(done)
+        .end((err) => {
+          if (err) {
+            done.fail(err)
+          } else {
+            done(err)
+          }
+        })
     })
 
     it('should have a valid currency object', (done) => {
@@ -67,7 +103,13 @@ describe('Endpoints > /calculate/:code/:value?', () => {
           assert(currency.hasOwnProperty('code') && currency.hasOwnProperty('name') && currency.hasOwnProperty('rate'), 'currency item should have code, name and rate')
         })
 
-        .end(done)
+        .end((err) => {
+          if (err) {
+            done.fail(err)
+          } else {
+            done(err)
+          }
+        })
     })
 
     it('should have an ISKvalue number, matching path', (done) => {
@@ -84,7 +126,13 @@ describe('Endpoints > /calculate/:code/:value?', () => {
         .expect((res) => {
           assert(res.body.ISKvalue === 22, 'ISKvalue should be match path')
         })
-        .end(done)
+        .end((err) => {
+          if (err) {
+            done.fail(err)
+          } else {
+            done(err)
+          }
+        })
     })
 
     it('should have an USDvalue number, calculated value', (done) => {
@@ -101,7 +149,13 @@ describe('Endpoints > /calculate/:code/:value?', () => {
         .expect((res) => {
           assert(res.body.USDvalue === res.body.currency.rate * 22, 'USDvalue should be calculated value')
         })
-        .end(done)
+        .end((err) => {
+          if (err) {
+            done.fail(err)
+          } else {
+            done(err)
+          }
+        })
     })
   })
 })

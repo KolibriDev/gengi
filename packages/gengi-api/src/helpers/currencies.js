@@ -25,9 +25,11 @@ const get = (callback) => {
 
 const toDisplayCurrency = (currency) => {
   const countryArr = []
-  _.each(currency.countries, (country) => {
-    countryArr.push(country.country)
-  })
+  if (currency && currency.countries) {
+    _.each(currency.countries, (country) => {
+      countryArr.push(country.country)
+    })
+  }
   return {
     code: currency.code,
     name: currency.name,

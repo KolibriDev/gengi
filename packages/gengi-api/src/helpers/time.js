@@ -9,7 +9,7 @@ export const getMidnight = (providedDate) => {
   let date
   if (providedDate) {
     date = providedDate.split('.')
-    date = `${date[2]}-${date[1]}-${date[0]}`
+    date = `${date[2]}-${date[1] < 10 ? `0${date[1]}` : date[1]}-${date[0] < 10 ? `0${date[0]}` : date[0]}`
 
     midnight = moment(date)
   } else {

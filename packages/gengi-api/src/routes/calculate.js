@@ -26,6 +26,9 @@ router.get('/', (req, res) => {
 
 router.get('/:code/:value?', (req, res) => {
   calculate(req.params.code, req.params.value, (err, results) => {
+    if (results.hasOwnProperty('status')) {
+      res.status(results.status)
+    }
     res.send(err || results)
   })
 })

@@ -18,7 +18,13 @@ describe('Endpoints > /', () => {
       .expect((res) => {
         assert(Object.prototype.toString.call(res.body) === '[object Object]', 'expected response to be an object')
       })
-      .end(done)
+      .end((err) => {
+        if (err) {
+          done.fail(err)
+        } else {
+          done(err)
+        }
+      })
   })
 
   it('should have a version matching package.json', (done) => {
@@ -35,7 +41,13 @@ describe('Endpoints > /', () => {
       .expect((res) => {
         assert(res.body.version === pkg.version, `expected version to equal ${pkg.version}`)
       })
-      .end(done)
+      .end((err) => {
+        if (err) {
+          done.fail(err)
+        } else {
+          done(err)
+        }
+      })
   })
 
   it('should have a description matching package.json', (done) => {
@@ -52,7 +64,13 @@ describe('Endpoints > /', () => {
       .expect((res) => {
         assert(res.body.description === pkg.description, `expected description to equal ${pkg.description}`)
       })
-      .end(done)
+      .end((err) => {
+        if (err) {
+          done.fail(err)
+        } else {
+          done(err)
+        }
+      })
   })
 
   it('should have an endpoints object', (done) => {
@@ -76,6 +94,12 @@ describe('Endpoints > /', () => {
       .expect((res) => {
         assert(_.equal(res.body.endpoints, endpoints), `expected endpoints to equal ${endpoints}`)
       })
-      .end(done)
+      .end((err) => {
+        if (err) {
+          done.fail(err)
+        } else {
+          done(err)
+        }
+      })
   })
 })
