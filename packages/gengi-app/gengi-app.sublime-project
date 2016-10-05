@@ -1,0 +1,25 @@
+{
+  "folders":
+  [
+    {
+      "follow_symlinks": true,
+      "folder_exclude_patterns": [],
+      "path": "."
+    }
+  ],
+  "settings":
+  {
+    "tab_size": 2,
+    "convert_tabs_to_spaces": true,
+    "trim_trailing_white_space_on_save": true,
+    "trim_automatic_white_space": true,
+    "hayaku_CSS_prefixes_disable": true,
+    "hayaku_CSS_syntax_autoguess":
+    [
+      "  selector {         ",
+      "    property: value; ",
+      "  }                  "
+    ],
+    "hayaku_CSS_syntax_quote_symbol": "'"
+  }
+}
