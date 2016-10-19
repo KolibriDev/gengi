@@ -1,0 +1,26 @@
+
+container {
+  flex: 1;
+  background-color: #F5FCFF;
+}
+
+content {
+  flex: 1;
+  background-color: $color-light;
+}
+
+welcome {
+  font-size: 20px;
+  text-align: center;
+  margin: 10px;
+}
+
+instructions {
+  text-align: center;
+  color: #333333;
+  margin-bottom: 5px;
+}
+
+listView {
+  padding: 20px 20px 20px 20px;
+}

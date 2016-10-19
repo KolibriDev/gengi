@@ -43,3 +43,6 @@ android/keystores/debug.keystore
 # Sublime Text
 *.sublime-*
 !*.sublime-project
+
+# Generated files
+lib/styles/index.js

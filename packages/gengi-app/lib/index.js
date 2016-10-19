@@ -1,40 +1,16 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
   ListView
 } from 'react-native';
 
-const Header = () => {
-  return (
-    <View style={styles.header}>
-      <Text style={styles.headerLogo}>Gengi.is</Text>
-      <Text style={styles.headerItem}>Gengi.is</Text>
-      <Text style={styles.headerItem}>Gengi.is</Text>
-      <Text style={styles.headerItem}>Gengi.is</Text>
-    </View>
-  )
-}
+import styles from './styles'
+import Header from './components/Header'
+import CurrencyListItem from './components/CurrencyListItem'
 
-const CurrencyListItem = (props) => {
-  return (
-    <View style={styles.currencyListItem}>
-      <Text style={styles.currencyListTitle}>{props.currency.code}</Text>
-      <Text style={styles.currencyListName}>{props.currency.name}</Text>
-      <Text style={styles.currencyListRate}>{Math.round(props.currency.rate * 100) / 100}</Text>
-    </View>
-  )
-}
-
-class gengiapp extends Component {
+class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -71,7 +47,7 @@ class gengiapp extends Component {
   }
 
   fetchData() {
-    const data = require('./assets/currencies.json')
+    const data = require('./mock/currencies.json')
     this.setState({
       currencies: this.state.currencies.cloneWithRows(data.list)
     })
@@ -84,7 +60,4 @@ class gengiapp extends Component {
   }
 }
 
-const _styles = require('./assets/styles')
-const styles = StyleSheet.create(_styles)
-
-AppRegistry.registerComponent('gengiapp', () => gengiapp);
+export default App
