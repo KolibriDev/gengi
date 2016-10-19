@@ -1,4 +1,7 @@
 
+test:
+	npm test
+
 dev-ios: styles run-ios dev-styles
 dev-android: styles run-android dev-styles
 

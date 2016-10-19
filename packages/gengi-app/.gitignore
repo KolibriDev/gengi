@@ -45,4 +45,5 @@ android/keystores/debug.keystore
 !*.sublime-project
 
 # Generated files
+coverage
 lib/styles/index.js
