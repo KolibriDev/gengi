@@ -1,0 +1,31 @@
+
+numpadWrap {
+  flex-wrap: nowrap;
+  align-items: stretch;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+numpad {
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  color: $color-gray;
+  background-color: transparent;
+  position: relative;
+}
+
+numpadNumber {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+  background-color: transparent;
+}

@@ -1,0 +1,35 @@
+
+currencyInput {
+  background-color: #fff;
+  margin-bottom: 20px;
+  padding: 10px 10px 10px 80px;
+  height: 80px;
+}
+
+currencySymbol {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  font-size: 32px;
+  line-height: 58px;
+  width: 60px;
+  height: 60px;
+  font-weight: 700;
+  text-align: center;
+  color: $color-green-dark;
+
+  background-color: $color-green-light;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+currencyRate {
+  font-size: 48px;
+  line-height: 60px;
+  font-weight: 700;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: $color-green;
+}

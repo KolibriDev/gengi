@@ -7,6 +7,8 @@ container {
 content {
   flex: 1;
   background-color: $color-light;
+
+  padding: 20px 20px 20px 20px;
 }
 
 welcome {
@@ -19,8 +21,4 @@ instructions {
   text-align: center;
   color: #333333;
   margin-bottom: 5px;
-}
-
-listView {
-  padding: 20px 20px 20px 20px;
 }
