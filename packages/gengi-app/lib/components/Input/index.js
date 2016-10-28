@@ -40,10 +40,12 @@ const numberIcelandic = function(value, fix) {
 
 
 const Input = ({ symbol, value }) => {
+  const placeholder = <Text style={styles.currencyPlaceholder}>1</Text>
   return (
     <View style={styles.currencyInput}>
       <Text style={styles.currencySymbol}>{symbol}</Text>
       <Text style={styles.currencyRate}>{numberIcelandic(value)}</Text>
+      {value ? null : placeholder}
     </View>
   )
 }

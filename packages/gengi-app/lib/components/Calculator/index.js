@@ -20,7 +20,7 @@ class Calculator extends Component {
   calculate() {
     console.log(this.props)
     const rate = this.props.currency.rate;
-    const amount = this.state.amount;
+    const amount = this.state.amount || 1;
 
     const value = amount * rate;
     const fix = value < 1 && value > 0.001 ? (value === 0 ? 0 : 5) : 2;
