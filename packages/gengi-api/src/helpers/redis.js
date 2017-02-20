@@ -3,7 +3,7 @@ import { getExpirytime } from './time'
 
 class Redis {
   constructor() {
-    this.client = redis.createClient()
+    this.client = redis.createClient(process.env.REDIS_URL || '')
 
     this.ready = false
     this.error = ''
