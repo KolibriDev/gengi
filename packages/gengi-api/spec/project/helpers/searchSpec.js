@@ -1,6 +1,6 @@
 'use strict'
 
-const search = require('../../../dist/helpers/search')
+const search = require('../../../app/helpers/search')
 const assert = require('assert')
 const _ = require('underscore')
 

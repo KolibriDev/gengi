@@ -1,8 +1,8 @@
-import _ from 'underscore'
-import request from 'request'
-import xml2js from 'xml2js'
-import values from './values'
-import { getMidnight } from './time'
+const _ = require('underscore')
+const request = require('request')
+const xml2js = require('xml2js')
+const values = require('./values')
+const { getMidnight } = require('./time')
 
 class Borgun {
   constructor(url) {
@@ -91,4 +91,4 @@ class Borgun {
   }
 }
 
-export default new Borgun()
+module.exports = new Borgun()

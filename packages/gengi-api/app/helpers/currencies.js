@@ -1,7 +1,7 @@
-import _ from 'underscore'
-import redis from './redis'
-import borgun from './borgun'
-import getSymbol from './symbols'
+const _ = require('underscore')
+const redis = require('./redis')
+const borgun = require('./borgun')
+const getSymbol = require('./symbols')
 
 const get = (callback) => {
   redis.get((err, storedResult) => {
@@ -53,4 +53,4 @@ const ensureCodes = (Codes, currs) => {
   return codes
 }
 
-export default { get, toDisplayCurrency, ensureCodes }
+module.exports = { get, toDisplayCurrency, ensureCodes }

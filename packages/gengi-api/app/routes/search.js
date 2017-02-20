@@ -1,5 +1,5 @@
-import express from 'express'
-import search from '../endpoints/search'
+const express = require('express')
+const search = require('../endpoints/search')
 
 const router = express.Router() // eslint-disable-line new-cap
 
@@ -23,7 +23,7 @@ router.get('/:term?', (req, res) => {
   })
 })
 
-export default {
+module.exports = {
   name: 'search',
   router,
   docs,

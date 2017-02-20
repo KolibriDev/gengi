@@ -1,5 +1,5 @@
-import _ from 'underscore'
-import helper from '../helpers/currencies'
+const _ = require('underscore')
+const helper = require('../helpers/currencies')
 
 const buildResponse = (codes, results) => {
   const currencies = {}
@@ -16,7 +16,7 @@ const buildResponse = (codes, results) => {
   }
 }
 
-export default (codes, callback) => {
+module.exports = (codes, callback) => {
   helper.get((err, results) => {
     if (err) {
       callback(err)

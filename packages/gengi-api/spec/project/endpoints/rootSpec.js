@@ -1,6 +1,6 @@
 'use strict'
 
-const app = require('../../../dist/server').app
+const app = require('../../../app')
 const pkg = require('../../../package.json')
 const fs = require('fs')
 const _ = require('underscore')
@@ -76,8 +76,8 @@ describe('Endpoints > /', () => {
   it('should have an endpoints object', (done) => {
     const endpoints = {}
 
-    fs.readdirSync('./dist/routes').forEach((fileName) => {
-      const endpoint = require(`../../../dist/routes/${fileName}`)
+    fs.readdirSync('./app/routes').forEach((fileName) => {
+      const endpoint = require(`../../../app/routes/${fileName}`)
       endpoints[endpoint.name] = endpoint.docs
     })
 

@@ -1,8 +1,7 @@
-import express from 'express'
-import http from 'http'
-import path from 'path'
-import cors from 'cors'
-import fs from 'fs'
+const express = require('express')
+const path = require('path')
+const cors = require('cors')
+const fs = require('fs')
 
 const app = express()
 
@@ -21,7 +20,7 @@ fs.readdirSync(path.join(__dirname, 'routes')).forEach((fileName) => {
 
 const {
   version, description, bugs, author, contributors,
-} = require(path.join(__dirname, 'package.json'))
+} = require(path.join(__dirname, '../', 'package.json'))
 const docs = {
   version, description, endpoints, bugs, author, contributors,
 }
@@ -35,6 +34,4 @@ app.use((req, res) => {
   res.status(404).send(docs)
 })
 
-http.createServer(app).listen(app.get('port'))
-
-exports.app = app
+module.exports = app

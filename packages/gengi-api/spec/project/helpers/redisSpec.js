@@ -1,6 +1,6 @@
 'use strict'
 
-const redis = require('../../../dist/helpers/redis')
+const redis = require('../../../app/helpers/redis')
 const assert = require('assert')
 
 describe('Helpers > redis', () => {

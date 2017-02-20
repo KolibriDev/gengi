@@ -1,6 +1,6 @@
 'use strict'
 
-const time = require('../../../dist/helpers/time')
+const time = require('../../../app/helpers/time')
 const assert = require('assert')
 
 describe('Helpers > time', () => {

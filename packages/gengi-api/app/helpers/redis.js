@@ -1,5 +1,5 @@
-import redis from 'redis'
-import { getExpirytime } from './time'
+const redis = require('redis')
+const { getExpirytime } = require('./time')
 
 class Redis {
   constructor() {
@@ -64,4 +64,4 @@ class Redis {
   }
 }
 
-export default new Redis()
+module.exports = new Redis()

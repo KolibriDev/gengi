@@ -1,6 +1,6 @@
 'use strict'
 
-const calculate = require('../../../dist/helpers/calculate')
+const calculate = require('../../../app/helpers/calculate')
 const assert = require('assert')
 
 describe('Helpers > calculate', () => {

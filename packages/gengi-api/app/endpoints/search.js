@@ -1,6 +1,6 @@
-import _ from 'underscore'
-import helper from '../helpers/currencies'
-import search from '../helpers/search'
+const _ = require('underscore')
+const helper = require('../helpers/currencies')
+const search = require('../helpers/search')
 
 const buildResponse = (term, results) => {
   const searchResults = _.filter(results.currencies, (value) => search(value, term))
@@ -25,7 +25,7 @@ const ensureTerm = (term) => {
   return value
 }
 
-export default (term, callback) => {
+module.exports = (term, callback) => {
   helper.get((err, results) => {
     if (err) {
       callback(err)

@@ -1,5 +1,5 @@
-import express from 'express'
-import currencies from '../endpoints/currencies'
+const express = require('express')
+const currencies = require('../endpoints/currencies')
 
 const router = express.Router() // eslint-disable-line new-cap
 
@@ -21,7 +21,7 @@ router.get('/:codes?', (req, res) => {
   })
 })
 
-export default {
+module.exports = {
   name: 'currencies',
   router,
   docs,

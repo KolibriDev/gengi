@@ -1,6 +1,6 @@
 'use strict'
 
-const borgun = require('../../../dist/helpers/borgun')
+const borgun = require('../../../app/helpers/borgun')
 const assert = require('assert')
 
 describe('Helpers > borgun', () => {

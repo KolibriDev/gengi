@@ -3,7 +3,7 @@
 @values.name
   Parse/format currency name for better human readability.
 **/
-export const name = (providedName) => {
+const name = (providedName) => {
   if (!providedName) { return providedName }
   // Change 'dalur, bandarískur' to 'bandarískur dalur'
   let value = providedName.split(',')
@@ -25,8 +25,8 @@ export const name = (providedName) => {
 @values.rate
   Normalize float values for currency rate.
 **/
-export const rate = function (value) {
+const rate = function (value) {
   return parseFloat(value)
 }
 
-export default { name, rate }
+module.exports = { name, rate }

@@ -1,6 +1,6 @@
 'use strict'
 
-const values = require('../../../dist/helpers/values')
+const values = require('../../../app/helpers/values')
 const assert = require('assert')
 
 describe('Helpers > values', () => {

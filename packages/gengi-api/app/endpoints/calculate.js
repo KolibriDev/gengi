@@ -1,6 +1,6 @@
-import _ from 'underscore'
-import helper from '../helpers/currencies'
-import { toISK, ensureCurrency, ensureValue } from '../helpers/calculate'
+const _ = require('underscore')
+const helper = require('../helpers/currencies')
+const { toISK, ensureCurrency, ensureValue } = require('../helpers/calculate')
 
 const buildResponse = (code, value, results) => {
   let currency = _.findWhere(results.currencies, { code })
@@ -22,7 +22,7 @@ const buildResponse = (code, value, results) => {
   return response
 }
 
-export default (code, value, callback) => {
+module.exports = (code, value, callback) => {
   helper.get((err, results) => {
     if (err) {
       callback(err)

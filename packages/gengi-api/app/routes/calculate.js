@@ -1,5 +1,5 @@
-import express from 'express'
-import calculate from '../endpoints/calculate'
+const express = require('express')
+const calculate = require('../endpoints/calculate')
 
 const router = express.Router() // eslint-disable-line new-cap
 
@@ -33,7 +33,7 @@ router.get('/:code/:value?', (req, res) => {
   })
 })
 
-export default {
+module.exports = {
   name: 'calculate',
   router,
   docs,

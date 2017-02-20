@@ -1,9 +1,9 @@
-import _ from 'underscore'
+const _ = require('underscore')
 /**
 @search.filter
   Compare search term with available fields and return true for any partial match.
 **/
-export default (value, Term) => {
+module.exports = (value, Term) => {
   const term = Term ? Term.toUpperCase() : false
   if (!term) { return false }
   // Ignore ISK

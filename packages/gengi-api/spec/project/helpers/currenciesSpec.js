@@ -1,6 +1,6 @@
 'use strict'
 
-const currencies = require('../../../dist/helpers/currencies')
+const currencies = require('../../../app/helpers/currencies')
 const assert = require('assert')
 
 describe('Helpers > currencies', () => {
