@@ -1,7 +1,7 @@
 'use strict'
 
 const app = require('../../../dist/server').app
-const pkg = require('../../../package.json').pkg
+const pkg = require('../../../package.json')
 const fs = require('fs')
 const _ = require('underscore')
 const request = require('supertest')
@@ -92,7 +92,7 @@ describe('Endpoints > /', () => {
         assert(Object.prototype.toString.call(res.body.endpoints) === '[object Object]', 'expected endpoints to be an object')
       })
       .expect((res) => {
-        assert(_.equal(res.body.endpoints, endpoints), `expected endpoints to equal ${endpoints}`)
+        assert(_.isEqual(res.body.endpoints, endpoints), `expected endpoints to equal ${endpoints}`)
       })
       .end((err) => {
         if (err) {
