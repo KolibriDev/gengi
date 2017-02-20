@@ -1,0 +1,35 @@
+language: node_js
+node_js:
+  - "7"
+
+env:
+  - ENVIRONMENT=production
+
+before_install:
+  - time npm i -g yarn --cache-min 999999999
+
+cache:
+  directories:
+    - node_modules
+    - $HOME/.yarn-cache
+    - $HOME/.npm
+
+install:
+  - time yarn
+
+script:
+  - yarn run build
+
+deploy:
+  provider: gcs
+  access_key_id: GOOGVYHERYZZHLPSZPLZ
+  secret_access_key:
+    secure: EY8KSvelkLeyFP/O25nwHh9i9GcpcZycNwuvFyP9N+zR0cXWCO/yDctR3MCAdQwdrurK292VkCWJKIJ0xdzfMPrbGM0+kAMkLF8zU2S7opKa3p2YCXu9cKtOAtbraQC4AItYaGox7CjP4LgkAynZv4LIwU0HlGLjUSdi3otWSkp9yr3RyjR6CDPeeZ0aNo8YUk7pSOmaZsPPlPMWzz4Nhad90abQXuRwiKKTdb9OANrb5U/Km/FTcyoQcR5K9H/oddkL0JjHlQwrRW4swta8v+/k7USBhpSjAGrAOBuTlpFr4eqXY9w3/tJf1ZbtYhuKpKkAt9o7cAfXeKugXNCiphO86Yxg5aYaWvnC2cJdDsMlSY65K5P+Yf+0K5byZ9LA8q5i56K5llTF43NV7LatZKmwJltd5c/KLlsIWvG3uyAwkR2kCzdJMsOPBHCuJ2UogzMxSFV8yXd1I8JY4Nq6Sc/X7JuDTQkbacNNmEkBiVH5u3YhfVPRPWMxqX1zJem+GgY9hbSsvqXdY7/OFO04catS3XPcSv0otHsipDhyTcXbwU7ad+y923ohcBmmta5mwjYpJdsFElSl+zb0+LGl04KpTsfRHjAUUL2ZgJ7VkCJ1h0w9wxZjCF5abkCOvj/SAeYkmrV+cVLE5oXu8YLlrZgJKXLTuvT1uiXwOnwXyyA=
+  bucket: gengi.is
+  skip_cleanup: true
+  local-dir: dist
+  acl: public-read
+  cache_control: "no-cache"
+  on:
+    branch: master
+    repo: KolibriDev/gengi-is
