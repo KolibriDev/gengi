@@ -18,3 +18,4 @@ deploy_key
 deploy_key.pub
 dist/*
 *.rdb
+heroku.env
