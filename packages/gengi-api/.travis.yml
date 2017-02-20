@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - "7"
+
+env:
+  - ENVIRONMENT=production
+
+before_install:
+  - time npm i -g yarn --cache-min 999999999
+
+cache:
+  directories:
+    - node_modules
+    - $HOME/.yarn-cache
+    - $HOME/.npm
+
+install:
+  - time yarn
+
+script:
+  - yarn run test
