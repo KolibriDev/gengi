@@ -4,8 +4,11 @@
   "version": "3.2.2",
   "private": true,
   "scripts": {
+    "dev": "supervisor -q -w app -n exit -x npm -- start --silent",
     "start": "node server.js",
-    "test": "make test"
+    "lint": "eslint ./gulpfile.js ./tasks ./src ./spec",
+    "dev-test": "supervisor -q -w spec,app -n exit -x npm -- test --silent",
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",
