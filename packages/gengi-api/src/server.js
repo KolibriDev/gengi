@@ -19,13 +19,20 @@ fs.readdirSync(path.join(__dirname, 'routes')).forEach((fileName) => {
   endpoints[name] = docs
 })
 
+const {
+  version, description, bugs, author, contributors,
+} = require(path.join(__dirname, 'package.json'))
+const docs = {
+  version, description, endpoints, bugs, author, contributors,
+}
+
+
+app.get('/', (req, res) => {
+  res.status(200).send(docs)
+})
+
 app.use((req, res) => {
-  const {
-    version, description, bugs, author, contributors,
-  } = require(path.join(__dirname, 'package.json'))
-  res.send({
-    version, description, endpoints, bugs, author, contributors,
-  })
+  res.status(404).send(docs)
 })
 
 http.createServer(app).listen(app.get('port'))
