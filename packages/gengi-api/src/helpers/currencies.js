@@ -1,6 +1,7 @@
 import _ from 'underscore'
 import redis from './redis'
 import borgun from './borgun'
+import getSymbol from './symbols'
 
 const get = (callback) => {
   redis.get((err, storedResult) => {
@@ -32,6 +33,7 @@ const toDisplayCurrency = (currency) => {
   }
   return {
     code: currency.code,
+    symbol: getSymbol(currency.code),
     name: currency.name,
     rate: currency.rate,
     countries: countryArr,
