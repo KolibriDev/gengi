@@ -1,0 +1,23 @@
+{
+  "name": "gengi",
+  "description": "Core functionality behind gengi.is",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Kolibri",
+    "email": "hello@kolibri.is",
+    "url": "http://www.kolibri.is"
+  },
+  "contributors": [
+    "Benedikt D Valdez <benedikt@kolibri.is>",
+    "Garpur Dagsson <garpur@kolibri.is>",
+    "Ólafur Örn Nielsen <olafur@kolibri.is>"
+  ],
+  "repository": {
+    "url": "https://github.com/KolibriDev/gengi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KolibriDev/gengi/issues"
+  }
+}
