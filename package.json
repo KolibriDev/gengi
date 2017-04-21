@@ -10,7 +10,7 @@
   "dependencies": {},
   "devDependencies": {
     "husky": "~0.13.3",
-    "lerna": "~2.0.0-rc.3",
+    "lerna": "2.0.0-rc.3",
     "lint-staged": "~3.4.0",
     "prettier": "~1.2.2",
     "yarn-or-npm": "~2.0.4"
