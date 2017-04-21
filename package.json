@@ -5,7 +5,8 @@
   "scripts": {
     "format": "prettier --single-quote --trailing-comma=es5 --semi=false --write",
     "format:core": "prettier --single-quote --trailing-comma=es5 --semi=false --write packages/gengi/**/*.js",
-    "format:cli": "prettier --single-quote --trailing-comma=es5 --semi=false --write packages/gengi-cli/**/*.js"
+    "format:cli": "prettier --single-quote --trailing-comma=es5 --semi=false --write packages/gengi-cli/**/*.js",
+    "postinstall": "lerna bootstrap --hoist"
   },
   "dependencies": {},
   "devDependencies": {
