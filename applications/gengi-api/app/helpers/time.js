@@ -4,7 +4,7 @@ const moment = require('moment')
 @getMidnight
   Returns timestamp for next midnight of given date, or todays next midnight.
 **/
-const getMidnight = (providedDate) => {
+const getMidnight = providedDate => {
   let midnight
   let date
   if (providedDate) {
@@ -27,7 +27,7 @@ const getMidnight = (providedDate) => {
 @getExpirytime
   Returns seconds to expired data.
 **/
-const getExpirytime = (expiryDate) => {
+const getExpirytime = expiryDate => {
   let date = expiryDate.split('.')
   date = `${date[2]}-${date[1]}-${date[0]}`
 

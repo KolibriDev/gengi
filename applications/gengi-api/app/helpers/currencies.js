@@ -3,7 +3,7 @@ const redis = require('./redis')
 const borgun = require('./borgun')
 const getSymbol = require('./symbols')
 
-const get = (callback) => {
+const get = callback => {
   redis.get((err, storedResult) => {
     if (!err && storedResult) {
       callback(null, storedResult)
@@ -24,10 +24,10 @@ const get = (callback) => {
   })
 }
 
-const toDisplayCurrency = (currency) => {
+const toDisplayCurrency = currency => {
   const countryArr = []
   if (currency && currency.countries) {
-    _.each(currency.countries, (country) => {
+    _.each(currency.countries, country => {
       countryArr.push(country.country)
     })
   }
@@ -45,7 +45,7 @@ const ensureCodes = (Codes, currs) => {
   codes = codes.toString().toUpperCase().split(',')
 
   if (codes.length === 1 && codes[0] === '') {
-    _.each(currs, (curr) => {
+    _.each(currs, curr => {
       codes.push(curr.code)
     })
   }

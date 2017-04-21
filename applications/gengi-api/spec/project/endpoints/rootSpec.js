@@ -10,15 +10,18 @@ const assert = require('assert')
 describe('Endpoints > /', () => {
   const agent = request.agent(app)
 
-  it('should respond with json', (done) => {
+  it('should respond with json', done => {
     agent
       .get('/')
       .expect(200)
       .expect('Content-Type', /json/)
-      .expect((res) => {
-        assert(Object.prototype.toString.call(res.body) === '[object Object]', 'expected response to be an object')
+      .expect(res => {
+        assert(
+          Object.prototype.toString.call(res.body) === '[object Object]',
+          'expected response to be an object'
+        )
       })
-      .end((err) => {
+      .end(err => {
         if (err) {
           done.fail(err)
         } else {
@@ -27,21 +30,30 @@ describe('Endpoints > /', () => {
       })
   })
 
-  it('should have a version matching package.json', (done) => {
+  it('should have a version matching package.json', done => {
     agent
       .get('/')
       .expect(200)
       .expect('Content-Type', /json/)
-      .expect((res) => {
-        assert(res.body.hasOwnProperty('version'), 'expected respond to have a version')
+      .expect(res => {
+        assert(
+          res.body.hasOwnProperty('version'),
+          'expected respond to have a version'
+        )
       })
-      .expect((res) => {
-        assert(typeof res.body.version === 'string', 'expected version to be a string')
+      .expect(res => {
+        assert(
+          typeof res.body.version === 'string',
+          'expected version to be a string'
+        )
       })
-      .expect((res) => {
-        assert(res.body.version === pkg.version, `expected version to equal ${pkg.version}`)
+      .expect(res => {
+        assert(
+          res.body.version === pkg.version,
+          `expected version to equal ${pkg.version}`
+        )
       })
-      .end((err) => {
+      .end(err => {
         if (err) {
           done.fail(err)
         } else {
@@ -50,21 +62,30 @@ describe('Endpoints > /', () => {
       })
   })
 
-  it('should have a description matching package.json', (done) => {
+  it('should have a description matching package.json', done => {
     agent
       .get('/')
       .expect(200)
       .expect('Content-Type', /json/)
-      .expect((res) => {
-        assert(res.body.hasOwnProperty('description'), 'expected respond to have a description')
+      .expect(res => {
+        assert(
+          res.body.hasOwnProperty('description'),
+          'expected respond to have a description'
+        )
       })
-      .expect((res) => {
-        assert(typeof res.body.description === 'string', 'expected description to be a string')
+      .expect(res => {
+        assert(
+          typeof res.body.description === 'string',
+          'expected description to be a string'
+        )
       })
-      .expect((res) => {
-        assert(res.body.description === pkg.description, `expected description to equal ${pkg.description}`)
+      .expect(res => {
+        assert(
+          res.body.description === pkg.description,
+          `expected description to equal ${pkg.description}`
+        )
       })
-      .end((err) => {
+      .end(err => {
         if (err) {
           done.fail(err)
         } else {
@@ -73,10 +94,10 @@ describe('Endpoints > /', () => {
       })
   })
 
-  it('should have an endpoints object', (done) => {
+  it('should have an endpoints object', done => {
     const endpoints = {}
 
-    fs.readdirSync('./app/routes').forEach((fileName) => {
+    fs.readdirSync('./app/routes').forEach(fileName => {
       const endpoint = require(`../../../app/routes/${fileName}`)
       endpoints[endpoint.name] = endpoint.docs
     })
@@ -85,16 +106,26 @@ describe('Endpoints > /', () => {
       .get('/')
       .expect(200)
       .expect('Content-Type', /json/)
-      .expect((res) => {
-        assert(res.body.hasOwnProperty('endpoints'), 'expected respond to have endpoints')
+      .expect(res => {
+        assert(
+          res.body.hasOwnProperty('endpoints'),
+          'expected respond to have endpoints'
+        )
       })
-      .expect((res) => {
-        assert(Object.prototype.toString.call(res.body.endpoints) === '[object Object]', 'expected endpoints to be an object')
+      .expect(res => {
+        assert(
+          Object.prototype.toString.call(res.body.endpoints) ===
+            '[object Object]',
+          'expected endpoints to be an object'
+        )
       })
-      .expect((res) => {
-        assert(_.isEqual(res.body.endpoints, endpoints), `expected endpoints to equal ${endpoints}`)
+      .expect(res => {
+        assert(
+          _.isEqual(res.body.endpoints, endpoints),
+          `expected endpoints to equal ${endpoints}`
+        )
       })
-      .end((err) => {
+      .end(err => {
         if (err) {
           done.fail(err)
         } else {

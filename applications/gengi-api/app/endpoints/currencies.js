@@ -3,7 +3,7 @@ const helper = require('../helpers/currencies')
 
 const buildResponse = (codes, results) => {
   const currencies = {}
-  _.each(codes, (code) => {
+  _.each(codes, code => {
     const curr = _.findWhere(results.currencies, { code })
     if (curr && curr.code !== 'ISK') {
       currencies[curr.code] = helper.toDisplayCurrency(curr)

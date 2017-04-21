@@ -12,7 +12,9 @@ class Borgun {
   }
 
   get(callback) {
-    if (!this.options || !this.options.url) { return callback({ error: 1 }) }
+    if (!this.options || !this.options.url) {
+      return callback({ error: 1 })
+    }
 
     return request.get(this.options, (err, response, data) => {
       if (err || response.statusCode !== 200) {
@@ -31,7 +33,11 @@ class Borgun {
     }
 
     xml2js.parseString(data, { explicitRoot: false }, (err, result) => {
-      if (err || !result.hasOwnProperty('Rate') || result.Status[0].ResultCode[0] !== '0') {
+      if (
+        err ||
+        !result.hasOwnProperty('Rate') ||
+        result.Status[0].ResultCode[0] !== '0'
+      ) {
         retVal = { error: err, result }
       } else {
         retVal.result = {
@@ -49,7 +55,7 @@ class Borgun {
   parseCurrencies(result) {
     const currencies = {}
 
-    _.each(result.Rate, (currency) => {
+    _.each(result.Rate, currency => {
       const [newCurr, country] = this.parseCurrency(currency)
 
       if (!currencies.hasOwnProperty(newCurr.code)) {
@@ -80,10 +86,10 @@ class Borgun {
   }
 
   sortCurrencies(currencies, sortBy) {
-    const sorted = _.sortBy(currencies, (sortBy || 'code'))
+    const sorted = _.sortBy(currencies, sortBy || 'code')
 
     // Sort country names alphabetically
-    _.each(sorted, (currency) => {
+    _.each(sorted, currency => {
       currency.countries = _.sortBy(currency.countries, 'country') // eslint-disable-line no-param-reassign
     })
 

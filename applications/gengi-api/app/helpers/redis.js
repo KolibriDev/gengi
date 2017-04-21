@@ -13,15 +13,19 @@ class Redis {
   }
 
   set(data) {
-    this.isReady((err) => {
+    this.isReady(err => {
       if (!err) {
-        this.client.setex(this.cacheKey, getExpirytime(data.currencyDate), JSON.stringify(data))
+        this.client.setex(
+          this.cacheKey,
+          getExpirytime(data.currencyDate),
+          JSON.stringify(data)
+        )
       }
     })
   }
 
   get(callback) {
-    this.isReady((err) => {
+    this.isReady(err => {
       if (err) {
         callback(err)
       } else {
@@ -37,7 +41,7 @@ class Redis {
   }
 
   clear() {
-    this.isReady((err) => {
+    this.isReady(err => {
       if (!err) {
         this.client.del(this.cacheKey)
       }
@@ -53,7 +57,7 @@ class Redis {
   }
 
   clientEvents() {
-    this.client.on('error', (err) => {
+    this.client.on('error', err => {
       this.error = err
       this.ready = false
     })

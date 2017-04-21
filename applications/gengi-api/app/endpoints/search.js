@@ -3,10 +3,12 @@ const helper = require('../helpers/currencies')
 const search = require('../helpers/search')
 
 const buildResponse = (term, results) => {
-  const searchResults = _.filter(results.currencies, (value) => search(value, term))
+  const searchResults = _.filter(results.currencies, value =>
+    search(value, term)
+  )
 
   const currencies = {}
-  _.each(searchResults, (item) => {
+  _.each(searchResults, item => {
     currencies[item.code] = helper.toDisplayCurrency(item)
   })
 
@@ -17,7 +19,7 @@ const buildResponse = (term, results) => {
   }
 }
 
-const ensureTerm = (term) => {
+const ensureTerm = term => {
   let value = term || ''
   value = typeof value === 'string' ? value : value.toString()
   value = value.toUpperCase()

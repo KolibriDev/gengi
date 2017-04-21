@@ -141,7 +141,7 @@ const symbols = {
   fallback: '¤',
 }
 
-module.exports = (curr) => {
+module.exports = curr => {
   if (symbols.hasOwnProperty(curr)) {
     return symbols[curr]
   }
