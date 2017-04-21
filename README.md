@@ -1,5 +1,7 @@
 # gengi
 
+[![Tests status](https://travis-ci.com/KolibriDev/gengi.svg?token=ftT64T4EP2mgju9opeD7&branch=master)](https://travis-ci.com/KolibriDev/gengi)
+
 This is a monorepo for all things `gengi` related
 
 
