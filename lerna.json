@@ -1,6 +1,7 @@
 {
   "lerna": "2.0.0-rc.3",
   "packages": [
+    "applications/*",
     "packages/*"
   ],
   "version": "independent"
