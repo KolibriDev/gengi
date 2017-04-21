@@ -2,9 +2,14 @@
   "name": "@kolibridev/gengi",
   "description": "All gengi related things",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "format": "prettier --single-quote --trailing-comma=es5 --semi=false --write",
+    "format:core": "prettier --single-quote --trailing-comma=es5 --semi=false --write packages/gengi/**/*.js",
+    "format:cli": "prettier --single-quote --trailing-comma=es5 --semi=false --write packages/gengi-cli/**/*.js"
+  },
   "dependencies": {},
   "devDependencies": {
-    "lerna": "~2.0.0-rc.3"
+    "lerna": "~2.0.0-rc.3",
+    "prettier": "~1.2.2"
   }
 }
