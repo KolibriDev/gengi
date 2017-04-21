@@ -1,5 +1,10 @@
 {
+  "name": "@kolibridev/gengi",
+  "description": "All gengi related things",
+  "private": true,
+  "scripts": {},
+  "dependencies": {},
   "devDependencies": {
-    "lerna": "2.0.0-beta.38"
+    "lerna": "~2.0.0-rc.3"
   }
 }
