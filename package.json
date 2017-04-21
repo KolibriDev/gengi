@@ -3,6 +3,7 @@
   "description": "All gengi related things",
   "private": true,
   "scripts": {
+    "test:ci": "lerna run test:ci",
     "format": "prettier --single-quote --trailing-comma=es5 --semi=false --write",
     "postinstall": "lerna bootstrap --npm-client=yon --hoist",
     "precommit": "lint-staged"
