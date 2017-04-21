@@ -10,14 +10,12 @@
     "url": "http://www.kolibri.is"
   },
   "contributors": [
-    "Benedikt D Valdez <benedikt@kolibri.is>",
-    "Garpur Dagsson <garpur@kolibri.is>",
-    "Ólafur Örn Nielsen <olafur@kolibri.is>"
+    "Benedikt D Valdez <benedikt@kolibri.is>"
   ],
-  "repository": {
-    "url": "https://github.com/KolibriDev/gengi.git"
-  },
+  "homepage": "https://gengi.is",
+  "repository": "https://github.com/KolibriDev/gengi/tree/master/gengi-core",
   "bugs": {
-    "url": "https://github.com/KolibriDev/gengi/issues"
+    "url": "https://github.com/KolibriDev/gengi/issues",
+    "email": "hello@gengi.is"
   }
 }
