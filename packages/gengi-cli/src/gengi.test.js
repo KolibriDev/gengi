@@ -60,18 +60,21 @@ describe('lib/gengi - unit', () => {
 })
 
 describe('lib/gengi - integration', () => {
-  xit('should return array of currencies', (done) => {
+  xit('should return array of currencies', done => {
     const gengi = new Gengi()
-    gengi.list().then((currencies) => {
-      expect(currencies).to.be.a('array')
-      done()
-    }).catch((err) => {
-      expect(err).to.equal(false)
-      done()
-    })
+    gengi
+      .list()
+      .then(currencies => {
+        expect(currencies).to.be.a('array')
+        done()
+      })
+      .catch(err => {
+        expect(err).to.equal(false)
+        done()
+      })
   })
 
-  xit('should return calculated and formatted number', (done) => {
+  xit('should return calculated and formatted number', done => {
     const gengi = new Gengi()
     const fakeArgs = {
       currency: 'usd',
@@ -80,13 +83,16 @@ describe('lib/gengi - integration', () => {
     }
     gengi.args = fakeArgs
 
-    gengi.calculate().then((val) => {
-      expect(val).to.be.a('number')
-      expect(val % 1 != 0).to.equal(false) // eslint-disable-line eqeqeq
-      done()
-    }).catch((err) => {
-      expect(err).to.equal(false)
-      done()
-    })
+    gengi
+      .calculate()
+      .then(val => {
+        expect(val).to.be.a('number')
+        expect(val % 1 != 0).to.equal(false) // eslint-disable-line eqeqeq
+        done()
+      })
+      .catch(err => {
+        expect(err).to.equal(false)
+        done()
+      })
   })
 })

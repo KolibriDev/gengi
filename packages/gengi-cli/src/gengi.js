@@ -47,19 +47,21 @@ class Gengi {
 
   get currencies() {
     return new Promise((resolve, reject) => {
-      fetch('http://api.gengi.is/currencies').then(response => {
-        if (response.status !== 200) {
-          const error = new Error(response.statusText)
-          error.response = response
-          throw error
-        } else {
-          return response
-        }
-      }).then(
-        res => res.json()
-      ).then(json => {
-        resolve(json.list)
-      }).catch(err => reject(err))
+      fetch('http://api.gengi.is/currencies')
+        .then(response => {
+          if (response.status !== 200) {
+            const error = new Error(response.statusText)
+            error.response = response
+            throw error
+          } else {
+            return response
+          }
+        })
+        .then(res => res.json())
+        .then(json => {
+          resolve(json.list)
+        })
+        .catch(err => reject(err))
     })
   }
 
@@ -72,10 +74,12 @@ class Gengi {
   }
 
   calculate() {
-    return this.currencies.then((currencies) => {
+    return this.currencies.then(currencies => {
       const currency = currencies[this._currency]
       if (!currency) {
-        const error = new Error(`${this._currency} is not an available currency.`)
+        const error = new Error(
+          `${this._currency} is not an available currency.`
+        )
         error.response = currencies
         throw error
       }
@@ -84,7 +88,7 @@ class Gengi {
   }
 
   list() {
-    return this.currencies.then((currencies) => {
+    return this.currencies.then(currencies => {
       const arr = []
       for (const code in currencies) {
         if (currencies.hasOwnProperty(code)) {
