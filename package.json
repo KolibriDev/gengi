@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "format": "prettier --single-quote --trailing-comma=es5 --semi=false --write",
-    "format:core": "prettier --single-quote --trailing-comma=es5 --semi=false --write packages/gengi/**/*.js",
-    "format:cli": "prettier --single-quote --trailing-comma=es5 --semi=false --write packages/gengi-cli/**/*.js",
-    "postinstall": "lerna bootstrap --hoist"
+    "postinstall": "lerna bootstrap --hoist",
+    "precommit": "lint-staged"
   },
   "dependencies": {},
   "devDependencies": {
+    "husky": "~0.13.3",
     "lerna": "~2.0.0-rc.3",
-    "prettier": "~1.2.2"
+    "lint-staged": "~3.4.0",
+    "prettier": "~1.2.2",
+    "yarn-or-npm": "~2.0.4"
   }
 }
