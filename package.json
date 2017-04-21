@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "format": "prettier --single-quote --trailing-comma=es5 --semi=false --write",
-    "postinstall": "lerna bootstrap --hoist",
+    "postinstall": "lerna bootstrap --npm-client=yon --hoist",
     "precommit": "lint-staged"
   },
   "dependencies": {},
