@@ -1,11 +1,8 @@
-import React, { Component } from 'react';
-import {
-  Text,
-  View
-} from 'react-native';
+import React, { Component } from 'react'
+import { Text, View } from 'react-native'
 
-import Input from '../Input';
-import Numpad from '../Numpad';
+import Input from '../Input'
+import Numpad from '../Numpad'
 
 class Calculator extends Component {
   constructor(props) {
@@ -19,15 +16,15 @@ class Calculator extends Component {
 
   calculate() {
     console.log(this.props)
-    const rate = this.props.currency.rate;
-    const amount = this.state.amount || 1;
+    const rate = this.props.currency.rate
+    const amount = this.state.amount || 1
 
-    const value = amount * rate;
-    const fix = value < 1 && value > 0.001 ? (value === 0 ? 0 : 5) : 2;
-    let retValue = parseFloat(value).toFixed(fix);
+    const value = amount * rate
+    const fix = value < 1 && value > 0.001 ? value === 0 ? 0 : 5 : 2
+    let retValue = parseFloat(value).toFixed(fix)
 
     if (value > 999) {
-      retValue = parseInt(retValue);
+      retValue = parseInt(retValue)
     }
 
     this.setState({
@@ -57,19 +54,25 @@ class Calculator extends Component {
       amount += value
     }
 
-    this.setState({
-      amount,
-    }, this.calculate)
+    this.setState(
+      {
+        amount,
+      },
+      this.calculate
+    )
   }
 
   render() {
     return (
       <View>
         <View>
-          <Input symbol={this.props.currency.symbol} value={this.state.amount.toString()} />
-          <Input symbol='ISK' value={this.state.result.toString()} />
+          <Input
+            symbol={this.props.currency.symbol}
+            value={this.state.amount.toString()}
+          />
+          <Input symbol="ISK" value={this.state.result.toString()} />
         </View>
-        <Numpad  handleClick={this.handleNumpad.bind(this)} />
+        <Numpad handleClick={this.handleNumpad.bind(this)} />
       </View>
     )
   }

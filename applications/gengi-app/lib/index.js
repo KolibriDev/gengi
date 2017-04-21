@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
-  ListView
-} from 'react-native';
+  ListView,
+} from 'react-native'
 
 import styles from './styles'
 import Header from './components/Header'
@@ -20,8 +20,8 @@ class App extends Component {
       currency: {},
       currencies: {},
       currenciesDataSource: new ListView.DataSource({
-        rowHasChanged: (r1, r2) => r1 !== r2
-      })
+        rowHasChanged: (r1, r2) => r1 !== r2,
+      }),
     }
   }
 
@@ -53,11 +53,10 @@ class App extends Component {
           {view}
         </View>
       </View>
-    );
+    )
   }
 
   renderCurrency(currency) {
-
     return (
       <TouchableOpacity onPress={() => this.showView('calculator', currency)}>
         <CurrencyListItem currency={currency} />
@@ -73,7 +72,9 @@ class App extends Component {
     const data = require('./mock/currencies.json')
     this.setState({
       currencies: data.list,
-      currenciesDataSource: this.state.currenciesDataSource.cloneWithRows(data.list)
+      currenciesDataSource: this.state.currenciesDataSource.cloneWithRows(
+        data.list
+      ),
     })
     // fetch('https://api.gengi.is/currencies')
     //   .then((response) => response.json())
