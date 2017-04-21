@@ -9,7 +9,7 @@ Clone the repo and install dependencies with `yarn` or `npm install`. This will 
 
 ### Development
 
-We are using [prettier](https://github.com/prettier/prettier) on `packages/**/*.js`. There is a precommit hook in place which will run `prettier` on all changed files and `git add` them after fixing them.
+We are using [prettier](https://github.com/prettier/prettier) on `packages/**/*.js`. There is a precommit hook in place which will run `prettier` on all changed files and `git add` them after fixing them. **Note** that `applications/gengi-is` is not included in the prettier setup, since it is a legacy project with a pretty weird setup and breaks in a bunch of funny ways.
 
 
 ## Projects

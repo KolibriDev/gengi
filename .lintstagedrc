@@ -1,6 +1,10 @@
 {
   "verbose": false,
   "linters": {
+    "applications/gengi-{,!(is)}/**/*.js": [
+      "yon run format",
+      "git add"
+    ],
     "packages/**/*.js": [
       "yon run format",
       "git add"
