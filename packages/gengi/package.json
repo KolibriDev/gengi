@@ -13,7 +13,7 @@
     "Benedikt D Valdez <benedikt@kolibri.is>"
   ],
   "homepage": "https://gengi.is",
-  "repository": "https://github.com/KolibriDev/gengi/tree/master/gengi-core",
+  "repository": "https://github.com/KolibriDev/gengi/tree/master/gengi",
   "bugs": {
     "url": "https://github.com/KolibriDev/gengi/issues",
     "email": "hello@gengi.is"
