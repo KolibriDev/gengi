@@ -14,8 +14,10 @@
     "lint:src": "jshint ./src/js --verbose --reporter node_modules/jshint-stylish",
     "lint:spec": "jshint ./spec --verbose --reporter node_modules/jshint-stylish",
     "lint": "run-p lint:*",
+    "jasmine": "jasmine",
     "dev-test": "supervisor -q -w spec,src -n exit -x jasmine --",
-    "test": "run-p lint jasmine"
+    "test": "run-p lint jasmine",
+    "test:ci": "npm run test"
   },
   "homepage": "https://github.com/KolibriDev/gengi-is",
   "repository": {

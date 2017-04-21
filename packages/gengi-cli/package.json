@@ -7,7 +7,8 @@
     "compile": "babel -d lib/ src/ --ignore \"*.test.js\"",
     "prepublish": "npm run compile",
     "lint": "eslint .",
-    "test": "mocha --opts mocha.opts ./src/**/*.test.js"
+    "test": "mocha --opts mocha.opts ./src/**/*.test.js",
+    "test:ci": "npm run test"
   },
   "repository": "https://github.com/KolibriDev/gengi/tree/master/packages/gengi-cli",
   "bugs": {
