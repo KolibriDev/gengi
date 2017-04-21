@@ -9,19 +9,22 @@
     "lint": "eslint .",
     "test": "mocha --opts mocha.opts ./src/**/*.test.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/koddsson/gengi-cli.git"
-  },
+  "repository": "https://github.com/KolibriDev/gengi/tree/master/packages/gengi-cli",
   "bugs": {
-    "url": "https://github.com/koddsson/gengi-cli/issues"
+    "url": "https://github.com/KolibriDev/gengi/issues",
+    "email": "hello@gengi.is"
   },
   "author": {
-    "name": "Kristján Oddsson (koddsson)",
-    "email": "koddsson@gmail.com",
-    "url": "https://koddsson.com"
+    "name": "Kolibri",
+    "email": "hello@kolibri.is",
+    "url": "http://www.kolibri.is"
   },
   "contributors": [
+    {
+      "name": "Kristján Oddsson (koddsson)",
+      "email": "koddsson@gmail.com",
+      "url": "https://koddsson.com"
+    },
     {
       "name": "Benedikt D Valdez (benediktvaldez)",
       "email": "benediktvaldez@gmail.com",
