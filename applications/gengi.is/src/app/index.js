@@ -3,7 +3,8 @@ import { tuxMiddleware as tux } from 'tux';
 import createContentfulAdapter from 'tux-adapter-contentful';
 import history from 'react-chain-history';
 import createReactChain from 'react-chain';
-import router from './middleware/router'
+import router from './middleware/router';
+import redux from './middleware/redux';
 import Layout from './views/Layout'
 
 import '../style/index.css';
@@ -26,5 +27,6 @@ const publicUrl = process.env.PUBLIC_URL
 export default createReactChain()
   .chain(history())
   // .chain(tux({ adapter }))
+  .chain(redux())
   .chain(router())
   .chain(() => () => <Layout />)
