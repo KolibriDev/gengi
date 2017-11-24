@@ -1,0 +1,37 @@
+// @import 'styles/variables.scss';
+
+header {
+  height: 60px;
+  margin-bottom: 20px;
+  background: $color-primary;
+  color: #fff;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+header h5 {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+}
+
+header .content-wrap {
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+  align-items: center;
+}
+
+.icon {
+  width: 32px;
+  padding: 13px 15px;
+}
+
+@media (min-width: $break-tiny) {
+  header {
+    height: 80px;
+  }
+}

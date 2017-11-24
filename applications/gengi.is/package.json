@@ -4,6 +4,10 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
+    "css-loader": "^0.28.7",
+    "neutrino": "^7.3.3",
+    "neutrino-preset-tux": "^1.0.0",
+    "node-sass": "^4.7.2",
     "react": "^16.0.0-beta.5",
     "react-chain": "^0.4.3",
     "react-chain-history": "^0.4.3",
@@ -13,8 +17,9 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "tux": "0.3.0",
-    "tux-adapter-contentful": "0.3.1"
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "tux": "^1.0.1"
   },
   "devDependencies": {
     "tux-scripts": "0.3.2"

@@ -1,13 +1,13 @@
 import React from 'react';
 import { tuxMiddleware as tux } from 'tux';
-import createContentfulAdapter from 'tux-adapter-contentful';
+// import createContentfulAdapter from 'tux-adapter-contentful';
 import history from 'react-chain-history';
 import createReactChain from 'react-chain';
 import router from './middleware/router';
 import redux from './middleware/redux';
 import Layout from './views/Layout'
 
-import '../style/index.css';
+// import '../style/index.css';
 
 const publicUrl = process.env.PUBLIC_URL
   ? process.env.PUBLIC_URL

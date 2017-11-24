@@ -1,6 +1,7 @@
 import React from 'react'
 import { Switch, Route, Link, Redirect } from 'react-router-dom'
 // import Helmet from 'react-helmet'
+import Header from '../components/Header'
 import Home from './Home'
 import AllCurrencies from './AllCurrencies'
 // import About from '../../routes/About'
@@ -13,8 +14,8 @@ const Layout = () => (
       <title>Hello World</title>
     </Helmet> */}
     <p>
-      <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
+      <Link to="/">Home </Link>
+      <Link to="/allcurrencies">All currencies</Link>
     </p>
 
     <br />
