@@ -1,0 +1,22 @@
+{
+  "name": "gengi.is",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.0.0-beta.5",
+    "react-chain": "^0.4.3",
+    "react-chain-history": "^0.4.3",
+    "react-document": "^0.7.0",
+    "react-dom": "^16.0.0-beta.5",
+    "tux": "0.3.0",
+    "tux-adapter-contentful": "0.3.1"
+  },
+  "devDependencies": {
+    "tux-scripts": "0.3.2"
+  },
+  "scripts": {
+    "start": "tux-scripts start",
+    "build": "tux-scripts build",
+    "serve": "tux-scripts serve"
+  }
+}
