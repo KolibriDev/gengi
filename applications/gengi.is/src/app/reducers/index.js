@@ -1,11 +1,15 @@
 import { combineReducers } from 'redux';
 
-function foo(state = {chips: 1}, action) {
+import currencies from '../ducks/currencies';
+// import calculator from '../ducks/calculator';
+
+function reducer(state = {}, action) {
   return state;
 }
 
 const rootReducer = combineReducers({
-  foo,
+  currencies,
+  // calculator,
 });
 
 export default rootReducer;
