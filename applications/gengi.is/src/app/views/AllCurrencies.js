@@ -1,5 +1,5 @@
 import React from 'react';
-import tuxLogo from './tux.svg';
+import tuxLogo from '../../assets/tux.svg';
 
 const Home = () => {
   return (

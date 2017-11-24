@@ -8,6 +8,7 @@
     "react-chain-history": "^0.4.3",
     "react-document": "^0.7.0",
     "react-dom": "^16.0.0-beta.5",
+    "react-router-dom": "^4.2.2",
     "tux": "0.3.0",
     "tux-adapter-contentful": "0.3.1"
   },
